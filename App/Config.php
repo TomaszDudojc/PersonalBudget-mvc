@@ -20,19 +20,19 @@ class Config
      * Database name
      * @var string
      */
-    const DB_NAME = 'mvclogin';
+    const DB_NAME = 'personal_budget_mvc';
 
     /**
      * Database user
      * @var string
      */
-    const DB_USER = 'mvcuser';
+    const DB_USER = 'root';
 
     /**
      * Database password
      * @var string
      */
-    const DB_PASSWORD = 'secret';
+    const DB_PASSWORD = '';
 
     /**
      * Show or hide error messages on screen
@@ -46,5 +46,4 @@ class Config
      */
     const SECRET_KEY = 'TmV0dZ6o0bsido4g8INinDUnAAztSwwh';
 
-    //
 }
