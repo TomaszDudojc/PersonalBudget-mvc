@@ -64,10 +64,52 @@ class User extends \Core\Model
             $stmt->bindValue(':password_hash', $password_hash, PDO::PARAM_STR);
             $stmt->bindValue(':activation_hash', $hashed_token, PDO::PARAM_STR);
 
-            return $stmt->execute();
+            $results = $stmt->execute();
+            
+            $newUserId = $this->getNewUserId();
+
+            $this->setIncomesCategory($newUserId);
+			$this->setExpensesCategory($newUserId);
+			$this->setPaymentMethods($newUserId);
+
+            return $results;
         }
 
         return false;
+    }
+
+    protected function getNewUserId()
+    {
+        $db = static::getDB();     
+        $newUserIdQuery = $db->query("SELECT id FROM users WHERE email='$this->email'")->fetch();
+        //$newUserIdQuery = $db->query("SELECT * FROM users ORDER BY id DESC LIMIT 1")->fetch(); //second way
+		$newUserId = $newUserIdQuery['id'];
+
+        return $newUserId;
+    }
+    
+    protected function setIncomesCategory($id)
+    {
+        $db = static::getDB(); 
+        $addIncomesCategory = $db->query("INSERT INTO incomes_category_assigned_to_users (name) SELECT name FROM incomes_category_default"); 
+        $numberOfIncomesCategoryDefault = $addIncomesCategory->rowCount();
+        $db->query("UPDATE incomes_category_assigned_to_users SET `user_id` = '$id' ORDER BY id DESC LIMIT $numberOfIncomesCategoryDefault");
+    }
+    
+    protected function setExpensesCategory($id)
+    {
+        $db = static::getDB(); 
+        $addExpensesCategory = $db->query("INSERT INTO expenses_category_assigned_to_users (name) SELECT name FROM expenses_category_default"); 
+        $numberOfExpensesCategoryDefault = $addExpensesCategory->rowCount();
+        $db->query("UPDATE expenses_category_assigned_to_users SET `user_id` = '$id' ORDER BY id DESC LIMIT $numberOfExpensesCategoryDefault");
+    }
+
+    protected function setPaymentMethods($id)
+    {
+        $db = static::getDB(); 
+        $addPaymentMethods = $db->query("INSERT INTO payment_methods_assigned_to_users (name) SELECT name FROM payment_methods_default"); 
+        $numberOfPaymentMethodsDefault = $addPaymentMethods->rowCount();
+        $db->query("UPDATE payment_methods_assigned_to_users SET `user_id` = '$id' ORDER BY id DESC LIMIT $numberOfPaymentMethodsDefault");
     }
 
     /**
