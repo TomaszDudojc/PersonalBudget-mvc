@@ -68,9 +68,15 @@ class User extends \Core\Model
             
             $newUserId = $this->getNewUserId();
 
+            $this->setItemsCategory($newUserId, 'incomes_category_assigned_to_users', 'incomes_category_default'); 
+            $this->setItemsCategory($newUserId, 'expenses_category_assigned_to_users', 'expenses_category_default');   
+            $this->setItemsCategory($newUserId, 'payment_methods_assigned_to_users', 'payment_methods_default'); 
+
+            /* II ver. setting catergory of items for new user
             $this->setIncomesCategory($newUserId);
 			$this->setExpensesCategory($newUserId);
 			$this->setPaymentMethods($newUserId);
+            */
 
             return $results;
         }
@@ -87,7 +93,17 @@ class User extends \Core\Model
 
         return $newUserId;
     }
-    
+
+    protected function setItemsCategory($id, $nameOfTableWithCategoriesAssignedToUsers, $nameOfTableWithDefaultCategories)
+    {
+        $db = static::getDB(); 
+        $addItemsCategory = $db->query("INSERT INTO $nameOfTableWithCategoriesAssignedToUsers (name) SELECT name FROM  $nameOfTableWithDefaultCategories"); 
+        $numberOfItemsCategoryDefault = $addItemsCategory->rowCount();
+        $db->query("UPDATE $nameOfTableWithCategoriesAssignedToUsers SET `user_id` = '$id' ORDER BY id DESC LIMIT $numberOfItemsCategoryDefault");
+    }
+
+
+    /*II ver. setting catergory of items for new user
     protected function setIncomesCategory($id)
     {
         $db = static::getDB(); 
@@ -111,6 +127,7 @@ class User extends \Core\Model
         $numberOfPaymentMethodsDefault = $addPaymentMethods->rowCount();
         $db->query("UPDATE payment_methods_assigned_to_users SET `user_id` = '$id' ORDER BY id DESC LIMIT $numberOfPaymentMethodsDefault");
     }
+    */
 
     /**
      * Validate current property values, adding valiation error messages to the errors array property

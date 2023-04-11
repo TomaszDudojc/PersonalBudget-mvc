@@ -35,19 +35,7 @@ class Mail
 
         try {
             //Server settings
-            
-
-            //Recipients
-            $mail->setFrom('tomek.dudojc@gmail.com');
-            $mail->addAddress($to);     //Add a recipient. Name is optional
-            $mail->addReplyTo('tomek.dudojc@gmail.com', 'Information');
-           // $mail->addCC('cc@example.com');
-           // $mail->addBCC('bcc@example.com');
-
-            //Attachments
-            //$mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
-            //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
-
+           
             //Content
             $mail->isHTML(true);                                  //Set email format to HTML
             $mail->Subject = $subject;
