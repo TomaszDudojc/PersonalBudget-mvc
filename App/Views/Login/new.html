@@ -1,30 +1,38 @@
 {% extends "base.html" %}
 
-{% block title %}Log in{% endblock %}
-
 {% block body %}
+   
+    <div class="inputContainer mt-3">			
+			
+        <header>
+            <h2 class="font-weight-bold rounded">Log in</h2>
+        </header>
 
-    <h1>Log in</h1>
+        <form action="/login/create" method="post">
 
-    <form action="/login/create" method="post">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text rounded-left icon"><i class="icon-mail-3"></i></span>
+                </div>
+                <input type="email" id="inputEmail" name="email" placeholder="Email address" autofocus value="{{ email }}" class="form-control">
+            </div>
+            <div class="input-group">
+                <div class="input-group-prepend">				
+                    <span class="input-group-text  rounded-left icon"><i class="icon-lock"></i></span>
+                </div>
+                <input type="password" id="inputPassword" name="password" placeholder="Password" class="form-control" />
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="remember_me" {% if remember_me %} checked="checked"{% endif %} /><h5 class="rounded bg-white my-0 text-center" style="color: #060B95; width: 310px;">Remember me</h5>
+                </label>
+            </div>
+            
+            <button type="submit" class="btn login">Log in</button>
+            <a href="/password/forgot"><h5 class="rounded bg-white mt-3 text-center" style="color: #060B95;">Forgot password?</h5></a>
+            
+        </form>
 
-        <div class="form-group">
-            <label for="inputEmail">Email address</label>
-            <input type="email" id="inputEmail" name="email" placeholder="Email address" autofocus value="{{ email }}" class="form-control" />
-        </div>
-        <div class="form-group">
-            <label for="inputPassword">Password</label>
-            <input type="password" id="inputPassword" name="password" placeholder="Password" class="form-control" />
-        </div>
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" name="remember_me" {% if remember_me %} checked="checked"{% endif %} /> Remember me
-            </label>
-        </div>
-
-        <button type="submit" class="btn btn-default">Log in</button>
-        <a href="/password/forgot">Forgot password?</a>
-
-    </form>
+    </div>
 
 {% endblock %}

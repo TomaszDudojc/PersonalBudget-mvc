@@ -2,27 +2,107 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}{% endblock %}</title>
+    <title>Personal Budget</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/styles.css" />
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/fontello.css" type="text/css">
+	<link href="https://fonts.googleapis.com/css2?family=Lato&family=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    
 </head>
 <body>
+    <nav class="navbar navbar-default mainNav rounded">
+			
+		<div class="container">
+				
+			<div class="navbar-header mx-auto">
+				<a class="navbar-brand  text-center" style="color: #060B95;" href="/"><span><i class="icon-calc"></i></span>Personal Budget</a>
+			</div>
+					
+			<blockquote class="blockquote mx-auto mt-3" style="border-left: 0;">					
+				<p class="mb-1"> "If you buy things you don't need, soon you will have to sell things you need"</p>
+				<footer class="blockquote-footer mt-0">Warren Buffett</footer>						
+			</blockquote>
+					
+		</div>
 
-	<div class="container">
+	</nav>	
 
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <ul class="nav navbar-nav">
-                    <li><a href="/">Home</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">                    
+	                   
                     {% if current_user %}
+                        <!--
                         <li><a href="/profile/show">Profile</a></li>
                         <li><a href="/logout">Log out</a></li>
+                        -->
+
+                        <div class="navcontainer rounded">
+		
+                            <nav class="navbar navbar-light py-0 navbar-expand-lg">		
+                                    
+                                <button class="navbar-toggler colapsed" type="button" data-toggle="collapse" data-target="#mainmenu" aria-controls="mainmenu" aria-expanded="false" aria-label="Navigation switch">
+                                        <span class="navbar-toggler-icon"></span>
+                                </button>
+                                    
+                                <div class="collapse navbar-collapse" id="mainmenu">
+                                    
+                                    <ul class="navbar-nav mx-auto py-0">
+                                        <li class="nav-item active">
+                                            <a class="nav-link" style="color: #060B95;" href="/"><i class="icon-home-1"></i>Home</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#"><i class="icon-money"></i>Add income</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#"><i class="icon-basket"></i>Add expense</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#"><i class="icon-chart-bar"></i>View balance</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#"><i class="icon-wrench"></i>Settings</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link text-danger" href="/logout"><i class="icon-off"></i>Log out</a>
+                                        </li>
+                                    </ul>
+                    
+                                </div>
+                                    
+                            </nav>
+                            
+                        </div>
+
+                        <main>
+	
+                            <div class="container mt-3 mb-5">
+                            
+                                <div class="row">                                    
+                                      
+                                    <div class="col-8 text-center rounded mx-auto mb-3" style="background-color: #D3DDE9; border: 1px solid  #c2cce8;">				
+                                        <h3>Select an option from the menu above</h3>	
+                                    </div>
+                              		
+                                    <div class="w-100"></div>
+                                    
+                                    <div class="col-9 mx-auto mt-3">
+                                        <div class="row">
+                                            <div class="col-lg-5 col-9 mt-3 mx-auto">				
+                                                <img class="img-thumbnail" src="img/plan.jpg" alt="plan">
+                                            </div>
+                                            <div class="col-lg-5 col-9 mt-3 mx-auto">	
+                                                <img class="img-thumbnail" src="img/plan2.jpg" alt="plan2">		
+                                            </div>
+                                        </div>
+                                    </div>			
+                                    
+                                </div>
+                            
+                            </div>
+                            
+                        </main>
                     {% endif %}
-                </ul>
-            </div>
-        </nav>
+             
 
         {% for message in flash_messages %}
             <div class="alert alert-{{ message.type }}">
@@ -33,12 +113,25 @@
         {% block body %}
         {% endblock %}
 
+
     </div>
 
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>   
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	
+	<script src="js/bootstrap.min.js"></script>
 
     {% block footer %}
     {% endblock %}
+
+    <footer>
+	
+		<div class="info rounded">
+			All rights reserved &copy; 2023 Thank you for visit!
+		</div>
+		
+	</footer>
 </body>
 </html>

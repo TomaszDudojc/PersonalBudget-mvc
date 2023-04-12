@@ -1,15 +1,54 @@
 {% extends 'base.html' %}
 
-{% block title %}Home{% endblock %}
-
-{% block body %}
-
-    <h1>Welcome</h1>
+{% block body %}  
 
     {% if current_user %}
         Hello {{ current_user.name }}.
-    {% else %}
-        <a href="/signup/new">Sign up</a> or <a href="/login">log in</a>.
+    {% else %}       
+            
+            <main>
+            
+                <div class="container mt-3 mb-5">
+                                        
+                    <div class="row">
+                        
+                        <div class="col-11 mx-auto">					
+                            <h3 class="text-center rounded mx-auto p-2" style="background-color: #D3DDE9; border: 1px solid  #c2cce8;">&#128161; How it's working?</h3>
+                        </div>
+                        
+                        <div class="w-100"></div>
+                        
+                        <div class="col-lg-5 col-11 mt-3 mx-auto">	
+                            <p class="rounded mx-auto p-3" style="background-color: #D3DDE9; border: 5px solid white; font-size: 17px;">						
+                            It is a free application that helps you manage your own finances in a quick and intuitive way. After registration, you can log in to your account and use the menu offering the following functionalities:<br>
+                            <i class="icon-money mr-1"></i>add income - a simple and pleasant option<br>
+                            <i class="icon-basket mr-1"></i>add expense - option sometimes necessary<br>
+                            <i class="icon-chart-bar mr-1"></i>view balance sheet - displays balance sheet for a selected period of time divided into categories<br>
+                            <i class="icon-wrench mr-1"></i>settings - allows you to personalize the application				
+                            </p>
+                        </div>
+                        
+                        <div class="col-lg-5 col-11 mt-3 mx-auto">	
+                            <img class="img-thumbnail" src="img/żarówki.jpg" alt="żarówki">
+                        </div>
+                        
+                        <div class="w-100"></div>
+                        
+                        <div class="col-lg-5 col-11 mt-3 mx-auto">					
+                            <a href="/signup/new" ><button  type="button" class="btn register" style="width: 100%">Sign up</button></a>
+                        </div>
+                        
+                        <div class="col-lg-5 col-11 mt-3 mx-auto">		
+                            <a href="/login" ><button  type="button" class="btn login" style="width: 100%">Login</button></a>
+                        </div>
+                        
+                    </div>
+                    
+                </div>		
+                    
+            </main>
+                
+            
     {% endif %}
 
 {% endblock %}
