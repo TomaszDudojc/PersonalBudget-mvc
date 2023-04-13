@@ -63,26 +63,26 @@
     <div class="inputContainer mt-3">
 
         <header>
-            <h2 class="font-weight-bold rounded">Registration</h2>
+            <h2 class="font-weight-bold rounded">Sign up</h2>
         </header>
 
         <form method="post" action="/signup/create" id="formSignup">
 
             <div class="input-group">
                 <div class="input-group-prepend ">
-                    <span class="input-group-text  rounded-left icon"><i class="icon-user-3"></i></span>
+                    <span class="input-group-text rounded-left icon"><i class="icon-user-3"></i></span>
                 </div>
-                <input type="text" id="inputName" name="name" placeholder="Name" autofocus value="{{ user.name }}" required class="form-control rounded-right">
+                <input type="text" id="inputName" name="name" placeholder="Name" autofocus value="{{ user.name }}" required class="form-control">
             </div>
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <span class="input-group-text  rounded-left icon"><i class="icon-mail-3"></i></span>
+                    <span class="input-group-text rounded-left icon"><i class="icon-mail-3"></i></span>
                 </div>
-                <input type="email" id="inputEmail" name="email" placeholder="email address" value="{{ user.email }}" required type="email" class="form-control rounded-right" />
+                <input type="email" id="inputEmail" name="email" placeholder="email address" value="{{ user.email }}" required class="form-control" />
             </div>
             <div class="input-group">
                 <div class="input-group-prepend">				
-                    <span class="input-group-text  rounded-left icon"><i class="icon-lock"></i></span>
+                    <span class="input-group-text rounded-left icon"><i class="icon-lock"></i></span>
                 </div>
                 <input type="password" id="inputPassword" name="password" placeholder="Password" required class="form-control rounded-right" style="width: 245px;"/>
             </div>
@@ -94,52 +94,4 @@
     </div>
 
 
-
-
-
-
- <!-- 
-
-
-
-
-
-    <main>
-	
-		<div class="inputContainer mt-3">
-
-			<header>
-				<h2 class="register font-weight-bold rounded">Sign up</h2>
-			</header>
-		
-			<form  method="post" action="/signup/create">
-				
-				<div class="input-group">	
-					<div class="input-group-prepend ">
-						<span class="input-group-text  rounded-left iconregister"><i class="icon-user-3"></i></span>
-					</div>
-					<input type="text" class="form-control  rounded-right register" name="name"
-					 placeholder="Name" value="{{ user.name }}" required>						
-				</div>
-				
-				<div class="input-group">
-					<div class="input-group-prepend">
-						<span class="input-group-text  rounded-left iconregister"><i class="icon-mail-3"></i></span>
-					</div>
-					<input type="email" class="form-control  rounded-right register" name="email" placeholder="email address" value="{{ user.email }}"required>
-                </div>  
-					
-				<div class="input-group">
-					<div class="input-group-prepend">				
-						<span class="input-group-text  rounded-left iconregister"><i class="icon-lock"></i></span>
-					</div>
-					<input type="password" class="form-control  rounded-right register" name="password" placeholder="Password" required>					
-				</div>
-									
-				
-					
-				<button  type="submit" class="btn register">Sign up</button>
-					
-			</form>		
--->
 {% endblock %}
