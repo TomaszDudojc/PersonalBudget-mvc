@@ -12,7 +12,7 @@
     
 </head>
 <body>
-    <nav class="navbar navbar-default mainNav rounded">
+    <nav class="navbar navbar-default mainNav rounded mb-0">
 			
 		<div class="container">
 				
@@ -30,85 +30,49 @@
 	</nav>	
 
 	                   
-                    {% if current_user %}
-                        <!--
-                        <li><a href="/profile/show">Profile</a></li>
-                        <li><a href="/logout">Log out</a></li>
-                        -->
-
-                        <div class="navcontainer rounded">
+        {% if current_user %}
+        <div class="navcontainer rounded">
 		
-                            <nav class="navbar navbar-light py-0 navbar-expand-lg">		
-                                    
-                                <button class="navbar-toggler colapsed" type="button" data-toggle="collapse" data-target="#mainmenu" aria-controls="mainmenu" aria-expanded="false" aria-label="Navigation switch">
-                                        <span class="navbar-toggler-icon"></span>
-                                </button>
-                                    
-                                <div class="collapse navbar-collapse" id="mainmenu">
-                                    
-                                    <ul class="navbar-nav mx-auto py-0">
-                                        <li class="nav-item active">
-                                            <a class="nav-link" style="color: #060B95;" href="/"><i class="icon-home-1"></i>Home</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#"><i class="icon-money"></i>Add income</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#"><i class="icon-basket"></i>Add expense</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#"><i class="icon-chart-bar"></i>View balance</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#"><i class="icon-wrench"></i>Settings</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link text-danger" href="/logout"><i class="icon-off"></i>Log out</a>
-                                        </li>
-                                    </ul>
+            <nav class="navbar navbar-light py-0 mb-0 navbar-expand-lg">		
                     
-                                </div>
-                                    
-                            </nav>
-                            
-                        </div>
-
-                        <main>
-	
-                            <div class="container mt-3 mb-5">
-                            
-                                <div class="row">                                    
-                                      
-                                    <div class="col-8 text-center rounded mx-auto mb-3" style="background-color: #D3DDE9; border: 1px solid  #c2cce8;">				
-                                        <h3>Hello {{ current_user.name }}</h3>	
-                                    </div>
-                                    <div class="col-8 text-center rounded mx-auto mb-3" style="background-color: #D3DDE9; border: 1px solid  #c2cce8;">				
-                                        <h3>Select an option from the menu above</h3>	
-                                    </div>                                    
-                              		
-                                    <div class="w-100"></div>
-                                    
-                                    <div class="col-9 mx-auto mt-3">
-                                        <div class="row">
-                                            <div class="col-lg-5 col-9 mt-3 mx-auto">				
-                                                <img class="img-thumbnail" src="img/plan.jpg" alt="plan">
-                                            </div>
-                                            <div class="col-lg-5 col-9 mt-3 mx-auto">	
-                                                <img class="img-thumbnail" src="img/plan2.jpg" alt="plan2">		
-                                            </div>
-                                        </div>
-                                    </div>			
-                                    
-                                </div>
-                            
-                            </div>
-                            
-                        </main>
-                    {% endif %}
+                <button class="navbar-toggler colapsed" type="button" data-toggle="collapse" data-target="#mainmenu" aria-controls="mainmenu" aria-expanded="false" aria-label="Navigation switch">
+                        <span class="navbar-toggler-icon"></span>
+                </button>
+                    
+                <div class="collapse navbar-collapse" id="mainmenu">
+                    
+                    <ul class="navbar-nav mx-auto py-0">
+                        <li class="nav-item active">
+                            <a class="nav-link" style="color: #060B95;" href="/"><i class="icon-home-1"></i>Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="icon-money"></i>Add income</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="icon-basket"></i>Add expense</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="icon-chart-bar"></i>View balance</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="icon-wrench"></i>Settings</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-danger" href="/logout"><i class="icon-off"></i>Log out</a>
+                        </li>
+                    </ul>
+    
+                </div>
+                    
+            </nav>
+            
+        </div>
+                        
+        {% endif %}
              
 
-        {% for message in flash_messages %}
-            <div class="alert alert-{{ message.type }}">
+       {% for message in flash_messages %}
+            <div class="alert alert-{{ message.type }} text-center">
                 {{ message.body }}
             </div>
         {% endfor %}
