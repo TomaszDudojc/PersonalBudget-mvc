@@ -33,8 +33,10 @@ class Mail
         //Create an instance; passing `true` enables exceptions
         $mail = new PHPMailer(true);
 
-        try {
+        try {           
+        
             //Server settings
+            
            
             //Content
             $mail->isHTML(true);                                  //Set email format to HTML

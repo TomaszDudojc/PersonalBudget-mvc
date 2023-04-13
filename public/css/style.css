@@ -80,7 +80,7 @@ p
 
 
 /* //////////////////  REJESTRACJA  /////////////////////// */
-
+/*
 h2.register
 {	
 	color: #008000;		
@@ -105,7 +105,7 @@ input.register[type=password]:focus
 	background-color: #e9f3e9;
 	color: #008000;
 }
-
+*/
 button.register
 {	
 	width: 330px;
