@@ -36,7 +36,7 @@ class Mail
         try {           
         
             //Server settings
-           
+            
            
             //Content
             $mail->isHTML(true);                                  //Set email format to HTML
