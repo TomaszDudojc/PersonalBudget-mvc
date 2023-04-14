@@ -33,8 +33,10 @@ class Mail
         //Create an instance; passing `true` enables exceptions
         $mail = new PHPMailer(true);
 
-        try {
+        try {           
+        
             //Server settings
+            
            
             //Content
             $mail->isHTML(true);                                  //Set email format to HTML
@@ -43,9 +45,9 @@ class Mail
             $mail->AltBody = $text;
 
             $mail->send();
-            echo 'Message has been sent';
+           echo 'Message has been sent';
         } catch (Exception $e) {
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-        }
+       }
     }
 }

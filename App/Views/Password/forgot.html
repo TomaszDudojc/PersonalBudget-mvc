@@ -4,16 +4,24 @@
 
 {% block body %}
 
-    <h1>Request password reset</h1>
+<div class="inputContainer mt-3">			
+			
+    <header>
+        <h2 class="font-weight-bold rounded">Request password reset</h2>
+    </header>
 
     <form method="post" action="/password/request-reset">
 
-        <div class="form-group">
-            <label for="inputEmail">Email address</label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text rounded-left icon"><i class="icon-mail-3"></i></span>
+            </div>
             <input type="email" id="inputEmail" name="email" placeholder="Email address" autofocus required class="form-control" />
         </div>
 
-        <button type="submit" class="btn btn-default">Send password reset</button>
+        <button type="submit" class="btn login">Send password reset</button>
     </form>
+
+</div>
 
 {% endblock %}

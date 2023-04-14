@@ -1,0 +1,375 @@
+body, html
+{
+	/*background-color: #F1F4F9;*/	
+	background-image: url("../img/laptop.jpg");
+	background-size: cover;	
+	font-size: 16px;
+	width: 100%;	
+	font-family: 'Lato', sans-serif !important; 
+	margin: 0px;
+}
+
+.mainNav
+{	
+	background-color: #D3DDE9;
+	border: 1px solid  #c2cce8;	
+
+}
+
+.navbar-brand
+{	
+	font-size: 60px;	
+	letter-spacing: 5px;	
+	margin: 10px;
+	padding: 5px;
+	font-weight: bold;
+	color: #060B95;	
+	white-space: pre-wrap;
+}
+h2
+{	
+	text-align: center;
+	padding: 10px;
+	font-size: 30px;
+	letter-spacing: 2px;
+	color: #060B95;
+	background-color: #D3DDE9;	
+	border: 1px solid  #c2cce8;
+}
+
+@media(max-width: 767px)
+{
+	.navbar-brand
+	{
+		padding: 0px;
+		margin: 0px;
+		font-size: 30px;
+		letter-spacing: 1px;
+	}
+	p
+	{
+		font-size: 17px;			
+	}
+	h2
+	{
+		padding: 2px;
+		font-size: 24px;
+		letter-spacing: 1px;
+		}
+	h3
+	{
+		font-size: 21px;
+	}
+	h4
+	{		
+		font-size: 21px;		
+	}
+}
+p
+{	
+	color: #060B95;
+	text-align: justify;	
+}
+
+.inputContainer
+{
+	width: 330px;
+	margin: 10px  auto;	
+	padding-bottom: 100px;
+}
+
+
+/* //////////////////  REJESTRACJA  /////////////////////// */
+/*
+h2.register
+{	
+	color: #008000;		
+}
+
+input.register[type=text],
+input.register[type=email],
+input.register[type=password]
+{
+	color: #008000;	
+	border: 1px solid  #c2cce8;
+}
+
+input.register[type=text]:focus,
+input.register[type=email]:focus,
+input.register[type=password]:focus
+{
+	-webkit-box-shadow: 0px 0px 5px 1px rgba(165,205,165,0.9);
+	-moz-box-shadow: 0px 0px 5px 1px rgba(165,205,165,0.9);
+	box-shadow: 0px 0px 5px 1px rgba(165,205,165,0.9);
+	border: 1px solid #a5cda5;	
+	background-color: #e9f3e9;
+	color: #008000;
+}
+*/
+button.register
+{	
+	width: 330px;
+	background-color: #008000;
+	font-size: 20px;
+	color: white;
+	padding: 10px;
+	margin-top: 10px;	
+	letter-spacing: 2px;
+}
+
+button.register:focus
+{
+	-webkit-box-shadow: 0px 0px 5px 5px rgba(165,205,165,0.9);
+	-moz-box-shadow: 0px 0px 5px 5px rgba(165,205,165,0.9);
+	box-shadow: 0px 0px 5px 5px rgba(165,205,165,0.9);
+}
+
+button.register:hover
+{
+	background-color: #229222;
+	color: rgb(8, 236, 8);
+}
+
+/* Zmiana koloru czcionki placeholdera */
+input.register::-webkit-input-placeholder
+{
+    color: #999;		
+}
+input.register:focus::-webkit-input-placeholder
+{
+    color: #008000;	
+}
+/* Firefox < 19 */
+input.register:-moz-placeholder
+{
+    color: #999;	
+}
+input.register:focus:-moz-placeholder
+{
+    color: #008000;
+}
+/* Firefox > 19 */
+input.register::-moz-placeholder
+{
+    color: #999;	
+}
+input.register:focus::-moz-placeholder
+{
+    color: #008000;
+}
+/* Internet Explorer 10 */
+input.register:-ms-input-placeholder
+{
+    color: #999;	
+}
+input.register:focus:-ms-input-placeholder
+{
+    color: #008000;
+}
+
+.iconregister
+{	
+	margin-top: 10px;	
+	font-size: 17px;	
+	padding: 5px 3px;
+	border: 1px solid #9DC7F7;
+	border: 1px solid  #c2cce8;
+	background-color: #e9f3e9;
+	color: #008000;
+	width: 30px;
+	box-sizing: border-box;
+	height: 32px;	
+}
+
+/* //////////////////  FOOTER  /////////////////////// */
+
+.info
+{
+	width: 100%;		
+	text-align: center;
+	font-size: 14px;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	background-color: #D3DDE9;
+	padding: 3px;
+	border: 1px solid  #c2cce8;
+	color: #060B95;	
+}
+
+/* //////////////////  LOGOWANIE  /////////////////////// */
+
+input[type=text],
+input[type=email],
+input[type=password],
+input[type=number],
+input[type=date],
+.choice
+{	
+	font-family: 'Lato', sans-serif;
+	width: 300px;	
+	height: 32px;	
+	color: #060B95;
+	border: 1px solid  #c2cce8;
+	font-size: 17px;	
+	padding: 3px;
+	box-sizing: border-box;
+	outline: none;
+	margin-top: 10px;	
+}
+
+input[type=text]:focus,
+input[type=email]:focus,
+input[type=password]:focus,
+input[type=number]:focus,
+input[type=date]:focus,
+.choice:focus
+{
+	-webkit-box-shadow: 0px 0px 5px 1px rgba(157,199,247,0.9);
+	-moz-box-shadow: 0px 0px 5px 1px rgba(157,199,247,0.9);
+	box-shadow: 0px 0px 5px 1px rgba(157,199,247,0.9);	
+	background-color: #F1F4F9;
+	color: #060B95;
+}
+
+button.login
+{	
+	width: 330px;
+	background-color: #060B95;
+	font-size: 20px;
+	color: white;
+	padding: 10px;
+	margin-top: 10px;
+	letter-spacing: 2px;
+}
+
+button.login:focus
+{
+	-webkit-box-shadow: 0px 0px 5px 5px rgba(157,199,247,0.9);
+	-moz-box-shadow: 0px 0px 5px 5px rgba(157,199,247,0.9);
+	box-shadow: 0px 0px 5px 5px rgba(70, 76, 82, 0.9);
+}
+
+button.login:hover
+{
+	background-color: #050a84;
+	color: rgb(148, 189, 243);
+}
+
+/* Zmiana koloru czcionki placeholdera */
+input::-webkit-input-placeholder
+{
+    color: #999;		
+}
+input:focus::-webkit-input-placeholder
+{
+    color: #060B95;
+}
+/* Firefox < 19 */
+input:-moz-placeholder
+{
+    color: #999;	
+}
+input:focus:-moz-placeholder
+{
+    color: #060B95;
+}
+/* Firefox > 19 */
+input::-moz-placeholder
+{
+    color: #999;	
+}
+input:focus::-moz-placeholder
+{
+    color: #060B95;
+}
+/* Internet Explorer 10 */
+input:-ms-input-placeholder
+{
+    color: #999;	
+}
+input:focus:-ms-input-placeholder
+{
+    color: #060B95;
+}
+
+.icon
+{	
+	margin-top: 10px;	
+	font-size: 17px;	
+	padding: 5px 3px;	
+	border: 1px solid  #c2cce8;
+	background-color: #F1F4F9;
+	color: #060B95;
+	width: 30px;	
+	box-sizing: border-box;
+	height: 32px;	
+}
+
+/* //////////////////  MENU  /////////////////////// */
+
+.navcontainer
+{
+	margin: auto;
+	/*background-color: #d8e2d8;	
+	background-color: #e9f3e9;
+	background-color: #e3f2fd;
+	background-color: #28EFD4;
+	background-color: #D6FCF7;*/
+	background-color: #E2FDFA;		
+	border: 1px solid #a5cda5;
+	border-top: none;
+}
+
+.navbar-nav .active
+{
+	background-color: #D3DDE9;	
+}
+ 
+ h3
+{	
+	color: #060B95;		
+}
+
+/* //////////////////  WYDATEK /////////////////////// */
+
+option
+{	
+	background-color: white;		 
+}
+
+/* //////////////////  Balance /////////////////////// */
+
+.table
+{		
+	/*border: 1px solid #c2cce8;*/
+	/*background-color: #F1F4F9;*/
+	/*background-color: #D3DDE9;*/
+	background-color: none;
+	position: relative;
+	z-index: 100;	
+}
+
+/* //////////////////  rejestracja.php /////////////////////// */
+ 
+.error
+{
+	color:red;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	background-color: pink;
+	border: 1px solid red;
+}
+	
+/* //////////////////  logowanie.php /////////////////////// */
+	
+.information
+{
+	color:blue;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	background-color: #D3DDE9;
+	border: 1px solid blue;
+	
+	
+}
