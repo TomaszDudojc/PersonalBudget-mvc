@@ -15,7 +15,7 @@
                     <h2 class="font-weight-bold rounded">New income<i class="icon-money ml-3"></i></h2>
                 </header>
             
-                <form method="post">	
+                <form action="/income/create" method="post">	
                     
                     <div class="input-group">
                         <div class="input-group-prepend ">
@@ -37,9 +37,9 @@
                         </div>
                         <select class="choice rounded-right" name="category" required>						
                             <option value selected disabled hidden>Select a category</option>                          					
-                             {% for incomeCategory in incomeCategories %}
-                             <option> {{ incomeCategory.name }}</option> 
-							    {% endfor %}                               
+                             {% for incomeCategory in incomeCategories %}                             
+                             <option value={{ incomeCategory.id }}>{{ incomeCategory.name }}</option> 
+							{% endfor %}                               
                         </select>
                     </div>	
     

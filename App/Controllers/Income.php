@@ -18,5 +18,26 @@ class Income extends Authenticated
 		]);
     }
 
-    
+    public function createAction()
+    {
+		if(isset($_POST['amount'])) {
+			$income = new Incomes($_POST);
+            
+			if ($income->save()) {
+
+				Flash::addMessage('Income has been added');
+
+				$this->redirect('/income/index');
+
+			} else {
+					
+				View::renderTemplate('Income/index.html', [
+					'income' => $income
+					
+				]);
+				
+			}
+       } 	
+
+    }
 }
