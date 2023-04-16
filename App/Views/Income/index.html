@@ -36,13 +36,10 @@
                             <span class="input-group-text  rounded-left icon"><i class="icon-ok"></i></span>
                         </div>
                         <select class="choice rounded-right" name="category" required>						
-                            <option value selected disabled hidden>Select a category</option>
-                           <!-- <?php						
-                                foreach ($income_categories as $income_category)
-                                {
-                                    echo"<option value=$income_category[id]>$income_category[name]</option>";
-                                }							
-                            ?>-->
+                            <option value selected disabled hidden>Select a category</option>                          					
+                             {% for incomeCategory in incomeCategories %}
+                             <option> {{ incomeCategory.name }}</option> 
+							    {% endfor %}                               
                         </select>
                     </div>	
     
