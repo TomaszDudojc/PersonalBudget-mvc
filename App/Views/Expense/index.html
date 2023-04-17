@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %}Add expense{% endblock %}
+
+{% block nav_item_3 %}active{% endblock %}
+
+{% block body %}  
+
+    {% if current_user %}
+
+    <main>
+	
+		<div class="inputContainer mt-3">			
+			
+			<header>
+				<h2 class="font-weight-bold rounded">New expense<i class="icon-basket ml-3"></i></h2>
+			</header>
+		
+			<form method="post">	
+				
+				<div class="input-group">
+					<div class="input-group-prepend ">
+						<span class="input-group-text  rounded-left icon"><i class="icon-gauge"></i></span>
+					</div>			
+					<input type="number" class="form-control  rounded-right " step="0.01" min="0.01" name="amount" value="{{ expense.amount }}" placeholder="Amount" required>	
+				</div>
+					
+				<div class="input-group">
+					<div class="input-group-prepend">				
+						<span class="input-group-text  rounded-left icon"><i class="icon-calendar"></i></span>
+					</div>
+					<input type="date" class="form-control  rounded-right" name="date" value="{{ currentDate }}" required>
+				</div>				
+				
+				<div class="input-group">
+					<div class="input-group-prepend">				
+						<span class="input-group-text  rounded-left icon"><i class="icon-cc-visa"></i></span>
+					</div>
+					<select class="choice rounded-right" name="method" required>
+						<option value selected disabled hidden>Choose payment method</option>
+						{% for paymentMethod in paymentMethods %}                             
+                            <option value="{{ paymentMethod.id }}">{{ paymentMethod.name }}</option> 
+						{% endfor %}      
+					</select>
+				</div>	
+
+				<div class="input-group">
+					<div class="input-group-prepend">				
+						<span class="input-group-text  rounded-left icon"><i class="icon-ok"></i></span>
+					</div>
+					<select class="choice rounded-right" name="category" required>						
+						<option value selected disabled hidden>Select a category</option>
+						{% for  expenseCategory in  expenseCategories %}                             
+                             <option value="{{ expenseCategory.id }}">{{  expenseCategory.name }}</option> 
+							{% endfor %}      		
+					</select>
+				</div>	
+
+				<div class="input-group">	
+					<div class="input-group-prepend ">
+						<span class="input-group-text  rounded-left icon"><i class="icon-pencil"></i></span>
+					</div>
+					<input type="text" class="form-control  rounded-right" name="comment" placeholder="Comment">	
+				</div>				
+				
+				<a href="menu.php"><button  type="button" class="btn btn-danger btn-lg float-left mt-3" style="width: 94px;">Cancel</button></a>
+				<button  type="submit" class="btn btn-success btn-lg  float-right mt-3" style="width: 94px;">Add</button>
+									
+			</form>		
+			
+		</div>
+		
+	</main>
+
+
+    
+    {% endif %}
+
+{% endblock %}    
