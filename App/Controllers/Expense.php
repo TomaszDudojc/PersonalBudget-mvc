@@ -15,6 +15,7 @@ class Expense extends Authenticated
     {
         View::renderTemplate('Expense/index.html', [							
 			'expenseCategories' => Expenses::getExpenseCategoriesOfUser(),
+            'paymentMethods' => Expenses::getpaymentMethodsOfUser(),
 			'currentDate' => Dates::getCurrentDate()				
 		]);
     }
@@ -34,7 +35,8 @@ class Expense extends Authenticated
 					
 				View::renderTemplate('Expense/index.html', [
 					'expense' => $expense,					
-					'expenseCategories' => Expenses::Expenses::getExpenseCategoriesOfUser(),
+					'expenseCategories' => Expenses::getExpenseCategoriesOfUser(),
+                    'paymentMethods' => Expenses::getPaymentMethodsOfUser(),
 					'currentDate' => Dates::getCurrentDate()					
 				]);				
 			} 	

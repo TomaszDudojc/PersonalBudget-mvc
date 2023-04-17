@@ -16,7 +16,7 @@
 				<h2 class="font-weight-bold rounded">New expense<i class="icon-basket ml-3"></i></h2>
 			</header>
 		
-			<form method="post">	
+			<form action="/expense/create" method="post">	
 				
 				<div class="input-group">
 					<div class="input-group-prepend ">
@@ -60,10 +60,10 @@
 					<div class="input-group-prepend ">
 						<span class="input-group-text  rounded-left icon"><i class="icon-pencil"></i></span>
 					</div>
-					<input type="text" class="form-control  rounded-right" name="comment" placeholder="Comment">	
+					<input type="text" class="form-control  rounded-right" name="comment" value="{{ expense.comment }}"placeholder="Comment">	
 				</div>				
 				
-				<a href="menu.php"><button  type="button" class="btn btn-danger btn-lg float-left mt-3" style="width: 94px;">Cancel</button></a>
+				<a href="/home/index"><button  type="button" class="btn btn-danger btn-lg float-left mt-3" style="width: 94px;">Cancel</button></a>
 				<button  type="submit" class="btn btn-success btn-lg  float-right mt-3" style="width: 94px;">Add</button>
 									
 			</form>		
