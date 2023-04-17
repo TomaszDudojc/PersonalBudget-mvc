@@ -5,6 +5,7 @@
     <title>Personal Budget</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     
+    <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/fontello.css">
 	<link href="https://fonts.googleapis.com/css2?family=Lato&family=swap" rel="stylesheet">
@@ -42,23 +43,23 @@
                 <div class="collapse navbar-collapse" id="mainmenu">
                     
                     <ul class="navbar-nav mx-auto py-0">
-                        <li class="nav-item active">
-                            <a class="nav-link" style="color: #060B95;" href="/"><i class="icon-home-1"></i>Home</a>
+                        <li class="nav-item {% block nav_item_1 %}{% endblock %}">
+                            <a class="nav-link" href="/"><i class="icon-home-1"></i>Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="icon-money"></i>Add income</a>
+                        <li class="nav-item {% block nav_item_2 %}{% endblock %}">
+                            <a class="nav-link" href="/income/index"><i class="icon-money"></i>Add income</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item {% block nav_item_3 %}{% endblock %}">
                             <a class="nav-link" href="#"><i class="icon-basket"></i>Add expense</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item {% block nav_item_4 %}{% endblock %}">
                             <a class="nav-link" href="#"><i class="icon-chart-bar"></i>View balance</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item {% block nav_item_5 %}{% endblock %}">
                             <a class="nav-link" href="#"><i class="icon-wrench"></i>Settings</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-danger" href="/logout"><i class="icon-off"></i>Log out</a>
+                        <li class="nav-item {% block nav_item_6 %}{% endblock %}">
+                            <a class="nav-link text-danger" href="/login/destroy"><i class="icon-off"></i>Log out</a>
                         </li>
                     </ul>
     
