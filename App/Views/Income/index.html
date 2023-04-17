@@ -21,14 +21,14 @@
                         <div class="input-group-prepend ">
                             <span class="input-group-text  rounded-left icon"><i class="icon-gauge"></i></span>
                         </div>
-                        <input type="number" class="form-control  rounded-right " step="0.01" min="0.01" name="amount" placeholder="Amount" required>	
+                        <input type="number" class="form-control  rounded-right " step="0.01" min="0.01" name="amount" value="{{ income.amount }}" placeholder="Amount" required>	
                     </div>
                         
                     <div class="input-group">
                         <div class="input-group-prepend">				
                             <span class="input-group-text  rounded-left icon"><i class="icon-calendar"></i></span>
                         </div>
-                        <input type="date" class="form-control  rounded-right" name="date" value="aktualna data" required>
+                        <input type="date" class="form-control  rounded-right" name="date" value="{{ currentDate }}" required>
                     </div>		
                     
                     <div class="input-group">
@@ -38,7 +38,7 @@
                         <select class="choice rounded-right" name="category" required>						
                             <option value selected disabled hidden>Select a category</option>                          					
                              {% for incomeCategory in incomeCategories %}                             
-                             <option value={{ incomeCategory.id }}>{{ incomeCategory.name }}</option> 
+                             <option value="{{ incomeCategory.id }}">{{ incomeCategory.name }}</option> 
 							{% endfor %}                               
                         </select>
                     </div>	
@@ -47,11 +47,11 @@
                         <div class="input-group-prepend ">
                             <span class="input-group-text  rounded-left icon"><i class="icon-pencil"></i></span>
                         </div>
-                        <input type="text" class="form-control  rounded-right" name="comment" placeholder="Comment">	
+                        <input type="text" class="form-control  rounded-right" name="comment" value="{{ income.comment }}" placeholder="Comment">	
                     </div>				
                     
-                    <a href="/home/index"><button  type="button" class="btn btn-danger btn-lg float-left mt-3">Cancel</button></a>
-                    <button  type="submit" class="btn btn-success btn-lg  float-right mt-3">Add</button>
+                    <a href="/home/index"><button  type="button" class="btn btn-danger btn-lg float-left mt-3" style="width: 94px;">Cancel</button></a>
+                    <button  type="submit" class="btn btn-success btn-lg  float-right mt-3" style="width: 94px;" >Add</button>
                                         
                 </form>		
                 
