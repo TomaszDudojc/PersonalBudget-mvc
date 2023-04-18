@@ -41,6 +41,5 @@ class Income extends Authenticated
 		} else {
 			$this->redirect('/income/index');
         } 
-
     }
 }
