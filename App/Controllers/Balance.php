@@ -17,9 +17,9 @@ class Balance extends Authenticated
     {
         View::renderTemplate('Balance/index.html', [							
 			'currentMonth' => Dates::getCurrentMonth(),
-            'incomeCategories' => Balances::getIncomeCategories()
-           // 'incomesInCategory' => Balances::getIncomesInCategory(),
-           // 'amountOfAllIncomes' => Balances::getAmountOfAllIncomes()				
+            'incomeCategories' => Balances::getIncomeCategories(),
+           'incomesInCategory' => Balances::getIncomesInCategory(),
+           'amountOfAllIncomes' => Balances::getAmountOfAllIncomes()				
 					
 							
 		]);

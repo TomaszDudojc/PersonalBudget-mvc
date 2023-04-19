@@ -7,41 +7,18 @@
 
 {% block body %}  
 
-    {% if current_user %} 
-   
-    <!-- <div class="inputContainer mt-3">	
-      
-      <form action="/blance/create" method="post">	
-            
-            <div class="input-group mb-5">
-                <div class="input-group-prepend">				
-                    <span class="input-group-text  rounded-left icon"><i class="icon-calendar"></i></span>
-                </div>
-                <select class="choice rounded-right" name="category" required>						
-                    <option value selected disabled hidden>Select period</option>                          					
-                    <option value="currentMonth">Current month</option>
-					<option value="previousMonth">Previous month</option>
-					<option value="currentYear">Current year</option>
-					<a data-toggle="modal" data-target="#dateRange" href="#"><option>Custom</option></a>                          
-                </select>
-            </div>
-
-            <button  type="submit" class="btn login mt-5"  >Create</button>
-                                
-        </form>
-    </div> -->
-
-       
-    <div class="navcontainer rounded mt-3" style="width: 250px;">
+    {% if current_user %}    
+         
+    <div class="navcontainer rounded mt-3" style="width: 570px;">
 		
         <nav class="navbar navbar-light py-0 mb-0 navbar-expand-lg"> 
             <ul class="navbar-nav py-0 px-3 active mx-auto">				
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" style="color: #060B95;" href="#" data-toggle="dropdown" role="button" aria-expanded="false" id="submenu"><i class="icon-calendar mr-3"></i>Select a period</a>						
                     <div class="dropdown-menu" aria-labelledby="submenu" style="background-color: #E2FDFA; border: 1px solid #a5cda5;">						
-                        <a class="dropdown-item active" style="color: #060B95;" href="balance.php">Current month</a>
-                        <a class="dropdown-item" style="color: #060B95;" href="balanceOfPreviousMonth.php">Previous month</a>
-                        <a class="dropdown-item" style="color:#060B95;" href="balanceOfCurrentYear.php">Current year</a>
+                        <a class="dropdown-item active" style="color: #060B95;" href="/balance/index">Current month</a>
+                        <a class="dropdown-item" style="color: #060B95;" href="/balanceOfPreviousMonth/index">Previous month</a>
+                        <a class="dropdown-item" style="color:#060B95;" href="/balanceOfCurrentYear/index">Current year</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" style="color: #060B95;" data-toggle="modal" data-target="#dateRange" href="#">Custom</a>						
                     </div>
@@ -85,44 +62,45 @@
               </div> 		
           </div>
       </div>
-<!--
+
       <div class="container my-3 text-center pb-5">
 	
 		<div class="row">	
 			
-				<h2 class="col-10 col-md-6 font-weight-bold rounded mx-auto"><i class="icon-calendar mr-3"></i>Current month</h2>			
+			<h2 class="col-10 col-md-6 font-weight-bold rounded mx-auto"><i class="icon-calendar mr-3"></i>Current month</h2>			
 						
 			<div class="w-100"></div>		
 											
 				<div class="table col-10 col-md-5 mx-auto rounded mt-2 mb-0">		
-					<h3 style="background-color: #D3DDE9; border: 1px solid  #c2cce8;" class="rounded">Incomes<i class="icon-money ml-5"></i><?php	echo $_SESSION['amount_of_all_incomes'];?></h3>
-					<?php						
-						if  ($number_of_incomes == 0)
-						{								
-								echo '<div class="information rounded text-center mx-auto p-2 w-100" >No income in the selected period</div>';	
-							}						
+					<h3 style="background-color: #D3DDE9; border: 1px solid  #c2cce8;" class="rounded">Incomes<i class="icon-money ml-5"></i>{{ amountOfAllIncomes.0 }}</h3>	
+					
+					{% if incomeCategories %}
 							
-						else
-							{
-								foreach ($categories as $category)
-								{							
+						{% for incomeCategory in incomeCategories %}
+															
 									
-									echo'<h5 class="rounded bg-white my-2" style="color: #060B95;">'."$category[name]".'<i class="icon-money ml-3"></i>'."$category[AmountOfIncomes]</h5>";							
+							<h5 class="rounded bg-white my-2" style="color: #060B95;">{{ incomeCategory.name }}<i class="icon-money ml-3"></i>{{ incomeCategory.amountOfIncomes }}</h5>							
 								
-									foreach ($incomes as $income)
-									{								
-										if ($category['income_category_assigned_to_user_id']==$income['income_category_assigned_to_user_id'])
-										echo'<h6 class="bg-white rounded">'.'<i class="icon-money">'."</i>$income[date_of_income]".'<span class="mx-2">&#8680</span>'."$income[income_comment]".'<span class="mx-2">&#8680;</span>'."$income[amount]</h6>";
-									}
-								}						
-								
-							}
+								{% for incomeInCategory in incomesInCategory %}
+																	
+									{% if incomeInCategory.income_category_assigned_to_user_id == incomeCategory.income_category_assigned_to_user_id  %}
+										<h6 class="bg-white rounded"><i class="icon-money"></i>{{ incomeInCategory.date_of_income }}<span class="mx-2">&#8680</span>{{ incomeInCategory.income_comment }}<span class="mx-2">&#8680;</span>{{ incomeInCategory.amount }}</h6>
+									{% endif %}
+									
+
+								{% endfor %}
+														
+						{% endfor %}							
 						
+					{% else %}
+															
+						<div class="information rounded text-center mx-auto p-2 w-100" >No income in the selected period</div>	
+														
+				{% endif %}		
 					
-					?>
-					
+				
 				</div>
-					
+				<!--	
 				<div class="table col-10 col-md-5 mx-auto rounded mt-2 mb-0">		
 					<h3 style="background-color: #D3DDE9; border: 1px solid  #c2cce8;" class="rounded">Expenses<i class="icon-basket ml-5"></i><?php	echo $_SESSION['amount_of_all_expenses'];?></h3>
 					<?php						
