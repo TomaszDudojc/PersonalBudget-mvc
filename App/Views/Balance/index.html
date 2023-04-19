@@ -7,84 +7,88 @@
 
 {% block body %}  
 
-    {% if current_user %}    
-         
-    <div class="navcontainer rounded mt-3" style="width: 570px;">
+    {% if current_user %}  
+	
+	<main>
+	
+		<div class="container my-3 text-center pb-5">
 		
-        <nav class="navbar navbar-light py-0 mb-0 navbar-expand-lg"> 
-            <ul class="navbar-nav py-0 px-3 active mx-auto">				
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" style="color: #060B95;" href="#" data-toggle="dropdown" role="button" aria-expanded="false" id="submenu"><i class="icon-calendar mr-3"></i>Select a period</a>						
-                    <div class="dropdown-menu" aria-labelledby="submenu" style="background-color: #E2FDFA; border: 1px solid #a5cda5;">						
-                        <a class="dropdown-item active" style="color: #060B95;" href="/balance/index">Current month</a>
-                        <a class="dropdown-item" style="color: #060B95;" href="/balanceOfPreviousMonth/index">Previous month</a>
-                        <a class="dropdown-item" style="color:#060B95;" href="/balanceOfCurrentYear/index">Current year</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" style="color: #060B95;" data-toggle="modal" data-target="#dateRange" href="#">Custom</a>						
-                    </div>
-                </li>					
-            </ul>
-        </nav>
-    </div>
+			<div class="row">	
+         
+				<div class="navcontainer rounded mt-3" style="width: 570px;">
+					
+					<nav class="navbar navbar-light py-0 mb-0 navbar-expand-lg"> 
+						<ul class="navbar-nav py-0 px-3 active mx-auto">				
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" style="color: #060B95;" href="#" data-toggle="dropdown" role="button" aria-expanded="false" id="submenu"><i class="icon-calendar mr-3"></i>Select a period</a>						
+								<div class="dropdown-menu" aria-labelledby="submenu" style="background-color: #E2FDFA; border: 1px solid #a5cda5;">						
+									<a class="dropdown-item" style="color: #060B95;" href="/balance/index">Current month</a>
+									<a class="dropdown-item" style="color: #060B95;" href="/balanceOfPreviousMonth/index">Previous month</a>
+									<a class="dropdown-item" style="color:#060B95;" href="/balanceOfCurrentYear/index">Current year</a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" style="color: #060B95;" data-toggle="modal" data-target="#dateRange" href="#">Custom</a>						
+								</div>
+							</li>					
+						</ul>
+					</nav>
+				</div>
 
     
-	<div class="modal" id="dateRange" style="display: none">
-        <div class="modal-dialog">
-          <div class="modal-content table rounded" style="background-color: #E2FDFA;">
-                    <div class="modal-header">
-                      <h3 class="modal-title">Select a date range</h3>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-            
-                    <div class="modal-body">
-                      <form action="/blance/create" method="post">
-                          <div class="input-group">
-                              <div class="input-group-prepend">				
-                                  <span class="input-group-text  rounded-left icon my-0"><i class="icon-calendar"></i></span>
-                              </div>						
-                              <input type="date" class="form-control  rounded-right my-0 mr-2" name="starting_date" required>
-                              
-                              <div class="input-group-prepend">				
-                                  <span class="input-group-text  rounded-left icon  my-0 ml-2"><i class="icon-calendar"></i></span>
-                              </div>
-                              <input type="date" class="form-control  rounded-right my-0" name="end_date" required>
-                          </div>
-                          
-                          <div class="modal-footer">
-                              <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                              <button type="submit" class="btn btn-success">Save</button>
-                          </div>														
-                      </form>					
-                  </div>				
-                          
-              </div> 		
-          </div>
-      </div>
-
-      <div class="container my-3 text-center pb-5">
-	
-		<div class="row">	
-			
-			<h2 class="col-10 col-md-6 font-weight-bold rounded mx-auto"><i class="icon-calendar mr-3"></i>Current month</h2>			
+				<div class="modal" id="dateRange" style="display: none">
+					<div class="modal-dialog">
+					<div class="modal-content table rounded" style="background-color: #E2FDFA;">
+								<div class="modal-header">
+								<h3 class="modal-title">Select a date range</h3>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+								</div>
 						
-			<div class="w-100"></div>		
+								<div class="modal-body">
+								<form action="/blance/create" method="post">
+									<div class="input-group">
+										<div class="input-group-prepend">				
+											<span class="input-group-text  rounded-left icon my-0"><i class="icon-calendar"></i></span>
+										</div>						
+										<input type="date" class="form-control  rounded-right my-0 mr-2" name="starting_date" required>
+										
+										<div class="input-group-prepend">				
+											<span class="input-group-text  rounded-left icon  my-0 ml-2"><i class="icon-calendar"></i></span>
+										</div>
+										<input type="date" class="form-control  rounded-right my-0" name="end_date" required>
+									</div>
+									
+									<div class="modal-footer">
+										<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+										<button type="submit" class="btn btn-success">Save</button>
+									</div>														
+								</form>					
+							</div>				
+									
+						</div> 		
+					</div>
+      			</div>
+				  
+				<div class="w-100"></div>
+					
+				<h2 class="col-10 col-md-6 font-weight-bold rounded mx-auto"><i class="icon-calendar mr-3"></i>Current month</h2>			
+						
+				<div class="w-100"></div>		
 											
 				<div class="table col-10 col-md-5 mx-auto rounded mt-2 mb-0">		
-					<h3 style="background-color: #D3DDE9; border: 1px solid  #c2cce8;" class="rounded">Incomes<i class="icon-money ml-5"></i>{{ amountOfAllIncomes.0 }}</h3>	
+					<h3 style="background-color: #D3DDE9; border: 1px solid  #c2cce8;" class="rounded">Incomes<i class="icon-money ml-5"></i>{{ amountOfAllIncomes.amountOfAllIncomes }}</h3>	
 					
 					{% if incomeCategories %}
 							
 						{% for incomeCategory in incomeCategories %}
 															
 									
-							<h5 class="rounded bg-white my-2" style="color: #060B95;">{{ incomeCategory.name }}<i class="icon-money ml-3"></i>{{ incomeCategory.amountOfIncomes }}</h5>							
+							<h5 class="rounded bg-white my-2" style="color: #060B95; border: 1px solid  #c2cce8;">{{ incomeCategory.name }}<i class="icon-money ml-3"></i>{{ incomeCategory.amountOfIncomes }}</h5>							
 								
 								{% for incomeInCategory in incomesInCategory %}
 																	
 									{% if incomeInCategory.income_category_assigned_to_user_id == incomeCategory.income_category_assigned_to_user_id  %}
-										<h6 class="bg-white rounded"><i class="icon-money"></i>{{ incomeInCategory.date_of_income }}<span class="mx-2">&#8680</span>{{ incomeInCategory.income_comment }}<span class="mx-2">&#8680;</span>{{ incomeInCategory.amount }}</h6>
+										<h6 class="bg-white rounded"style="border: 1px solid  #c2cce8;"><i class="icon-money"></i>{{ incomeInCategory.date_of_income }}<span class="mx-2">&#8680</span>{{ incomeInCategory.income_comment }}<span class="mx-2">&#8680;</span>{{ incomeInCategory.amount }}</h6>
 									{% endif %}
 									
 
@@ -96,66 +100,62 @@
 															
 						<div class="information rounded text-center mx-auto p-2 w-100" >No income in the selected period</div>	
 														
-				{% endif %}		
-					
+					{% endif %}						
 				
 				</div>
-				<!--	
+
 				<div class="table col-10 col-md-5 mx-auto rounded mt-2 mb-0">		
-					<h3 style="background-color: #D3DDE9; border: 1px solid  #c2cce8;" class="rounded">Expenses<i class="icon-basket ml-5"></i><?php	echo $_SESSION['amount_of_all_expenses'];?></h3>
-					<?php						
-						if  ($number_of_expenses == 0)
-						{								
-								echo '<div class="information rounded text-center mx-auto p-2 w-100" >No expenses in the selected period</div>';	
-							}
-						
-						else 
-						{	
-							foreach ($categories_of_expense as $category_of_expense)
-							{							
-								
-								echo'<h5 class="rounded bg-white my-2" style="color: #060B95;">'."$category_of_expense[name]".'<i class="icon-basket ml-3"></i>'."$category_of_expense[AmountOfExpenses]</h5>";
-														
-								foreach ($expenses as $expense)
-								{								
-									if ($category_of_expense['expense_category_assigned_to_user_id']==$expense['expense_category_assigned_to_user_id'])
-									echo'<h6 class="bg-white rounded">'.'<i class="icon-basket">'."</i>$expense[date_of_expense]".'<span class="m-2">&#8680</span>'."$expense[expense_comment]".'<span class="m-2">&#8680;</span>'."$expense[amount]</h6>";
-								}
-							}
-						}
-					?>
+					<h3 style="background-color: #D3DDE9; border: 1px solid  #c2cce8;" class="rounded">Expenses<i class="icon-money ml-5"></i>{{amountOfAllExpenses.amountOfAllExpenses }}</h3>	
 					
+					{% if expenseCategories %}
+							
+						{% for expenseCategory in expenseCategories %}
+															
+									
+							<h5 class="rounded bg-white my-2" style="color: #060B95; border: 1px solid  #c2cce8;">{{ expenseCategory.name }}<i class="icon-money ml-3"></i>{{ expenseCategory.amountOfExpenses }}</h5>							
+								
+								{% for expenseInCategory in expensesInCategory %}
+																	
+									{% if expenseInCategory.expense_category_assigned_to_user_id == expenseCategory.expense_category_assigned_to_user_id  %}
+										<h6 class="bg-white rounded"style="border: 1px solid  #c2cce8;"><i class="icon-money"></i>{{ expenseInCategory.date_of_expense }}<span class="mx-2">&#8680</span>{{ expenseInCategory.expense_comment }}<span class="mx-2">&#8680;</span>{{ expenseInCategory.amount }}</h6>
+									{% endif %}
+									
+
+								{% endfor %}
+														
+						{% endfor %}							
+						
+					{% else %}
+															
+						<div class="information rounded text-center mx-auto p-2 w-100" >No expense in the selected period</div>	
+														
+					{% endif %}						
+				
 				</div>
 
-			<div class="w-100"></div>	
+				<div class="w-100"></div>	
 			
-			<div class="table col-10 col-md-6 mx-auto rounded mt-2 mb-0">
-					<h3 style="background-color: #D3DDE9; border: 1px solid  #c2cce8;" class="rounded">Balance<i class="icon-chart-bar ml-5 mr-1"></i><?php echo $_SESSION['balance'] ;?></h3>					
+				<div class="table col-10 col-md-6 mx-auto rounded mt-2 mb-0">
+					<h3 style="background-color: #D3DDE9; border: 1px solid  #c2cce8;" class="rounded">Balance<i class="icon-chart-bar ml-5 mr-1"></i>{{ amountOfAllIncomes.amountOfAllIncomes - amountOfAllExpenses.amountOfAllExpenses}}</h3>					
 					<h4 class="font-weight-bold bg-white rounded" style="color: #060B95;"></h4>
-					<?php
-						if ($_SESSION['balance']!=0)
-						{
-							if ($_SESSION['balance']<0)					
-						echo'<h4 class="text-danger bg-white rounded">&#128201; Watch out, you are getting into debt!</h4>';
-						else
-						echo '<h4 class="text-success bg-white rounded">&#128200; Congratulations. You manage your finances very well!</h4>';
-						}					
-					?>					
-			</div>	
-			
-			<?php
-				if  ($_SESSION['amount_of_all_expenses']!=0)				
-				echo '<div id="chartContainer" style="height: 450px; width: 90%; margin-left: auto; margin-right: auto;"></div>';
-			?>
-				
-			<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>			
-			
-		</div>
-	
-	</div>
--->
-    
+						
+					{% if amountOfAllIncomes.amountOfAllIncomes - amountOfAllExpenses.amountOfAllExpenses %}
+							
+						{% if (amountOfAllIncomes.amountOfAllIncomes - amountOfAllExpenses.amountOfAllExpenses) < (0) %}				
+							<h4 class="text-danger bg-white rounded">&#128201; Watch out, you are getting into debt!</h4>
+						{% else %}
+							<h4 class="text-success bg-white rounded">&#128200; Congratulations. You manage your finances very well!</h4>
+						{% endif %}	
+					
+					{% endif %}	
+										
+				</div>	
 
+			</div>
+
+		</div>
+				
+	</main>  
 
     {% endif %}
     
