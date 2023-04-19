@@ -8,4 +8,9 @@ class Dates
     {
         return date("Y-m-d");
     }
+
+    public static function getCurrentMonth()
+    {
+        return date('Y-m');
+    }
 }
