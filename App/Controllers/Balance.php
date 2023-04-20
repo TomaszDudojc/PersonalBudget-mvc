@@ -12,7 +12,7 @@ class Balance extends Authenticated
 
     public function indexAction()
     {
-        $currentMonth=Dates::getCurrentMonth();
+        $currentMonth = Dates::getCurrentMonth();
         
         View::renderTemplate('Balance/index.html', [							
             'currentMonth' => Dates::getCurrentMonth(),
@@ -21,7 +21,7 @@ class Balance extends Authenticated
             'amountOfAllIncomes' => Balances::getAmountOfAllIncomes($currentMonth),
             'expenseCategories' => Balances::getExpenseCategories($currentMonth),
             'expensesInCategory' => Balances::getExpensesInCategory($currentMonth),
-            'amountOfAllExpenses' => Balances::getAmountOfAllExpenses($currentMonth),				
+            'amountOfAllExpenses' => Balances::getAmountOfAllExpenses($currentMonth)				
 		]);
     }
 }

@@ -18,4 +18,9 @@ class Dates
     {
         return date("Y-m",strtotime("-1 month",time()));
     }
+
+    public static function getCurrentYear()
+    {
+        return date('Y');
+    }
 }

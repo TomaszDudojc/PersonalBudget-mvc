@@ -12,7 +12,7 @@ class BalanceOfPreviousMonth extends Authenticated
 
     public function indexAction()
     {
-        $previousMonth=Dates::getPreviousMonth();
+        $previousMonth = Dates::getPreviousMonth();
         
         View::renderTemplate('balanceOfPreviousMonth/index.html', [							
             'previousMonth' => Dates::getPreviousMonth(),
@@ -21,7 +21,7 @@ class BalanceOfPreviousMonth extends Authenticated
             'amountOfAllIncomes' => Balances::getAmountOfAllIncomes($previousMonth),
             'expenseCategories' => Balances::getExpenseCategories($previousMonth),
             'expensesInCategory' => Balances::getExpensesInCategory($previousMonth),
-            'amountOfAllExpenses' => Balances::getAmountOfAllExpenses($previousMonth),				
+            'amountOfAllExpenses' => Balances::getAmountOfAllExpenses($previousMonth)				
 		]);
     }
 }
