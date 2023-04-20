@@ -13,4 +13,9 @@ class Dates
     {
         return date('Y-m');
     }
+
+    public static function getPreviousMonth()
+    {
+        return date("Y-m",strtotime("-1 month",time()));
+    }
 }
