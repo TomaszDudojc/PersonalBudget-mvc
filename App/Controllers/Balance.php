@@ -12,16 +12,17 @@ class Balance extends Authenticated
 
     public function indexAction()
     {
-        $currentMonth = Dates::getCurrentMonth();
+        $currentMonth = Dates::getCurrentMonth();        
         
-        View::renderTemplate('Balance/index.html', [							
+        View::renderTemplate('balance/index.html', [							
+            'nameOfSelectedPeriod' => "Current month",
             'currentMonth' => Dates::getCurrentMonth(),
-            'incomeCategories' => Balances::getIncomeCategories($currentMonth),
-            'incomesInCategory' => Balances::getIncomesInCategory($currentMonth),
-            'amountOfAllIncomes' => Balances::getAmountOfAllIncomes($currentMonth),
-            'expenseCategories' => Balances::getExpenseCategories($currentMonth),
-            'expensesInCategory' => Balances::getExpensesInCategory($currentMonth),
-            'amountOfAllExpenses' => Balances::getAmountOfAllExpenses($currentMonth)				
+            'incomeCategoriesFromSelectedPeriod' => Balances::getIncomeCategoriesFromSelectedPeriod($currentMonth),
+            'incomesFromSelectedPeriod' => Balances::getIncomesFromSelectedPeriod($currentMonth),
+            'amountOfAllIncomesFromSelectedPeriod' => Balances::getAmountOfAllIncomesFromSelectedPeriod($currentMonth),
+            'expenseCategoriesFromSelectedPeriod' => Balances::getExpenseCategoriesFromSelectedPeriod($currentMonth),
+            'expensesFromSelectedPeriod' => Balances::getExpensesFromSelectedPeriod($currentMonth),
+            'amountOfAllExpensesFromSelectedPeriod' => Balances::getAmountOfAllExpensesFromSelectedPeriod($currentMonth)				
 		]);
     }
 }

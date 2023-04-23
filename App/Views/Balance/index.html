@@ -29,8 +29,8 @@
 			indexLabel: "{name} - {y} PLN",
 			dataPoints: [
 			
-			{% for expenseCategory in expenseCategories %}
-		 		{y: {{ expenseCategory.name }}, name: {{ expenseCategory.amountOfExpenses }}, exploded: true},			
+			{% for expenseCategoryFromSelectedPeriod in expenseCategoriesFromSelectedPeriod %}
+		 		{y: {{ expenseCategoryFromSelectedPeriod.name }}, name: {{ expenseCategoryFromSelectedPeriod.amountOfExpenses }}, exploded: true},			
 			{% endfor %}
 			
 						
@@ -94,17 +94,17 @@
 								</div>
 						
 								<div class="modal-body">
-								<form action="/blance/create" method="post">
+								<form action="/balanceFromSelectedDateRange/index" method="post">
 									<div class="input-group">
 										<div class="input-group-prepend">				
 											<span class="input-group-text  rounded-left icon my-0"><i class="icon-calendar"></i></span>
 										</div>						
-										<input type="date" class="form-control  rounded-right my-0 mr-2" name="starting_date" required>
+										<input type="date" class="form-control  rounded-right my-0 mr-2" name="startingDate" required>
 										
 										<div class="input-group-prepend">				
 											<span class="input-group-text  rounded-left icon  my-0 ml-2"><i class="icon-calendar"></i></span>
 										</div>
-										<input type="date" class="form-control  rounded-right my-0" name="end_date" required>
+										<input type="date" class="form-control  rounded-right my-0" name="endDate" required>
 									</div>
 									
 									<div class="modal-footer">
@@ -120,24 +120,24 @@
 				  
 				<div class="w-100"></div>
 					
-				<h2 class="col-10 col-md-6 font-weight-bold rounded mx-auto"><i class="icon-calendar mr-3"></i>Current month</h2>			
+				<h2 class="col-10 col-md-6 font-weight-bold rounded mx-auto"><i class="icon-calendar mr-3"></i>{{ nameOfSelectedPeriod }}</h2>			
 						
 				<div class="w-100"></div>		
 											
 				<div class="table col-10 col-md-5 mx-auto rounded mt-2 mb-0">		
-					<h3 style="background-color: #D3DDE9; border: 1px solid  #c2cce8;" class="rounded">Incomes<i class="icon-money ml-5"></i>{{ amountOfAllIncomes.amountOfAllIncomes }}</h3>	
+					<h3 style="background-color: #D3DDE9; border: 1px solid  #c2cce8;" class="rounded">Incomes<i class="icon-money ml-5"></i>{{ amountOfAllIncomesFromSelectedPeriod.amountOfAllIncomes }}</h3>	
 					
-					{% if incomeCategories %}
+					{% if incomeCategoriesFromSelectedPeriod %}
 							
-						{% for incomeCategory in incomeCategories %}
+						{% for incomeCategoryFromSelectedPeriod in incomeCategoriesFromSelectedPeriod %}
 															
 									
-							<h5 class="rounded bg-white my-2" style="color: #060B95; border: 1px solid  #c2cce8;">{{ incomeCategory.name }}<i class="icon-money ml-3"></i>{{ incomeCategory.amountOfIncomes }}</h5>							
+							<h5 class="rounded bg-white my-2" style="color: #060B95; border: 1px solid  #c2cce8;">{{ incomeCategoryFromSelectedPeriod.name }}<i class="icon-money ml-3"></i>{{ incomeCategoryFromSelectedPeriod.amountOfIncomes }}</h5>							
 								
-								{% for incomeInCategory in incomesInCategory %}
+								{% for incomeFromSelectedPeriod in incomesFromSelectedPeriod %}
 																	
-									{% if incomeInCategory.income_category_assigned_to_user_id == incomeCategory.income_category_assigned_to_user_id  %}
-										<h6 class="bg-white rounded"style="border: 1px solid  #c2cce8;"><i class="icon-money"></i>{{ incomeInCategory.date_of_income }}<span class="mx-2">&#8680</span>{{ incomeInCategory.income_comment }}<span class="mx-2">&#8680;</span>{{ incomeInCategory.amount }}</h6>
+									{% if incomeFromSelectedPeriod.income_category_assigned_to_user_id == incomeCategoryFromSelectedPeriod.income_category_assigned_to_user_id  %}
+										<h6 class="bg-white rounded"style="border: 1px solid  #c2cce8;"><i class="icon-money"></i>{{ incomeFromSelectedPeriod.date_of_income }}<span class="mx-2">&#8680</span>{{ incomeInCategory.income_comment }}<span class="mx-2">&#8680;</span>{{ incomeFromSelectedPeriod.amount }}</h6>
 									{% endif %}
 									
 
@@ -154,19 +154,19 @@
 				</div>
 
 				<div class="table col-10 col-md-5 mx-auto rounded mt-2 mb-0">		
-					<h3 style="background-color: #D3DDE9; border: 1px solid  #c2cce8;" class="rounded">Expenses<i class="icon-money ml-5"></i>{{amountOfAllExpenses.amountOfAllExpenses }}</h3>	
+					<h3 style="background-color: #D3DDE9; border: 1px solid  #c2cce8;" class="rounded">Expenses<i class="icon-basket ml-5"></i>{{amountOfAllExpensesFromSelectedPeriod.amountOfAllExpenses }}</h3>	
 					
-					{% if expenseCategories %}
+					{% if expenseCategoriesFromSelectedPeriod %}
 							
-						{% for expenseCategory in expenseCategories %}
+						{% for expenseCategoryFromSelectedPeriod in expenseCategoriesFromSelectedPeriod %}
 															
 									
-							<h5 class="rounded bg-white my-2" style="color: #060B95; border: 1px solid  #c2cce8;">{{ expenseCategory.name }}<i class="icon-money ml-3"></i>{{ expenseCategory.amountOfExpenses }}</h5>							
+							<h5 class="rounded bg-white my-2" style="color: #060B95; border: 1px solid  #c2cce8;">{{ expenseCategoryFromSelectedPeriod.name }}<i class="icon-basket ml-3"></i>{{ expenseCategoryFromSelectedPeriod.amountOfExpenses }}</h5>							
 								
-								{% for expenseInCategory in expensesInCategory %}
+								{% for expenseFromSelectedPeriod in expensesFromSelectedPeriod %}
 																	
-									{% if expenseInCategory.expense_category_assigned_to_user_id == expenseCategory.expense_category_assigned_to_user_id  %}
-										<h6 class="bg-white rounded"style="border: 1px solid  #c2cce8;"><i class="icon-money"></i>{{ expenseInCategory.date_of_expense }}<span class="mx-2">&#8680</span>{{ expenseInCategory.expense_comment }}<span class="mx-2">&#8680;</span>{{ expenseInCategory.amount }}</h6>
+									{% if expenseFromSelectedPeriod.expense_category_assigned_to_user_id == expenseCategoryFromSelectedPeriod.expense_category_assigned_to_user_id  %}
+										<h6 class="bg-white rounded"style="border: 1px solid  #c2cce8;"><i class="icon-basket"></i>{{ expenseFromSelectedPeriod.date_of_expense }}<span class="mx-2">&#8680</span>{{ expenseInCategory.expense_comment }}<span class="mx-2">&#8680;</span>{{ expenseFromSelectedPeriod.amount }}</h6>
 									{% endif %}
 									
 
@@ -185,12 +185,12 @@
 				<div class="w-100"></div>	
 			
 				<div class="table col-10 col-md-6 mx-auto rounded mt-2 mb-0">
-					<h3 style="background-color: #D3DDE9; border: 1px solid  #c2cce8;" class="rounded">Balance<i class="icon-chart-bar ml-5 mr-1"></i>{{ amountOfAllIncomes.amountOfAllIncomes - amountOfAllExpenses.amountOfAllExpenses}}</h3>					
+					<h3 style="background-color: #D3DDE9; border: 1px solid  #c2cce8;" class="rounded">Balance<i class="icon-chart-bar ml-5 mr-1"></i>{{ amountOfAllIncomesFromSelectedPeriod.amountOfAllIncomes - amountOfAllExpensesFromSelectedPeriod.amountOfAllExpenses}}</h3>					
 					<h4 class="font-weight-bold bg-white rounded" style="color: #060B95;"></h4>
 						
-					{% if amountOfAllIncomes.amountOfAllIncomes - amountOfAllExpenses.amountOfAllExpenses %}
+					{% if amountOfAllIncomesFromSelectedPeriod.amountOfAllIncomes - amountOfAllExpensesFromSelectedPeriod.amountOfAllExpenses %}
 							
-						{% if (amountOfAllIncomes.amountOfAllIncomes - amountOfAllExpenses.amountOfAllExpenses) < (0) %}				
+						{% if (amountOfAllIncomesFromSelectedPeriod.amountOfAllIncomes - amountOfAllExpensesFromSelectedPeriod.amountOfAllExpenses) < (0) %}				
 							<h4 class="text-danger bg-white rounded">&#128201; Watch out, you are getting into debt!</h4>
 						{% else %}
 							<h4 class="text-success bg-white rounded">&#128200; Congratulations. You manage your finances very well!</h4>
@@ -200,7 +200,7 @@
 										
 				</div>
 				
-				{% if expenseCategories %}
+				{% if expenseCategoriesFromSelectedPeriod %}
 							
 					<div id="chartContainer" style="height: 450px; width: 90%; margin-left: auto; margin-right: auto;"></div>
 										

@@ -14,14 +14,15 @@ class BalanceOfPreviousMonth extends Authenticated
     {
         $previousMonth = Dates::getPreviousMonth();
         
-        View::renderTemplate('balanceOfPreviousMonth/index.html', [							
+        View::renderTemplate('balance/index.html', [							
+            'nameOfSelectedPeriod' => "Previous month",
             'previousMonth' => Dates::getPreviousMonth(),
-            'incomeCategories' => Balances::getIncomeCategories($previousMonth),
-            'incomesInCategory' => Balances::getIncomesInCategory($previousMonth),
-            'amountOfAllIncomes' => Balances::getAmountOfAllIncomes($previousMonth),
-            'expenseCategories' => Balances::getExpenseCategories($previousMonth),
-            'expensesInCategory' => Balances::getExpensesInCategory($previousMonth),
-            'amountOfAllExpenses' => Balances::getAmountOfAllExpenses($previousMonth)				
+            'incomeCategoriesFromSelectedPeriod' => Balances::getIncomeCategoriesFromSelectedPeriod($previousMonth),
+            'incomesFromSelectedPeriod' => Balances::getIncomesFromSelectedPeriod($previousMonth),
+            'amountOfAllIncomesFromSelectedPeriod' => Balances::getAmountOfAllIncomesFromSelectedPeriod($previousMonth),
+            'expenseCategoriesFromSelectedPeriod' => Balances::getExpenseCategoriesFromSelectedPeriod($previousMonth),
+            'expensesFromSelectedPeriod' => Balances::getExpensesFromSelectedPeriod($previousMonth),
+            'amountOfAllExpensesFromSelectedPeriod' => Balances::getAmountOfAllExpensesFromSelectedPeriod($previousMonth)				
 		]);
     }
 }

@@ -14,14 +14,15 @@ class BalanceOfCurrentYear extends Authenticated
     {
         $currentYear = Dates::getCurrentYear ();
         
-        View::renderTemplate('balanceOfCurrentYear/index.html', [							
+        View::renderTemplate('balance/index.html', [							
+            'nameOfSelectedPeriod' => "Current year",
             'currentYear' => Dates::getCurrentYear (),
-            'incomeCategories' => Balances::getIncomeCategories($currentYear),
-            'incomesInCategory' => Balances::getIncomesInCategory($currentYear),
-            'amountOfAllIncomes' => Balances::getAmountOfAllIncomes($currentYear),
-            'expenseCategories' => Balances::getExpenseCategories($currentYear),
-            'expensesInCategory' => Balances::getExpensesInCategory($currentYear),
-            'amountOfAllExpenses' => Balances::getAmountOfAllExpenses($currentYear)				
+            'incomeCategoriesFromSelectedPeriod' => Balances::getIncomeCategoriesFromSelectedPeriod($currentYear),
+            'incomesFromSelectedPeriod' => Balances::getIncomesFromSelectedPeriod($currentYear),
+            'amountOfAllIncomesFromSelectedPeriod' => Balances::getAmountOfAllIncomesFromSelectedPeriod($currentYear),
+            'expenseCategoriesFromSelectedPeriod' => Balances::getExpenseCategoriesFromSelectedPeriod($currentYear),
+            'expensesFromSelectedPeriod' => Balances::getExpensesFromSelectedPeriod($currentYear),
+            'amountOfAllExpensesFromSelectedPeriod' => Balances::getAmountOfAllExpensesFromSelectedPeriod($currentYear)				
 		]);
     }
 }
