@@ -18,7 +18,7 @@ class BalanceFromSelectedDateRange extends Authenticated
 
         if($startingDate > $endDate)
             {
-                Flash::addMessage("Invalid date range. ".$startingDate." =/=> ".$endDate.". Starting date must be earlier than end date!", Flash::WARNING);
+                Flash::addMessage("Invalid date range: ".$startingDate." =/=> ".$endDate.". Starting date must be earlier than end date!", Flash::WARNING);
                 View::renderTemplate('balance/index.html', [
                     'nameOfSelectedPeriod' => $startingDate." => ".$endDate                    
                 ]);
@@ -33,9 +33,10 @@ class BalanceFromSelectedDateRange extends Authenticated
                 'incomeCategoriesFromSelectedPeriod' => Balances::getIncomeCategoriesFromSelectedDateRange(),
                 'incomesFromSelectedPeriod' => Balances::getIncomesFromSelectedDateRange(),
                 'amountOfAllIncomesFromSelectedPeriod' => Balances::getAmountOfAllIncomesFromSelectedDateRange(),
-                /*'expenseCategoriesFromPeriod' => Balances::getExpenseCategoriesFromSelectedDateRange(),
+                'expenseCategoriesFromSelectedPeriod' => Balances::getExpenseCategoriesFromSelectedDateRange(),
                 'expensesFromSelectedPeriod' => Balances::getExpensesFromSelectedDateRange(),
-                'amountOfAllExpensesFFromSelectedPeriod' => Balances::getAmountOfAllExpensesFromSelectedDateRange()*/				
+                'amountOfAllExpensesFromSelectedPeriod' => Balances::getAmountOfAllExpensesFromSelectedDateRange(),
+                'balance' => Balances::getBalanceFromSelectedDateRange()           			
             ]);
             }
 
@@ -47,10 +48,11 @@ class BalanceFromSelectedDateRange extends Authenticated
                 'nameOfSelectedPeriod' => $startingDate." => ".$endDate,
                 'incomeCategoriesFromSelectedPeriod' => Balances::getIncomeCategoriesFromSelectedDateRange(),
                 'incomesFromSelectedPeriod' => Balances::getIncomesFromSelectedDateRange(),
-                 /*'amountOfAllIncomesFromSelectedPeriod' => Balances::getAmountOfAllIncomesFromSelectedDateRange(),
+                'amountOfAllIncomesFromSelectedPeriod' => Balances::getAmountOfAllIncomesFromSelectedDateRange(),
                 'expenseCategoriesFromSelectedPeriod' => Balances::getExpenseCategoriesFromSelectedDateRange(),
                 'expensesFromSelectedPeriod' => Balances::getExpensesFromSelectedDateRange(),
-                'amountOfAllExpensesFFromSelectedPeriod' => Balances::getAmountOfAllExpensesFromSelectedDateRange()*/				
+                'amountOfAllExpensesFromSelectedPeriod' => Balances::getAmountOfAllExpensesFromSelectedDateRange(),
+                'balance' => Balances::getBalanceFromSelectedDateRange()				
             ]);
             }
     }

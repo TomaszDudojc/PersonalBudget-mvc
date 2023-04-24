@@ -22,7 +22,8 @@ class BalanceOfCurrentYear extends Authenticated
             'amountOfAllIncomesFromSelectedPeriod' => Balances::getAmountOfAllIncomesFromSelectedPeriod($currentYear),
             'expenseCategoriesFromSelectedPeriod' => Balances::getExpenseCategoriesFromSelectedPeriod($currentYear),
             'expensesFromSelectedPeriod' => Balances::getExpensesFromSelectedPeriod($currentYear),
-            'amountOfAllExpensesFromSelectedPeriod' => Balances::getAmountOfAllExpensesFromSelectedPeriod($currentYear)				
+            'amountOfAllExpensesFromSelectedPeriod' => Balances::getAmountOfAllExpensesFromSelectedPeriod($currentYear),
+            'balance' => Balances::getBalanceFromSelectedPeriod($currentYear)			
 		]);
     }
 }

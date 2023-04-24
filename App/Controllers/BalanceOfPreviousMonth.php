@@ -22,7 +22,8 @@ class BalanceOfPreviousMonth extends Authenticated
             'amountOfAllIncomesFromSelectedPeriod' => Balances::getAmountOfAllIncomesFromSelectedPeriod($previousMonth),
             'expenseCategoriesFromSelectedPeriod' => Balances::getExpenseCategoriesFromSelectedPeriod($previousMonth),
             'expensesFromSelectedPeriod' => Balances::getExpensesFromSelectedPeriod($previousMonth),
-            'amountOfAllExpensesFromSelectedPeriod' => Balances::getAmountOfAllExpensesFromSelectedPeriod($previousMonth)				
+            'amountOfAllExpensesFromSelectedPeriod' => Balances::getAmountOfAllExpensesFromSelectedPeriod($previousMonth),
+            'balance' => Balances::getBalanceFromSelectedPeriod($previousMonth)				
 		]);
     }
 }

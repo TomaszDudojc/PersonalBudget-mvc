@@ -185,12 +185,12 @@
 				<div class="w-100"></div>	
 			
 				<div class="table col-10 col-md-6 mx-auto rounded mt-2 mb-0">
-					<h3 style="background-color: #D3DDE9; border: 1px solid  #c2cce8;" class="rounded">Balance<i class="icon-chart-bar ml-5 mr-1"></i>{{ amountOfAllIncomesFromSelectedPeriod.amountOfAllIncomes - amountOfAllExpensesFromSelectedPeriod.amountOfAllExpenses}}</h3>					
+					<h3 style="background-color: #D3DDE9; border: 1px solid  #c2cce8;" class="rounded">Balance<i class="icon-chart-bar ml-5 mr-1"></i>{{ balance}}</h3>					
 					<h4 class="font-weight-bold bg-white rounded" style="color: #060B95;"></h4>
 						
-					{% if amountOfAllIncomesFromSelectedPeriod.amountOfAllIncomes - amountOfAllExpensesFromSelectedPeriod.amountOfAllExpenses %}
+					{% if balance %}
 							
-						{% if (amountOfAllIncomesFromSelectedPeriod.amountOfAllIncomes - amountOfAllExpensesFromSelectedPeriod.amountOfAllExpenses) < (0) %}				
+						{% if (balance) < (0) %}				
 							<h4 class="text-danger bg-white rounded">&#128201; Watch out, you are getting into debt!</h4>
 						{% else %}
 							<h4 class="text-success bg-white rounded">&#128200; Congratulations. You manage your finances very well!</h4>
