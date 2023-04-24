@@ -1,0 +1,227 @@
+{% extends 'base.html' %}
+
+{% block title %}Balance{% endblock %}
+
+{% block footer %}
+		
+			
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+
+<script>
+	
+	window.onload = function () {
+			
+
+	var chart = new CanvasJS.Chart("chartContainer", {
+		exportEnabled: true,
+		animationEnabled: true,
+		title:{
+			text: "Expense structure"
+		},
+		legend:{
+			cursor: "pointer",
+			itemclick: explodePie
+		},
+		data: [{
+			type: "pie",
+			showInLegend: true,
+			toolTipContent: "{name}: <strong>{y} PLN</strong>",
+			indexLabel: "{name} - {y} PLN",
+			dataPoints: [
+			{ y: 26, name: "School Aid", exploded: true },
+			{ y: 20, name: "Medical Aid" },
+			{ y: 5, name: "Debt/Capital" },
+			{ y: 3, name: "Elected Officials" },
+			{ y: 7, name: "University" },
+			{ y: 17, name: "Executive" },
+			{ y: 22, name: "Other Local Assistance"}			
+			
+			/*{% for expenseCategoryFromSelectedPeriod in expenseCategoriesFromSelectedPeriod %}
+		 		{y: {{ expenseCategoryFromSelectedPeriod.name }}, name: {{ expenseCategoryFromSelectedPeriod.amountOfExpenses }}, exploded: true},			
+			{% endfor %}*/
+		
+			
+			
+						
+			]
+		}]
+	});
+	chart.render();
+	}
+
+	function explodePie (e) {
+		if(typeof (e.dataSeries.dataPoints[e.dataPointIndex].exploded) === "undefined" || !e.dataSeries.dataPoints[e.dataPointIndex].exploded) {
+			e.dataSeries.dataPoints[e.dataPointIndex].exploded = true;
+		} else {
+			e.dataSeries.dataPoints[e.dataPointIndex].exploded = false;
+		}
+		e.chart.render();
+}
+</script>	
+	
+{% endblock %}
+
+{% block nav_item_4 %}active{% endblock %}
+
+{% block body %}  
+
+    {% if current_user %}  
+	
+	<main>
+	
+		<div class="container my-3 text-center pb-5">
+		
+			<div class="row">	
+         
+				<div class="navcontainer rounded mt-3" style="width: 570px;">
+					
+					<nav class="navbar navbar-light py-0 mb-0 navbar-expand-lg"> 
+						<ul class="navbar-nav py-0 px-3 active mx-auto">				
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" style="color: #060B95;" href="#" data-toggle="dropdown" role="button" aria-expanded="false" id="submenu"><i class="icon-calendar mr-3"></i>Select a period</a>						
+								<div class="dropdown-menu" aria-labelledby="submenu" style="background-color: #E2FDFA; border: 1px solid #a5cda5;">						
+									<a class="dropdown-item" style="color: #060B95;" href="/balance/index">Current month</a>
+									<a class="dropdown-item" style="color: #060B95;" href="/balanceOfPreviousMonth/index">Previous month</a>
+									<a class="dropdown-item" style="color:#060B95;" href="/balanceOfCurrentYear/index">Current year</a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" style="color: #060B95;" data-toggle="modal" data-target="#dateRange" href="#">Custom</a>						
+								</div>
+							</li>					
+						</ul>
+					</nav>
+				</div>
+
+    
+				<div class="modal" id="dateRange" style="display: none">
+					<div class="modal-dialog">
+					<div class="modal-content table rounded" style="background-color: #E2FDFA;">
+								<div class="modal-header">
+								<h3 class="modal-title">Select a date range</h3>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+								</div>
+						
+								<div class="modal-body">
+								<form action="/balanceFromSelectedDateRange/index" method="post">
+									<div class="input-group">
+										<div class="input-group-prepend">				
+											<span class="input-group-text  rounded-left icon my-0"><i class="icon-calendar"></i></span>
+										</div>						
+										<input type="date" class="form-control  rounded-right my-0 mr-2" name="startingDate" required>
+										
+										<div class="input-group-prepend">				
+											<span class="input-group-text  rounded-left icon  my-0 ml-2"><i class="icon-calendar"></i></span>
+										</div>
+										<input type="date" class="form-control  rounded-right my-0" name="endDate" required>
+									</div>
+									
+									<div class="modal-footer">
+										<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+										<button type="submit" class="btn btn-success">Save</button>
+									</div>														
+								</form>					
+							</div>				
+									
+						</div> 		
+					</div>
+      			</div>
+				  
+				<div class="w-100"></div>
+					
+				<h2 class="col-10 col-md-6 font-weight-bold rounded mx-auto"><i class="icon-calendar mr-3"></i>{{ nameOfSelectedPeriod }}</h2>			
+						
+				<div class="w-100"></div>		
+											
+				<div class="table col-10 col-md-5 mx-auto rounded mt-2 mb-0">		
+					<h3 style="background-color: #D3DDE9; border: 1px solid  #c2cce8;" class="rounded">Incomes<i class="icon-money ml-5"></i>{{ amountOfAllIncomesFromSelectedPeriod.amountOfAllIncomes }}</h3>	
+					
+					{% if incomeCategoriesFromSelectedPeriod %}
+							
+						{% for incomeCategoryFromSelectedPeriod in incomeCategoriesFromSelectedPeriod %}
+															
+									
+							<h5 class="rounded bg-white my-2" style="color: #060B95; border: 1px solid  #c2cce8;">{{ incomeCategoryFromSelectedPeriod.name }}<i class="icon-money ml-3"></i>{{ incomeCategoryFromSelectedPeriod.amountOfIncomes }}</h5>							
+								
+								{% for incomeFromSelectedPeriod in incomesFromSelectedPeriod %}
+																	
+									{% if incomeFromSelectedPeriod.income_category_assigned_to_user_id == incomeCategoryFromSelectedPeriod.income_category_assigned_to_user_id  %}
+										<h6 class="bg-white rounded"style="border: 1px solid  #c2cce8;"><i class="icon-money"></i>{{ incomeFromSelectedPeriod.date_of_income }}<span class="mx-2">&#8680</span>{{ incomeInCategory.income_comment }}<span class="mx-2">&#8680;</span>{{ incomeFromSelectedPeriod.amount }}</h6>
+									{% endif %}
+									
+
+								{% endfor %}
+														
+						{% endfor %}							
+						
+					{% else %}
+															
+						<div class="information rounded text-center mx-auto p-2 w-100" >No income in the selected period</div>	
+														
+					{% endif %}						
+				
+				</div>
+
+				<div class="table col-10 col-md-5 mx-auto rounded mt-2 mb-0" id="expensesTable">		
+					<h3 style="background-color: #D3DDE9; border: 1px solid  #c2cce8;" class="rounded">Expenses<i class="icon-basket ml-5"></i>{{amountOfAllExpensesFromSelectedPeriod.amountOfAllExpenses }}</h3>	
+					
+					{% if expenseCategoriesFromSelectedPeriod %}
+							
+						{% for expenseCategoryFromSelectedPeriod in expenseCategoriesFromSelectedPeriod %}
+															
+									
+							<h5 class="rounded bg-white my-2" style="color: #060B95; border: 1px solid  #c2cce8;">{{ expenseCategoryFromSelectedPeriod.name }}<i class="icon-basket ml-3"></i>{{ expenseCategoryFromSelectedPeriod.amountOfExpenses }}</h5>							
+								
+								{% for expenseFromSelectedPeriod in expensesFromSelectedPeriod %}
+																	
+									{% if expenseFromSelectedPeriod.expense_category_assigned_to_user_id == expenseCategoryFromSelectedPeriod.expense_category_assigned_to_user_id  %}
+										<h6 class="bg-white rounded"style="border: 1px solid  #c2cce8;"><i class="icon-basket"></i>{{ expenseFromSelectedPeriod.date_of_expense }}<span class="mx-2">&#8680</span>{{ expenseInCategory.expense_comment }}<span class="mx-2">&#8680;</span>{{ expenseFromSelectedPeriod.amount }}</h6>
+									{% endif %}
+									
+
+								{% endfor %}
+														
+						{% endfor %}							
+						
+					{% else %}
+															
+						<div class="information rounded text-center mx-auto p-2 w-100" >No expense in the selected period</div>	
+														
+					{% endif %}						
+				
+				</div>
+
+				<div class="w-100"></div>	
+			
+				<div class="table col-10 col-md-6 mx-auto rounded mt-2 mb-0">
+					<h3 style="background-color: #D3DDE9; border: 1px solid  #c2cce8;" class="rounded">Balance<i class="icon-chart-bar ml-5 mr-1"></i>{{ balance}}</h3>					
+					<h4 class="font-weight-bold bg-white rounded" style="color: #060B95;"></h4>
+						
+					{% if balance %}
+							
+						{% if (balance) < (0) %}				
+							<h4 class="text-danger bg-white rounded">&#128201; Watch out, you are getting into debt!</h4>
+						{% else %}
+							<h4 class="text-success bg-white rounded">&#128200; Congratulations. You manage your finances very well!</h4>
+						{% endif %}	
+					
+					{% endif %}	
+										
+				</div>
+				
+				{% if expenseCategoriesFromSelectedPeriod %}
+							
+					<div id="chartContainer" style="height: 450px; width: 90%; margin-left: auto; margin-right: auto;"></div>
+										
+				{% endif %}	
+				
+			</div>
+
+		</div>		
+				
+	</main>  
+
+    {% endif %}
+    
+{% endblock %}

@@ -8,4 +8,19 @@ class Dates
     {
         return date("Y-m-d");
     }
+
+    public static function getCurrentMonth()
+    {
+        return date('Y-m');
+    }
+
+    public static function getPreviousMonth()
+    {
+        return date("Y-m",strtotime("-1 month",time()));
+    }
+
+    public static function getCurrentYear()
+    {
+        return date('Y');
+    }
 }
