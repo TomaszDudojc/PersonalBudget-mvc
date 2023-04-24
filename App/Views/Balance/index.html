@@ -11,6 +11,7 @@
 <script>
 	
 	window.onload = function () {
+			
 
 	var chart = new CanvasJS.Chart("chartContainer", {
 		exportEnabled: true,
@@ -28,10 +29,19 @@
 			toolTipContent: "{name}: <strong>{y} PLN</strong>",
 			indexLabel: "{name} - {y} PLN",
 			dataPoints: [
+			{ y: 26, name: "School Aid", exploded: true },
+			{ y: 20, name: "Medical Aid" },
+			{ y: 5, name: "Debt/Capital" },
+			{ y: 3, name: "Elected Officials" },
+			{ y: 7, name: "University" },
+			{ y: 17, name: "Executive" },
+			{ y: 22, name: "Other Local Assistance"}			
 			
-			{% for expenseCategoryFromSelectedPeriod in expenseCategoriesFromSelectedPeriod %}
+			/*{% for expenseCategoryFromSelectedPeriod in expenseCategoriesFromSelectedPeriod %}
 		 		{y: {{ expenseCategoryFromSelectedPeriod.name }}, name: {{ expenseCategoryFromSelectedPeriod.amountOfExpenses }}, exploded: true},			
-			{% endfor %}
+			{% endfor %}*/
+		
+			
 			
 						
 			]
@@ -153,7 +163,7 @@
 				
 				</div>
 
-				<div class="table col-10 col-md-5 mx-auto rounded mt-2 mb-0">		
+				<div class="table col-10 col-md-5 mx-auto rounded mt-2 mb-0" id="expensesTable">		
 					<h3 style="background-color: #D3DDE9; border: 1px solid  #c2cce8;" class="rounded">Expenses<i class="icon-basket ml-5"></i>{{amountOfAllExpensesFromSelectedPeriod.amountOfAllExpenses }}</h3>	
 					
 					{% if expenseCategoriesFromSelectedPeriod %}
@@ -204,14 +214,11 @@
 							
 					<div id="chartContainer" style="height: 450px; width: 90%; margin-left: auto; margin-right: auto;"></div>
 										
-				{% endif %}
+				{% endif %}	
 				
-				
-
 			</div>
 
-		</div>
-		
+		</div>		
 				
 	</main>  
 
