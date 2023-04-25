@@ -144,7 +144,7 @@
 								{% for incomeFromSelectedPeriod in incomesFromSelectedPeriod %}
 																	
 									{% if incomeFromSelectedPeriod.income_category_assigned_to_user_id == incomeCategoryFromSelectedPeriod.income_category_assigned_to_user_id  %}
-										<h6 class="bg-white rounded"style="border: 1px solid  #c2cce8;"><i class="icon-money"></i>{{ incomeFromSelectedPeriod.date_of_income }}<span class="mx-2">&#8680</span>{{ incomeInCategory.income_comment }}<span class="mx-2">&#8680;</span>{{ incomeFromSelectedPeriod.amount }}</h6>
+										<h6 class="bg-white rounded"style="border: 1px solid  #c2cce8;"><i class="icon-money"></i>{{ incomeFromSelectedPeriod.date_of_income }}<span class="mx-2">&#8680</span>{{ incomeFromSelectedPeriod.income_comment }}<span class="mx-2">&#8680;</span>{{ incomeFromSelectedPeriod.amount }}</h6>
 									{% endif %}
 									
 
@@ -173,7 +173,7 @@
 								{% for expenseFromSelectedPeriod in expensesFromSelectedPeriod %}
 																	
 									{% if expenseFromSelectedPeriod.expense_category_assigned_to_user_id == expenseCategoryFromSelectedPeriod.expense_category_assigned_to_user_id  %}
-										<h6 class="bg-white rounded"style="border: 1px solid  #c2cce8;"><i class="icon-basket"></i>{{ expenseFromSelectedPeriod.date_of_expense }}<span class="mx-2">&#8680</span>{{ expenseInCategory.expense_comment }}<span class="mx-2">&#8680;</span>{{ expenseFromSelectedPeriod.amount }}</h6>
+										<h6 class="bg-white rounded"style="border: 1px solid  #c2cce8;"><i class="icon-basket"></i>{{ expenseFromSelectedPeriod.date_of_expense }}<span class="mx-2">&#8680</span>{{ expenseFromSelectedPeriod.expense_comment }}<span class="mx-2">&#8680;</span>{{ expenseFromSelectedPeriod.amount }}</h6>
 									{% endif %}
 									
 
