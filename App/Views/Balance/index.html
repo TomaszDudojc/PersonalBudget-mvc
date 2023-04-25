@@ -61,9 +61,7 @@
 
 {% block nav_item_4 %}active{% endblock %}
 
-{% block body %}  
-
-    {% if current_user %}  
+{% block body %}   
 	
 	<main>
 	
@@ -195,7 +193,7 @@
 					<h3 style="background-color: #D3DDE9; border: 1px solid  #c2cce8;" class="rounded">Balance<i class="icon-chart-bar ml-5 mr-1"></i>{{ balance}}</h3>					
 					<h4 class="font-weight-bold bg-white rounded" style="color: #060B95;"></h4>
 						
-					{% if balance %}
+					{% if (incomeCategoriesFromSelectedPeriod or expenseCategoriesFromSelectedPeriod) %}
 							
 						{% if (balance) < (0) %}				
 							<h4 class="text-danger bg-white rounded">&#128201; Watch out, you are getting into debt!</h4>
@@ -217,8 +215,6 @@
 
 		</div>		
 				
-	</main>  
-
-    {% endif %}
+	</main>    
     
 {% endblock %}
