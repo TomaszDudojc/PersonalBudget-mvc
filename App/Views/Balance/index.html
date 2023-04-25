@@ -38,9 +38,9 @@
 			{ y: 22, name: "Other Local Assistance"}			
 			
 			/*{% for expenseCategoryFromSelectedPeriod in expenseCategoriesFromSelectedPeriod %}
-		 		{y: {{ expenseCategoryFromSelectedPeriod.name }}, name: {{ expenseCategoryFromSelectedPeriod.amountOfExpenses }}, exploded: true},
+		 		{y: {{ expenseCategoryFromSelectedPeriod.amountOfExpenses }}, name: {{ expenseCategoryFromSelectedPeriod.name }}, exploded: true},
 			{% endfor %}*/	
-					
+			
 			]
 		}]
 	});
@@ -69,11 +69,14 @@
 		
 			<div class="row">	
          
-				<div class="navcontainer rounded mt-3" style="width: 570px;">
+				<div class="col-10 col-md-6 mx-auto font-weight-bold" style="font-size: 30px; letter-spacing: 2px; padding: 0px;">
+
+				<div class="navcontainer rounded mt-3">
 					
 					<nav class="navbar navbar-light py-0 mb-0 navbar-expand-lg"> 
 						<ul class="navbar-nav py-0 px-3 active mx-auto">				
 							<li class="nav-item dropdown">
+								<div class="col-10 col-md-6 mx-auto font-weight-bold" style="font-size: 30px; letter-spacing: 2px; padding: 0px;"></div>
 								<a class="nav-link dropdown-toggle" style="color: #060B95;" href="#" data-toggle="dropdown" role="button" aria-expanded="false" id="submenu"><i class="icon-calendar mr-3"></i>Select a period</a>						
 								<div class="dropdown-menu" aria-labelledby="submenu" style="background-color: #E2FDFA; border: 1px solid #a5cda5;">						
 									<a class="dropdown-item" style="color: #060B95;" href="/balance/index">Current month</a>
@@ -87,6 +90,7 @@
 					</nav>
 				</div>
 
+				</div>
     
 				<div class="modal" id="dateRange" style="display: none">
 					<div class="modal-dialog">
