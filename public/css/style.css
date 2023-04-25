@@ -194,7 +194,8 @@ input.register:focus:-ms-input-placeholder
 	background-color: #D3DDE9;
 	padding: 3px;
 	border: 1px solid  #c2cce8;
-	color: #060B95;	
+	color: #060B95;
+	z-index: 200;	
 }
 
 /* //////////////////  LOGOWANIE  /////////////////////// */
@@ -354,11 +355,17 @@ option
  
 .error
 {
-	color:red;
+	color: red;
 	margin-top: 10px;
 	margin-bottom: 10px;
 	background-color: pink;
 	border: 1px solid red;
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+	border-radius:3px;
+	/*text-align: center;*/
+	
 }
 	
 /* //////////////////  logowanie.php /////////////////////// */
