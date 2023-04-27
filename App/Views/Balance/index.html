@@ -38,12 +38,9 @@
 			{ y: 22, name: "Other Local Assistance"}			
 			
 			/*{% for expenseCategoryFromSelectedPeriod in expenseCategoriesFromSelectedPeriod %}
-		 		{y: {{ expenseCategoryFromSelectedPeriod.name }}, name: {{ expenseCategoryFromSelectedPeriod.amountOfExpenses }}, exploded: true},			
-			{% endfor %}*/
-		
+		 		{y: {{ expenseCategoryFromSelectedPeriod.amountOfExpenses }}, name: {{ expenseCategoryFromSelectedPeriod.name }}, exploded: true},
+			{% endfor %}*/	
 			
-			
-						
 			]
 		}]
 	});
@@ -64,9 +61,7 @@
 
 {% block nav_item_4 %}active{% endblock %}
 
-{% block body %}  
-
-    {% if current_user %}  
+{% block body %}   
 	
 	<main>
 	
@@ -74,11 +69,14 @@
 		
 			<div class="row">	
          
-				<div class="navcontainer rounded mt-3" style="width: 570px;">
+				<div class="col-10 col-md-6 mx-auto font-weight-bold" style="font-size: 30px; letter-spacing: 2px; padding: 0px;">
+
+				<div class="navcontainer rounded mt-3">
 					
 					<nav class="navbar navbar-light py-0 mb-0 navbar-expand-lg"> 
 						<ul class="navbar-nav py-0 px-3 active mx-auto">				
 							<li class="nav-item dropdown">
+								<div class="col-10 col-md-6 mx-auto font-weight-bold" style="font-size: 30px; letter-spacing: 2px; padding: 0px;"></div>
 								<a class="nav-link dropdown-toggle" style="color: #060B95;" href="#" data-toggle="dropdown" role="button" aria-expanded="false" id="submenu"><i class="icon-calendar mr-3"></i>Select a period</a>						
 								<div class="dropdown-menu" aria-labelledby="submenu" style="background-color: #E2FDFA; border: 1px solid #a5cda5;">						
 									<a class="dropdown-item" style="color: #060B95;" href="/balance/index">Current month</a>
@@ -92,6 +90,7 @@
 					</nav>
 				</div>
 
+				</div>
     
 				<div class="modal" id="dateRange" style="display: none">
 					<div class="modal-dialog">
@@ -147,7 +146,7 @@
 								{% for incomeFromSelectedPeriod in incomesFromSelectedPeriod %}
 																	
 									{% if incomeFromSelectedPeriod.income_category_assigned_to_user_id == incomeCategoryFromSelectedPeriod.income_category_assigned_to_user_id  %}
-										<h6 class="bg-white rounded"style="border: 1px solid  #c2cce8;"><i class="icon-money"></i>{{ incomeFromSelectedPeriod.date_of_income }}<span class="mx-2">&#8680</span>{{ incomeInCategory.income_comment }}<span class="mx-2">&#8680;</span>{{ incomeFromSelectedPeriod.amount }}</h6>
+										<h6 class="bg-white rounded"style="border: 1px solid  #c2cce8;"><i class="icon-money"></i>{{ incomeFromSelectedPeriod.date_of_income }}<span class="mx-2">&#8680</span>{{ incomeFromSelectedPeriod.income_comment }}<span class="mx-2">&#8680;</span>{{ incomeFromSelectedPeriod.amount }}</h6>
 									{% endif %}
 									
 
@@ -176,7 +175,7 @@
 								{% for expenseFromSelectedPeriod in expensesFromSelectedPeriod %}
 																	
 									{% if expenseFromSelectedPeriod.expense_category_assigned_to_user_id == expenseCategoryFromSelectedPeriod.expense_category_assigned_to_user_id  %}
-										<h6 class="bg-white rounded"style="border: 1px solid  #c2cce8;"><i class="icon-basket"></i>{{ expenseFromSelectedPeriod.date_of_expense }}<span class="mx-2">&#8680</span>{{ expenseInCategory.expense_comment }}<span class="mx-2">&#8680;</span>{{ expenseFromSelectedPeriod.amount }}</h6>
+										<h6 class="bg-white rounded"style="border: 1px solid  #c2cce8;"><i class="icon-basket"></i>{{ expenseFromSelectedPeriod.date_of_expense }}<span class="mx-2">&#8680</span>{{ expenseFromSelectedPeriod.expense_comment }}<span class="mx-2">&#8680;</span>{{ expenseFromSelectedPeriod.amount }}</h6>
 									{% endif %}
 									
 
@@ -198,7 +197,7 @@
 					<h3 style="background-color: #D3DDE9; border: 1px solid  #c2cce8;" class="rounded">Balance<i class="icon-chart-bar ml-5 mr-1"></i>{{ balance}}</h3>					
 					<h4 class="font-weight-bold bg-white rounded" style="color: #060B95;"></h4>
 						
-					{% if balance %}
+					{% if (incomeCategoriesFromSelectedPeriod or expenseCategoriesFromSelectedPeriod) %}
 							
 						{% if (balance) < (0) %}				
 							<h4 class="text-danger bg-white rounded">&#128201; Watch out, you are getting into debt!</h4>
@@ -220,8 +219,6 @@
 
 		</div>		
 				
-	</main>  
-
-    {% endif %}
+	</main>    
     
 {% endblock %}
