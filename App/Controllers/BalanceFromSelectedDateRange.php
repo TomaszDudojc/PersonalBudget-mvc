@@ -26,7 +26,7 @@ class BalanceFromSelectedDateRange extends Authenticated
        
         else if ($startingDate == $endDate)
         {
-            View::renderTemplate('balance/index.html', [				
+            View::renderTemplate('Balance/index.html', [				
                 'startingDate' => Balances::getStartingDate(),
                 'endDate' => Balances::getEndDate(),
                 'nameOfSelectedPeriod' => $startingDate,
@@ -42,7 +42,7 @@ class BalanceFromSelectedDateRange extends Authenticated
 
         else
             {
-            View::renderTemplate('balance/index.html', [				
+            View::renderTemplate('Balance/index.html', [				
                 'startingDate' => Balances::getStartingDate(),
                 'endDate' => Balances::getEndDate(),
                 'nameOfSelectedPeriod' => $startingDate." => ".$endDate,

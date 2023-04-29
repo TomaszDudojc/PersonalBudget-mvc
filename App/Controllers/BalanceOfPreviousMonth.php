@@ -14,7 +14,7 @@ class BalanceOfPreviousMonth extends Authenticated
     {
         $previousMonth = Dates::getPreviousMonth();
         
-        View::renderTemplate('balance/index.html', [							
+        View::renderTemplate('Balance/index.html', [							
             'nameOfSelectedPeriod' => "Previous month",
             'previousMonth' => Dates::getPreviousMonth(),
             'incomeCategoriesFromSelectedPeriod' => Balances::getIncomeCategoriesFromSelectedPeriod($previousMonth),

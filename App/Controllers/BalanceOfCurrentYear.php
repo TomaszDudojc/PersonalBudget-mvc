@@ -14,7 +14,7 @@ class BalanceOfCurrentYear extends Authenticated
     {
         $currentYear = Dates::getCurrentYear ();
         
-        View::renderTemplate('balance/index.html', [							
+        View::renderTemplate('Balance/index.html', [							
             'nameOfSelectedPeriod' => "Current year",
             'currentYear' => Dates::getCurrentYear (),
             'incomeCategoriesFromSelectedPeriod' => Balances::getIncomeCategoriesFromSelectedPeriod($currentYear),
