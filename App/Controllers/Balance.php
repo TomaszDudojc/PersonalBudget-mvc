@@ -14,7 +14,7 @@ class Balance extends Authenticated
     {
         $currentMonth = Dates::getCurrentMonth();        
         
-        View::renderTemplate('balance/index.html', [							
+        View::renderTemplate('Balance/index.html', [							
             'nameOfSelectedPeriod' => "Current month",
             'currentMonth' => Dates::getCurrentMonth(),
             'incomeCategoriesFromSelectedPeriod' => Balances::getIncomeCategoriesFromSelectedPeriod($currentMonth),
