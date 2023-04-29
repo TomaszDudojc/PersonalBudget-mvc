@@ -19,7 +19,7 @@ class BalanceFromSelectedDateRange extends Authenticated
         if($startingDate > $endDate)
             {
                 Flash::addMessage("Invalid date range: ".$startingDate." =/=> ".$endDate.". Starting date must be earlier than end date!", Flash::WARNING);
-                View::renderTemplate('balance/index.html', [
+                View::renderTemplate('Balance/index.html', [
                     'nameOfSelectedPeriod' => $startingDate." => ".$endDate                    
                 ]);
             } 
