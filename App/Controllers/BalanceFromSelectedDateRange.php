@@ -26,33 +26,33 @@ class BalanceFromSelectedDateRange extends Authenticated
        
         else if ($startingDate == $endDate)
         {
-            View::renderTemplate('Balance/index.html', [				
-                'startingDate' => Balances::getStartingDate(),
-                'endDate' => Balances::getEndDate(),
+            View::renderTemplate('Balance/index.html', [			
+                'startingDate' => $startingDate,
+                'endDate' => $endDate,
                 'nameOfSelectedPeriod' => $startingDate,
-                'incomeCategoriesFromSelectedPeriod' => Balances::getIncomeCategoriesFromSelectedDateRange(),
-                'incomesFromSelectedPeriod' => Balances::getIncomesFromSelectedDateRange(),
-                'amountOfAllIncomesFromSelectedPeriod' => Balances::getAmountOfAllIncomesFromSelectedDateRange(),
-                'expenseCategoriesFromSelectedPeriod' => Balances::getExpenseCategoriesFromSelectedDateRange(),
-                'expensesFromSelectedPeriod' => Balances::getExpensesFromSelectedDateRange(),
-                'amountOfAllExpensesFromSelectedPeriod' => Balances::getAmountOfAllExpensesFromSelectedDateRange(),
-                'balance' => Balances::getBalanceFromSelectedDateRange()           			
+                'incomeCategoriesFromSelectedPeriod' => Balances::getIncomeCategoriesFromSelectedDateRange($startingDate, $endDate),
+                'incomesFromSelectedPeriod' => Balances::getIncomesFromSelectedDateRange($startingDate, $endDate),
+                'amountOfAllIncomesFromSelectedPeriod' => Balances::getAmountOfAllIncomesFromSelectedDateRange($startingDate, $endDate),
+                'expenseCategoriesFromSelectedPeriod' => Balances::getExpenseCategoriesFromSelectedDateRange($startingDate, $endDate),
+                'expensesFromSelectedPeriod' => Balances::getExpensesFromSelectedDateRange($startingDate, $endDate),
+                'amountOfAllExpensesFromSelectedPeriod' => Balances::getAmountOfAllExpensesFromSelectedDateRange($startingDate, $endDate),
+                'balance' => Balances::getBalanceFromSelectedDateRange($startingDate, $endDate)           			
             ]);
             }
 
         else
             {
-            View::renderTemplate('Balance/index.html', [				
-                'startingDate' => Balances::getStartingDate(),
-                'endDate' => Balances::getEndDate(),
+            View::renderTemplate('Balance/index.html', [		
+                'startingDate' => $startingDate,
+                'endDate' => $endDate,
                 'nameOfSelectedPeriod' => $startingDate." => ".$endDate,
-                'incomeCategoriesFromSelectedPeriod' => Balances::getIncomeCategoriesFromSelectedDateRange(),
-                'incomesFromSelectedPeriod' => Balances::getIncomesFromSelectedDateRange(),
-                'amountOfAllIncomesFromSelectedPeriod' => Balances::getAmountOfAllIncomesFromSelectedDateRange(),
-                'expenseCategoriesFromSelectedPeriod' => Balances::getExpenseCategoriesFromSelectedDateRange(),
-                'expensesFromSelectedPeriod' => Balances::getExpensesFromSelectedDateRange(),
-                'amountOfAllExpensesFromSelectedPeriod' => Balances::getAmountOfAllExpensesFromSelectedDateRange(),
-                'balance' => Balances::getBalanceFromSelectedDateRange()				
+                'incomeCategoriesFromSelectedPeriod' => Balances::getIncomeCategoriesFromSelectedDateRange($startingDate, $endDate),
+                'incomesFromSelectedPeriod' => Balances::getIncomesFromSelectedDateRange($startingDate, $endDate),
+                'amountOfAllIncomesFromSelectedPeriod' => Balances::getAmountOfAllIncomesFromSelectedDateRange($startingDate, $endDate),
+                'expenseCategoriesFromSelectedPeriod' => Balances::getExpenseCategoriesFromSelectedDateRange($startingDate, $endDate),
+                'expensesFromSelectedPeriod' => Balances::getExpensesFromSelectedDateRange($startingDate, $endDate),
+                'amountOfAllExpensesFromSelectedPeriod' => Balances::getAmountOfAllExpensesFromSelectedDateRange($startingDate, $endDate),
+                'balance' => Balances::getBalanceFromSelectedDateRange($startingDate, $endDate)				
             ]);
             }
     }
