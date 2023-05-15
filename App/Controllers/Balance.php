@@ -6,24 +6,45 @@ use \Core\View;
 use \App\Models\Balances;
 use \App\Auth;
 use \App\Dates;
+use \App\Flash;
 
 class Balance extends Authenticated
 {
-
     public function indexAction()
     {
-        $currentMonth = Dates::getCurrentMonth();        
-        
-        View::renderTemplate('Balance/index.html', [							
-            'nameOfSelectedPeriod' => "Current month",
-            'currentMonth' => Dates::getCurrentMonth(),
-            'incomeCategoriesFromSelectedPeriod' => Balances::getIncomeCategoriesFromSelectedPeriod($currentMonth),
-            'incomesFromSelectedPeriod' => Balances::getIncomesFromSelectedPeriod($currentMonth),
-            'amountOfAllIncomesFromSelectedPeriod' => Balances::getAmountOfAllIncomesFromSelectedPeriod($currentMonth),
-            'expenseCategoriesFromSelectedPeriod' => Balances::getExpenseCategoriesFromSelectedPeriod($currentMonth),
-            'expensesFromSelectedPeriod' => Balances::getExpensesFromSelectedPeriod($currentMonth),
-            'amountOfAllExpensesFromSelectedPeriod' => Balances::getAmountOfAllExpensesFromSelectedPeriod($currentMonth),
-            'balance' => Balances::getBalanceFromSelectedPeriod($currentMonth)				
-		]);
+        $currentYear = date('Y');
+        $currentMonth = date('m');        
+
+        if(!isset($_POST['period'])){
+            $period = $currentMonth;
+        }
+        else{
+            $period = $_POST['period'];      
+        }        
+    
+        $dateRange = dates::validateDate($period, $currentYear, $currentMonth);
+        $startDate = $dateRange['start_date'];
+        $endDate = $dateRange['end_date'];
+
+        if($startDate > $endDate){
+            Flash::addMessage("Invalid date range: ".$startDate." =/=> ".$endDate.". Starting date must be earlier than end date!", Flash::WARNING);
+            View::renderTemplate('Balance/index.html', [
+                'start_date' => $startDate,
+                'end_date' => $endDate
+            ]);
+        }
+        else{
+            View::renderTemplate('Balance/index.html', [		
+                'start_date' => $startDate,
+                'end_date' => $endDate,                
+                'incomeCategoriesFromSelectedPeriod' => Balances::getIncomeCategoriesFromSelectedDateRange($startDate, $endDate),
+                'incomesFromSelectedPeriod' => Balances::getIncomesFromSelectedDateRange($startDate, $endDate),
+                'amountOfAllIncomesFromSelectedPeriod' => Balances::getAmountOfAllIncomesFromSelectedDateRange($startDate, $endDate),
+                'expenseCategoriesFromSelectedPeriod' => Balances::getExpenseCategoriesFromSelectedDateRange($startDate, $endDate),
+                'expensesFromSelectedPeriod' => Balances::getExpensesFromSelectedDateRange($startDate, $endDate),
+                'amountOfAllExpensesFromSelectedPeriod' => Balances::getAmountOfAllExpensesFromSelectedDateRange($startDate, $endDate),
+                'balance' => Balances::getBalanceFromSelectedDateRange($startDate, $endDate)				
+            ]);  
+        }         
     }
 }

@@ -68,7 +68,7 @@
 		<div class="container my-3 text-center pb-5">
 		
 			<div class="row">	
-         
+         <!--
 				<div class="col-10 col-md-6 mx-auto font-weight-bold" style="font-size: 30px; letter-spacing: 2px; padding: 0px;">
 
 				<div class="navcontainer rounded mt-3">
@@ -126,11 +126,55 @@
 						</div> 		
 					</div>
       			</div>
-				  
+			-->
+			<div class="inputContainer mt-3 pb-3">			
+				<header>
+					<h2 class="font-weight-bold rounded">Check balance<i class="icon-chart-bar mr-3"></i></h2>
+				</header>			
+							
+			<form action="/balance/index" method="post">
+				<div class="input-group">
+					<div class="input-group-prepend">				
+						<span class="input-group-text rounded-left icon"><i class="icon-calendar"></i></span>
+					</div>
+				<select class="choice rounded-right" name="period" required>
+					<option value selected disabled hidden>Choose period</option>					
+					<option value="current_month">Current month</option>
+					<option value="last_month">Previous month</option>
+					<option value="current_year">Current year</option>
+					<option value="custom_period">Custom</option>					
+				</select>							
+				<div class="input-group">
+					<div class="input-group-prepend">				
+						<span class="input-group-text rounded-left icon pb-0 pt-2" style="width: 85px;"><label for="start_date">Start date: </label></span>
+					</div>
+				<input class="rounded-right" type="date" name="start_date" style="width:245px">
+				</div>				
+				<div class="input-group">
+					<div class="input-group-prepend">				
+						<span class="input-group-text rounded-left icon pb-0 pt-2" style="width: 85px;"><label for="end_date">End date: </label></span>
+					</div>
+				<input class="rounded-right" type="date" name="end_date" style="width:245px">
+				</div>
+				<button type="submit" class="btn login">Show balance</button>
+				</div>
+
+			</form>
+			
+			</div>
+			
 				<div class="w-100"></div>
-					
-				<h2 class="col-10 col-md-6 font-weight-bold rounded mx-auto"><i class="icon-calendar mr-3"></i>{{ nameOfSelectedPeriod }}</h2>			
-						
+				
+				{% if start_date == end_date %}
+				<h2 class="col-10 col-md-6 font-weight-bold rounded mx-auto"><i class="icon-calendar mr-3"></i>{{start_date }}</h2>
+				{% else %}
+				<h2 class="col-10 col-md-6 font-weight-bold rounded mx-auto"><i class="icon-calendar mr-3"></i>{{ start_date }} => {{ end_date }}</h2>
+				{% endif %}
+				<!--
+				<div class="inputContainer my-0 py-0">
+					<h2 class="font-weight-bold rounded"><i class="icon-calendar mr-3"></i>{{ nameOfSelectedPeriod }}</h2>
+				</div>
+				-->
 				<div class="w-100"></div>		
 											
 				<div class="table col-10 col-md-5 mx-auto rounded mt-2 mb-0">		
