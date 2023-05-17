@@ -40,5 +40,5 @@ class Incomes extends \Core\Model
         $stmt->bindValue(':comment', $this->comment, PDO::PARAM_STR);
 
         return $stmt->execute();        
-    }	
+    }   
 }

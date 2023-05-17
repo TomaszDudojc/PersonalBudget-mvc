@@ -54,7 +54,7 @@ class Balances extends \Core\Model
 	public static function getIncomesFromSelectedDateRange($startDate, $endDate)
 	{		
 		
-        $sql = "SELECT incomes_category_assigned_to_users.name, incomes.income_category_assigned_to_user_id, incomes.date_of_income, incomes.income_comment, incomes.amount
+        $sql = "SELECT incomes_category_assigned_to_users.name, incomes.income_category_assigned_to_user_id, incomes.date_of_income, incomes.income_comment, incomes.amount, incomes.id
         FROM incomes, incomes_category_assigned_to_users, users WHERE users.id=:user_id AND incomes.date_of_income BETWEEN :start_date AND :end_date
         AND users.id=incomes_category_assigned_to_users.user_id AND users.id=incomes.user_id 
         AND incomes.income_category_assigned_to_user_id=incomes_category_assigned_to_users.id 

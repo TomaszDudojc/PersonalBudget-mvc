@@ -22,7 +22,7 @@ class Balance extends Authenticated
             $period = $_POST['period'];      
         }        
     
-        $dateRange = dates::validateDate($period, $currentYear, $currentMonth);
+        $dateRange = Dates::validateDate($period, $currentYear, $currentMonth);
         $startDate = $dateRange['start_date'];
         $endDate = $dateRange['end_date'];
 
@@ -47,4 +47,5 @@ class Balance extends Authenticated
             ]);  
         }         
     }
+	
 }
