@@ -42,4 +42,11 @@ class Income extends Authenticated
 			$this->redirect('/income/index');
         } 
     }
+
+	public function editAction()
+    {
+        View::renderTemplate('Income/edit.html', [
+            
+        ]);
+    }
 }

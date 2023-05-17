@@ -2,16 +2,13 @@
 
 {% block title %}Balance{% endblock %}
 
-{% block footer %}
-		
+{% block footer %}		
 			
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
-
 <script>
 	
-	window.onload = function () {
-			
+	window.onload = function () {			
 
 	var chart = new CanvasJS.Chart("chartContainer", {
 		exportEnabled: true,
@@ -53,8 +50,18 @@
 		} else {
 			e.dataSeries.dataPoints[e.dataPointIndex].exploded = false;
 		}
-		e.chart.render();
+		e.chart.render();	
 }
+	
+	const el = document.getElementById('selectPeriod');
+	const box = document.getElementById('dateRange');
+	el.addEventListener('change', function handleChange(event) {
+		if (event.target.value === 'custom_period') {
+			box.style.visibility = 'visible';
+		} else {
+			box.style.visibility = 'hidden';
+		 }
+	});
 </script>	
 	
 {% endblock %}
@@ -67,70 +74,51 @@
 	
 		<div class="container my-3 text-center pb-5">
 		
-			<div class="row">	
-         
-				<div class="col-10 col-md-6 mx-auto font-weight-bold" style="font-size: 30px; letter-spacing: 2px; padding: 0px;">
+			<div class="row"> 
 
-				<div class="navcontainer rounded mt-3">
-					
-					<nav class="navbar navbar-light py-0 mb-0 navbar-expand-lg"> 
-						<ul class="navbar-nav py-0 px-3 active mx-auto">				
-							<li class="nav-item dropdown">
-								<div class="col-10 col-md-6 mx-auto font-weight-bold" style="font-size: 30px; letter-spacing: 2px; padding: 0px;"></div>
-								<a class="nav-link dropdown-toggle" style="color: #060B95;" href="#" data-toggle="dropdown" role="button" aria-expanded="false" id="submenu"><i class="icon-calendar mr-3"></i>Select a period</a>						
-								<div class="dropdown-menu" aria-labelledby="submenu" style="background-color: #E2FDFA; border: 1px solid #a5cda5;">						
-									<a class="dropdown-item" style="color: #060B95;" href="/balance/index">Current month</a>
-									<a class="dropdown-item" style="color: #060B95;" href="/balanceOfPreviousMonth/index">Previous month</a>
-									<a class="dropdown-item" style="color:#060B95;" href="/balanceOfCurrentYear/index">Current year</a>
-									<div class="dropdown-divider"></div>
-									<a class="dropdown-item" style="color: #060B95;" data-toggle="modal" data-target="#dateRange" href="#">Custom</a>						
+			<div class="inputContainer mt-0 pb-3">			
+				<header>
+					<h2 class="font-weight-bold rounded">Check balance<i class="icon-chart-bar mr-3"></i></h2>
+				</header>
+				<form action="/balance/index" method="post">					
+					<div class="input-group">
+						<div class="input-group-prepend">				
+							<span class="input-group-text rounded-left icon"><i class="icon-calendar"></i></span>
+						</div>
+						<select class="choice rounded-right" id="selectPeriod" name="period" required>
+							<option value selected disabled hidden>Choose period</option>					
+							<option value="current_month">Current month</option>
+							<option value="last_month">Previous month</option>
+							<option value="current_year">Current year</option>
+							<option value="custom_period">Custom</option>					
+						</select>							
+						<div id="dateRange" style="visibility: hidden;">
+							<div class="input-group">
+								<div class="input-group-prepend">				
+									<span class="input-group-text rounded-left icon" style="width: 85px;">Start date: </span>
 								</div>
-							</li>					
-						</ul>
-					</nav>
-				</div>
-
-				</div>
-    
-				<div class="modal" id="dateRange" style="display: none">
-					<div class="modal-dialog">
-					<div class="modal-content table rounded" style="background-color: #E2FDFA;">
-								<div class="modal-header">
-								<h3 class="modal-title">Select a date range</h3>
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-								</div>
-						
-								<div class="modal-body">
-								<form action="/balanceFromSelectedDateRange/index" method="post">
-									<div class="input-group">
-										<div class="input-group-prepend">				
-											<span class="input-group-text  rounded-left icon my-0"><i class="icon-calendar"></i></span>
-										</div>						
-										<input type="date" class="form-control  rounded-right my-0 mr-2" name="startingDate" required>
-										
-										<div class="input-group-prepend">				
-											<span class="input-group-text  rounded-left icon  my-0 ml-2"><i class="icon-calendar"></i></span>
-										</div>
-										<input type="date" class="form-control  rounded-right my-0" name="endDate" required>
-									</div>
-									
-									<div class="modal-footer">
-										<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-										<button type="submit" class="btn btn-success">Save</button>
-									</div>														
-								</form>					
+							<input class="rounded-right" type="date" name="start_date" style="width:245px">
 							</div>				
-									
-						</div> 		
+							<div class="input-group">
+								<div class="input-group-prepend">				
+									<span class="input-group-text rounded-left icon" style="width: 85px;">End date: </span>
+								</div>
+							<input class="rounded-right" type="date" name="end_date" style="width:245px">
+							</div>
+						</div>
+						<button type="submit" class="btn login">Show balance</button>
 					</div>
-      			</div>
-				  
+				</form>			
+			</div>
+			
 				<div class="w-100"></div>
-					
-				<h2 class="col-10 col-md-6 font-weight-bold rounded mx-auto"><i class="icon-calendar mr-3"></i>{{ nameOfSelectedPeriod }}</h2>			
-						
+				
+				{% if start_date == end_date %}
+				<h2 class="col-10 col-md-6 font-weight-bold rounded mx-auto"><i class="icon-calendar mr-3"></i>{{start_date }}</h2>
+				{% else %}
+				<h2 class="col-10 col-md-6 font-weight-bold rounded mx-auto"><i class="icon-calendar mr-3"></i>{{ start_date }} => {{ end_date }}</h2>
+				{% endif %}
+				
 				<div class="w-100"></div>		
 											
 				<div class="table col-10 col-md-5 mx-auto rounded mt-2 mb-0">		
@@ -146,7 +134,7 @@
 								{% for incomeFromSelectedPeriod in incomesFromSelectedPeriod %}
 																	
 									{% if incomeFromSelectedPeriod.income_category_assigned_to_user_id == incomeCategoryFromSelectedPeriod.income_category_assigned_to_user_id  %}
-										<h6 class="bg-white rounded"style="border: 1px solid  #c2cce8;"><i class="icon-money"></i>{{ incomeFromSelectedPeriod.date_of_income }}<span class="mx-2">&#8680</span>{{ incomeFromSelectedPeriod.income_comment }}<span class="mx-2">&#8680;</span>{{ incomeFromSelectedPeriod.amount }}</h6>
+										<h6 class="bg-white rounded"style="border: 1px solid  #c2cce8;"><i class="icon-money"></i>{{ incomeFromSelectedPeriod.date_of_income }}<span class="mx-2">&#8680</span>{{ incomeFromSelectedPeriod.income_comment }}<span class="mx-2">&#8680;</span>{{ incomeFromSelectedPeriod.amount }}<a class="text-success ml-1" href="/income/edit"><i class="icon-pencil"></i></a><a class="text-danger ml-1" href="#"><i class="icon-off"></i></a></h6>
 									{% endif %}
 									
 
@@ -175,7 +163,7 @@
 								{% for expenseFromSelectedPeriod in expensesFromSelectedPeriod %}
 																	
 									{% if expenseFromSelectedPeriod.expense_category_assigned_to_user_id == expenseCategoryFromSelectedPeriod.expense_category_assigned_to_user_id  %}
-										<h6 class="bg-white rounded"style="border: 1px solid  #c2cce8;"><i class="icon-basket"></i>{{ expenseFromSelectedPeriod.date_of_expense }}<span class="mx-2">&#8680</span>{{ expenseFromSelectedPeriod.expense_comment }}<span class="mx-2">&#8680;</span>{{ expenseFromSelectedPeriod.amount }}</h6>
+										<h6 class="bg-white rounded" style="border: 1px solid  #c2cce8;"><i class="icon-basket"></i>{{ expenseFromSelectedPeriod.date_of_expense }}<span class="mx-2">&#8680</span>{{ expenseFromSelectedPeriod.expense_comment }}<span class="mx-2">&#8680;</span>{{ expenseFromSelectedPeriod.amount }}<a class="text-success ml-1" href="#"><i class="icon-pencil"></i></a><a class="text-danger ml-1" href="#"><i class="icon-off"></i></a></h6>
 									{% endif %}
 									
 
