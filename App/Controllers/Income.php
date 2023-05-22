@@ -45,8 +45,9 @@ class Income extends Authenticated
 
 	public function editAction()
     {
-        View::renderTemplate('Income/edit.html', [
-            
+       
+		View::renderTemplate('Income/edit.html', [
+            'income'
         ]);
     }
 }

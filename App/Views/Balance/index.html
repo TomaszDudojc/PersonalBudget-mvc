@@ -83,9 +83,9 @@
 				<form action="/balance/index" method="post">					
 					<div class="input-group">
 						<div class="input-group-prepend">				
-							<span class="input-group-text rounded-left icon"><i class="icon-calendar"></i></span>
+							<span class="input-group-text rounded-left icon" style="width: 50px;"><i class="icon-calendar"></i></span>
 						</div>
-						<select class="choice rounded-right" id="selectPeriod" name="period" required>
+						<select class="choice rounded-right" id="selectPeriod" name="period" required style="width:280px">
 							<option value selected disabled hidden>Choose period</option>					
 							<option value="current_month">Current month</option>
 							<option value="last_month">Previous month</option>
@@ -95,15 +95,15 @@
 						<div id="dateRange" style="visibility: hidden;">
 							<div class="input-group">
 								<div class="input-group-prepend">				
-									<span class="input-group-text rounded-left icon" style="width: 85px;">Start date: </span>
+									<span class="input-group-text rounded-left icon" style="width: 50px;">From: </span>
 								</div>
-							<input class="rounded-right" type="date" name="start_date" style="width:245px">
+							<input class="rounded-right" type="date" name="start_date" style="width:280px" value="{{ currentDate }}">
 							</div>				
 							<div class="input-group">
 								<div class="input-group-prepend">				
-									<span class="input-group-text rounded-left icon" style="width: 85px;">End date: </span>
+									<span class="input-group-text rounded-left icon" style="width: 50px;">To: </span>
 								</div>
-							<input class="rounded-right" type="date" name="end_date" style="width:245px">
+							<input class="rounded-right" type="date" name="end_date" style="width:280px" value="{{ currentDate }}">
 							</div>
 						</div>
 						<button type="submit" class="btn login">Show balance</button>
@@ -134,7 +134,59 @@
 								{% for incomeFromSelectedPeriod in incomesFromSelectedPeriod %}
 																	
 									{% if incomeFromSelectedPeriod.income_category_assigned_to_user_id == incomeCategoryFromSelectedPeriod.income_category_assigned_to_user_id  %}
-										<h6 class="bg-white rounded"style="border: 1px solid  #c2cce8;"><i class="icon-money"></i>{{ incomeFromSelectedPeriod.date_of_income }}<span class="mx-2">&#8680</span>{{ incomeFromSelectedPeriod.income_comment }}<span class="mx-2">&#8680;</span>{{ incomeFromSelectedPeriod.amount }}<a class="text-success ml-1" href="/income/edit"><i class="icon-pencil"></i></a><a class="text-danger ml-1" href="#"><i class="icon-off"></i></a></h6>
+									<form action="/balance/deleteIncome" method="post">
+										<h6 class="bg-white rounded mb-0 mt-1"style="border: 1px solid  #c2cce8;"><i class="icon-money"></i>
+											<input name="id" type="number" style="display: none;" value="{{ incomeFromSelectedPeriod.id }}">
+											{{ incomeFromSelectedPeriod.date_of_income }}<span class="mx-2">&#8680</span>
+											{{ incomeFromSelectedPeriod.income_comment }}<span class="mx-2">&#8680;</span>
+											{{ incomeFromSelectedPeriod.amount }}
+											<button type="button" class="text-success ml-1" onClick="document.getElementById('{{ incomeFromSelectedPeriod.id }}').style.display='block';" style="border: none; background: none;"><i class="icon-pencil"></i></button>
+											<button type="submit" class="text-danger ml-1" style="border: none; background: none;"><i class="icon-off"></i></a></button>
+										</h6>
+									</form>
+									<div id="{{ incomeFromSelectedPeriod.id }}" style="display: none;" class="mb-1 pt-0 rounded">
+										<form action="/balance/editIncome" method="post">
+											<div class="form-row mx-0">
+												<input name="id" type="number" style="display: none;" value="{{ incomeFromSelectedPeriod.id }}">
+													
+												<div class="input-group col-4 px-0">
+													<div class="input-group-prepend">				
+														<span class="input-group-text rounded-left icon mt-0"><i class="icon-calendar"></i></span>
+													</div>
+													<input type="date" class="form-control rounded-right mt-0" name="date" value="{{ incomeFromSelectedPeriod.date_of_income }}" required>
+												</div>
+												<div class="input-group col-4 px-0">	
+													<div class="input-group-prepend">
+														<span class="input-group-text rounded-left icon mt-0"><i class="icon-pencil"></i></span>
+													</div>
+													<input type="text" class="form-control rounded-right mt-0" name="comment" value="{{ incomeFromSelectedPeriod.income_comment }}">	
+												</div>		        
+												<div class="input-group col-4 px-0">
+													<div class="input-group-prepend ">
+														<span class="input-group-text rounded-left icon mt-0"><i class="icon-gauge"></i></span>
+													</div>
+													<input type="number" class="form-control rounded-right mt-0" step="0.01" min="0.01" name="amount" value="{{ incomeFromSelectedPeriod.amount }}" required>	
+												</div>											
+											</div>
+											<div class="form-row mx-0" style="height: 32px;">	
+												<div class="input-group px-auto mx-auto">														
+													<select class="choice rounded mt-0 col-12 text-center" name="category" required>						
+														<option value="{{ incomeCategoryFromSelectedPeriod.id }}">{{ incomeCategoryFromSelectedPeriod.name }}</option>                          					
+														{% for incomeCategory in incomeCategories %}                             
+														<option value="{{ incomeCategory.id }}">{{ incomeCategory.name }}</option> 
+														{% endfor %}                               
+													</select>
+												</div>	
+											</div>
+
+											<div class="form-row mx-0 mt-1 mb-2" style="height: 32px;">	
+												<button  type="button" class="btn btn-danger btn-sm mr-auto" onClick="document.getElementById('{{ incomeFromSelectedPeriod.id }}').style.display='none';" style="width: 60px;">Cancel</button>
+													
+												<button  type="submit" class="btn btn-success btn-sm ml-auto" style="width: 60px;">Save</button>
+											</div>																													
+										</form>			
+									</div>
+									
 									{% endif %}
 									
 

@@ -7,6 +7,8 @@ use \App\Models\Balances;
 use \App\Auth;
 use \App\Dates;
 use \App\Flash;
+use \App\Models\Incomes;
+use \App\Models\Expenses;
 
 class Balance extends Authenticated
 {
@@ -43,9 +45,40 @@ class Balance extends Authenticated
                 'expenseCategoriesFromSelectedPeriod' => Balances::getExpenseCategoriesFromSelectedDateRange($startDate, $endDate),
                 'expensesFromSelectedPeriod' => Balances::getExpensesFromSelectedDateRange($startDate, $endDate),
                 'amountOfAllExpensesFromSelectedPeriod' => Balances::getAmountOfAllExpensesFromSelectedDateRange($startDate, $endDate),
-                'balance' => Balances::getBalanceFromSelectedDateRange($startDate, $endDate)				
+                'balance' => Balances::getBalanceFromSelectedDateRange($startDate, $endDate),
+                'incomeCategories' => Incomes::getIncomeCategoriesOfUser(),
+                'currentDate' => Dates::getCurrentDate()				
             ]);  
         }         
     }
+
+    public function deleteIncomeAction() 
+	{
+        if(isset($_POST['id'])) {
+			
+			$income = new Incomes($_POST);           
+
+			$income->delete();
+
+			Flash::addMessage('Income has been removed.');
+
+			$this->redirect('/balance/index'); 
+		} 
+	}
+
+    public function editIncomeAction() 
+	{
+        if(isset($_POST['id'])) {
+			
+			$income = new Incomes($_POST);           
+
+			$income->edit();
+
+			Flash::addMessage('Income has been edited.');
+
+			$this->redirect('/balance/index');            
+			
+		} 
+	}
 	
 }

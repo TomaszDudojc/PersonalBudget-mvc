@@ -40,5 +40,43 @@ class Incomes extends \Core\Model
         $stmt->bindValue(':comment', $this->comment, PDO::PARAM_STR);
 
         return $stmt->execute();        
-    }   
+    } 
+    
+    public function delete() 
+	{
+        $this->id = filter_input(INPUT_POST, 'id');
+
+        $sql = "DELETE FROM incomes WHERE id = :id";
+								
+		$db = static::getDB();
+        $stmt = $db->prepare($sql);
+        
+        $stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
+		
+        return $stmt->execute();  
+	}
+
+    public function edit() 
+    {
+        $this->id = filter_input(INPUT_POST, 'id');
+        $this->amount = filter_input(INPUT_POST, 'amount');
+        $this->date =  filter_input(INPUT_POST, 'date');         
+        $this->comment =  filter_input(INPUT_POST, 'comment');
+        $idOfIncomeCategory = filter_input(INPUT_POST, 'category');      
+       
+        $sql = "UPDATE incomes
+        SET amount = :amount, date_of_income = :date, income_comment = :comment, income_category_assigned_to_user_id = :idOfIncomeCategory
+        WHERE id = :id";         		
+												
+		$db = static::getDB();
+        $stmt = $db->prepare($sql);        
+        
+        $stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
+        $stmt->bindValue(':amount', $this->amount, PDO::PARAM_STR);
+        $stmt->bindValue(':date', $this->date, PDO::PARAM_STR);
+        $stmt->bindValue(':comment', $this->comment, PDO::PARAM_STR);
+        $stmt->bindValue(':idOfIncomeCategory',  $idOfIncomeCategory, PDO::PARAM_INT);
+
+        return $stmt->execute();          
+    }
 }

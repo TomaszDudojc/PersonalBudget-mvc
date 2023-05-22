@@ -336,7 +336,8 @@ input:focus:-ms-input-placeholder
 
 option
 {	
-	background-color: white;		 
+	background-color: white;
+	height: 32px;		 
 }
 
 /* //////////////////  Balance /////////////////////// */
