@@ -47,6 +47,8 @@ class Balance extends Authenticated
                 'amountOfAllExpensesFromSelectedPeriod' => Balances::getAmountOfAllExpensesFromSelectedDateRange($startDate, $endDate),
                 'balance' => Balances::getBalanceFromSelectedDateRange($startDate, $endDate),
                 'incomeCategories' => Incomes::getIncomeCategoriesOfUser(),
+                'expenseCategories' => Expenses::getExpenseCategoriesOfUser(),
+                'paymentMethods' => Expenses::getPaymentMethodsOfUser(),
                 'currentDate' => Dates::getCurrentDate()				
             ]);  
         }         
@@ -76,9 +78,35 @@ class Balance extends Authenticated
 
 			Flash::addMessage('Income has been edited.');
 
-			$this->redirect('/balance/index');            
-			
+			$this->redirect('/balance/index');
 		} 
 	}
-	
+
+    public function deleteExpenseAction() 
+	{
+        if(isset($_POST['id'])) {
+			
+			$expense = new Expenses($_POST);           
+
+			$expense->delete();
+
+			Flash::addMessage('Expense has been removed.');
+
+			$this->redirect('/balance/index'); 
+		} 
+	}
+
+    public function editExpenseAction() 
+	{
+        if(isset($_POST['id'])) {
+			
+			$expense = new Expenses($_POST);           
+
+			$expense->edit();
+
+			Flash::addMessage('Expense has been edited.');
+
+			$this->redirect('/balance/index');          
+		} 
+	}	
 }

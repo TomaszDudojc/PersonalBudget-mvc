@@ -25,7 +25,8 @@ class Incomes extends \Core\Model
     {		
         $this->amount = filter_input(INPUT_POST, 'amount');
         $this->date =  filter_input(INPUT_POST, 'date');
-        $idOfIncomeCategory = filter_input(INPUT_POST, 'category');    
+        //$idOfIncomeCategory = filter_input(INPUT_POST, 'category'); 
+        $this->category = filter_input(INPUT_POST, 'category');   
         $this->comment =  filter_input(INPUT_POST, 'comment');      
        
         $sql = "INSERT INTO incomes VALUES (NULL, :user_id, :idOfIncomeCategory, :amount, :date, :comment )";    		
@@ -34,7 +35,8 @@ class Incomes extends \Core\Model
         $stmt = $db->prepare($sql);
 
         $stmt->bindValue(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
-        $stmt->bindValue(':idOfIncomeCategory',  $idOfIncomeCategory, PDO::PARAM_INT);
+        //$stmt->bindValue(':idOfIncomeCategory',  $idOfIncomeCategory, PDO::PARAM_INT);
+        $stmt->bindValue(':idOfIncomeCategory',  $this->category, PDO::PARAM_INT);
         $stmt->bindValue(':amount', $this->amount, PDO::PARAM_STR);
         $stmt->bindValue(':date', $this->date, PDO::PARAM_STR);
         $stmt->bindValue(':comment', $this->comment, PDO::PARAM_STR);
@@ -62,11 +64,19 @@ class Incomes extends \Core\Model
         $this->amount = filter_input(INPUT_POST, 'amount');
         $this->date =  filter_input(INPUT_POST, 'date');         
         $this->comment =  filter_input(INPUT_POST, 'comment');
-        $idOfIncomeCategory = filter_input(INPUT_POST, 'category');      
-       
+             
+        if ($_POST['category'] != '') {
+            $this->category = filter_input(INPUT_POST, 'category');
+        } 
+
         $sql = "UPDATE incomes
-        SET amount = :amount, date_of_income = :date, income_comment = :comment, income_category_assigned_to_user_id = :idOfIncomeCategory
-        WHERE id = :id";         		
+        SET amount = :amount, date_of_income = :date, income_comment = :comment";
+        
+        if (isset($this->category)) {
+            $sql .= ', income_category_assigned_to_user_id = :idOfIncomeCategory';
+        }
+
+        $sql .= "\nWHERE id = :id";      		
 												
 		$db = static::getDB();
         $stmt = $db->prepare($sql);        
@@ -74,9 +84,12 @@ class Incomes extends \Core\Model
         $stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
         $stmt->bindValue(':amount', $this->amount, PDO::PARAM_STR);
         $stmt->bindValue(':date', $this->date, PDO::PARAM_STR);
-        $stmt->bindValue(':comment', $this->comment, PDO::PARAM_STR);
-        $stmt->bindValue(':idOfIncomeCategory',  $idOfIncomeCategory, PDO::PARAM_INT);
+        $stmt->bindValue(':comment', $this->comment, PDO::PARAM_STR); 
 
+        if (isset($this->category)){
+            $stmt->bindValue(':idOfIncomeCategory',  $this->category, PDO::PARAM_INT);
+        }
+         
         return $stmt->execute();          
     }
 }
