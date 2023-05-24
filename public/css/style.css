@@ -348,8 +348,8 @@ option
 	/*background-color: #F1F4F9;*/
 	/*background-color: #D3DDE9;*/
 	background-color: none;
-	position: relative;
-	z-index: 100;	
+	/*position: relative;
+	z-index: 100;*/	
 }
 
 /* //////////////////  rejestracja.php /////////////////////// */

@@ -134,7 +134,7 @@
 								{% for incomeFromSelectedPeriod in incomesFromSelectedPeriod %}
 																	
 									{% if incomeFromSelectedPeriod.income_category_assigned_to_user_id == incomeCategoryFromSelectedPeriod.income_category_assigned_to_user_id  %}
-
+									<!--
 									<form action="/balance/deleteIncome" method="post">
 										<h6 class="bg-white rounded mb-0 mt-1"style="border: 1px solid  #c2cce8;"><i class="icon-money"></i>
 											<input name="id" type="number" style="display: none;" value="{{ incomeFromSelectedPeriod.id }}">
@@ -148,45 +148,154 @@
 									
 									<div id="{{ incomeFromSelectedPeriod.id }}" style="display: none;" class="mb-1 pt-0 rounded">
 
-									<form action="/balance/editIncome" method="post">
-										<div class="form-row mx-0">
-											<input name="id" type="number" style="display: none;" value="{{ incomeFromSelectedPeriod.id }}">
-													
-											<div class="input-group col-4 px-0">
-												<div class="input-group-prepend">				
-													<span class="input-group-text rounded-left icon mt-0"><i class="icon-calendar"></i></span>
+										<form action="/balance/editIncome" method="post">
+											<div class="form-row mx-0">
+												<input name="id" type="number" style="display: none;" value="{{ incomeFromSelectedPeriod.id }}">
+														
+												<div class="input-group col-4 px-0">
+													<div class="input-group-prepend">				
+														<span class="input-group-text rounded-left icon mt-0"><i class="icon-calendar"></i></span>
+													</div>
+													<input type="date" class="form-control rounded-right mt-0" name="date" value="{{ incomeFromSelectedPeriod.date_of_income }}" required>
 												</div>
-												<input type="date" class="form-control rounded-right mt-0" name="date" value="{{ incomeFromSelectedPeriod.date_of_income }}" required>
+												<div class="input-group col-4 px-0">	
+													<div class="input-group-prepend">
+														<span class="input-group-text rounded-left icon mt-0"><i class="icon-pencil"></i></span>
+													</div>
+													<input type="text" class="form-control rounded-right mt-0" name="comment" value="{{ incomeFromSelectedPeriod.income_comment }}">	
+												</div>		        
+												<div class="input-group col-4 px-0">
+													<div class="input-group-prepend ">
+														<span class="input-group-text rounded-left icon mt-0"><i class="icon-gauge"></i></span>
+													</div>
+													<input type="number" class="form-control rounded-right mt-0" step="0.01" min="0.01" name="amount" value="{{ incomeFromSelectedPeriod.amount }}" required>	
+												</div>											
 											</div>
-											<div class="input-group col-4 px-0">	
-												<div class="input-group-prepend">
-													<span class="input-group-text rounded-left icon mt-0"><i class="icon-pencil"></i></span>
-												</div>
-												<input type="text" class="form-control rounded-right mt-0" name="comment" value="{{ incomeFromSelectedPeriod.income_comment }}">	
-											</div>		        
-											<div class="input-group col-4 px-0">
-												<div class="input-group-prepend ">
-													<span class="input-group-text rounded-left icon mt-0"><i class="icon-gauge"></i></span>
-												</div>
-												<input type="number" class="form-control rounded-right mt-0" step="0.01" min="0.01" name="amount" value="{{ incomeFromSelectedPeriod.amount }}" required>	
-											</div>											
-										</div>
-										<div class="form-row mx-0" style="height: 32px;">		
-												<select class="choice rounded mt-0 col-12 text-center" name="category">						
-													<option value="{{ incomeCategoryFromSelectedPeriod.id }}" selected hidden>{{ incomeCategoryFromSelectedPeriod.name }}</option>                          					
-													{% for incomeCategory in incomeCategories %}                             
-													<option value="{{ incomeCategory.id }}">{{ incomeCategory.name }}</option> 
-													{% endfor %}                               
-												</select>												
-										</div>
+											<div class="form-row mx-0" style="height: 32px;">		
+													<select class="choice rounded mt-0 col-12 text-center" name="category">						
+														<option value="{{ incomeCategoryFromSelectedPeriod.id }}" selected hidden>{{ incomeCategoryFromSelectedPeriod.name }}</option>                          					
+														{% for incomeCategory in incomeCategories %}                             
+														<option value="{{ incomeCategory.id }}">{{ incomeCategory.name }}</option> 
+														{% endfor %}                               
+													</select>												
+											</div>
 
-										<div class="form-row mx-0 mt-1 mb-2" style="height: 32px;">	
-											<button  type="button" class="btn btn-danger btn-sm mr-auto" onClick="document.getElementById('{{ incomeFromSelectedPeriod.id }}').style.display='none';" style="width: 60px;">Cancel</button>
-													
-											<button  type="submit" class="btn btn-success btn-sm ml-auto" style="width: 60px;">Save</button>
-										</div>	
-									</form>			
-								</div>
+											<div class="form-row mx-0 mt-1 mb-2" style="height: 32px;">	
+												<button  type="button" class="btn btn-danger btn-sm mr-auto" onClick="document.getElementById('{{ incomeFromSelectedPeriod.id }}').style.display='none';" style="width: 60px;">Cancel</button>
+														
+												<button  type="submit" class="btn btn-success btn-sm ml-auto" style="width: 60px;">Save</button>
+											</div>	
+										</form>			
+									</div>
+									-->
+										<h6 class="bg-white rounded mb-0 mt-1"style="border: 1px solid  #c2cce8;"><i class="icon-money"></i>
+											<input name="id" type="number" style="display: none;" value="{{ incomeFromSelectedPeriod.id }}">
+											{{ incomeFromSelectedPeriod.date_of_income }}<span class="mx-2">&#8680</span>
+											{{ incomeFromSelectedPeriod.income_comment }}<span class="mx-2">&#8680;</span>
+											{{ incomeFromSelectedPeriod.amount }}
+											<button type="button" class="text-success ml-1" style="border: none; background: none;"  data-toggle="modal" data-target="#editIncome{{ incomeFromSelectedPeriod.id }}"><i class="icon-pencil"></i></button>										
+											<button type="button" class="text-danger ml-1" style="border: none; background: none;" data-toggle="modal" data-target="#deleteIncome{{ incomeFromSelectedPeriod.id }}"><i class="icon-off"></i></a></button>
+
+											<div class="modal fade" id="editIncome{{ incomeFromSelectedPeriod.id }}" tabindex="-1" aria-labelledby="editIncomeLabel{{ incomeFromSelectedPeriod.id }}" aria-hidden="true">
+											
+												<div class="modal-dialog">
+													<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
+														<div class="modal-header">
+														<h5 class="modal-title" id="editIncomeLabel{{ incomeFromSelectedPeriod.id }}">Edit income</h5>
+														<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+															<span aria-hidden="true">&times;</span>
+														</button>
+														</div>
+														<div class="modal-body">
+															<form action="/balance/editIncome" method="post">
+																<input name="id" type="number" style="display: none;" value="{{ incomeFromSelectedPeriod.id }}">
+
+																	<div class="input-group">
+																		<div class="input-group-prepend">				
+																			<span class="input-group-text  rounded-left icon"><i class="icon-calendar"></i></span>
+																		</div>
+																		<input type="date" class="form-control  rounded-right" name="date" value="{{ incomeFromSelectedPeriod.date_of_income }}" required>
+																	</div>
+																	
+																	<div class="input-group">	
+																		<div class="input-group-prepend ">
+																			<span class="input-group-text  rounded-left icon"><i class="icon-pencil"></i></span>
+																		</div>
+																		<input type="text" class="form-control  rounded-right" name="comment" value="{{ incomeFromSelectedPeriod.income_comment }}">	
+																	</div>				
+
+																	<div class="input-group">
+																		<div class="input-group-prepend ">
+																			<span class="input-group-text  rounded-left icon"><i class="icon-gauge"></i></span>
+																		</div>
+																		<input type="number" class="form-control  rounded-right " step="0.01" min="0.01" name="amount" value="{{ incomeFromSelectedPeriod.amount }}" required>	
+																	</div>
+																	
+																	<select class="choice rounded text-center" name="category" style="width: 100%; font-weight: bold; font-size: 20px;">						
+																		<option value="{{ incomeCategoryFromSelectedPeriod.id }}" selected hidden>{{ incomeCategoryFromSelectedPeriod.name }}</option>                          					
+																		{% for incomeCategory in incomeCategories %}                             
+																		<option value="{{ incomeCategory.id }}">{{ incomeCategory.name }}</option> 
+																		{% endfor %}                            
+																	</select>
+																	
+															
+																	<div class="modal-footer">
+																		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+																		<button type="submit" class="btn btn-primary">Save changes</button>
+																	</div>
+																</form>
+														
+															</div>
+													</div>
+												</div>
+											</div>	
+											<div class="modal fade" id="deleteIncome{{ incomeFromSelectedPeriod.id }}" tabindex="-1" aria-labelledby="deleteIncomeLabel{{ incomeFromSelectedPeriod.id }}" aria-hidden="true">
+											
+												<div class="modal-dialog">
+													<div class="modal-content" style="background-color:#f99797; border: 1px solid #fe8484;">
+														<div class="modal-header">
+														<h5 class="modal-title" id="deleteIncomeLabel{{ incomeFromSelectedPeriod.id }}">Remove the following income?</h5>
+														<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+															<span aria-hidden="true">&times;</span>
+														</button>
+														</div>
+														<div class="modal-body">
+															<form action="/balance/deleteIncome" method="post">
+															<input name="id" type="number" style="display: none;" value="{{ incomeFromSelectedPeriod.id }}">
+
+																<div class="input-group">
+																	<div class="input-group-prepend">				
+																		<span class="input-group-text  rounded-left icon"><i class="icon-calendar"></i></span>
+																	</div>
+																	<input type="date" class="form-control  rounded-right" name="date" value="{{ incomeFromSelectedPeriod.date_of_income }}" disabled>
+																</div>
+															
+																<div class="input-group">	
+																	<div class="input-group-prepend ">
+																		<span class="input-group-text  rounded-left icon"><i class="icon-pencil"></i></span>
+																	</div>
+																	<input type="text" class="form-control  rounded-right" name="comment" value="{{ incomeFromSelectedPeriod.income_comment }}" disabled>	
+																</div>				
+
+																<div class="input-group">
+																	<div class="input-group-prepend ">
+																		<span class="input-group-text  rounded-left icon"><i class="icon-gauge"></i></span>
+																	</div>
+																	<input type="number" class="form-control  rounded-right " step="0.01" min="0.01" name="amount" value="{{ incomeFromSelectedPeriod.amount }}"  disabled>	
+																</div>														
+																					
+																<input type="text" class="form-control rounded text-center" style="width: 100%; font-weight: bold; font-size: 20px;" name="category" value="{{ incomeCategoryFromSelectedPeriod.name }}" disabled>															
+														
+															<div class="modal-footer">
+																<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+																<button type="submit" class="btn btn-primary">Delete income</button>
+															</div>
+														</form>	
+													</div>
+												</div>
+											</div>
+										</div>
+									</h6>
 									
 								{% endif %}									
 
@@ -200,8 +309,8 @@
 														
 					{% endif %}						
 				
-				</div>
-
+				</div>				
+				
 				<div class="table col-10 col-md-5 mx-auto rounded mt-2 mb-0" id="expensesTable">		
 					<h3 style="background-color: #D3DDE9; border: 1px solid  #c2cce8;" class="rounded">Expenses<i class="icon-basket ml-5"></i>{{amountOfAllExpensesFromSelectedPeriod.amountOfAllExpenses }}</h3>	
 					
@@ -218,6 +327,7 @@
 										<!--
 										<h6 class="bg-white rounded" style="border: 1px solid  #c2cce8;"><i class="icon-basket"></i>{{ expenseFromSelectedPeriod.date_of_expense }}<span class="mx-2">&#8680</span>{{ expenseFromSelectedPeriod.expense_comment }}<span class="mx-2">&#8680;</span>{{ expenseFromSelectedPeriod.amount }}<a class="text-success ml-1" href="#"><i class="icon-pencil"></i></a><a class="text-danger ml-1" href="#"><i class="icon-off"></i></a></h6>
 										-->
+										<!--
 										<form action="/balance/deleteExpense" method="post">
 											<h6 class="bg-white rounded mb-0 mt-1"style="border: 1px solid  #c2cce8;"><i class="icon-money"></i>
 												<input name="id" type="number" value="{{ expenseFromSelectedPeriod.id }}" style="display: none;">
@@ -278,7 +388,130 @@
 											</div>	
 										</form>			
 									</div>
-									
+									-->
+											<h6 class="bg-white rounded mb-0 mt-1"style="border: 1px solid  #c2cce8;"><i class="icon-money"></i>
+												<input name="id" type="number" style="display: none;" value="{{ expenseFromSelectedPeriod.id }}">
+												{{ expenseFromSelectedPeriod.date_of_expense }}<span class="mx-2">&#8680</span>
+												{{ expenseFromSelectedPeriod.expense_comment }}<span class="mx-2">&#8680;</span>
+												{{ expenseFromSelectedPeriod.amount }}<span class="mx-2">&#8680;</span>
+												{{ expenseFromSelectedPeriod.name }}
+												<button type="button" class="text-success ml-1" style="border: none; background: none;"  data-toggle="modal" data-target="#editExpense{{ expenseFromSelectedPeriod.id }}"><i class="icon-pencil"></i></button>										
+												<button type="button" class="text-danger ml-1" style="border: none; background: none;" data-toggle="modal" data-target="#deleteExpense{{ expenseFromSelectedPeriod.id }}"><i class="icon-off"></i></a></button>
+
+												<div class="modal fade" id="editExpense{{ expenseFromSelectedPeriod.id }}" tabindex="-1" aria-labelledby="editExpenseLabel{{ expenseFromSelectedPeriod.id }}" aria-hidden="true">
+												
+													<div class="modal-dialog">
+														<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
+															<div class="modal-header">
+															<h5 class="modal-title" id="editExpenseLabel{{ expenseFromSelectedPeriod.id }}">Edit expense</h5>
+															<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																<span aria-hidden="true">&times;</span>
+															</button>
+															</div>
+															<div class="modal-body">
+																<form action="/balance/editExpense" method="post">
+																	<input name="id" type="number" style="display: none;" value="{{ expenseFromSelectedPeriod.id }}">
+
+																		<div class="input-group">
+																			<div class="input-group-prepend">				
+																				<span class="input-group-text  rounded-left icon"><i class="icon-calendar"></i></span>
+																			</div>
+																			<input type="date" class="form-control  rounded-right" name="date" value="{{ expenseFromSelectedPeriod.date_of_expense }}" required>
+																		</div>
+																		
+																		<div class="input-group">	
+																			<div class="input-group-prepend ">
+																				<span class="input-group-text  rounded-left icon"><i class="icon-pencil"></i></span>
+																			</div>
+																			<input type="text" class="form-control  rounded-right" name="comment" value="{{ expenseFromSelectedPeriod.expense_comment }}">	
+																		</div>				
+
+																		<div class="input-group">
+																			<div class="input-group-prepend ">
+																				<span class="input-group-text  rounded-left icon"><i class="icon-gauge"></i></span>
+																			</div>
+																			<input type="number" class="form-control  rounded-right " step="0.01" min="0.01" name="amount" value="{{ expenseFromSelectedPeriod.amount }}" required>	
+																		</div>
+
+																		<select class="choice rounded" name="method" style="width: 100%;">						
+																			<option value ="{{ expenseFromSelectedPeriod.payment_method_assigned_to_user_id}}" selected hidden>{{ expenseFromSelectedPeriod.name }}</option>                          					
+																			{% for paymentMethod in paymentMethods %}                              
+																			<option value="{{ paymentMethod.id }}">{{ paymentMethod.name }}</option> 
+																			{% endfor %}                                   
+																		</select>
+																		
+																		<select class="choice rounded text-center" name="category" style="width: 100%; font-weight: bold; font-size: 20px;">						
+																			<option value="{{ expenseCategoryFromSelectedPeriod.id }}" selected hidden>{{ expenseCategoryFromSelectedPeriod.name }}</option>                          					
+																			{% for expenseCategory in expenseCategories %}                             
+																			<option value="{{ expenseCategory.id }}">{{ expenseCategory.name }}</option> 
+																			{% endfor %}                            
+																		</select>
+																		
+																
+																		<div class="modal-footer">
+																			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+																			<button type="submit" class="btn btn-primary">Save changes</button>
+																		</div>
+																	</form>
+															
+																</div>
+														</div>
+													</div>
+												</div>	
+												<div class="modal fade" id="deleteExpense{{ expenseFromSelectedPeriod.id }}" tabindex="-1" aria-labelledby="deleteExpenseLabel{{ expenseFromSelectedPeriod.id }}" aria-hidden="true">
+												
+													<div class="modal-dialog">
+														<div class="modal-content" style="background-color:#f99797; border: 1px solid #fe8484;">
+															<div class="modal-header">
+															<h5 class="modal-title" id="deleteExpenseLabel{{ expenseFromSelectedPeriod.id }}">Remove the following expense?</h5>
+															<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																<span aria-hidden="true">&times;</span>
+															</button>
+															</div>
+															<div class="modal-body">
+																<form action="/balance/deleteExpense" method="post">
+																<input name="id" type="number" style="display: none;" value="{{ expenseFromSelectedPeriod.id }}">
+
+																	<div class="input-group">
+																		<div class="input-group-prepend">				
+																			<span class="input-group-text  rounded-left icon"><i class="icon-calendar"></i></span>
+																		</div>
+																		<input type="date" class="form-control  rounded-right" name="date" value="{{ expenseFromSelectedPeriod.date_of_expense }}" disabled>
+																	</div>
+																
+																	<div class="input-group">	
+																		<div class="input-group-prepend ">
+																			<span class="input-group-text  rounded-left icon"><i class="icon-pencil"></i></span>
+																		</div>
+																		<input type="text" class="form-control  rounded-right" name="comment" value="{{ expenseFromSelectedPeriod.expense_comment }}" disabled>	
+																	</div>				
+
+																	<div class="input-group">
+																		<div class="input-group-prepend ">
+																			<span class="input-group-text  rounded-left icon"><i class="icon-gauge"></i></span>
+																		</div>
+																		<input type="number" class="form-control  rounded-right " step="0.01" min="0.01" name="amount" value="{{ expenseFromSelectedPeriod.amount }}"  disabled>	
+																	</div>
+																	
+																	<div class="input-group">
+																		<div class="input-group-prepend ">
+																			<span class="input-group-text  rounded-left icon"><i class="icon-cc-visa"></i></span>
+																		</div>
+																		<input type="text" class="form-control  rounded-right" name="method" value="{{ expenseFromSelectedPeriod.name }}" disabled>	
+																	</div>	
+																						
+																	<input type="text" class="form-control rounded text-center" style="width: 100%; font-weight: bold; font-size: 20px;" name="category" value="{{ expenseCategoryFromSelectedPeriod.name }}" disabled>															
+															
+																<div class="modal-footer">
+																	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+																	<button type="submit" class="btn btn-primary">Delete expense</button>
+																</div>
+															</form>	
+														</div>
+													</div>
+												</div>
+											</div>
+										</h6>
 
 									{% endif %}									
 
