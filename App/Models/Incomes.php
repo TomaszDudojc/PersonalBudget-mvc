@@ -92,4 +92,38 @@ class Incomes extends \Core\Model
          
         return $stmt->execute();          
     }
+
+    public function editCategory() 
+    {
+        $this->category = filter_input(INPUT_POST, 'category');
+        $this->new_category = filter_input(INPUT_POST, 'new_category');
+        
+        $sql = "SELECT * FROM incomes_category_assigned_to_users WHERE user_id = :user_id AND name = :new_name";
+		
+		$db = static::getDB();
+
+		$stmt = $db->prepare($sql);
+
+		$stmt->bindValue(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);       
+        $stmt->bindValue(':new_name', $this->new_category, PDO::PARAM_STR);
+
+		$stmt->execute();	
+		
+		$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		
+		if(count($result)>0){
+		return false;
+        }
+
+        else{$sql = "UPDATE incomes_category_assigned_to_users SET name = :new_name WHERE id = :id";
+    
+            $db = static::getDB();
+            $stmt = $db->prepare($sql); 
+    
+            $stmt->bindValue(':id', $this->category, PDO::PARAM_INT);
+            $stmt->bindValue(':new_name', $this->new_category, PDO::PARAM_STR);
+    
+            return $stmt->execute();     
+        }          
+    }
 }
