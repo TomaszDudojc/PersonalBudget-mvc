@@ -23,8 +23,7 @@ class Settings extends Authenticated
     }
     
     public function editIncomeCategoryAction() 
-	{
-        
+	{        
         if(isset($_POST['category'])) {
 			
 			$income = new Incomes($_POST);           
@@ -38,5 +37,34 @@ class Settings extends Authenticated
             $this->redirect('/settings/index');			
 		} 
 	}
-    
+
+    public function addIncomeCategoryAction() 
+	{        
+        if(isset($_POST['new_category'])) {
+			
+			$income = new Incomes($_POST);           
+
+			if($income->addCategory()){
+                Flash::addMessage('Income category has been added.');               
+            }
+            else{
+                Flash::addMessage('This category already exists! Choose a different name.', Flash::WARNING);                
+            }
+            $this->redirect('/settings/index');			
+		} 
+	}
+
+    public function deleteIncomeCategoryAction() 
+	{        
+        if(isset($_POST['category'])) {
+			
+			$income = new Incomes($_POST);           
+
+			$income->deleteCategory();
+            
+            Flash::addMessage('Income category has been removed.');               
+           
+            $this->redirect('/settings/index');			
+		} 
+	}    
 }

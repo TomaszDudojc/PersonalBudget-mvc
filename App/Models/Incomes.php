@@ -11,7 +11,7 @@ class Incomes extends \Core\Model
 {
     public static function getIncomeCategoriesOfUser()
     {
-        $sql = "SELECT * FROM incomes_category_assigned_to_users WHERE user_id = :user_id";
+        $sql = "SELECT * FROM incomes_category_assigned_to_users WHERE user_id = :user_id ORDER BY name";
 
         $db = static::getDB();
 		$incomeCategories = $db->prepare($sql);
@@ -125,5 +125,66 @@ class Incomes extends \Core\Model
     
             return $stmt->execute();     
         }          
+    }
+
+    public function addCategory() 
+    {
+        $this->new_category = filter_input(INPUT_POST, 'new_category');
+        
+        $sql = "SELECT * FROM incomes_category_assigned_to_users WHERE user_id = :user_id AND name = :new_name";
+		
+		$db = static::getDB();
+
+		$stmt = $db->prepare($sql);
+
+		$stmt->bindValue(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);       
+        $stmt->bindValue(':new_name', $this->new_category, PDO::PARAM_STR);
+
+		$stmt->execute();	
+		
+		$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		
+		if(count($result)>0){
+		return false;
+        }
+
+        else{$sql = "INSERT INTO incomes_category_assigned_to_users VALUES (NULL, :user_id, :new_name)";           
+    
+            $db = static::getDB();
+            $stmt = $db->prepare($sql);    
+           
+            $stmt->bindValue(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
+            $stmt->bindValue(':new_name', $this->new_category, PDO::PARAM_STR);
+    
+            return $stmt->execute();     
+        }          
+    }
+
+    public function deleteCategory() 
+    {
+        $this->category = filter_input(INPUT_POST, 'category');
+               
+       If($this->deleteAllIncomesFromCategory()){
+            $sql = "DELETE FROM incomes_category_assigned_to_users WHERE id = :id";
+
+            $db = static::getDB();
+
+            $stmt = $db->prepare($sql);    
+            $stmt->bindValue(':id', $this->category, PDO::PARAM_INT);            
+        
+            return $stmt->execute();  
+       }        
+    }
+
+    public function deleteAllIncomesFromCategory() 
+    {
+        $sql = "DELETE FROM incomes WHERE income_category_assigned_to_user_id = :id";
+								
+		$db = static::getDB();
+        
+        $stmt = $db->prepare($sql);        
+        $stmt->bindValue(':id', $this->category, PDO::PARAM_INT);
+        
+        return $stmt->execute(); 
     }
 }
