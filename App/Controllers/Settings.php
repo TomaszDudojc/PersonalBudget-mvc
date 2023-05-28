@@ -66,5 +66,51 @@ class Settings extends Authenticated
            
             $this->redirect('/settings/index');			
 		} 
+	}
+    
+    public function editExpenseCategoryAction() 
+	{        
+        if(isset($_POST['category'])) {
+			
+			$expense = new Expenses($_POST);           
+
+			if($expense->editCategory()){
+                Flash::addMessage('Expense category has been edited.');               
+            }
+            else{
+                Flash::addMessage('This category already exists! Choose a different name.', Flash::WARNING);                
+            }
+            $this->redirect('/settings/index');			
+		} 
+	}
+
+    public function addExpenseCategoryAction() 
+	{        
+        if(isset($_POST['new_category'])) {
+			
+			$expense = new Expenses($_POST);           
+
+			if($expense->addCategory()){
+                Flash::addMessage('Expense category has been added.');               
+            }
+            else{
+                Flash::addMessage('This category already exists! Choose a different name.', Flash::WARNING);                
+            }
+            $this->redirect('/settings/index');			
+		} 
+	}
+
+    public function deleteExpenseCategoryAction() 
+	{        
+        if(isset($_POST['category'])) {
+			
+			$expense = new Expenses($_POST);           
+
+			$expense->deleteCategory();
+            
+            Flash::addMessage('Expense category has been removed.');               
+           
+            $this->redirect('/settings/index');			
+		} 
 	}    
 }
