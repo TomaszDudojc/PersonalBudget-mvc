@@ -182,5 +182,29 @@ class Incomes extends \Core\Model
 		if(count($result)>0){
 		return true;
         }
-    }    
+    } 
+    
+    public static function deleteAllUserIncomes()
+	{
+		$sql = "DELETE FROM incomes WHERE user_id = :user_id";
+								
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);    
+       
+        $stmt->bindValue(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);        
+
+        return $stmt->execute();   
+	}
+
+    public static function deleteAllUserCategoryOfIncomes()
+	{
+		$sql = "DELETE FROM incomes_category_assigned_to_users WHERE user_id = :user_id";
+								
+		$db = static::getDB();
+        $stmt = $db->prepare($sql);    
+       
+        $stmt->bindValue(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);        
+
+        return $stmt->execute();  
+	} 
 }

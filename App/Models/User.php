@@ -53,6 +53,8 @@ class User extends \Core\Model
             $hashed_token = $token->getHash();
             $this->activation_token = $token->getValue();
 
+            $this->name = mb_convert_case($this->name,MB_CASE_TITLE,"UTF-8");
+
             $sql = 'INSERT INTO users (name, email, password_hash, activation_hash)
                     VALUES (:name, :email, :password_hash, :activation_hash)';
 
@@ -466,6 +468,8 @@ class User extends \Core\Model
         $this->name = $data['name'];
         $this->email = $data['email'];
 
+        $this->name = mb_convert_case($this->name,MB_CASE_TITLE,"UTF-8");
+
         // Only validate and update the password if a value provided
         if ($data['password'] != '') {
             $this->password = $data['password'];
@@ -503,5 +507,17 @@ class User extends \Core\Model
         }
 
         return false;
+    }
+
+    public function deleteProfile()
+    {
+        $sql = 'DELETE FROM users WHERE id = :user_id';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
+        
+        $stmt->execute();
     }
 }

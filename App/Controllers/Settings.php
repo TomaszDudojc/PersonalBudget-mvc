@@ -8,9 +8,15 @@ use \App\Flash;
 use \App\Dates;
 use \App\Models\Incomes;
 use \App\Models\Expenses;
+use \App\Models\User;
 
 class Settings extends Authenticated
 {
+    protected function before()
+	{	
+		parent::before();
+		$this->user = Auth::getUser();
+	}
 
     public function indexAction()
     {
@@ -18,8 +24,49 @@ class Settings extends Authenticated
 			'incomeCategories' => Incomes::getIncomeCategoriesOfUser(),
             'incomeCategories' => Incomes::getIncomeCategoriesOfUser(),
             'expenseCategories' => Expenses::getExpenseCategoriesOfUser(),
-            'paymentMethods' => Expenses::getPaymentMethodsOfUser()			
+            'paymentMethods' => Expenses::getPaymentMethodsOfUser(),
+            'user' => $this->user			
 		]);
+    }
+
+    public function editUserProfileAction()
+    {
+        if(isset($_POST['name'])){
+            if ($this->user->updateProfile($_POST)) {
+
+                Flash::addMessage('User Profile has been edited.');
+    
+                $this->redirect('/settings/index');
+    
+            } else {
+                Flash::addMessage('Email already taken',Flash::WARNING);	
+					
+				View::renderTemplate('Settings/index.html', [
+                    'incomeCategories' => Incomes::getIncomeCategoriesOfUser(),
+                    'incomeCategories' => Incomes::getIncomeCategoriesOfUser(),
+                    'expenseCategories' => Expenses::getExpenseCategoriesOfUser(),
+                    'paymentMethods' => Expenses::getPaymentMethodsOfUser(),
+                    'user' => $this->user	
+				]);
+            }
+        } 
+    }
+
+    public function deleteUserProfileAction()
+    {
+        if(isset($_POST['deleteProfile'])) {			
+            if (Incomes::deleteAllUserIncomes() && Incomes::deleteAllUserCategoryOfIncomes() && Expenses::deleteAllUserExpenses() && Expenses::deleteAllUserCategoryOfExpenses() && Expenses::deleteAllUserPaymentMethods()){
+            $user = new User();
+            $user->deleteProfile(); 
+           
+            Auth::logout(); 
+    
+            $this->redirect('/login/new');
+            } 
+            else {
+                 $this->redirect('/settings/index');
+            }
+        }           
     }
     
     public function editIncomeCategoryAction() 
