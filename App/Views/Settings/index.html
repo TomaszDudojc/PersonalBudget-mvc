@@ -8,7 +8,8 @@
 
     <main>
 		<div class="container text-center">
-			<div class="row">	
+			<div class="row">
+
 				<div class="mt-3 col-8 mx-auto">
 					<button type="button" class="btn btn-secondary btn-lg col-8 mx-auto"  style="white-space: pre-wrap;" onClick="document.getElementById('income_buttons').style.display='block';"><i class="icon-money mr-3"></i>Income categories</button>
 				</div>
@@ -38,207 +39,319 @@
 					<button  type="button" class="btn btn-success btn-lg col-8 col-md-4 col-lg-2" style="white-space: pre-wrap;" data-toggle="modal" data-target="#addPaymentMethod"><span class="mr-1">&#10004;</span>Add</button>
 					<button  type="button" class="btn btn-info btn-lg col-8 col-md-4 col-lg-2" style="white-space: pre-wrap;" onClick="document.getElementById('paymentMethod_buttons').style.display='none';">Hide<span class="ml-2">&#8682;</span></button>			
 				</div>
+			
+		
+
+				<div class="modal fade" id="editIncome{{ incomeCategory.id }}" tabindex="-1" aria-labelledby="editIncomeLabel{{ incomeCategory.id }}" aria-hidden="true">
+												
+					<div class="modal-dialog">
+						<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
+							<div class="modal-header">
+							<h5 class="modal-title" id="editIncomeLabel{{ incomeCategory.id }}"><i class="icon-pencil mr-1"></i>Edit category<i class="icon-money ml-1"></i></h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							</div>
+							<div class="modal-body">
+								<form action="/settings/editIncomeCategory" method="post">								
+										
+										<select class="choice rounded text-center" name="category" style="width: 100%;" required>
+											<option value selected disabled hidden>Select a category</option>
+											{% for incomeCategory in incomeCategories %}                             
+											<option value="{{ incomeCategory.id }}">{{ incomeCategory.name }}</option> 
+											{% endfor %}                            
+										</select>
+										
+										<div class="input-group">	
+											<div class="input-group-prepend ">
+												<span class="input-group-text  rounded-left icon"><i class="icon-pencil"></i></span>
+											</div>
+											<input type="text" class="form-control  rounded-right" name="new_category"  placeholder="New name of category" required>	
+										</div>
+
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+											<button type="submit" class="btn btn-primary">Save changes</button>
+										</div>
+								</form>
+							
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="modal fade" id="deleteIncome{{ incomeCategory.id }}" tabindex="-1" aria-labelledby="deleteIncomeLabel{{ incomeCategory.id }}" aria-hidden="true">
+												
+					<div class="modal-dialog">
+						<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
+							<div class="modal-header">
+							<h5 class="modal-title" id="deleteIncomeLabel{{ incomeCategory.id }}"><span class="mr-1">&#10008;</span>Delete a category<i class="icon-money ml-1"></i></h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							</div>
+							<p class="my-0">Warning:</p>
+							<p class="my-0">All incomes in this category will be deleted!</p>
+							<p class="my-0">If you want to keep them, assign them to another category first.</p>
+							<div class="modal-body">
+								<form action="/settings/deleteIncomeCategory" method="post">								
+										
+										<select class="choice rounded text-center" name="category" style="width: 100%;" required>
+											<option value selected disabled hidden>Select a category</option>
+											{% for incomeCategory in incomeCategories %}                             
+											<option value="{{ incomeCategory.id }}">{{ incomeCategory.name }}</option> 
+											{% endfor %}                            
+										</select>									
+										
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+											<button type="submit" class="btn btn-primary">Delete category</button>
+										</div>
+								</form>
+							
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="modal fade" id="addIncome" tabindex="-1" aria-labelledby="addIncomeLabel" aria-hidden="true">
+												
+					<div class="modal-dialog">
+						<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
+							<div class="modal-header">
+							<h5 class="modal-title" id="addIncomeLabel"><span class="mr-1">&#10004;</span>Add category<i class="icon-money ml-1"></i></h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							</div>
+							<div class="modal-body">
+								<form action="/settings/addIncomeCategory" method="post">
+									<div class="input-group">	
+										<div class="input-group-prepend ">
+											<span class="input-group-text  rounded-left icon"><i class="icon-pencil"></i></span>
+										</div>
+										<input type="text" class="form-control  rounded-right" name="new_category"  placeholder="New category" required>	
+									</div>
+
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+										<button type="submit" class="btn btn-primary">Add new category</button>
+									</div>
+								</form>
+							
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="modal fade" id="editExpense{{ expenseCategory.id }}" tabindex="-1" aria-labelledby="editExpenseLabel{{ expenseCategory.id }}" aria-hidden="true">
+												
+					<div class="modal-dialog">
+						<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
+							<div class="modal-header">
+							<h5 class="modal-title" id="editExpenseLabel{{ expenseCategory.id }}"><i class="icon-pencil mr-1"></i>Edit category<i class="icon-basket mr-1"></i></h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							</div>
+							<div class="modal-body">
+								<form action="/settings/editExpenseCategory" method="post">								
+										
+										<select class="choice rounded text-center" name="category" style="width: 100%;" required>
+											<option value selected disabled hidden>Select a category</option>
+											{% for expenseCategory in expenseCategories %}                             
+											<option value="{{ expenseCategory.id }}">{{ expenseCategory.name }}</option> 
+											{% endfor %}                            
+										</select>
+										
+										<div class="input-group">	
+											<div class="input-group-prepend ">
+												<span class="input-group-text  rounded-left icon"><i class="icon-pencil"></i></span>
+											</div>
+											<input type="text" class="form-control  rounded-right" name="new_category"  placeholder="New name of category" required>	
+										</div>
+
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+											<button type="submit" class="btn btn-primary">Save changes</button>
+										</div>
+								</form>
+							
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="modal fade" id="deleteExpense{{ expenseCategory.id }}" tabindex="-1" aria-labelledby="deleteExpenseLabel{{ expenseCategory.id }}" aria-hidden="true">
+												
+					<div class="modal-dialog">
+						<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
+							<div class="modal-header">
+							<h5 class="modal-title" id="deleteExpenseLabel{{ expenseCategory.id }}"><span class="mr-1">&#10008;</span>Delete a category<i class="icon-basket mr-1"></i></h5>							
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>							
+							</div>
+							<p class="my-0">Warning:</p>
+							<p class="my-0">All expenses in this category will be deleted!</p>
+							<p class="my-0">If you want to keep them, assign them to another category first.</p>
+							<div class="modal-body">
+								<form action="/settings/deleteExpenseCategory" method="post">								
+										
+										<select class="choice rounded text-center" name="category" style="width: 100%;" required>
+											<option value selected disabled hidden>Select a category</option>
+											{% for expenseCategory in expenseCategories %}                             
+											<option value="{{ expenseCategory.id }}">{{ expenseCategory.name }}</option> 
+											{% endfor %}                            
+										</select>									
+										
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+											<button type="submit" class="btn btn-primary">Delete category</button>
+										</div>
+								</form>
+							
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="modal fade" id="addExpense" tabindex="-1" aria-labelledby="addExpenseLabel" aria-hidden="true">
+												
+					<div class="modal-dialog">
+						<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
+							<div class="modal-header">
+							<h5 class="modal-title" id="addExpenseLabel"><span class="mr-1">&#10004;</span>Add category<i class="icon-basket mr-1"></i></h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							</div>
+							<div class="modal-body">
+								<form action="/settings/addExpenseCategory" method="post">
+									<div class="input-group">	
+										<div class="input-group-prepend ">
+											<span class="input-group-text  rounded-left icon"><i class="icon-pencil"></i></span>
+										</div>
+										<input type="text" class="form-control  rounded-right" name="new_category"  placeholder="New category" required>	
+									</div>
+
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+										<button type="submit" class="btn btn-primary">Add new category</button>
+									</div>
+								</form>
+							
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+				<div class="modal fade" id="editPaymentMethod{{ paymentMethod.id }}" tabindex="-1" aria-labelledby="editPaymentMethodLabel{{ expenseCategory.id }}" aria-hidden="true">
+												
+					<div class="modal-dialog">
+						<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
+							<div class="modal-header">
+							<h5 class="modal-title" id="editPaymentMethodLabel{{ paymentMethod.id }}"><i class="icon-pencil mr-1"></i>Edit method<i class="icon-cc-visa mr-1"></i></h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							</div>
+							<div class="modal-body">
+								<form action="/settings/editPaymentMethod" method="post">								
+										
+										<select class="choice rounded text-center" name="method" style="width: 100%;" required>
+											<option value selected disabled hidden>Select a method</option>
+											{% for paymentMethod in paymentMethods %}                             
+											<option value="{{ paymentMethod.id }}">{{ paymentMethod.name }}</option> 
+											{% endfor %}                            
+										</select>
+										
+										<div class="input-group">	
+											<div class="input-group-prepend ">
+												<span class="input-group-text  rounded-left icon"><i class="icon-pencil"></i></span>
+											</div>
+											<input type="text" class="form-control  rounded-right" name="new_method"  placeholder="New name of method" required>	
+										</div>
+
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+											<button type="submit" class="btn btn-primary">Save changes</button>
+										</div>
+								</form>
+							
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="modal fade" id="deletePaymentMethod{{ paymentMethod.id }}" tabindex="-1" aria-labelledby="deletePaymentMethodLabel{{ paymentMethod.id }}" aria-hidden="true">
+												
+					<div class="modal-dialog">
+						<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
+							<div class="modal-header">
+							<h5 class="modal-title" id="deletePaymentMethodLabel{{ paymentMethod.id }}"><span class="mr-1">&#10008;</span>Delete a method<i class="icon-cc-visa mr-1"></i></h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							</div>
+							<p class="my-0">Warning:</p>
+							<p class="my-0">All expenses using this payment method will be deleted!</p>
+							<p class="my-0">If you want to keep them, assign them a different payment method first.</p>
+							<div class="modal-body">
+								<form action="/settings/deletePaymentMethod" method="post">								
+										
+										<select class="choice rounded text-center" name="method" style="width: 100%;" required>
+											<option value selected disabled hidden>Select a method</option>
+											{% for paymentMethod in paymentMethods %}                             
+											<option value="{{ paymentMethod.id }}">{{ paymentMethod.name }}</option> 
+											{% endfor %}                            
+										</select>									
+										
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+											<button type="submit" class="btn btn-primary">Delete method</button>
+										</div>
+								</form>
+							
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="modal fade" id="addPaymentMethod" tabindex="-1" aria-labelledby="addPaymentMethodLabel" aria-hidden="true">
+												
+					<div class="modal-dialog">
+						<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
+							<div class="modal-header">
+							<h5 class="modal-title" id="addPaymentMethodLabel"><span class="mr-1">&#10004;</span>Add method<i class="icon-cc-visa mr-1"></i></h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							</div>
+							<div class="modal-body">
+								<form action="/settings/addPaymentMethod" method="post">
+									<div class="input-group">	
+										<div class="input-group-prepend ">
+											<span class="input-group-text  rounded-left icon"><i class="icon-pencil"></i></span>
+										</div>
+										<input type="text" class="form-control  rounded-right" name="new_method"  placeholder="New method" required>	
+									</div>
+
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+										<button type="submit" class="btn btn-primary">Add new method</button>
+									</div>
+								</form>
+							
+							</div>
+						</div>
+					</div>
+				</div>
+
 			</div>
 		</div>
-
-			<div class="modal fade" id="editIncome{{ incomeCategory.id }}" tabindex="-1" aria-labelledby="editIncomeLabel{{ incomeCategory.id }}" aria-hidden="true">
-											
-				<div class="modal-dialog">
-					<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
-						<div class="modal-header">
-						<h5 class="modal-title" id="editIncomeLabel{{ incomeCategory.id }}"><i class="icon-pencil mr-1"></i>Edit category<i class="icon-money ml-1"></i></h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-						</div>
-						<div class="modal-body">
-							<form action="/settings/editIncomeCategory" method="post">								
-									
-									<select class="choice rounded text-center" name="category" style="width: 100%;" required>
-										<option value selected disabled hidden>Select a category</option>
-										{% for incomeCategory in incomeCategories %}                             
-										<option value="{{ incomeCategory.id }}">{{ incomeCategory.name }}</option> 
-										{% endfor %}                            
-									</select>
-									
-									<div class="input-group">	
-										<div class="input-group-prepend ">
-											<span class="input-group-text  rounded-left icon"><i class="icon-pencil"></i></span>
-										</div>
-										<input type="text" class="form-control  rounded-right" name="new_category"  placeholder="New name of category" required>	
-									</div>
-
-									<div class="modal-footer">
-										<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-										<button type="submit" class="btn btn-primary">Save changes</button>
-									</div>
-							</form>
-						
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="modal fade" id="deleteIncome{{ incomeCategory.id }}" tabindex="-1" aria-labelledby="deleteIncomeLabel{{ incomeCategory.id }}" aria-hidden="true">
-											
-				<div class="modal-dialog">
-					<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
-						<div class="modal-header">
-						<h5 class="modal-title" id="deleteIncomeLabel{{ incomeCategory.id }}"><span class="mr-1">&#10008;</span>Delete a category with all its transactions<i class="icon-money ml-1"></i></h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-						</div>
-						<div class="modal-body">
-							<form action="/settings/deleteIncomeCategory" method="post">								
-									
-									<select class="choice rounded text-center" name="category" style="width: 100%;" required>
-										<option value selected disabled hidden>Select a category</option>
-										{% for incomeCategory in incomeCategories %}                             
-										<option value="{{ incomeCategory.id }}">{{ incomeCategory.name }}</option> 
-										{% endfor %}                            
-									</select>									
-									
-									<div class="modal-footer">
-										<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-										<button type="submit" class="btn btn-primary">Delete category</button>
-									</div>
-							</form>
-						
-						</div>
-					</div>
-				</div>
-			</div>
-			
-			<div class="modal fade" id="addIncome" tabindex="-1" aria-labelledby="addIncomeLabel" aria-hidden="true">
-											
-				<div class="modal-dialog">
-					<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
-						<div class="modal-header">
-						<h5 class="modal-title" id="addIncomeLabel"><span class="mr-1">&#10004;</span>Add category<i class="icon-money ml-1"></i></h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-						</div>
-						<div class="modal-body">
-							<form action="/settings/addIncomeCategory" method="post">
-								<div class="input-group">	
-									<div class="input-group-prepend ">
-										<span class="input-group-text  rounded-left icon"><i class="icon-pencil"></i></span>
-									</div>
-									<input type="text" class="form-control  rounded-right" name="new_category"  placeholder="Name of new category" required>	
-								</div>
-
-								<div class="modal-footer">
-									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-									<button type="submit" class="btn btn-primary">Add new category</button>
-								</div>
-							</form>
-						
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="modal fade" id="editExpense{{ expenseCategory.id }}" tabindex="-1" aria-labelledby="editExpenseLabel{{ expenseCategory.id }}" aria-hidden="true">
-											
-				<div class="modal-dialog">
-					<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
-						<div class="modal-header">
-						<h5 class="modal-title" id="editExpenseLabel{{ expenseCategory.id }}"><i class="icon-pencil mr-1"></i>Edit category<i class="icon-basket mr-1"></i></h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-						</div>
-						<div class="modal-body">
-							<form action="/settings/editExpenseCategory" method="post">								
-									
-									<select class="choice rounded text-center" name="category" style="width: 100%;" required>
-										<option value selected disabled hidden>Select a category</option>
-										{% for expenseCategory in expenseCategories %}                             
-										<option value="{{ expenseCategory.id }}">{{ expenseCategory.name }}</option> 
-										{% endfor %}                            
-									</select>
-									
-									<div class="input-group">	
-										<div class="input-group-prepend ">
-											<span class="input-group-text  rounded-left icon"><i class="icon-pencil"></i></span>
-										</div>
-										<input type="text" class="form-control  rounded-right" name="new_category"  placeholder="New name of category" required>	
-									</div>
-
-									<div class="modal-footer">
-										<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-										<button type="submit" class="btn btn-primary">Save changes</button>
-									</div>
-							</form>
-						
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="modal fade" id="deleteExpense{{ expenseCategory.id }}" tabindex="-1" aria-labelledby="deleteExpenseLabel{{ expenseCategory.id }}" aria-hidden="true">
-											
-				<div class="modal-dialog">
-					<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
-						<div class="modal-header">
-						<h5 class="modal-title" id="deleteExpenseLabel{{ expenseCategory.id }}"><span class="mr-1">&#10008;</span>Delete a category with all its transactions<i class="icon-basket mr-1"></i></h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-						</div>
-						<div class="modal-body">
-							<form action="/settings/deleteExpenseCategory" method="post">								
-									
-									<select class="choice rounded text-center" name="category" style="width: 100%;" required>
-										<option value selected disabled hidden>Select a category</option>
-										{% for expenseCategory in expenseCategories %}                             
-										<option value="{{ expenseCategory.id }}">{{ expenseCategory.name }}</option> 
-										{% endfor %}                            
-									</select>									
-									
-									<div class="modal-footer">
-										<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-										<button type="submit" class="btn btn-primary">Delete category</button>
-									</div>
-							</form>
-						
-						</div>
-					</div>
-				</div>
-			</div>
-			
-			<div class="modal fade" id="addExpense" tabindex="-1" aria-labelledby="addExpenseLabel" aria-hidden="true">
-											
-				<div class="modal-dialog">
-					<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
-						<div class="modal-header">
-						<h5 class="modal-title" id="addExpenseLabel"><span class="mr-1">&#10004;</span>Add category<i class="icon-basket mr-1"></i></h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-						</div>
-						<div class="modal-body">
-							<form action="/settings/addExpenseCategory" method="post">
-								<div class="input-group">	
-									<div class="input-group-prepend ">
-										<span class="input-group-text  rounded-left icon"><i class="icon-pencil"></i></span>
-									</div>
-									<input type="text" class="form-control  rounded-right" name="new_category"  placeholder="Name of new category" required>	
-								</div>
-
-								<div class="modal-footer">
-									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-									<button type="submit" class="btn btn-primary">Add new category</button>
-								</div>
-							</form>
-						
-						</div>
-					</div>
-				</div>
-			</div>
-		
 	</main>
 
 {% endblock %}    

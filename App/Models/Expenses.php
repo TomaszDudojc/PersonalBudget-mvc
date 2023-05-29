@@ -205,4 +205,95 @@ class Expenses extends \Core\Model
 		return true;
         }
     }
+
+    public function editMethod() 
+    {
+        $this->method = filter_input(INPUT_POST, 'method');
+        $this->new_method = filter_input(INPUT_POST, 'new_method');
+
+        $this->new_method = mb_convert_case($this->new_method,MB_CASE_TITLE,"UTF-8");
+        
+        if($this->existMethod()){
+            return false;
+        }
+        else{$sql = "UPDATE payment_methods_assigned_to_users SET name = :new_name WHERE id = :id";
+    
+            $db = static::getDB();
+            $stmt = $db->prepare($sql); 
+    
+            $stmt->bindValue(':id', $this->method, PDO::PARAM_INT);
+            $stmt->bindValue(':new_name', $this->new_method, PDO::PARAM_STR);
+    
+            return $stmt->execute();     
+        }          
+    }
+
+    public function addMethod() 
+    {
+        $this->new_method = filter_input(INPUT_POST, 'new_method'); 
+        
+        $this->new_method = mb_convert_case($this->new_method,MB_CASE_TITLE,"UTF-8");
+        
+        if($this->existMethod()){
+            return false;
+        } 
+        else{$sql = "INSERT INTO payment_methods_assigned_to_users VALUES (NULL, :user_id, :new_name)";           
+    
+            $db = static::getDB();
+            $stmt = $db->prepare($sql);    
+           
+            $stmt->bindValue(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
+            $stmt->bindValue(':new_name', $this->new_method, PDO::PARAM_STR);
+    
+            return $stmt->execute();     
+        }          
+    }
+
+    public function deleteMethod() 
+    {
+        $this->method = filter_input(INPUT_POST, 'method');
+               
+        If($this->deleteAllExpensesUsingThisMethod()){
+            $sql = "DELETE FROM payment_methods_assigned_to_users WHERE id = :id";
+
+            $db = static::getDB();
+
+            $stmt = $db->prepare($sql);    
+            $stmt->bindValue(':id', $this->method, PDO::PARAM_INT);            
+        
+            return $stmt->execute();             
+        }        
+    }
+
+    protected function existMethod() 
+    {
+        $sql = "SELECT * FROM payment_methods_assigned_to_users WHERE user_id = :user_id AND name = :new_name";
+		
+		$db = static::getDB();
+
+		$stmt = $db->prepare($sql);
+
+		$stmt->bindValue(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);       
+        $stmt->bindValue(':new_name', $this->new_method, PDO::PARAM_STR);
+
+		$stmt->execute();	
+		
+		$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		
+		if(count($result)>0){
+		return true;
+        }
+    }
+
+    protected function deleteAllExpensesUsingThisMethod() 
+    {
+        $sql = "DELETE FROM expenses WHERE payment_method_assigned_to_user_id = :id";
+								
+		$db = static::getDB();
+        
+        $stmt = $db->prepare($sql);        
+        $stmt->bindValue(':id', $this->method, PDO::PARAM_INT);
+        
+        return $stmt->execute(); 
+    }
 }

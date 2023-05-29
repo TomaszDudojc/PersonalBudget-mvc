@@ -112,5 +112,51 @@ class Settings extends Authenticated
            
             $this->redirect('/settings/index');			
 		} 
-	}    
+	}
+    
+    public function editPaymentMethodAction() 
+	{        
+        if(isset($_POST['method'])) {
+			
+			$expense = new Expenses($_POST);            
+
+			if($expense->editMethod()){
+                Flash::addMessage('Payment method has been edited.');               
+            }
+            else{
+                Flash::addMessage('This method already exists! Choose a different name.', Flash::WARNING);                
+            }
+            $this->redirect('/settings/index');					
+		} 
+	}
+
+    public function addPaymentMethodAction() 
+	{        
+        if(isset($_POST['new_method'])) {
+			
+			$expense = new Expenses($_POST);           
+
+			if($expense->addMethod()){
+                Flash::addMessage('Payment method has been added.');               
+            }
+            else{
+                Flash::addMessage('This method already exists! Choose a different name.', Flash::WARNING);                
+            }
+            $this->redirect('/settings/index');			
+		} 
+	}
+
+    public function deletePaymentMethodAction() 
+	{        
+        if(isset($_POST['method'])) {
+			
+			$expense = new Expenses($_POST);           
+
+			$expense->deleteMethod();
+            
+            Flash::addMessage('Payment method has been removed.');               
+           
+            $this->redirect('/settings/index');			
+		} 
+	}	
 }
