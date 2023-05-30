@@ -13,7 +13,7 @@ class Income extends Authenticated
 
     public function indexAction()
     {
-        View::renderTemplate('Income/index.html', [							
+        View::renderTemplate('Income/index.twig', [							
 			'incomeCategories' => Incomes::getIncomeCategoriesOfUser(),
 			'currentDate' => Dates::getCurrentDate()				
 		]);
@@ -32,7 +32,7 @@ class Income extends Authenticated
 
 			} else {
 					
-				View::renderTemplate('Income/index.html', [
+				View::renderTemplate('Income/index.twig', [
 					'income' => $income,					
 					'incomeCategories' => Incomes::Incomes::getIncomeCategoriesOfUser(),
 					'currentDate' => Dates::getCurrentDate()					

@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base.twig" %}
 
 {% block title %}Log in{% endblock %}
 
@@ -24,9 +24,11 @@
                 </div>
                 <input type="password" id="inputPassword" name="password" placeholder="Password" class="rounded-right"  />
             </div>
-            <div class="checkbox">
+            <div class="checkbox mt-2">
                 <label>
-                    <input type="checkbox" name="remember_me" {% if remember_me %} checked="checked"{% endif %} /><h5 class="rounded bg-white my-0 text-center" style="color: #060B95; width: 310px;">Remember me</h5>
+                    <div class="input-group">
+                    <input type="checkbox" name="remember_me" {% if remember_me %} checked="checked"{% endif %} /><h5 class="rounded bg-white my-0 text-center" style="color: #060B95; width: 315px;">Remember me</h5>
+                    </div>
                 </label>
             </div>
             

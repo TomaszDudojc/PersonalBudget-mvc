@@ -13,7 +13,7 @@ class Expense extends Authenticated
 
     public function indexAction()
     {
-        View::renderTemplate('Expense/index.html', [							
+        View::renderTemplate('Expense/index.twig', [							
 			'expenseCategories' => Expenses::getExpenseCategoriesOfUser(),
             'paymentMethods' => Expenses::getpaymentMethodsOfUser(),
 			'currentDate' => Dates::getCurrentDate()				
@@ -33,7 +33,7 @@ class Expense extends Authenticated
 
 			} else {
 					
-				View::renderTemplate('Expense/index.html', [
+				View::renderTemplate('Expense/index.twig', [
 					'expense' => $expense,					
 					'expenseCategories' => Expenses::getExpenseCategoriesOfUser(),
                     'paymentMethods' => Expenses::getPaymentMethodsOfUser(),

@@ -30,13 +30,13 @@ class Balance extends Authenticated
 
         if($startDate > $endDate){
             Flash::addMessage("Invalid date range: ".$startDate." =/=> ".$endDate.". Starting date must be earlier than end date!", Flash::WARNING);
-            View::renderTemplate('Balance/index.html', [
+            View::renderTemplate('Balance/index.twig', [
                 'start_date' => $startDate,
                 'end_date' => $endDate
             ]);
         }
         else{
-            View::renderTemplate('Balance/index.html', [		
+            View::renderTemplate('Balance/index.twig', [		
                 'start_date' => $startDate,
                 'end_date' => $endDate,                
                 'incomeCategoriesFromSelectedPeriod' => Balances::getIncomeCategoriesFromSelectedDateRange($startDate, $endDate),

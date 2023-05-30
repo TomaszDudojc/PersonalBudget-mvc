@@ -20,7 +20,7 @@ class Settings extends Authenticated
 
     public function indexAction()
     {
-        View::renderTemplate('Settings/index.html', [							
+        View::renderTemplate('Settings/index.twig', [							
 			'incomeCategories' => Incomes::getIncomeCategoriesOfUser(),
             'incomeCategories' => Incomes::getIncomeCategoriesOfUser(),
             'expenseCategories' => Expenses::getExpenseCategoriesOfUser(),
@@ -41,7 +41,7 @@ class Settings extends Authenticated
             } else {
                 Flash::addMessage('Email already taken',Flash::WARNING);	
 					
-				View::renderTemplate('Settings/index.html', [
+				View::renderTemplate('Settings/index.twig', [
                     'incomeCategories' => Incomes::getIncomeCategoriesOfUser(),
                     'incomeCategories' => Incomes::getIncomeCategoriesOfUser(),
                     'expenseCategories' => Expenses::getExpenseCategoriesOfUser(),
@@ -109,7 +109,7 @@ class Settings extends Authenticated
 
 			$income->deleteCategory();
             
-            Flash::addMessage('Income category has been removed.');               
+            Flash::addMessage('Income category has been deleted.');               
            
             $this->redirect('/settings/index');			
 		} 
@@ -155,7 +155,7 @@ class Settings extends Authenticated
 
 			$expense->deleteCategory();
             
-            Flash::addMessage('Expense category has been removed.');               
+            Flash::addMessage('Expense category has been deleted.');               
            
             $this->redirect('/settings/index');			
 		} 
@@ -201,7 +201,7 @@ class Settings extends Authenticated
 
 			$expense->deleteMethod();
             
-            Flash::addMessage('Payment method has been removed.');               
+            Flash::addMessage('Payment method has been deleted.');               
            
             $this->redirect('/settings/index');			
 		} 
