@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base.twig' %}
 
 {% block footer %}
 
@@ -61,7 +61,7 @@
     {% endif %}
     
     <div class="inputContainer mt-3">
-
+        
         <header>
             <h2 class="font-weight-bold rounded">Sign up</h2>
         </header>
@@ -72,25 +72,29 @@
                 <div class="input-group-prepend ">
                     <span class="input-group-text rounded-left icon"><i class="icon-user-3"></i></span>
                 </div>
-                <input type="text" id="inputName" name="name" placeholder="Name" autofocus value="{{ user.name }}" required class="rounded-right" />
+                <input type="text" id="inputName" name="name" placeholder="Name" autofocus value="{{ user.name }}" required class="form-control" />
             </div>
             <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text rounded-left icon"><i class="icon-mail-3"></i></span>
                 </div>
-                <input type="email" id="inputEmail" name="email" placeholder="email address" value="{{ user.email }}" required class="rounded-right" />
+                <input type="email" id="inputEmail" name="email" placeholder="email address" value="{{ user.email }}" required class="form-control" />
             </div>
+            <!--
             <div class="input-group">
                 <div class="input-group-prepend">				
                     <span class="input-group-text rounded-left icon"><i class="icon-lock"></i></span>
                 </div>
-                <input type="password" id="inputPassword" name="password" placeholder="Password" class="rounded-right" />
+                <input type="password" id="inputPassword" name="password" placeholder="Password" class="form-control" />
             </div>
+            -->
             
+            <input type="password" id="inputPassword" name="password" placeholder="Password" class="form-control" style="width: 330px;" />
+                        
             <button type="submit" class="btn register">Sign up</button>
 
         </form>
-
+       
     </div>
     
 {% endblock %}
