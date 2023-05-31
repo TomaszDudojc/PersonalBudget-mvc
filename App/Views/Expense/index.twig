@@ -36,8 +36,10 @@
 					</div>
 					<select class="choice rounded-right" name="method" required>
 						<option value selected disabled hidden>Choose payment method</option>
-						{% for paymentMethod in paymentMethods %}                             
-                            <option value="{{ paymentMethod.id }}">{{ paymentMethod.name }}</option> 
+						{% for paymentMethod in paymentMethods %} 
+							{% if paymentMethod.is_used != 'no' %}
+                            	<option value="{{ paymentMethod.id }}">{{ paymentMethod.name }}</option> 
+							{% endif %}
 						{% endfor %}      
 					</select>
 				</div>	
@@ -50,7 +52,7 @@
 						<option value selected disabled hidden>Select a category</option>
 						{% for  expenseCategory in  expenseCategories %}                             
                              <option value="{{ expenseCategory.id }}">{{  expenseCategory.name }}</option> 
-							{% endfor %}      		
+						{% endfor %}      		
 					</select>
 				</div>	
 

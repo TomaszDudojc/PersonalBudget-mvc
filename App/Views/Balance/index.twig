@@ -338,9 +338,11 @@
 
 																		<select class="choice rounded" name="method" style="width: 100%;">						
 																			<option value ="{{ expenseFromSelectedPeriod.payment_method_assigned_to_user_id}}" selected hidden>{{ expenseFromSelectedPeriod.name }}</option>                          					
-																			{% for paymentMethod in paymentMethods %}                              
-																			<option value="{{ paymentMethod.id }}">{{ paymentMethod.name }}</option> 
-																			{% endfor %}                                   
+																			{% for paymentMethod in paymentMethods %}
+																				{% if paymentMethod.is_used != 'no' %}                             
+																					<option value="{{ paymentMethod.id }}">{{ paymentMethod.name }}</option>
+																				{% endif %} 
+																			{% endfor %}                                    
 																		</select>
 																		
 																		<select class="choice rounded text-center" name="category" style="width: 100%; font-weight: bold; font-size: 20px;">						

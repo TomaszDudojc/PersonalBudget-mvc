@@ -51,7 +51,7 @@ class Settings extends Authenticated
             }
         } 
     }
-
+    
     public function deleteUserProfileAction()
     {
         if(isset($_POST['deleteProfile'])) {			

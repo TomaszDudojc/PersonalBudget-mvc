@@ -114,7 +114,7 @@ class Balances extends \Core\Model
 
 	public static function getExpensesFromSelectedDateRange($startDate, $endDate)
 	{		
-		$sql = "SELECT expenses_category_assigned_to_users.name, expenses.expense_category_assigned_to_user_id, expenses.date_of_expense, expenses.expense_comment, expenses.amount, expenses.id, expenses.payment_method_assigned_to_user_id, payment_methods_assigned_to_users.name
+		$sql = "SELECT expenses_category_assigned_to_users.name, expenses.expense_category_assigned_to_user_id, expenses.date_of_expense, expenses.expense_comment, expenses.amount, expenses.id, expenses.payment_method_assigned_to_user_id, payment_methods_assigned_to_users.name, payment_methods_assigned_to_users.is_used
 		FROM expenses, expenses_category_assigned_to_users, payment_methods_assigned_to_users, users WHERE users.id=:user_id 
 		AND expenses.date_of_expense BETWEEN :start_date AND :end_date AND users.id=expenses_category_assigned_to_users.user_id 
 		AND users.id=expenses.user_id AND expenses.expense_category_assigned_to_user_id=expenses_category_assigned_to_users.id

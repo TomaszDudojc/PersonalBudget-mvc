@@ -268,8 +268,10 @@
 										
 										<select class="choice rounded text-center" name="method" style="width: 100%;" required>
 											<option value selected disabled hidden>Select a method</option>
-											{% for paymentMethod in paymentMethods %}                             
-											<option value="{{ paymentMethod.id }}">{{ paymentMethod.name }}</option> 
+											{% for paymentMethod in paymentMethods %}
+												{% if paymentMethod.is_used != 'no' %}                             
+													<option value="{{ paymentMethod.id }}">{{ paymentMethod.name }}</option>
+												{% endif %} 
 											{% endfor %}                            
 										</select>
 										
@@ -300,18 +302,17 @@
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
-							</div>
-							<p class="my-0">Warning:</p>
-							<p class="my-0">All expenses using this payment method will be deleted!</p>
-							<p class="my-0">If you want to keep them, assign them a different payment method first.</p>
+							</div>							
 							<div class="modal-body">
 								<form action="/settings/deletePaymentMethod" method="post">								
 										
 										<select class="choice rounded text-center" name="method" style="width: 100%;" required>
 											<option value selected disabled hidden>Select a method</option>
-											{% for paymentMethod in paymentMethods %}                             
-											<option value="{{ paymentMethod.id }}">{{ paymentMethod.name }}</option> 
-											{% endfor %}                            
+											{% for paymentMethod in paymentMethods %}
+												{% if paymentMethod.is_used != 'no' %}                             
+													<option value="{{ paymentMethod.id }}">{{ paymentMethod.name }}</option>
+												{% endif %} 
+											{% endfor %}                              
 										</select>									
 										
 										<div class="modal-footer">

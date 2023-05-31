@@ -237,7 +237,7 @@ class Expenses extends \Core\Model
         if($this->existMethod()){
             return false;
         } 
-        else{$sql = "INSERT INTO payment_methods_assigned_to_users VALUES (NULL, :user_id, :new_name)";           
+        else{$sql = "INSERT INTO payment_methods_assigned_to_users VALUES (NULL, :user_id, :new_name, '')";           
     
             $db = static::getDB();
             $stmt = $db->prepare($sql);    
@@ -252,8 +252,29 @@ class Expenses extends \Core\Model
     public function deleteMethod() 
     {
         $this->method = filter_input(INPUT_POST, 'method');
+
+        if($this->isUsedMethod()){$sql = "UPDATE payment_methods_assigned_to_users SET is_used = 'no' WHERE id = :id";
+            $db = static::getDB();
+            $stmt = $db->prepare($sql);
+            
+            $stmt->bindValue(':id', $this->method, PDO::PARAM_INT);                    
+        
+            return $stmt->execute();
+        }
+       else{$sql = "DELETE FROM payment_methods_assigned_to_users WHERE id = :id";
+
+            $db = static::getDB();
+
+            $stmt = $db->prepare($sql);    
+            $stmt->bindValue(':id', $this->method, PDO::PARAM_INT);            
+        
+            return $stmt->execute();         
+       }
+        
+
+        
                
-        If($this->deleteAllExpensesUsingThisMethod()){
+        /*If($this->deleteAllExpensesUsingThisMethod()){
             $sql = "DELETE FROM payment_methods_assigned_to_users WHERE id = :id";
 
             $db = static::getDB();
@@ -262,12 +283,12 @@ class Expenses extends \Core\Model
             $stmt->bindValue(':id', $this->method, PDO::PARAM_INT);            
         
             return $stmt->execute();             
-        }        
+        } */       
     }
-
+    
     protected function existMethod() 
     {
-        $sql = "SELECT * FROM payment_methods_assigned_to_users WHERE user_id = :user_id AND name = :new_name";
+        $sql = "SELECT * FROM payment_methods_assigned_to_users WHERE user_id = :user_id AND name = :new_name AND is_used != 'no'";
 		
 		$db = static::getDB();
 
@@ -285,6 +306,26 @@ class Expenses extends \Core\Model
         }
     }
 
+    protected function isUsedMethod() 
+    {
+        $sql = "SELECT * FROM expenses WHERE payment_method_assigned_to_user_id = :id";
+		
+		$db = static::getDB();
+
+		$stmt = $db->prepare($sql);
+		      
+        $stmt->bindValue(':id', $this->method, PDO::PARAM_INT);
+
+		$stmt->execute();	
+		
+		$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		
+		if(count($result)>0){
+		return true;
+        }
+    }
+
+    /*
     protected function deleteAllExpensesUsingThisMethod() 
     {
         $sql = "DELETE FROM expenses WHERE payment_method_assigned_to_user_id = :id";
@@ -296,6 +337,7 @@ class Expenses extends \Core\Model
         
         return $stmt->execute(); 
     }
+    */
 
     public static function deleteAllUserExpenses()
 	{
