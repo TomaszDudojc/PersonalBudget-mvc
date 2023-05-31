@@ -3,7 +3,7 @@
 {% block title %}Balance{% endblock %}
 
 {% block footer %}		
-			
+<!--			
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
 <script>
@@ -12,16 +12,20 @@
 	{% if expenseCategoriesFromSelectedPeriod %}
 	var chart = new CanvasJS.Chart("chartContainer1", {
 		exportEnabled: true,
-		animationEnabled: true,		
+		animationEnabled: true,
+		backgroundColor: 'transparent',			
 		title:{
-			text: "Expense structure"
+			text: "Expense structure",
+			fontColor: "white",
 		},
 		legend:{
 			cursor: "pointer",
 			itemclick: explodePie
-		},
+		},		
 		data: [{
 			type: "pie",
+			indexLabelFontColor: "white",
+			indexLegendFontColor: "white",
 			showInLegend: true,
 			toolTipContent: "{name}: <strong>{y} PLN</strong>",
 			indexLabel: "{name} - {y} PLN",
@@ -75,6 +79,60 @@
 		}
 		e.chart.render();	
 }	
+	
+</script>
+-->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+
+    <script type="text/javascript">
+      {% if expenseCategoriesFromSelectedPeriod %}
+	  google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart1);
+      
+	  function drawChart1() {
+        var data = google.visualization.arrayToDataTable([
+          ['Category', 'Expense Amount'],
+          {% for expenseCategoryFromSelectedPeriod in expenseCategoriesFromSelectedPeriod %}
+		 		['{{ expenseCategoryFromSelectedPeriod.name }}', {{ expenseCategoryFromSelectedPeriod.amountOfExpenses | number_format(2, '.', '')}}],
+			{% endfor %}
+        ]);
+
+        var options = {
+          title: 'Expense structure',		  	  
+          is3D: true,
+		  backgroundColor: 'transparent',		  
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('chartContainer1'));
+        chart.draw(data, options);
+      }
+	{% endif %}
+
+	{% if incomeCategoriesFromSelectedPeriod %}
+	google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart2);
+
+	  function drawChart2() {
+        var data = google.visualization.arrayToDataTable([
+          ['Category', 'Income Amount'],
+          {% for incomeCategoryFromSelectedPeriod in incomeCategoriesFromSelectedPeriod %}
+		 		['{{ incomeCategoryFromSelectedPeriod.name }}', {{ incomeCategoryFromSelectedPeriod.amountOfIncomes | number_format(2, '.', '')}}],
+			{% endfor %}
+        ]);
+
+        var options = {
+          title: 'Income structure',		  	  
+          is3D: true,
+		  backgroundColor: 'transparent',		  
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('chartContainer2'));
+        chart.draw(data, options);
+      }
+	  {% endif %}
+
+
 	const el = document.getElementById('selectPeriod');
 	const box = document.getElementById('dateRange');
 	el.addEventListener('change', function handleChange(event) {
@@ -84,7 +142,7 @@
 			box.style.visibility = 'hidden';
 		 }
 	});
-</script>	
+    </script>
 	
 {% endblock %}
 
@@ -94,9 +152,9 @@
 	
 	<main>
 	
-		<div class="container my-3 text-center pb-5">
+	<div class="container my-3 text-center pb-5">
 		
-			<div class="row"> 
+		<div class="row"> 
 
 			<div class="inputContainer mt-0 pb-3">			
 				<header>
@@ -448,23 +506,26 @@
 					
 					{% endif %}	
 										
-				</div>
+				</div>				
 				
 				{% if expenseCategoriesFromSelectedPeriod %}
-							
+					<!--		
 					<div id="chartContainer1" style="height: 450px; width: 90%; margin-left: auto; margin-right: auto; margin-bottom: 10px;"></div>
-										
+					-->
+					<div id="chartContainer1" class="col-12" style="height: 500px; margin-left: auto; margin-right: auto; margin-bottom: 10px;"></div>					
 				{% endif %}
 
 				{% if incomeCategoriesFromSelectedPeriod %}
-							
+					<!--		
 					<div id="chartContainer2" style="height: 450px; width: 90%; margin-left: auto; margin-right: auto; margin-bottom: 10px;"></div>
-										
-				{% endif %}		
+					-->					
+					<div id="chartContainer2" class="col-12" style="height: 500px; margin-left: auto; margin-right: auto; margin-bottom: 10px;"></div>										
+				{% endif %}						
 				
 			</div>
 
-		</div>		
+		</div>
+	</div>		
 				
 	</main>    
     
