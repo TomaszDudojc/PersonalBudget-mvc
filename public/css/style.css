@@ -1,7 +1,7 @@
 body, html
-{
-	/*background-color: #F1F4F9;*/	
-	background-image: url("../img/laptop.jpg");
+{	
+	background-image: url("../img/pexels-bri-schneiter-346529.jpg");
+	/*source: https://www.pexels.com/pl-pl/zdjecie/spokojne-cialo-jeziora-miedzy-gorami-346529/*/
 	background-size: cover;	
 	font-size: 16px;
 	width: 100%;	
@@ -11,9 +11,8 @@ body, html
 
 .mainNav
 {	
-	background-color: #D3DDE9;
-	border: 1px solid  #c2cce8;	
-
+	background-color: transparent;
+	
 }
 
 .navbar-brand
@@ -24,17 +23,18 @@ body, html
 	padding: 5px;
 	font-weight: bold;
 	color: #060B95;	
-	white-space: pre-wrap;
+	white-space: pre-wrap;	
+	
 }
+
 h2
 {	
 	text-align: center;
 	padding: 10px;
 	font-size: 30px;
-	letter-spacing: 2px;
-	color: #060B95;
-	background-color: #D3DDE9;	
-	border: 1px solid  #c2cce8;
+	letter-spacing: 2px;	
+	color: white;	
+	background-color: secondary;	
 }
 
 @media(max-width: 767px)
@@ -78,34 +78,8 @@ p
 	padding-bottom: 100px;
 }
 
-
 /* //////////////////  REJESTRACJA  /////////////////////// */
-/*
-h2.register
-{	
-	color: #008000;		
-}
 
-input.register[type=text],
-input.register[type=email],
-input.register[type=password]
-{
-	color: #008000;	
-	border: 1px solid  #c2cce8;
-}
-
-input.register[type=text]:focus,
-input.register[type=email]:focus,
-input.register[type=password]:focus
-{
-	-webkit-box-shadow: 0px 0px 5px 1px rgba(165,205,165,0.9);
-	-moz-box-shadow: 0px 0px 5px 1px rgba(165,205,165,0.9);
-	box-shadow: 0px 0px 5px 1px rgba(165,205,165,0.9);
-	border: 1px solid #a5cda5;	
-	background-color: #e9f3e9;
-	color: #008000;
-}
-*/
 button.register
 {	
 	width: 330px;
@@ -311,15 +285,7 @@ input:focus:-ms-input-placeholder
 
 .navcontainer
 {
-	margin: auto;
-	/*background-color: #d8e2d8;	
-	background-color: #e9f3e9;
-	background-color: #e3f2fd;
-	background-color: #28EFD4;
-	background-color: #D6FCF7;*/
-	background-color: #E2FDFA;		
-	border: 1px solid #a5cda5;
-	border-top: none;
+	margin: auto;	
 }
 
 .navbar-nav .active
@@ -343,13 +309,8 @@ option
 /* //////////////////  Balance /////////////////////// */
 
 .table
-{		
-	/*border: 1px solid #c2cce8;*/
-	/*background-color: #F1F4F9;*/
-	/*background-color: #D3DDE9;*/
-	background-color: none;
-	/*position: relative;
-	z-index: 100;*/	
+{
+	background-color: none;		
 }
 
 /* //////////////////  rejestracja.php /////////////////////// */
@@ -358,8 +319,8 @@ option
 {
 	color: red;
 	margin-top: 10px;
-	margin-bottom: 10px;
-	background-color: pink;
+	margin-bottom: 10px;	
+	background-color: white;
 	border: 1px solid red;
 	margin-left: auto;
 	margin-right: auto;
@@ -377,7 +338,5 @@ option
 	margin-top: 10px;
 	margin-bottom: 10px;
 	background-color: #D3DDE9;
-	border: 1px solid blue;
-	
-	
+	border: 1px solid blue;	
 }

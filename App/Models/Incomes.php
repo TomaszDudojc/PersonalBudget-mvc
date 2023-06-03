@@ -24,8 +24,7 @@ class Incomes extends \Core\Model
     public function save()
     {		
         $this->amount = filter_input(INPUT_POST, 'amount');
-        $this->date =  filter_input(INPUT_POST, 'date');
-        //$idOfIncomeCategory = filter_input(INPUT_POST, 'category'); 
+        $this->date =  filter_input(INPUT_POST, 'date');         
         $this->category = filter_input(INPUT_POST, 'category');   
         $this->comment =  filter_input(INPUT_POST, 'comment');      
        
@@ -34,8 +33,7 @@ class Incomes extends \Core\Model
 		$db = static::getDB();
         $stmt = $db->prepare($sql);
 
-        $stmt->bindValue(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
-        //$stmt->bindValue(':idOfIncomeCategory',  $idOfIncomeCategory, PDO::PARAM_INT);
+        $stmt->bindValue(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);        
         $stmt->bindValue(':idOfIncomeCategory',  $this->category, PDO::PARAM_INT);
         $stmt->bindValue(':amount', $this->amount, PDO::PARAM_STR);
         $stmt->bindValue(':date', $this->date, PDO::PARAM_STR);

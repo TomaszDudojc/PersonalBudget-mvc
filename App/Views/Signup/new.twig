@@ -63,7 +63,7 @@
     <div class="inputContainer mt-3">
         
         <header>
-            <h2 class="font-weight-bold rounded">Sign up</h2>
+            <h2 class="font-weight-bold rounded bg-secondary">Sign up</h2>
         </header>
 
         <form method="post" action="/signup/create" id="formSignup" class="mx-auto">
@@ -72,22 +72,14 @@
                 <div class="input-group-prepend ">
                     <span class="input-group-text rounded-left icon"><i class="icon-user-3"></i></span>
                 </div>
-                <input type="text" id="inputName" name="name" placeholder="Name" autofocus value="{{ user.name }}" required class="form-control" />
+                <input type="text" id="inputName" name="name" placeholder="Name" autofocus value="{{ user.name }}" required class="form-control rounded-right" />
             </div>
             <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text rounded-left icon"><i class="icon-mail-3"></i></span>
                 </div>
-                <input type="email" id="inputEmail" name="email" placeholder="email address" value="{{ user.email }}" required class="form-control" />
-            </div>
-            <!--
-            <div class="input-group">
-                <div class="input-group-prepend">				
-                    <span class="input-group-text rounded-left icon"><i class="icon-lock"></i></span>
-                </div>
-                <input type="password" id="inputPassword" name="password" placeholder="Password" class="form-control" />
-            </div>
-            -->
+                <input type="email" id="inputEmail" name="email" placeholder="email address" value="{{ user.email }}" required class="form-control rounded-right" />
+            </div>            
             
             <input type="password" id="inputPassword" name="password" placeholder="Password" class="form-control" style="width: 330px;" />
                         

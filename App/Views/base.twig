@@ -2,10 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Personal Budget</title>
-    <!--
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    -->
+    <title>Personal Budget</title>    
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/fontello.css">
@@ -19,7 +16,7 @@
 		<div class="container">
 				
 			<div class="navbar-header mx-auto">
-				<a class="navbar-brand  text-center" style="color: #060B95;" href="/"><span><i class="icon-calc"></i></span>Personal Budget</a>
+				<a class="navbar-brand text-center" href="/"><span><i class="icon-calc"></i></span>Personal Budget</a>
 			</div>
 					
 			<blockquote class="blockquote mx-auto mt-3" style="border-left: 0;">					
@@ -33,9 +30,9 @@
 
 	                   
         {% if current_user %}
-        <div class="navcontainer rounded">
+        <div class="navcontainer">
 		
-            <nav class="navbar navbar-light py-0 mb-0 navbar-expand-lg">		
+            <nav class="navbar navbar-light bg-secondary py-0 mb-0 navbar-expand-lg rounded">		
                     
                 <button class="navbar-toggler colapsed" type="button" data-toggle="collapse" data-target="#mainmenu" aria-controls="mainmenu" aria-expanded="false" aria-label="Navigation switch">
                         <span class="navbar-toggler-icon"></span>

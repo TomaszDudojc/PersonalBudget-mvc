@@ -36,11 +36,9 @@ class Expenses extends \Core\Model
     public function save()
     {		
         $this->amount = filter_input(INPUT_POST, 'amount');
-        $this->date =  filter_input(INPUT_POST, 'date');
-        //$idOfExpenseCategory = filter_input(INPUT_POST, 'category'); 
-        $this->category = filter_input(INPUT_POST, 'category');
-       //$idOfPaymentMethod = filter_input(INPUT_POST, 'method');
-       $this->method = filter_input(INPUT_POST, 'method');     
+        $this->date =  filter_input(INPUT_POST, 'date');        
+        $this->category = filter_input(INPUT_POST, 'category');       
+        $this->method = filter_input(INPUT_POST, 'method');     
         $this->comment =  filter_input(INPUT_POST, 'comment');      
        
         $sql = "INSERT INTO expenses VALUES (NULL, :user_id, :idOfExpenseCategory, :idOfPaymentMethod, :amount, :date, :comment )";    		
@@ -48,8 +46,7 @@ class Expenses extends \Core\Model
 		$db = static::getDB();
         $stmt = $db->prepare($sql);
 
-        $stmt->bindValue(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
-        //$stmt->bindValue(':idOfExpenseCategory',  $idOfExpenseCategory, PDO::PARAM_INT);
+        $stmt->bindValue(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);        ;
         $stmt->bindValue(':idOfExpenseCategory',  $this->category, PDO::PARAM_INT);
         $stmt->bindValue(':idOfPaymentMethod',  $this->method, PDO::PARAM_INT);
         $stmt->bindValue(':amount', $this->amount, PDO::PARAM_STR);
@@ -253,7 +250,7 @@ class Expenses extends \Core\Model
     {
         $this->method = filter_input(INPUT_POST, 'method');
 
-        if($this->isUsedMethod()){$sql = "UPDATE payment_methods_assigned_to_users SET is_used = 'no' WHERE id = :id";
+        if($this->isUsedMethod()){$sql = "UPDATE payment_methods_assigned_to_users SET is_active = 'no' WHERE id = :id";
             $db = static::getDB();
             $stmt = $db->prepare($sql);
             
@@ -269,26 +266,12 @@ class Expenses extends \Core\Model
             $stmt->bindValue(':id', $this->method, PDO::PARAM_INT);            
         
             return $stmt->execute();         
-       }
-        
-
-        
-               
-        /*If($this->deleteAllExpensesUsingThisMethod()){
-            $sql = "DELETE FROM payment_methods_assigned_to_users WHERE id = :id";
-
-            $db = static::getDB();
-
-            $stmt = $db->prepare($sql);    
-            $stmt->bindValue(':id', $this->method, PDO::PARAM_INT);            
-        
-            return $stmt->execute();             
-        } */       
+       }        
     }
     
     protected function existMethod() 
     {
-        $sql = "SELECT * FROM payment_methods_assigned_to_users WHERE user_id = :user_id AND name = :new_name AND is_used != 'no'";
+        $sql = "SELECT * FROM payment_methods_assigned_to_users WHERE user_id = :user_id AND name = :new_name AND is_active != 'no'";
 		
 		$db = static::getDB();
 
@@ -323,21 +306,7 @@ class Expenses extends \Core\Model
 		if(count($result)>0){
 		return true;
         }
-    }
-
-    /*
-    protected function deleteAllExpensesUsingThisMethod() 
-    {
-        $sql = "DELETE FROM expenses WHERE payment_method_assigned_to_user_id = :id";
-								
-		$db = static::getDB();
-        
-        $stmt = $db->prepare($sql);        
-        $stmt->bindValue(':id', $this->method, PDO::PARAM_INT);
-        
-        return $stmt->execute(); 
-    }
-    */
+    }    
 
     public static function deleteAllUserExpenses()
 	{
