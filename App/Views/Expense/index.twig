@@ -35,12 +35,16 @@
 						<span class="input-group-text  rounded-left icon"><i class="icon-cc-visa"></i></span>
 					</div>
 					<select class="choice rounded-right" name="method" required>
-						<option value selected disabled hidden>Choose payment method</option>
-						{% for paymentMethod in paymentMethods %} 
-							{% if paymentMethod.is_active != 'no' %}
-                            	<option value="{{ paymentMethod.id }}">{{ paymentMethod.name }}</option> 
-							{% endif %}
-						{% endfor %}      
+						{% if paymentMethods %}
+							<option value selected disabled hidden>Choose payment method</option>
+								{% for paymentMethod in paymentMethods %} 
+									{% if paymentMethod.is_active != 'no' %}
+										<option value="{{ paymentMethod.id }}">{{ paymentMethod.name }}</option> 
+									{% endif %}
+								{% endfor %}
+						{% else %}
+                            <option value selected disabled hidden>No payment method</option>
+                        {% endif %}        
 					</select>
 				</div>	
 
@@ -49,10 +53,14 @@
 						<span class="input-group-text  rounded-left icon"><i class="icon-ok"></i></span>
 					</div>
 					<select class="choice rounded-right" name="category" required>						
-						<option value selected disabled hidden>Select a category</option>
-						{% for  expenseCategory in  expenseCategories %}                             
-                             <option value="{{ expenseCategory.id }}">{{  expenseCategory.name }}</option> 
-						{% endfor %}      		
+						{% if expenseCategories %}	
+							<option value selected disabled hidden>Select a category</option>
+								{% for  expenseCategory in  expenseCategories %}                             
+									<option value="{{ expenseCategory.id }}">{{  expenseCategory.name }}</option> 
+								{% endfor %}
+						{% else %}
+                            <option value selected disabled hidden>No expense category</option>
+                        {% endif %}      		
 					</select>
 				</div>	
 

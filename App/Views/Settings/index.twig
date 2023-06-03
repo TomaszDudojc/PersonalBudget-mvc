@@ -84,8 +84,7 @@
 							</button>
 							</div>
 							<div class="modal-body">
-								<form action="/settings/editIncomeCategory" method="post">								
-										
+								<form action="/settings/editIncomeCategory" method="post">
 										<select class="choice rounded text-center" name="category" style="width: 100%;" required>
 											<option value selected disabled hidden>Select a category</option>
 											{% for incomeCategory in incomeCategories %}                             
@@ -104,8 +103,7 @@
 											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 											<button type="submit" class="btn btn-primary">Save changes</button>
 										</div>
-								</form>
-							
+								</form>							
 							</div>
 						</div>
 					</div>
@@ -125,8 +123,7 @@
 							<p class="my-0">All incomes in this category will be deleted!</p>
 							<p class="my-0">If you want to keep them, assign them to another category first.</p>
 							<div class="modal-body">
-								<form action="/settings/deleteIncomeCategory" method="post">								
-										
+								<form action="/settings/deleteIncomeCategory" method="post">
 										<select class="choice rounded text-center" name="category" style="width: 100%;" required>
 											<option value selected disabled hidden>Select a category</option>
 											{% for incomeCategory in incomeCategories %}                             
@@ -138,8 +135,32 @@
 											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 											<button type="submit" class="btn btn-danger">Delete category</button>
 										</div>
-								</form>
-							
+								</form>							
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="modal fade" id="deleteAllIncomeCategory" tabindex="-1" aria-labelledby="deleteAllIncomeCategoryLabel" aria-hidden="true">
+												
+					<div class="modal-dialog">
+						<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
+							<div class="modal-header bg-danger text-white">
+							<h5 class="modal-title" id="deleteAllIncomeCategoryLabel"><span class="mr-1">&#10008;</span>Delete all category<i class="icon-money ml-1"></i></h5>
+							<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							</div>
+							<p class="my-0">Warning:</p>
+							<p class="my-0">All categories and incomes will be deleted!</p>							
+							<div class="modal-body">
+								<form action="/settings/deleteAllIncomeCategory" method="post">	
+										<input name="deleteAllIncomeCategory" type="text" style="display: none;">	
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+											<button type="submit" class="btn btn-danger">Delete all category</button>
+										</div>
+								</form>							
 							</div>
 						</div>
 					</div>
@@ -168,8 +189,7 @@
 										<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 										<button type="submit" class="btn btn-success">Add new category</button>
 									</div>
-								</form>
-							
+								</form>							
 							</div>
 						</div>
 					</div>
@@ -186,8 +206,7 @@
 							</button>
 							</div>
 							<div class="modal-body">
-								<form action="/settings/editExpenseCategory" method="post">								
-										
+								<form action="/settings/editExpenseCategory" method="post">
 										<select class="choice rounded text-center" name="category" style="width: 100%;" required>
 											<option value selected disabled hidden>Select a category</option>
 											{% for expenseCategory in expenseCategories %}                             
@@ -206,8 +225,7 @@
 											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 											<button type="submit" class="btn btn-primary">Save changes</button>
 										</div>
-								</form>
-							
+								</form>							
 							</div>
 						</div>
 					</div>
@@ -227,8 +245,7 @@
 							<p class="my-0">All expenses in this category will be deleted!</p>
 							<p class="my-0">If you want to keep them, assign them to another category first.</p>
 							<div class="modal-body">
-								<form action="/settings/deleteExpenseCategory" method="post">								
-										
+								<form action="/settings/deleteExpenseCategory" method="post">
 										<select class="choice rounded text-center" name="category" style="width: 100%;" required>
 											<option value selected disabled hidden>Select a category</option>
 											{% for expenseCategory in expenseCategories %}                             
@@ -240,8 +257,7 @@
 											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 											<button type="submit" class="btn btn-danger">Delete category</button>
 										</div>
-								</form>
-							
+								</form>							
 							</div>
 						</div>
 					</div>
@@ -270,8 +286,7 @@
 										<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 										<button type="submit" class="btn btn-success">Add new category</button>
 									</div>
-								</form>
-							
+								</form>							
 							</div>
 						</div>
 					</div>
@@ -288,8 +303,7 @@
 							</button>
 							</div>
 							<div class="modal-body">
-								<form action="/settings/editPaymentMethod" method="post">								
-										
+								<form action="/settings/editPaymentMethod" method="post">
 										<select class="choice rounded text-center" name="method" style="width: 100%;" required>
 											<option value selected disabled hidden>Select a method</option>
 											{% for paymentMethod in paymentMethods %}
@@ -310,8 +324,7 @@
 											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 											<button type="submit" class="btn btn-primary">Save changes</button>
 										</div>
-								</form>
-							
+								</form>							
 							</div>
 						</div>
 					</div>
@@ -328,8 +341,7 @@
 							</button>
 							</div>							
 							<div class="modal-body">
-								<form action="/settings/deletePaymentMethod" method="post">								
-										
+								<form action="/settings/deletePaymentMethod" method="post">
 										<select class="choice rounded text-center" name="method" style="width: 100%;" required>
 											<option value selected disabled hidden>Select a method</option>
 											{% for paymentMethod in paymentMethods %}
@@ -343,8 +355,7 @@
 											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 											<button type="submit" class="btn btn-danger">Delete method</button>
 										</div>
-								</form>
-							
+								</form>							
 							</div>
 						</div>
 					</div>
@@ -373,8 +384,7 @@
 										<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 										<button type="submit" class="btn btn-success">Add new method</button>
 									</div>
-								</form>
-							
+								</form>							
 							</div>
 						</div>
 					</div>
@@ -419,8 +429,7 @@
 											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 											<button type="submit" class="btn btn-primary">Save changes</button>
 										</div>
-								</form>
-							
+								</form>							
 							</div>
 						</div>
 					</div>
@@ -460,8 +469,7 @@
 										<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 										<button type="submit" class="btn btn-danger">Delete profile</button>
 									</div>
-								</form>
-							
+								</form>							
 							</div>
 						</div>
 					</div>

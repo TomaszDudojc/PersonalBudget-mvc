@@ -34,11 +34,15 @@
                         <div class="input-group-prepend">				
                             <span class="input-group-text  rounded-left icon"><i class="icon-ok"></i></span>
                         </div>
-                        <select class="choice rounded-right" name="category" required>						
-                            <option value selected disabled hidden>Select a category</option>                          					
-                             {% for incomeCategory in incomeCategories %}                             
-                             <option value="{{ incomeCategory.id }}">{{ incomeCategory.name }}</option> 
-							{% endfor %}                               
+                        <select class="choice rounded-right" name="category" required>
+                        	{% if incomeCategories %}					
+                                <option value selected disabled hidden>Select a category</option>                          					
+                                {% for incomeCategory in incomeCategories %}                             
+                                    <option value="{{ incomeCategory.id }}">{{ incomeCategory.name }}</option> 
+                                {% endfor %}
+                            {% else %}
+                                <option value selected disabled hidden>No income category</option>
+                            {% endif %}
                         </select>
                     </div>	
     

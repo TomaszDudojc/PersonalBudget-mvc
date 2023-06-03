@@ -116,6 +116,22 @@ class Settings extends Authenticated
             $this->redirect('/settings/index');			
 		} 
 	}
+
+    public function deleteAllIncomeCategoryAction() 
+	{        
+        if(isset($_POST['deleteAllIncomeCategory'])) {
+			
+			//$income = new Incomes($_POST);           
+
+			if(Incomes::deleteAllUserIncomes()){
+                Incomes::deleteAllUserCategoryOfIncomes();
+            }
+            
+            Flash::addMessage('All categories and incomes has been deleted.');               
+           
+            $this->redirect('/settings/index');			
+		} 
+	}
     
     public function editExpenseCategoryAction() 
 	{        
