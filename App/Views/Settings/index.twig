@@ -19,7 +19,7 @@
 						<button  type="button" class="btn btn-primary btn-lg col-10 col-md-5 col-lg-2 px-0" style="white-space: pre-wrap;" data-toggle="modal" data-target="#editIncomeCategory{{ incomeCategory.id }}"><i class="icon-pencil mr-1"></i>Edit</button>
 						<button  type="button" class="btn btn-danger btn-lg col-10 col-md-5 col-lg-2 px-0" style="white-space: pre-wrap;" data-toggle="modal" data-target="#deleteIncomeCategory{{ incomeCategory.id }}"><span class="mr-1">&#10008;</span>Delete</button>
 						<button  type="button" class="btn btn-success btn-lg col-10 col-md-5 col-lg-2 px-0" style="white-space: pre-wrap;" data-toggle="modal" data-target="#addIncomeCategory"><span class="mr-1">&#10004;</span>Add</button>
-						<button  type="button" class="btn btn-danger btn-lg col-10 col-md-5 col-lg-2 px-0" style="white-space: pre-wrap;" data-toggle="modal" data-target="#deleteAllIncomeCategory"><span class="mr-1">&#10008;</span>Delete all</button>
+						<button  type="button" class="btn btn-danger btn-lg col-10 col-md-5 col-lg-2 px-0" style="white-space: pre-wrap;" data-toggle="modal" data-target="#deleteAllIncomeCategories"><span class="mr-1">&#10008;</span>Delete all</button>
 						<button  type="button" class="btn btn-info btn-lg col-10 col-lg-2 px-0" style="white-space: pre-wrap;" onClick="document.getElementById('incomeCategory_buttons').style.display='none';">Hide<span class="ml-2">&#8682;</span></button>			
 					</div>
 
@@ -30,7 +30,7 @@
 						<button  type="button" class="btn btn-primary btn-lg col-10 col-md-5 col-lg-2 px-0" style="white-space: pre-wrap;" data-toggle="modal" data-target="#editExpenseCategory{{ expenseCategory.id }}"><i class="icon-pencil mr-1"></i>Edit</button>
 						<button  type="button" class="btn btn-danger btn-lg col-10 col-md-5 col-lg-2 px-0" style="white-space: pre-wrap;" data-toggle="modal" data-target="#deleteExpenseCategory{{ expenseCategory.id }}"><span class="mr-1">&#10008;</span>Delete</button>
 						<button  type="button" class="btn btn-success btn-lg col-10 col-md-5 col-lg-2 px-0" style="white-space: pre-wrap;" data-toggle="modal" data-target="#addExpenseCategory"><span class="mr-1">&#10004;</span>Add</button>
-						<button  type="button" class="btn btn-danger btn-lg col-10 col-md-5 col-lg-2 px-0" style="white-space: pre-wrap;" data-toggle="modal" data-target="#deleteAllExpenseCategory"><span class="mr-1">&#10008;</span>Delete all</button>
+						<button  type="button" class="btn btn-danger btn-lg col-10 col-md-5 col-lg-2 px-0" style="white-space: pre-wrap;" data-toggle="modal" data-target="#deleteAllExpenseCategories"><span class="mr-1">&#10008;</span>Delete all</button>
 						<button  type="button" class="btn btn-info btn-lg col-10 col-lg-2 px-0" style="white-space: pre-wrap;" onClick="document.getElementById('expenseCategory_buttons').style.display='none';">Hide<span class="ml-2">&#8682;</span></button>			
 					</div>
 
@@ -86,10 +86,14 @@
 							<div class="modal-body">
 								<form action="/settings/editIncomeCategory" method="post">
 										<select class="choice rounded text-center" name="category" style="width: 100%;" required>
-											<option value selected disabled hidden>Select a category</option>
-											{% for incomeCategory in incomeCategories %}                             
-											<option value="{{ incomeCategory.id }}">{{ incomeCategory.name }}</option> 
-											{% endfor %}                            
+											{% if incomeCategories %}					
+												<option value selected disabled hidden>Select a category</option>                          					
+													{% for incomeCategory in incomeCategories %}                             
+														<option value="{{ incomeCategory.id }}">{{ incomeCategory.name }}</option> 
+													{% endfor %}
+											{% else %}
+                                				<option value selected disabled hidden>No income category</option>
+                           					{% endif %}                            
 										</select>
 										
 										<div class="input-group">	
@@ -125,10 +129,14 @@
 							<div class="modal-body">
 								<form action="/settings/deleteIncomeCategory" method="post">
 										<select class="choice rounded text-center" name="category" style="width: 100%;" required>
-											<option value selected disabled hidden>Select a category</option>
-											{% for incomeCategory in incomeCategories %}                             
-											<option value="{{ incomeCategory.id }}">{{ incomeCategory.name }}</option> 
-											{% endfor %}                            
+											{% if incomeCategories %}					
+												<option value selected disabled hidden>Select a category</option>                          					
+													{% for incomeCategory in incomeCategories %}                             
+														<option value="{{ incomeCategory.id }}">{{ incomeCategory.name }}</option> 
+													{% endfor %}
+											{% else %}
+                                				<option value selected disabled hidden>No income category</option>
+                           					{% endif %}                                  
 										</select>									
 										
 										<div class="modal-footer">
@@ -139,32 +147,7 @@
 							</div>
 						</div>
 					</div>
-				</div>
-
-				<div class="modal fade" id="deleteAllIncomeCategory" tabindex="-1" aria-labelledby="deleteAllIncomeCategoryLabel" aria-hidden="true">
-												
-					<div class="modal-dialog">
-						<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
-							<div class="modal-header bg-danger text-white">
-							<h5 class="modal-title" id="deleteAllIncomeCategoryLabel"><span class="mr-1">&#10008;</span>Delete all category<i class="icon-money ml-1"></i></h5>
-							<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-							</div>
-							<p class="my-0">Warning:</p>
-							<p class="my-0">All categories and incomes will be deleted!</p>							
-							<div class="modal-body">
-								<form action="/settings/deleteAllIncomeCategory" method="post">	
-										<input name="deleteAllIncomeCategory" type="text" style="display: none;">	
-										<div class="modal-footer">
-											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-											<button type="submit" class="btn btn-danger">Delete all category</button>
-										</div>
-								</form>							
-							</div>
-						</div>
-					</div>
-				</div>
+				</div>				
 				
 				<div class="modal fade" id="addIncomeCategory" tabindex="-1" aria-labelledby="addIncomeCategoryLabel" aria-hidden="true">
 												
@@ -195,6 +178,31 @@
 					</div>
 				</div>
 
+				<div class="modal fade" id="deleteAllIncomeCategories" tabindex="-1" aria-labelledby="deleteAllIncomeCategoriesLabel" aria-hidden="true">
+												
+					<div class="modal-dialog">
+						<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
+							<div class="modal-header bg-danger text-white">
+							<h5 class="modal-title" id="deleteAllIncomeCategoriesLabel"><span class="mr-1">&#10008;</span>Delete all income Categories<i class="icon-money ml-1"></i></h5>
+							<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							</div>
+							<p class="my-0">Warning:</p>
+							<p class="my-0">All categories and incomes will be deleted!</p>							
+							<div class="modal-body">
+								<form action="/settings/deleteAllIncomeCategories" method="post">	
+										<input name="deleteAllIncomeCategories" type="text" style="display: none;">	
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+											<button type="submit" class="btn btn-danger">Delete all categories</button>
+										</div>
+								</form>							
+							</div>
+						</div>
+					</div>
+				</div>
+
 				<div class="modal fade" id="editExpenseCategory{{ expenseCategory.id }}" tabindex="-1" aria-labelledby="editExpenseCategoryLabel{{ expenseCategory.id }}" aria-hidden="true">
 												
 					<div class="modal-dialog">
@@ -208,10 +216,14 @@
 							<div class="modal-body">
 								<form action="/settings/editExpenseCategory" method="post">
 										<select class="choice rounded text-center" name="category" style="width: 100%;" required>
-											<option value selected disabled hidden>Select a category</option>
-											{% for expenseCategory in expenseCategories %}                             
-											<option value="{{ expenseCategory.id }}">{{ expenseCategory.name }}</option> 
-											{% endfor %}                            
+											{% if expenseCategories %}	
+												<option value selected disabled hidden>Select a category</option>
+													{% for  expenseCategory in  expenseCategories %}                             
+														<option value="{{ expenseCategory.id }}">{{  expenseCategory.name }}</option> 
+													{% endfor %}
+											{% else %}
+												<option value selected disabled hidden>No expense category</option>
+											{% endif %}      	                            
 										</select>
 										
 										<div class="input-group">	
@@ -247,11 +259,15 @@
 							<div class="modal-body">
 								<form action="/settings/deleteExpenseCategory" method="post">
 										<select class="choice rounded text-center" name="category" style="width: 100%;" required>
-											<option value selected disabled hidden>Select a category</option>
-											{% for expenseCategory in expenseCategories %}                             
-											<option value="{{ expenseCategory.id }}">{{ expenseCategory.name }}</option> 
-											{% endfor %}                            
-										</select>									
+											{% if expenseCategories %}	
+												<option value selected disabled hidden>Select a category</option>
+													{% for  expenseCategory in  expenseCategories %}                             
+														<option value="{{ expenseCategory.id }}">{{  expenseCategory.name }}</option> 
+													{% endfor %}
+											{% else %}
+												<option value selected disabled hidden>No expense category</option>
+											{% endif %}      	                            
+										</select>						
 										
 										<div class="modal-footer">
 											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -286,6 +302,31 @@
 										<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 										<button type="submit" class="btn btn-success">Add new category</button>
 									</div>
+								</form>							
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="modal fade" id="deleteAllExpenseCategories" tabindex="-1" aria-labelledby="deleteAllExpenseCategoriesLabel" aria-hidden="true">
+												
+					<div class="modal-dialog">
+						<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
+							<div class="modal-header bg-danger text-white">
+							<h5 class="modal-title" id="deleteAllExpenseCategoriesLabel"><span class="mr-1">&#10008;</span>Delete all expense Categories<i class="icon-basket ml-1"></i></h5>
+							<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							</div>
+							<p class="my-0">Warning:</p>
+							<p class="my-0">All categories and expneses will be deleted!</p>							
+							<div class="modal-body">
+								<form action="/settings/deleteAllExpenseCategories" method="post">	
+										<input name="deleteAllExpenseCategories" type="text" style="display: none;">	
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+											<button type="submit" class="btn btn-danger">Delete all categories</button>
+										</div>
 								</form>							
 							</div>
 						</div>
@@ -390,6 +431,30 @@
 					</div>
 				</div>
 
+				<div class="modal fade" id="deleteAllExpenseCategories" tabindex="-1" aria-labelledby="deleteAllExpenseCategoriesLabel" aria-hidden="true">
+												
+					<div class="modal-dialog">
+						<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
+							<div class="modal-header bg-danger text-white">
+							<h5 class="modal-title" id="deleteAllExpenseCategoriesLabel"><span class="mr-1">&#10008;</span>Delete all expense Categories<i class="icon-basket ml-1"></i></h5>
+							<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							</div>
+							<p class="my-0">Warning:</p>
+							<p class="my-0">All categories and expneses will be deleted!</p>							
+							<div class="modal-body">
+								<form action="/settings/deleteAllExpenseCategories" method="post">	
+										<input name="deleteAllExpenseCategories" type="text" style="display: none;">	
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+											<button type="submit" class="btn btn-danger">Delete all categories</button>
+										</div>
+								</form>							
+							</div>
+						</div>
+					</div>
+				</div>
 
 				<div class="modal fade" id="editUserProfile" tabindex="-1" aria-labelledby="editUserProfileLabe" aria-hidden="true">
 												

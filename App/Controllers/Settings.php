@@ -55,9 +55,7 @@ class Settings extends Authenticated
     public function deleteUserProfileAction()
     {
         if(isset($_POST['deleteProfile'])) {			
-            if (Incomes::deleteAllUserIncomes() && Incomes::deleteAllUserCategoryOfIncomes()
-            && Expenses::deleteAllUserExpenses() && Expenses::deleteAllUserCategoryOfExpenses()
-            && Expenses::deleteAllUserPaymentMethods()){
+            if (Incomes::deleteAllIncomeCategories() && Expenses::deleteAllExpenseCategories() && Expenses::deleteAllPaymentMethods()){
             $user = new User();
             $user->deleteProfile(); 
            
@@ -117,15 +115,11 @@ class Settings extends Authenticated
 		} 
 	}
 
-    public function deleteAllIncomeCategoryAction() 
+    public function deleteAllIncomeCategoriesAction() 
 	{        
-        if(isset($_POST['deleteAllIncomeCategory'])) {
+        if(isset($_POST['deleteAllIncomeCategories'])) {
 			
-			//$income = new Incomes($_POST);           
-
-			if(Incomes::deleteAllUserIncomes()){
-                Incomes::deleteAllUserCategoryOfIncomes();
-            }
+            Incomes::deleteAllIncomeCategories();            
             
             Flash::addMessage('All categories and incomes has been deleted.');               
            
@@ -178,6 +172,18 @@ class Settings extends Authenticated
             $this->redirect('/settings/index');			
 		} 
 	}
+
+    public function deleteAllExpenseCategoriesAction() 
+	{        
+        if(isset($_POST['deleteAllExpenseCategories'])) {
+			
+            Expenses::deleteAllExpenseCategories();            
+            
+            Flash::addMessage('All categories and expenses has been deleted.');               
+           
+            $this->redirect('/settings/index');			
+		} 
+	}
     
     public function editPaymentMethodAction() 
 	{        
@@ -223,5 +229,17 @@ class Settings extends Authenticated
            
             $this->redirect('/settings/index');			
 		} 
-	}	
+	}
+    
+    public function deleteAllExpenseCategoryAction() 
+	{        
+        if(isset($_POST['deleteAllExpenseCategory'])) {
+			
+            Expenses::deleteAllExpenseCategories();            
+            
+            Flash::addMessage('All categories and expenses has been deleted.');               
+           
+            $this->redirect('/settings/index');			
+		} 
+	}
 }

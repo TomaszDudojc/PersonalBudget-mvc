@@ -308,7 +308,7 @@ class Expenses extends \Core\Model
         }
     }    
 
-    public static function deleteAllUserExpenses()
+    public static function deleteAllExpenses()
 	{
 		$sql = "DELETE FROM expenses WHERE user_id = :user_id";
 								
@@ -320,27 +320,32 @@ class Expenses extends \Core\Model
         return $stmt->execute();   
 	}
 
-    public static function deleteAllUserCategoryOfExpenses()
+    public static function deleteAllExpenseCategories()
 	{
-		$sql = "DELETE FROM expenses_category_assigned_to_users WHERE user_id = :user_id";
+		if(static::deleteAllExpenses()){
+            $sql = "DELETE FROM expenses_category_assigned_to_users WHERE user_id = :user_id";
 								
-		$db = static::getDB();
-        $stmt = $db->prepare($sql);    
+            $db = static::getDB();
+            $stmt = $db->prepare($sql);    
+           
+            $stmt->bindValue(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);        
+    
+            return $stmt->execute();  
+        }
        
-        $stmt->bindValue(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);        
-
-        return $stmt->execute();  
 	}
 
-    public static function deleteAllUserPaymentMethods()
+    public static function deleteAllPaymentMethods()
 	{
-		$sql = "DELETE FROM payment_methods_assigned_to_users WHERE user_id = :user_id";
+		if(static::deleteAllExpenses()){
+            $sql = "DELETE FROM payment_methods_assigned_to_users WHERE user_id = :user_id";
 								
-		$db = static::getDB();
-        $stmt = $db->prepare($sql);    
-       
-        $stmt->bindValue(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);        
-
-        return $stmt->execute();  
+            $db = static::getDB();
+            $stmt = $db->prepare($sql);    
+           
+            $stmt->bindValue(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);        
+    
+            return $stmt->execute();
+        }
 	}
 }

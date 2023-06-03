@@ -182,7 +182,7 @@ class Incomes extends \Core\Model
         }
     } 
     
-    public static function deleteAllUserIncomes()
+    public static function deleteAllIncomes()
 	{
 		$sql = "DELETE FROM incomes WHERE user_id = :user_id";
 								
@@ -194,15 +194,17 @@ class Incomes extends \Core\Model
         return $stmt->execute();   
 	}
 
-    public static function deleteAllUserCategoryOfIncomes()
+    public static function deleteAllIncomeCategories()
 	{
-		$sql = "DELETE FROM incomes_category_assigned_to_users WHERE user_id = :user_id";
+        if(static::deleteAllIncomes()){
+            $sql = "DELETE FROM incomes_category_assigned_to_users WHERE user_id = :user_id";
 								
-		$db = static::getDB();
-        $stmt = $db->prepare($sql);    
-       
-        $stmt->bindValue(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);        
-
-        return $stmt->execute();  
+            $db = static::getDB();
+            $stmt = $db->prepare($sql);    
+           
+            $stmt->bindValue(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);        
+    
+            return $stmt->execute();
+        }		
 	} 
 }
