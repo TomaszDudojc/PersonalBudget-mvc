@@ -41,7 +41,7 @@
 						<button  type="button" class="btn btn-primary btn-lg col-10 col-md-5 col-lg-2 px-0" style="white-space: pre-wrap;" data-toggle="modal" data-target="#editPaymentMethod{{ paymentMethod.id }}"><i class="icon-pencil mr-1"></i>Edit</button>
 						<button  type="button" class="btn btn-danger btn-lg col-10 col-md-5 col-lg-2 px-0" style="white-space: pre-wrap;" data-toggle="modal" data-target="#deletePaymentMethod{{ paymentMethod.id }}"><span class="mr-1">&#10008;</span>Delete</button>
 						<button  type="button" class="btn btn-success btn-lg col-10 col-md-5 col-lg-2 px-0" style="white-space: pre-wrap;" data-toggle="modal" data-target="#addPaymentMethod"><span class="mr-1">&#10004;</span>Add</button>
-						<button  type="button" class="btn btn-danger btn-lg col-10 col-md-5 col-lg-2 px-0" style="white-space: pre-wrap;" data-toggle="modal" data-target="#deletePaymentMethod"><span class="mr-1">&#10008;</span>Delete all</button>
+						<button  type="button" class="btn btn-danger btn-lg col-10 col-md-5 col-lg-2 px-0" style="white-space: pre-wrap;" data-toggle="modal" data-target="#deleteAllPaymentMethods"><span class="mr-1">&#10008;</span>Delete all</button>
 						<button  type="button" class="btn btn-info btn-lg col-10 col-lg-2 px-0" style="white-space: pre-wrap;" onClick="document.getElementById('paymentMethod_buttons').style.display='none';">Hide<span class="ml-2">&#8682;</span></button>			
 					</div>
 
@@ -313,13 +313,13 @@
 					<div class="modal-dialog">
 						<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
 							<div class="modal-header bg-danger text-white">
-							<h5 class="modal-title" id="deleteAllExpenseCategoriesLabel"><span class="mr-1">&#10008;</span>Delete all expense Categories<i class="icon-basket ml-1"></i></h5>
+							<h5 class="modal-title" id="deleteAllExpenseCategoriesLabel"><span class="mr-1">&#10008;</span>Delete all expense categories<i class="icon-basket ml-1"></i></h5>
 							<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
 							</div>
 							<p class="my-0">Warning:</p>
-							<p class="my-0">All categories and expneses will be deleted!</p>							
+							<p class="my-0">All categories and expenses will be deleted!</p>							
 							<div class="modal-body">
 								<form action="/settings/deleteAllExpenseCategories" method="post">	
 										<input name="deleteAllExpenseCategories" type="text" style="display: none;">	
@@ -346,12 +346,16 @@
 							<div class="modal-body">
 								<form action="/settings/editPaymentMethod" method="post">
 										<select class="choice rounded text-center" name="method" style="width: 100%;" required>
-											<option value selected disabled hidden>Select a method</option>
-											{% for paymentMethod in paymentMethods %}
-												{% if paymentMethod.is_active != 'no' %}                             
-													<option value="{{ paymentMethod.id }}">{{ paymentMethod.name }}</option>
-												{% endif %} 
-											{% endfor %}                            
+											{% if paymentMethods %}
+												<option value selected disabled hidden>Choose payment method</option>
+													{% for paymentMethod in paymentMethods %} 
+														{% if paymentMethod.is_active != 'no' %}
+															<option value="{{ paymentMethod.id }}">{{ paymentMethod.name }}</option> 
+														{% endif %}
+											{% endfor %}
+											{% else %}
+												<option value selected disabled hidden>No payment method</option>
+											{% endif %}                                
 										</select>
 										
 										<div class="input-group">	
@@ -384,12 +388,16 @@
 							<div class="modal-body">
 								<form action="/settings/deletePaymentMethod" method="post">
 										<select class="choice rounded text-center" name="method" style="width: 100%;" required>
-											<option value selected disabled hidden>Select a method</option>
-											{% for paymentMethod in paymentMethods %}
-												{% if paymentMethod.is_active != 'no' %}                             
-													<option value="{{ paymentMethod.id }}">{{ paymentMethod.name }}</option>
-												{% endif %} 
-											{% endfor %}                              
+											{% if paymentMethods %}
+												<option value selected disabled hidden>Choose payment method</option>
+													{% for paymentMethod in paymentMethods %} 
+														{% if paymentMethod.is_active != 'no' %}
+															<option value="{{ paymentMethod.id }}">{{ paymentMethod.name }}</option> 
+														{% endif %}
+											{% endfor %}
+											{% else %}
+												<option value selected disabled hidden>No payment method</option>
+											{% endif %}                                   
 										</select>									
 										
 										<div class="modal-footer">
@@ -431,24 +439,24 @@
 					</div>
 				</div>
 
-				<div class="modal fade" id="deleteAllExpenseCategories" tabindex="-1" aria-labelledby="deleteAllExpenseCategoriesLabel" aria-hidden="true">
+				<div class="modal fade" id="deleteAllPaymentMethods" tabindex="-1" aria-labelledby="deleteAllPaymentMethodsLabel" aria-hidden="true">
 												
 					<div class="modal-dialog">
 						<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
 							<div class="modal-header bg-danger text-white">
-							<h5 class="modal-title" id="deleteAllExpenseCategoriesLabel"><span class="mr-1">&#10008;</span>Delete all expense Categories<i class="icon-basket ml-1"></i></h5>
+							<h5 class="modal-title" id="deleteAllPaymentMethodsLabel"><span class="mr-1">&#10008;</span>Delete all delete payment methods<i class="icon-cc-visa ml-1"></i></h5>
 							<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
 							</div>
 							<p class="my-0">Warning:</p>
-							<p class="my-0">All categories and expneses will be deleted!</p>							
+							<p class="my-0">All payment methods and expenses will be deleted!</p>							
 							<div class="modal-body">
-								<form action="/settings/deleteAllExpenseCategories" method="post">	
-										<input name="deleteAllExpenseCategories" type="text" style="display: none;">	
+								<form action="/settings/deleteAllPaymentMethods" method="post">	
+										<input name="deleteAllPaymentMethods" type="text" style="display: none;">	
 										<div class="modal-footer">
 											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-											<button type="submit" class="btn btn-danger">Delete all categories</button>
+											<button type="submit" class="btn btn-danger">Delete all payment methods</button>
 										</div>
 								</form>							
 							</div>

@@ -231,13 +231,13 @@ class Settings extends Authenticated
 		} 
 	}
     
-    public function deleteAllExpenseCategoryAction() 
+    public function deleteAllPaymentMethodsAction() 
 	{        
-        if(isset($_POST['deleteAllExpenseCategory'])) {
+        if(isset($_POST['deleteAllPaymentMethods'])) {
 			
-            Expenses::deleteAllExpenseCategories();            
+            Expenses::deleteAllPaymentMethods();            
             
-            Flash::addMessage('All categories and expenses has been deleted.');               
+            Flash::addMessage('All payment methods and expenses has been deleted.');               
            
             $this->redirect('/settings/index');			
 		} 
