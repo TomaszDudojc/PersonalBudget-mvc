@@ -34,7 +34,7 @@ class Settings extends Authenticated
         if(isset($_POST['name'])){
             if ($this->user->updateProfile($_POST)) {
 
-                Flash::addMessage('User Profile has been edited.');
+                Flash::addMessage('User profile has been edited.');
     
                 $this->redirect('/settings/index');
     
@@ -55,13 +55,15 @@ class Settings extends Authenticated
     public function deleteUserProfileAction()
     {
         if(isset($_POST['deleteProfile'])) {			
-            if (Incomes::deleteAllUserIncomes() && Incomes::deleteAllUserCategoryOfIncomes() && Expenses::deleteAllUserExpenses() && Expenses::deleteAllUserCategoryOfExpenses() && Expenses::deleteAllUserPaymentMethods()){
+            if (Incomes::deleteAllUserIncomes() && Incomes::deleteAllUserCategoryOfIncomes()
+            && Expenses::deleteAllUserExpenses() && Expenses::deleteAllUserCategoryOfExpenses()
+            && Expenses::deleteAllUserPaymentMethods()){
             $user = new User();
             $user->deleteProfile(); 
            
             Auth::logout(); 
     
-            $this->redirect('/login/new');
+            $this->redirect('/');
             } 
             else {
                  $this->redirect('/settings/index');
