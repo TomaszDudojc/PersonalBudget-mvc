@@ -55,16 +55,18 @@ class Settings extends Authenticated
     public function deleteUserProfileAction()
     {
         if(isset($_POST['deleteProfile'])) {			
-            if (Incomes::deleteAllIncomeCategories() && Expenses::deleteAllExpenseCategories() && Expenses::deleteAllPaymentMethods()){
+            Incomes::deleteAllIncomeCategories();
+            Expenses::deleteAllExpenseCategories();
+            Expenses::deleteAllPaymentMethods();
+
             $user = new User();
-            $user->deleteProfile(); 
-           
-            Auth::logout(); 
+            if($user->deleteProfile()){
+                Auth::logout(); 
     
-            $this->redirect('/');
+                $this->redirect('/');
             } 
             else {
-                 $this->redirect('/settings/index');
+                $this->redirect('/settings/index');
             }
         }           
     }
@@ -119,9 +121,12 @@ class Settings extends Authenticated
 	{        
         if(isset($_POST['deleteAllIncomeCategories'])) {
 			
-            Incomes::deleteAllIncomeCategories();            
-            
-            Flash::addMessage('All categories and incomes has been deleted.');               
+            if(Incomes::deleteAllIncomeCategories()){
+                Flash::addMessage('All categories and incomes has been deleted.'); 
+            }
+            else{
+                Flash::addMessage('No income category to delete.', Flash::WARNING); 
+            }         
            
             $this->redirect('/settings/index');			
 		} 
@@ -177,9 +182,12 @@ class Settings extends Authenticated
 	{        
         if(isset($_POST['deleteAllExpenseCategories'])) {
 			
-            Expenses::deleteAllExpenseCategories();            
-            
-            Flash::addMessage('All categories and expenses has been deleted.');               
+            if(Expenses::deleteAllExpenseCategories()){
+                Flash::addMessage('All categories and expenses has been deleted.');
+            }            
+            else{
+                Flash::addMessage('No expense category to delete.', Flash::WARNING); 
+            }                           
            
             $this->redirect('/settings/index');			
 		} 
@@ -235,9 +243,76 @@ class Settings extends Authenticated
 	{        
         if(isset($_POST['deleteAllPaymentMethods'])) {
 			
-            Expenses::deleteAllPaymentMethods();            
-            
-            Flash::addMessage('All payment methods and expenses has been deleted.');               
+            if(Expenses::deleteAllPaymentMethods()){
+                Flash::addMessage('All payment methods and expenses has been deleted.');  
+            }            
+            else{
+                Flash::addMessage('No payment method to delete.', Flash::WARNING); 
+            }                         
+           
+            $this->redirect('/settings/index');			
+		} 
+	}
+
+    public function deleteIncomesFromSelectedCategoryAction() 
+	{        
+        if(isset($_POST['category'])) {            
+			
+			$income = new Incomes($_POST);           
+
+			if($income->deleteIncomesFromSelectedCategory()){
+                Flash::addMessage('Incomes from selected category has been deleted.');
+            }
+            else{
+                Flash::addMessage('No income to delete from selected category.', Flash::WARNING); 
+            }         
+           
+            $this->redirect('/settings/index');			
+		} 
+	}
+
+    public function deleteAllIncomesAction() 
+	{        
+        if(isset($_POST['deleteAllIncomes'])) {
+			
+            if(Incomes::deleteAllIncomes()){
+                Flash::addMessage('All incomes has been deleted.');  
+            }            
+            else{
+                Flash::addMessage('No income to delete.', Flash::WARNING); 
+            }                         
+           
+            $this->redirect('/settings/index');			
+		} 
+	}
+
+    public function deleteExpensesFromSelectedCategoryAction() 
+	{        
+        if(isset($_POST['category'])) {            
+			
+			$expense = new Expenses($_POST);           
+
+			if($expense->deleteExpensesFromSelectedCategory()){
+                Flash::addMessage('Expenses from selected category has been deleted.');
+            }
+            else{
+                Flash::addMessage('No expense to delete from selected category.', Flash::WARNING); 
+            }         
+           
+            $this->redirect('/settings/index');			
+		} 
+	}
+
+    public function deleteAllIExpensesAction() 
+	{        
+        if(isset($_POST['deleteAllExpenses'])) {
+			
+            if(Expenses::deleteAllExpenses()){
+                Flash::addMessage('All expenses has been deleted.');  
+            }            
+            else{
+                Flash::addMessage('No expense to delete.', Flash::WARNING); 
+            }                         
            
             $this->redirect('/settings/index');			
 		} 
