@@ -15,44 +15,24 @@
                 </header>
             
                 <form action="/income/create" method="post">	
-                    
-                    <div class="input-group">
-                        <div class="input-group-prepend ">
-                            <span class="input-group-text  rounded-left icon"><i class="icon-gauge"></i></span>
-                        </div>
-                        <input type="number" class="form-control  rounded-right " step="0.01" min="0.01" name="amount" value="{{ income.amount }}" placeholder="Amount" required>	
-                    </div>
-                        
-                    <div class="input-group">
-                        <div class="input-group-prepend">				
-                            <span class="input-group-text  rounded-left icon"><i class="icon-calendar"></i></span>
-                        </div>
-                        <input type="date" class="form-control  rounded-right" name="date" value="{{ currentDate }}" required>
-                    </div>		
-                    
-                    <div class="input-group">
-                        <div class="input-group-prepend">				
-                            <span class="input-group-text  rounded-left icon"><i class="icon-ok"></i></span>
-                        </div>
-                        <select class="choice rounded-right" name="category" required>
-                        	{% if incomeCategories %}					
-                                <option value selected disabled hidden>Select a category</option>                          					
+                   
+                    <input type="number" class="form-control" step="0.01" min="0.01" name="amount" value="{{ income.amount }}" placeholder="&#xE80C; Amount" style="font-family: 'Fontello';" required />
+
+                    <input type="date" class="form-control" name="date" value="{{ currentDate }}" required>
+
+                    <select class="choice rounded" name="category" style="font-family: 'Fontello';" required />
+                        {% if incomeCategories %}					
+                             <option value selected disabled hidden>&#xE807; Select a category</option>                          					
                                 {% for incomeCategory in incomeCategories %}                             
                                     <option value="{{ incomeCategory.id }}">{{ incomeCategory.name }}</option> 
                                 {% endfor %}
-                            {% else %}
-                                <option value selected disabled hidden>No income category</option>
-                            {% endif %}
-                        </select>
-                    </div>	
-    
-                    <div class="input-group">	
-                        <div class="input-group-prepend ">
-                            <span class="input-group-text  rounded-left icon"><i class="icon-pencil"></i></span>
-                        </div>
-                        <input type="text" class="form-control  rounded-right" name="comment" value="{{ income.comment }}" placeholder="Comment">	
-                    </div>				
-                    
+                        {% else %}
+                            <option value selected disabled hidden>No income category</option>
+                        {% endif %}
+                    </select>
+
+                    <input type="text" class="form-control" name="comment" value="{{ income.comment }}" placeholder="&#xE808; Comment"  style="font-family: 'Fontello';" />
+
                     <a href="/income/index"><button  type="button" class="btn btn-secondary btn-lg float-left mt-3" style="width: 94px;">Cancel</button></a>
                     <button  type="submit" class="btn btn-success btn-lg  float-right mt-3" style="width: 94px;" >Add</button>
                                         

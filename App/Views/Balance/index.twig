@@ -57,7 +57,6 @@
 				}
 			{% endif %}
 
-
 			const el = document.getElementById('selectPeriod');
 			const box = document.getElementById('dateRange');
 			el.addEventListener('change', function handleChange(event) {
@@ -85,34 +84,26 @@
 					<header>
 						<h2 class="font-weight-bold rounded bg-secondary">Check balance<i class="icon-chart-bar mr-3"></i></h2>
 					</header>
-					<form action="/balance/index" method="post">					
-						<div class="input-group">
-							<div class="input-group-prepend">				
-								<span class="input-group-text rounded-left icon" style="width: 50px;"><i class="icon-calendar"></i></span>
-							</div>
-							<select class="choice rounded-right" id="selectPeriod" name="period" required style="width:280px">
-								<option value selected disabled hidden>Choose period</option>					
-								<option value="current_month">Current month</option>
-								<option value="last_month">Previous month</option>
-								<option value="current_year">Current year</option>
-								<option value="custom_period">Custom</option>					
-							</select>							
-							<div id="dateRange" style="visibility: hidden;">
-								<div class="input-group">
-									<div class="input-group-prepend">				
-										<span class="input-group-text rounded-left icon" style="width: 50px;">From: </span>
-									</div>
-								<input class="rounded-right" type="date" name="start_date" style="width:280px" value="{{ start_date }}">
-								</div>				
-								<div class="input-group">
-									<div class="input-group-prepend">				
-										<span class="input-group-text rounded-left icon" style="width: 50px;">To: </span>
-									</div>
-								<input class="rounded-right" type="date" name="end_date" style="width:280px" value="{{ end_date }}">
-								</div>
-							</div>
+					
+					<form action="/balance/index" method="post">
+
+						<select class="choice rounded" id="selectPeriod" name="period" style="font-family: 'Fontello';" required>
+							<option value selected disabled hidden>&#xE80B; Choose period</option>					
+							<option value="current_month">Current month</option>
+							<option value="last_month">Previous month</option>
+							<option value="current_year">Current year</option>
+							<option value="custom_period">Custom</option>					
+						</select>
+
+						<div id="dateRange" style="visibility: hidden;">
+															
+							<input class="form-control" type="date" name="start_date" value="{{ start_date }}">
+								
+							<input class="form-control" type="date" name="end_date" value="{{ end_date }}">
+							
 							<button type="submit" class="btn login">Show balance</button>
 						</div>
+
 					</form>			
 				</div>
 				

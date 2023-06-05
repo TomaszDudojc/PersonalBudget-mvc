@@ -16,61 +16,36 @@
 		
 			<form action="/expense/create" method="post">	
 				
-				<div class="input-group">
-					<div class="input-group-prepend ">
-						<span class="input-group-text  rounded-left icon"><i class="icon-gauge"></i></span>
-					</div>			
-					<input type="number" class="form-control  rounded-right " step="0.01" min="0.01" name="amount" value="{{ expense.amount }}" placeholder="Amount" required>	
-				</div>
-					
-				<div class="input-group">
-					<div class="input-group-prepend">				
-						<span class="input-group-text  rounded-left icon"><i class="icon-calendar"></i></span>
-					</div>
-					<input type="date" class="form-control  rounded-right" name="date" value="{{ currentDate }}" required>
-				</div>				
-				
-				<div class="input-group">
-					<div class="input-group-prepend">				
-						<span class="input-group-text  rounded-left icon"><i class="icon-cc-visa"></i></span>
-					</div>
-					<select class="choice rounded-right" name="method" required>
-						{% if paymentMethods %}
-							<option value selected disabled hidden>Choose payment method</option>
-								{% for paymentMethod in paymentMethods %} 
-									{% if paymentMethod.is_active != 'no' %}
-										<option value="{{ paymentMethod.id }}">{{ paymentMethod.name }}</option> 
-									{% endif %}
-								{% endfor %}
-						{% else %}
-							<option value selected disabled hidden>No payment method</option>
-						{% endif %}      
-					</select>
-				</div>	
+				<input type="number" class="form-control" step="0.01" min="0.01" name="amount" value="{{ expense.amount }}" placeholder="&#xE80C; Amount" style="font-family: 'Fontello';" required />
 
-				<div class="input-group">
-					<div class="input-group-prepend">				
-						<span class="input-group-text  rounded-left icon"><i class="icon-ok"></i></span>
-					</div>
-					<select class="choice rounded-right" name="category" required>						
-						{% if expenseCategories %}	
-							<option value selected disabled hidden>Select a category</option>
-								{% for  expenseCategory in  expenseCategories %}                             
-									<option value="{{ expenseCategory.id }}">{{  expenseCategory.name }}</option> 
-								{% endfor %}
-						{% else %}
-                            <option value selected disabled hidden>No expense category</option>
-                        {% endif %}      		
-					</select>
-				</div>	
+				<input type="date" class="form-control" name="date" value="{{ currentDate }}" required />
 
-				<div class="input-group">	
-					<div class="input-group-prepend ">
-						<span class="input-group-text  rounded-left icon"><i class="icon-pencil"></i></span>
-					</div>
-					<input type="text" class="form-control  rounded-right" name="comment" value="{{ expense.comment }}"placeholder="Comment">	
-				</div>				
-				
+				<select class="choice rounded" name="method" style="font-family: 'Fontello';" required />
+					{% if paymentMethods %}
+						<option value selected disabled hidden>&#xF1F0; Choose payment method</option>
+							{% for paymentMethod in paymentMethods %} 
+								{% if paymentMethod.is_active != 'no' %}
+									<option value="{{ paymentMethod.id }}">{{ paymentMethod.name }}</option> 
+								{% endif %}
+							{% endfor %}
+					{% else %}
+						<option value selected disabled hidden>No payment method</option>
+					{% endif %}      
+				</select>
+
+				<select class="choice rounded" name="category" style="font-family: 'Fontello';" required>						
+					{% if expenseCategories %}	
+						<option value selected disabled hidden>&#xE807; Select a category</option>
+							{% for  expenseCategory in  expenseCategories %}                             
+								<option value="{{ expenseCategory.id }}">{{  expenseCategory.name }}</option> 
+							{% endfor %}
+					{% else %}
+                        <option value selected disabled hidden>No expense category</option>
+                    {% endif %}      		
+				</select>
+
+				<input type="text" class="form-control" name="comment" value="{{ expense.comment }}" placeholder="&#xE808; Comment" style="font-family: 'Fontello';" />
+
 				<a href="/expense/index"><button  type="button" class="btn btn-secondary btn-lg float-left mt-3" style="width: 94px;">Cancel</button></a>
 				<button  type="submit" class="btn btn-success btn-lg  float-right mt-3" style="width: 94px;">Add</button>
 									

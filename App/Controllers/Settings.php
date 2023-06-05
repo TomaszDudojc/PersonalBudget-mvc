@@ -63,7 +63,7 @@ class Settings extends Authenticated
             if($user->deleteProfile()){
                 Auth::logout(); 
     
-                $this->redirect('/');
+                $this->redirect('/login/new');
             } 
             else {
                 $this->redirect('/settings/index');

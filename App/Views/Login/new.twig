@@ -11,23 +11,13 @@
         </header>
 
         <form action="/login/create" method="post">
-
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text rounded-left icon"><i class="icon-mail-3"></i></span>
-                </div>
-                <input type="email" id="inputEmail" name="email" placeholder="Email address" autofocus value="{{ email }}" class="rounded-right" >
-            </div>
-            <div class="input-group">
-                <div class="input-group-prepend">				
-                    <span class="input-group-text  rounded-left icon"><i class="icon-lock"></i></span>
-                </div>
-                <input type="password" id="inputPassword" name="password" placeholder="Password" class="rounded-right"  />
-            </div>
+            
+            <input type="email" id="inputEmail" name="email" placeholder="&#xE809; Email address" autofocus value="{{ email }}" class="form-control" style="font-family: 'Fontello';" />
+            <input type="password" id="inputPassword" name="password" placeholder="&#xE806; Password" class="form-control" style="font-family: 'Fontello';" />            
             <div class="checkbox mt-2">
                 <label>
                     <div class="input-group">
-                    <input type="checkbox" name="remember_me" {% if remember_me %} checked="checked"{% endif %} /><h5 class="rounded bg-white my-0 text-center" style="color: #060B95; width: 315px;">Remember me</h5>
+                    <input type="checkbox" style="width: 20px; height: 20px;" class="m-auto" name="remember_me" {% if remember_me %} checked="checked"{% endif %} /><h5 class="rounded bg-white my-0 text-center" style="color: #060B95; width: 330px;">Remember me</h5>
                     </div>
                 </label>
             </div>

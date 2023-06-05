@@ -73,7 +73,7 @@ p
 
 .inputContainer
 {
-	width: 330px;
+	width: 350px;
 	margin: 10px  auto;	
 	padding-bottom: 100px;
 }
@@ -82,7 +82,7 @@ p
 
 button.register
 {	
-	width: 330px;
+	width: 350px;
 	background-color: #008000;
 	font-size: 20px;
 	color: white;
@@ -141,20 +141,6 @@ input.register:focus:-ms-input-placeholder
     color: #008000;
 }
 
-.iconregister
-{	
-	margin-top: 10px;	
-	font-size: 17px;	
-	padding: 5px 3px;
-	border: 1px solid #9DC7F7;
-	border: 1px solid  #c2cce8;
-	background-color: #e9f3e9;
-	color: #008000;
-	width: 30px;
-	box-sizing: border-box;
-	height: 32px;	
-}
-
 /* //////////////////  FOOTER  /////////////////////// */
 
 .info
@@ -182,11 +168,11 @@ input[type=date],
 .choice
 {	
 	font-family: 'Lato', sans-serif;
-	width: 300px;	
-	height: 32px;	
+	width: 350px;	
+	height: 36px;	
 	color: #060B95;
 	border: 1px solid  #c2cce8;
-	font-size: 17px;	
+	font-size: 20px;	
 	padding: 3px;
 	box-sizing: border-box;
 	outline: none;
@@ -209,7 +195,7 @@ input[type=date]:focus,
 
 button.login
 {	
-	width: 330px;
+	width: 350px;
 	background-color: #060B95;
 	font-size: 20px;
 	color: white;
@@ -271,14 +257,14 @@ input:focus:-ms-input-placeholder
 .icon
 {	
 	margin-top: 10px;	
-	font-size: 17px;	
+	font-size: 20px;	
 	padding: 5px 3px;	
 	border: 1px solid  #c2cce8;
 	background-color: #F1F4F9;
 	color: #060B95;
-	width: 30px;	
+	width: 36px;	
 	box-sizing: border-box;
-	height: 32px;	
+	height: 36px;	
 }
 
 /* //////////////////  MENU  /////////////////////// */
@@ -303,7 +289,7 @@ input:focus:-ms-input-placeholder
 option
 {	
 	background-color: white;
-	height: 32px;		 
+	height: 36px;		 
 }
 
 /* //////////////////  Balance /////////////////////// */
