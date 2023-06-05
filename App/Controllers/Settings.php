@@ -24,7 +24,7 @@ class Settings extends Authenticated
 			'incomeCategories' => Incomes::getIncomeCategoriesOfUser(),
             'incomeCategories' => Incomes::getIncomeCategoriesOfUser(),
             'expenseCategories' => Expenses::getExpenseCategoriesOfUser(),
-            'paymentMethods' => Expenses::getPaymentMethodsOfUser(),
+            'paymentMethods' => Expenses::getPaymentMethodsOfUser(),                       
             'user' => $this->user			
 		]);
     }
@@ -303,7 +303,7 @@ class Settings extends Authenticated
 		} 
 	}
 
-    public function deleteAllIExpensesAction() 
+    public function deleteAllExpensesAction() 
 	{        
         if(isset($_POST['deleteAllExpenses'])) {
 			

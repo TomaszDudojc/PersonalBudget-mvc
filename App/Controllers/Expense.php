@@ -15,7 +15,7 @@ class Expense extends Authenticated
     {
         View::renderTemplate('Expense/index.twig', [							
 			'expenseCategories' => Expenses::getExpenseCategoriesOfUser(),
-            'paymentMethods' => Expenses::getpaymentMethodsOfUser(),
+            'paymentMethods' => Expenses::getpaymentMethodsOfUser(),			
 			'currentDate' => Dates::getCurrentDate()				
 		]);
     }
