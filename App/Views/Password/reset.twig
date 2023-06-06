@@ -40,7 +40,7 @@
     <div class="inputContainer mt-3">			
 			
         <header>
-            <h2 class="font-weight-bold rounded">Reset password</h2>
+            <h2 class="font-weight-bold rounded bg-secondary">Reset password</h2>
         </header>
 
     {% if user.errors is not empty %}
@@ -55,16 +55,8 @@
         <form method="post" id="formPassword" action="/password/reset-password">
 
             <input type="hidden" name="token" value="{{ token }}" />
-
-            <!--
-            <div class="input-group">
-                <div class="input-group-prepend">				
-                    <span class="input-group-text rounded-left icon"><i class="icon-lock"></i></span>
-                </div>
-                <input type="password" id="inputPassword" name="password" placeholder="Password" class="form-control" />
-            </div>
-            -->            
-            <input type="password" id="inputPassword" name="password" placeholder="Password" class="form-control" style="width: 330px;" />
+           
+            <input type="password" id="inputPassword" name="password" placeholder="&#xE806; Password" class="form-control" style="font-family: 'Fontello';" />
 
             <button type="submit" class="btn login">Reset password</button>
 

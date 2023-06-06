@@ -99,9 +99,11 @@ class User extends \Core\Model
     protected function setItemsCategory($id, $nameOfTableWithCategoriesAssignedToUsers, $nameOfTableWithDefaultCategories)
     {
         $db = static::getDB(); 
-        $addItemsCategory = $db->query("INSERT INTO $nameOfTableWithCategoriesAssignedToUsers (name) SELECT name FROM  $nameOfTableWithDefaultCategories"); 
+        $addItemsCategory = $db->query("INSERT INTO $nameOfTableWithCategoriesAssignedToUsers (name)
+        SELECT name FROM  $nameOfTableWithDefaultCategories"); 
         $numberOfItemsCategoryDefault = $addItemsCategory->rowCount();
-        $db->query("UPDATE $nameOfTableWithCategoriesAssignedToUsers SET `user_id` = '$id' ORDER BY id DESC LIMIT $numberOfItemsCategoryDefault");
+        $db->query("UPDATE $nameOfTableWithCategoriesAssignedToUsers SET `user_id` = '$id' ORDER BY id
+        DESC LIMIT $numberOfItemsCategoryDefault");
     }
 
 

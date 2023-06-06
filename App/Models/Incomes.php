@@ -24,8 +24,7 @@ class Incomes extends \Core\Model
     public function save()
     {		
         $this->amount = filter_input(INPUT_POST, 'amount');
-        $this->date =  filter_input(INPUT_POST, 'date');
-        //$idOfIncomeCategory = filter_input(INPUT_POST, 'category'); 
+        $this->date =  filter_input(INPUT_POST, 'date');         
         $this->category = filter_input(INPUT_POST, 'category');   
         $this->comment =  filter_input(INPUT_POST, 'comment');      
        
@@ -34,8 +33,7 @@ class Incomes extends \Core\Model
 		$db = static::getDB();
         $stmt = $db->prepare($sql);
 
-        $stmt->bindValue(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
-        //$stmt->bindValue(':idOfIncomeCategory',  $idOfIncomeCategory, PDO::PARAM_INT);
+        $stmt->bindValue(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);        
         $stmt->bindValue(':idOfIncomeCategory',  $this->category, PDO::PARAM_INT);
         $stmt->bindValue(':amount', $this->amount, PDO::PARAM_STR);
         $stmt->bindValue(':date', $this->date, PDO::PARAM_STR);
@@ -140,16 +138,16 @@ class Incomes extends \Core\Model
     {
         $this->category = filter_input(INPUT_POST, 'category');
                
-       if($this->deleteAllIncomesFromCategory()){
-            $sql = "DELETE FROM incomes_category_assigned_to_users WHERE id = :id";
+        $this->deleteAllIncomesFromCategory();
+            
+        $sql = "DELETE FROM incomes_category_assigned_to_users WHERE id = :id";
+            
+        $db = static::getDB();
 
-            $db = static::getDB();
-
-            $stmt = $db->prepare($sql);    
-            $stmt->bindValue(':id', $this->category, PDO::PARAM_INT);            
+        $stmt = $db->prepare($sql);    
+        $stmt->bindValue(':id', $this->category, PDO::PARAM_INT);            
         
-            return $stmt->execute();  
-       }        
+        return $stmt->execute();
     }
 
     protected function deleteAllIncomesFromCategory() 
@@ -161,7 +159,13 @@ class Incomes extends \Core\Model
         $stmt = $db->prepare($sql);        
         $stmt->bindValue(':id', $this->category, PDO::PARAM_INT);
         
-        return $stmt->execute(); 
+        $stmt->execute();
+
+        $result = $stmt->rowCount();
+        		
+        if($result>0){
+        return true;
+        }
     }
 
     protected function existCategory() 
@@ -177,14 +181,14 @@ class Incomes extends \Core\Model
 
 		$stmt->execute();	
 		
-		$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-		
-		if(count($result)>0){
-		return true;
+        $result = $stmt->rowCount();
+        		
+        if($result>0){
+        return true;
         }
     } 
     
-    public static function deleteAllUserIncomes()
+    public static function deleteAllIncomes()
 	{
 		$sql = "DELETE FROM incomes WHERE user_id = :user_id";
 								
@@ -193,18 +197,40 @@ class Incomes extends \Core\Model
        
         $stmt->bindValue(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);        
 
-        return $stmt->execute();   
+        $stmt->execute();
+        
+        $result = $stmt->rowCount();
+        		
+        if($result>0){
+        return true;
+        }	
 	}
 
-    public static function deleteAllUserCategoryOfIncomes()
+    public static function deleteAllIncomeCategories()
 	{
-		$sql = "DELETE FROM incomes_category_assigned_to_users WHERE user_id = :user_id";
+        static::deleteAllIncomes();
+        $sql = "DELETE FROM incomes_category_assigned_to_users WHERE user_id = :user_id";
 								
-		$db = static::getDB();
+        $db = static::getDB();
         $stmt = $db->prepare($sql);    
-       
+           
         $stmt->bindValue(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);        
-
-        return $stmt->execute();  
-	} 
+    
+        $stmt->execute();
+       
+        $result = $stmt->rowCount();
+        		
+        if($result>0){
+        return true;
+        }	
+	}
+    
+    public function deleteIncomesFromSelectedCategory() 
+    {
+        $this->category = filter_input(INPUT_POST, 'category');
+               
+        if($this->deleteAllIncomesFromCategory()){
+            return true;
+        }        
+    }
 }

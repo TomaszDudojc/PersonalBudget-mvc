@@ -25,31 +25,30 @@ class Balance extends Authenticated
         }        
     
         $dateRange = Dates::validateDate($period, $currentYear, $currentMonth);
-        $startDate = $dateRange['start_date'];
-        $endDate = $dateRange['end_date'];
+        $_SESSION['start_date'] = $dateRange['start_date'];
+        $_SESSION['end_date'] = $dateRange['end_date'];       
 
-        if($startDate > $endDate){
-            Flash::addMessage("Invalid date range: ".$startDate." =/=> ".$endDate.". Starting date must be earlier than end date!", Flash::WARNING);
+        if($_SESSION['start_date'] > $_SESSION['end_date']){
+            Flash::addMessage("Invalid date range: ".$_SESSION['start_date']." =/=> ".$_SESSION['end_date'].". Start date must be earlier than end date!", Flash::WARNING);
             View::renderTemplate('Balance/index.twig', [
-                'start_date' => $startDate,
-                'end_date' => $endDate
+                'start_date' => $_SESSION['start_date'],
+                'end_date' => $_SESSION['end_date']
             ]);
         }
         else{
             View::renderTemplate('Balance/index.twig', [		
-                'start_date' => $startDate,
-                'end_date' => $endDate,                
-                'incomeCategoriesFromSelectedPeriod' => Balances::getIncomeCategoriesFromSelectedDateRange($startDate, $endDate),
-                'incomesFromSelectedPeriod' => Balances::getIncomesFromSelectedDateRange($startDate, $endDate),
-                'amountOfAllIncomesFromSelectedPeriod' => Balances::getAmountOfAllIncomesFromSelectedDateRange($startDate, $endDate),
-                'expenseCategoriesFromSelectedPeriod' => Balances::getExpenseCategoriesFromSelectedDateRange($startDate, $endDate),
-                'expensesFromSelectedPeriod' => Balances::getExpensesFromSelectedDateRange($startDate, $endDate),
-                'amountOfAllExpensesFromSelectedPeriod' => Balances::getAmountOfAllExpensesFromSelectedDateRange($startDate, $endDate),
-                'balance' => Balances::getBalanceFromSelectedDateRange($startDate, $endDate),
+                'start_date' => $_SESSION['start_date'],
+                'end_date' => $_SESSION['end_date'],                
+                'incomeCategoriesFromSelectedPeriod' => Balances::getIncomeCategoriesFromSelectedDateRange($_SESSION['start_date'], $_SESSION['end_date']),
+                'incomesFromSelectedPeriod' => Balances::getIncomesFromSelectedDateRange($_SESSION['start_date'], $_SESSION['end_date']),
+                'amountOfAllIncomesFromSelectedPeriod' => Balances::getAmountOfAllIncomesFromSelectedDateRange($_SESSION['start_date'], $_SESSION['end_date']),
+                'expenseCategoriesFromSelectedPeriod' => Balances::getExpenseCategoriesFromSelectedDateRange($_SESSION['start_date'], $_SESSION['end_date']),
+                'expensesFromSelectedPeriod' => Balances::getExpensesFromSelectedDateRange($_SESSION['start_date'], $_SESSION['end_date']),
+                'amountOfAllExpensesFromSelectedPeriod' => Balances::getAmountOfAllExpensesFromSelectedDateRange($_SESSION['start_date'], $_SESSION['end_date']),
+                'balance' => Balances::getBalanceFromSelectedDateRange($_SESSION['start_date'], $_SESSION['end_date']),
                 'incomeCategories' => Incomes::getIncomeCategoriesOfUser(),
                 'expenseCategories' => Expenses::getExpenseCategoriesOfUser(),
-                'paymentMethods' => Expenses::getPaymentMethodsOfUser(),
-                'currentDate' => Dates::getCurrentDate()				
+                'paymentMethods' => Expenses::getPaymentMethodsOfUser()                				
             ]);  
         }         
     }
@@ -62,9 +61,22 @@ class Balance extends Authenticated
 
 			$income->delete();
 
-			Flash::addMessage('Income has been removed.');
+			Flash::addMessage('Income has been deleted.');
 
-			$this->redirect('/balance/index'); 
+			View::renderTemplate('Balance/index.twig', [		
+                'start_date' => $_SESSION['start_date'],
+                'end_date' => $_SESSION['end_date'],                
+                'incomeCategoriesFromSelectedPeriod' => Balances::getIncomeCategoriesFromSelectedDateRange($_SESSION['start_date'], $_SESSION['end_date']),
+                'incomesFromSelectedPeriod' => Balances::getIncomesFromSelectedDateRange($_SESSION['start_date'], $_SESSION['end_date']),
+                'amountOfAllIncomesFromSelectedPeriod' => Balances::getAmountOfAllIncomesFromSelectedDateRange($_SESSION['start_date'], $_SESSION['end_date']),
+                'expenseCategoriesFromSelectedPeriod' => Balances::getExpenseCategoriesFromSelectedDateRange($_SESSION['start_date'], $_SESSION['end_date']),
+                'expensesFromSelectedPeriod' => Balances::getExpensesFromSelectedDateRange($_SESSION['start_date'], $_SESSION['end_date']),
+                'amountOfAllExpensesFromSelectedPeriod' => Balances::getAmountOfAllExpensesFromSelectedDateRange($_SESSION['start_date'], $_SESSION['end_date']),
+                'balance' => Balances::getBalanceFromSelectedDateRange($_SESSION['start_date'], $_SESSION['end_date']),
+                'incomeCategories' => Incomes::getIncomeCategoriesOfUser(),
+                'expenseCategories' => Expenses::getExpenseCategoriesOfUser(),
+                'paymentMethods' => Expenses::getPaymentMethodsOfUser()                				
+            ]);   
 		} 
 	}
 
@@ -78,7 +90,20 @@ class Balance extends Authenticated
 
 			Flash::addMessage('Income has been edited.');
 
-			$this->redirect('/balance/index');
+			View::renderTemplate('Balance/index.twig', [		
+                'start_date' => $_SESSION['start_date'],
+                'end_date' => $_SESSION['end_date'],                
+                'incomeCategoriesFromSelectedPeriod' => Balances::getIncomeCategoriesFromSelectedDateRange($_SESSION['start_date'], $_SESSION['end_date']),
+                'incomesFromSelectedPeriod' => Balances::getIncomesFromSelectedDateRange($_SESSION['start_date'], $_SESSION['end_date']),
+                'amountOfAllIncomesFromSelectedPeriod' => Balances::getAmountOfAllIncomesFromSelectedDateRange($_SESSION['start_date'], $_SESSION['end_date']),
+                'expenseCategoriesFromSelectedPeriod' => Balances::getExpenseCategoriesFromSelectedDateRange($_SESSION['start_date'], $_SESSION['end_date']),
+                'expensesFromSelectedPeriod' => Balances::getExpensesFromSelectedDateRange($_SESSION['start_date'], $_SESSION['end_date']),
+                'amountOfAllExpensesFromSelectedPeriod' => Balances::getAmountOfAllExpensesFromSelectedDateRange($_SESSION['start_date'], $_SESSION['end_date']),
+                'balance' => Balances::getBalanceFromSelectedDateRange($_SESSION['start_date'], $_SESSION['end_date']),
+                'incomeCategories' => Incomes::getIncomeCategoriesOfUser(),
+                'expenseCategories' => Expenses::getExpenseCategoriesOfUser(),
+                'paymentMethods' => Expenses::getPaymentMethodsOfUser()                				
+            ]);  
 		} 
 	}
 
@@ -90,9 +115,22 @@ class Balance extends Authenticated
 
 			$expense->delete();
 
-			Flash::addMessage('Expense has been removed.');
+			Flash::addMessage('Expense has been deleted.');
 
-			$this->redirect('/balance/index'); 
+			View::renderTemplate('Balance/index.twig', [		
+                'start_date' => $_SESSION['start_date'],
+                'end_date' => $_SESSION['end_date'],                
+                'incomeCategoriesFromSelectedPeriod' => Balances::getIncomeCategoriesFromSelectedDateRange($_SESSION['start_date'], $_SESSION['end_date']),
+                'incomesFromSelectedPeriod' => Balances::getIncomesFromSelectedDateRange($_SESSION['start_date'], $_SESSION['end_date']),
+                'amountOfAllIncomesFromSelectedPeriod' => Balances::getAmountOfAllIncomesFromSelectedDateRange($_SESSION['start_date'], $_SESSION['end_date']),
+                'expenseCategoriesFromSelectedPeriod' => Balances::getExpenseCategoriesFromSelectedDateRange($_SESSION['start_date'], $_SESSION['end_date']),
+                'expensesFromSelectedPeriod' => Balances::getExpensesFromSelectedDateRange($_SESSION['start_date'], $_SESSION['end_date']),
+                'amountOfAllExpensesFromSelectedPeriod' => Balances::getAmountOfAllExpensesFromSelectedDateRange($_SESSION['start_date'], $_SESSION['end_date']),
+                'balance' => Balances::getBalanceFromSelectedDateRange($_SESSION['start_date'], $_SESSION['end_date']),
+                'incomeCategories' => Incomes::getIncomeCategoriesOfUser(),
+                'expenseCategories' => Expenses::getExpenseCategoriesOfUser(),
+                'paymentMethods' => Expenses::getPaymentMethodsOfUser()                				
+            ]);   
 		} 
 	}
 
@@ -105,8 +143,21 @@ class Balance extends Authenticated
 			$expense->edit();
 
 			Flash::addMessage('Expense has been edited.');
-
-			$this->redirect('/balance/index');          
+			
+            View::renderTemplate('Balance/index.twig', [		
+                'start_date' => $_SESSION['start_date'],
+                'end_date' => $_SESSION['end_date'],                
+                'incomeCategoriesFromSelectedPeriod' => Balances::getIncomeCategoriesFromSelectedDateRange($_SESSION['start_date'], $_SESSION['end_date']),
+                'incomesFromSelectedPeriod' => Balances::getIncomesFromSelectedDateRange($_SESSION['start_date'], $_SESSION['end_date']),
+                'amountOfAllIncomesFromSelectedPeriod' => Balances::getAmountOfAllIncomesFromSelectedDateRange($_SESSION['start_date'], $_SESSION['end_date']),
+                'expenseCategoriesFromSelectedPeriod' => Balances::getExpenseCategoriesFromSelectedDateRange($_SESSION['start_date'], $_SESSION['end_date']),
+                'expensesFromSelectedPeriod' => Balances::getExpensesFromSelectedDateRange($_SESSION['start_date'], $_SESSION['end_date']),
+                'amountOfAllExpensesFromSelectedPeriod' => Balances::getAmountOfAllExpensesFromSelectedDateRange($_SESSION['start_date'], $_SESSION['end_date']),
+                'balance' => Balances::getBalanceFromSelectedDateRange($_SESSION['start_date'], $_SESSION['end_date']),
+                'incomeCategories' => Incomes::getIncomeCategoriesOfUser(),
+                'expenseCategories' => Expenses::getExpenseCategoriesOfUser(),
+                'paymentMethods' => Expenses::getPaymentMethodsOfUser()                				
+            ]);  
 		} 
 	}	
 }
