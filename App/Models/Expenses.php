@@ -23,7 +23,7 @@ class Expenses extends \Core\Model
 
     public static function getPaymentMethodsOfUser()
     {
-        $sql = "SELECT * FROM payment_methods_assigned_to_users WHERE user_id = :user_id ORDER BY name";
+        $sql = "SELECT * FROM payment_methods_assigned_to_users WHERE user_id = :user_id and is_active != 'no' ORDER BY name";
 
         $db = static::getDB();
 		$paymentMethods = $db->prepare($sql);
@@ -199,13 +199,8 @@ class Expenses extends \Core\Model
 		$stmt->bindValue(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);       
         $stmt->bindValue(':new_name', $this->new_category, PDO::PARAM_STR);
 
-		$stmt->execute();	
+		$stmt->execute();
 		
-		/*$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-		
-		if(count($result)>0){
-		return true;
-        }*/
         $result = $stmt->rowCount();
         		
         if($result>0){
@@ -290,13 +285,8 @@ class Expenses extends \Core\Model
 		$stmt->bindValue(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);       
         $stmt->bindValue(':new_name', $this->new_method, PDO::PARAM_STR);
 
-		$stmt->execute();	
+		$stmt->execute();
 		
-		/*$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-		
-		if(count($result)>0){
-		return true;
-        }*/
         $result = $stmt->rowCount();
         		
         if($result>0){
@@ -314,13 +304,8 @@ class Expenses extends \Core\Model
 		      
         $stmt->bindValue(':id', $this->method, PDO::PARAM_INT);
 
-		$stmt->execute();	
+		$stmt->execute();
 		
-		/*$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-		
-		if(count($result)>0){
-		return true;
-        }*/
         $result = $stmt->rowCount();
         		
         if($result>0){
@@ -357,12 +342,7 @@ class Expenses extends \Core\Model
         $stmt->bindValue(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);        
     
         $stmt->execute();
-
-        /*$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-		
-        if(count($result)>0){
-        return true;
-        }*/
+       
         $result = $stmt->rowCount();
         		
         if($result>0){
@@ -381,12 +361,7 @@ class Expenses extends \Core\Model
         $stmt->bindValue(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);        
     
         $stmt->execute();
-
-        /*$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-		
-        if(count($result)>0){
-        return true;
-        }*/
+        
         $result = $stmt->rowCount();
         		
         if($result>0){

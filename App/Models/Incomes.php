@@ -181,11 +181,6 @@ class Incomes extends \Core\Model
 
 		$stmt->execute();	
 		
-		/*$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-		
-		if(count($result)>0){
-		return true;
-        }*/
         $result = $stmt->rowCount();
         		
         if($result>0){
@@ -222,12 +217,7 @@ class Incomes extends \Core\Model
         $stmt->bindValue(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);        
     
         $stmt->execute();
-
-       /* $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-		
-        if(count($result)>0){
-        return true;            
-        }*/
+       
         $result = $stmt->rowCount();
         		
         if($result>0){

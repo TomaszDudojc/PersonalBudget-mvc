@@ -92,7 +92,7 @@
 														<option value="{{ incomeCategory.id }}">{{ incomeCategory.name }}</option> 
 													{% endfor %}
 											{% else %}
-                                				<option value selected disabled hidden>No income category</option>
+                                				<option value selected disabled hidden>&#9785; No income category</option>
                            					{% endif %}                            
 										</select>
 										
@@ -135,7 +135,7 @@
 														<option value="{{ incomeCategory.id }}">{{ incomeCategory.name }}</option> 
 													{% endfor %}
 											{% else %}
-                                				<option value selected disabled hidden>No income category</option>
+                                				<option value selected disabled hidden>&#9785; No income category</option>
                            					{% endif %}                                  
 										</select>									
 										
@@ -222,7 +222,7 @@
 														<option value="{{ expenseCategory.id }}">{{  expenseCategory.name }}</option> 
 													{% endfor %}
 											{% else %}
-												<option value selected disabled hidden>No expense category</option>
+												<option value selected disabled hidden>&#9785; No expense category</option>
 											{% endif %}      	                            
 										</select>
 										
@@ -265,7 +265,7 @@
 														<option value="{{ expenseCategory.id }}">{{  expenseCategory.name }}</option> 
 													{% endfor %}
 											{% else %}
-												<option value selected disabled hidden>No expense category</option>
+												<option value selected disabled hidden>&#9785; No expense category</option>
 											{% endif %}      	                            
 										</select>						
 										
@@ -349,12 +349,10 @@
 											{% if paymentMethods %}
 												<option value selected disabled hidden>Choose payment method</option>
 													{% for paymentMethod in paymentMethods %} 
-														{% if paymentMethod.is_active != 'no' %}
-															<option value="{{ paymentMethod.id }}">{{ paymentMethod.name }}</option> 
-														{% endif %}
-												{% endfor %}
+														<option value="{{ paymentMethod.id }}">{{ paymentMethod.name }}</option>
+													{% endfor %}
 											{% else %}
-												<option value selected disabled hidden>No payment method</option>
+												<option value selected disabled hidden>&#9785; No payment method</option>
 											{% endif %}                            
 										</select>
 										
@@ -391,12 +389,10 @@
 											{% if paymentMethods %}
 												<option value selected disabled hidden>Choose payment method</option>
 													{% for paymentMethod in paymentMethods %} 
-														{% if paymentMethod.is_active != 'no' %}
-															<option value="{{ paymentMethod.id }}">{{ paymentMethod.name }}</option> 
-														{% endif %}
-												{% endfor %}
+														<option value="{{ paymentMethod.id }}">{{ paymentMethod.name }}</option>
+													{% endfor %}
 											{% else %}
-												<option value selected disabled hidden>No payment method</option>
+												<option value selected disabled hidden>&#9785; No payment method</option>
 											{% endif %}                                   
 										</select>									
 										
@@ -485,7 +481,7 @@
 														<option value="{{ incomeCategory.id }}">{{ incomeCategory.name }}</option> 
 													{% endfor %}
 											{% else %}
-                                				<option value selected disabled hidden>No income category</option>
+                                				<option value selected disabled hidden>&#9785; No income category</option>
                            					{% endif %}                                  
 										</select>									
 										
@@ -545,7 +541,7 @@
 														<option value="{{ expenseCategory.id }}">{{ expenseCategory.name }}</option> 
 													{% endfor %}
 											{% else %}
-                                				<option value selected disabled hidden>No expense category</option>
+                                				<option value selected disabled hidden>&#9785; No expense category</option>
                            					{% endif %}                                  
 										</select>									
 										

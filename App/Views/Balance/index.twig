@@ -89,20 +89,19 @@
 
 						<select class="choice rounded" id="selectPeriod" name="period" style="font-family: 'Fontello';" required>
 							<option value selected disabled hidden>&#xE80B; Choose period</option>					
-							<option value="current_month">Current month</option>
-							<option value="last_month">Previous month</option>
-							<option value="current_year">Current year</option>
-							<option value="custom_period">Custom</option>					
+							<option value="current_month">&#xE80B; Current month</option>
+							<option value="last_month">&#xE80B; Previous month</option>
+							<option value="current_year">&#xE80B; Current year</option>
+							<option value="custom_period">&#xE80B; Custom</option>					
 						</select>
 
-						<div id="dateRange" style="visibility: hidden;">
-															
+						<div id="dateRange" style="visibility: hidden;">															
 							<input class="form-control" type="date" name="start_date" value="{{ start_date }}">
 								
-							<input class="form-control" type="date" name="end_date" value="{{ end_date }}">
-							
-							<button type="submit" class="btn login">Show balance</button>
+							<input class="form-control" type="date" name="end_date" value="{{ end_date }}">							
 						</div>
+
+						<button type="submit" class="btn login">Show balance</button>
 
 					</form>			
 				</div>
@@ -156,21 +155,21 @@
 																			<div class="input-group-prepend">				
 																				<span class="input-group-text  rounded-left icon"><i class="icon-calendar"></i></span>
 																			</div>
-																			<input type="date" class="form-control  rounded-right" name="date" value="{{ incomeFromSelectedPeriod.date_of_income }}" required>
+																			<input type="date" class="form-control  rounded-right" name="date" value="{{ incomeFromSelectedPeriod.date_of_income }}" required />
 																		</div>
 																		
 																		<div class="input-group">	
 																			<div class="input-group-prepend ">
 																				<span class="input-group-text  rounded-left icon"><i class="icon-pencil"></i></span>
 																			</div>
-																			<input type="text" class="form-control  rounded-right" name="comment" value="{{ incomeFromSelectedPeriod.income_comment }}" required>	
+																			<input type="text" class="form-control  rounded-right" name="comment" value="{{ incomeFromSelectedPeriod.income_comment }}" />	
 																		</div>				
 
 																		<div class="input-group">
 																			<div class="input-group-prepend ">
 																				<span class="input-group-text  rounded-left icon"><i class="icon-gauge"></i></span>
 																			</div>
-																			<input type="number" class="form-control  rounded-right " step="0.01" min="0.01" name="amount" value="{{ incomeFromSelectedPeriod.amount }}" required>	
+																			<input type="number" class="form-control  rounded-right " step="0.01" min="0.01" name="amount" value="{{ incomeFromSelectedPeriod.amount }}" required />	
 																		</div>
 																		
 																		<select class="choice rounded text-center" name="category" style="width: 100%; font-weight: bold; font-size: 20px;">						
@@ -203,30 +202,30 @@
 															</div>
 															<div class="modal-body">
 																<form action="/balance/deleteIncome" method="post">
-																<input name="id" type="number" style="display: none;" value="{{ incomeFromSelectedPeriod.id }}">
+																<input name="id" type="number" style="display: none;" value="{{ incomeFromSelectedPeriod.id }}" />
 
 																	<div class="input-group">
 																		<div class="input-group-prepend">				
 																			<span class="input-group-text  rounded-left icon"><i class="icon-calendar"></i></span>
 																		</div>
-																		<input type="date" class="form-control  rounded-right" name="date" value="{{ incomeFromSelectedPeriod.date_of_income }}" disabled>
+																		<input type="date" class="form-control  rounded-right" name="date" value="{{ incomeFromSelectedPeriod.date_of_income }}" disabled />
 																	</div>
 																
 																	<div class="input-group">	
 																		<div class="input-group-prepend ">
 																			<span class="input-group-text  rounded-left icon"><i class="icon-pencil"></i></span>
 																		</div>
-																		<input type="text" class="form-control  rounded-right" name="comment" value="{{ incomeFromSelectedPeriod.income_comment }}" disabled>	
+																		<input type="text" class="form-control  rounded-right" name="comment" value="{{ incomeFromSelectedPeriod.income_comment }}" disabled />	
 																	</div>				
 
 																	<div class="input-group">
 																		<div class="input-group-prepend ">
 																			<span class="input-group-text  rounded-left icon"><i class="icon-gauge"></i></span>
 																		</div>
-																		<input type="number" class="form-control  rounded-right " step="0.01" min="0.01" name="amount" value="{{ incomeFromSelectedPeriod.amount }}"  disabled>	
+																		<input type="number" class="form-control  rounded-right " step="0.01" min="0.01" name="amount" value="{{ incomeFromSelectedPeriod.amount }}"  disabled />	
 																	</div>														
 																						
-																	<input type="text" class="form-control rounded text-center" style="width: 100%; font-weight: bold; font-size: 20px;" name="category" value="{{ incomeCategoryFromSelectedPeriod.name }}" disabled>															
+																	<input type="text" class="form-control rounded text-center" style="width: 100%; font-weight: bold; font-size: 20px;" name="category" value="{{ incomeCategoryFromSelectedPeriod.name }}" disabled />															
 															
 																<div class="modal-footer">
 																	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -293,29 +292,27 @@
 																				<div class="input-group-prepend">				
 																					<span class="input-group-text  rounded-left icon"><i class="icon-calendar"></i></span>
 																				</div>
-																				<input type="date" class="form-control  rounded-right" name="date" value="{{ expenseFromSelectedPeriod.date_of_expense }}" required>
+																				<input type="date" class="form-control  rounded-right" name="date" value="{{ expenseFromSelectedPeriod.date_of_expense }}" required />
 																			</div>
 																			
 																			<div class="input-group">	
 																				<div class="input-group-prepend ">
 																					<span class="input-group-text  rounded-left icon"><i class="icon-pencil"></i></span>
 																				</div>
-																				<input type="text" class="form-control  rounded-right" name="comment" value="{{ expenseFromSelectedPeriod.expense_comment }}" required>	
+																				<input type="text" class="form-control  rounded-right" name="comment" value="{{ expenseFromSelectedPeriod.expense_comment }}" />	
 																			</div>				
 
 																			<div class="input-group">
 																				<div class="input-group-prepend ">
 																					<span class="input-group-text  rounded-left icon"><i class="icon-gauge"></i></span>
 																				</div>
-																				<input type="number" class="form-control  rounded-right " step="0.01" min="0.01" name="amount" value="{{ expenseFromSelectedPeriod.amount }}" required>	
+																				<input type="number" class="form-control  rounded-right " step="0.01" min="0.01" name="amount" value="{{ expenseFromSelectedPeriod.amount }}" required />	
 																			</div>
 
 																			<select class="choice rounded" name="method" style="width: 100%;">						
 																				<option value ="{{ expenseFromSelectedPeriod.payment_method_assigned_to_user_id}}" selected hidden>{{ expenseFromSelectedPeriod.name }}</option>                          					
 																				{% for paymentMethod in paymentMethods %}
-																					{% if paymentMethod.is_active != 'no' %}                             
-																						<option value="{{ paymentMethod.id }}">{{ paymentMethod.name }}</option>
-																					{% endif %} 
+																					<option value="{{ paymentMethod.id }}">{{ paymentMethod.name }}</option>
 																				{% endfor %}                                    
 																			</select>
 																			
@@ -349,37 +346,37 @@
 																</div>
 																<div class="modal-body">
 																	<form action="/balance/deleteExpense" method="post">
-																		<input name="id" type="number" style="display: none;" value="{{ expenseFromSelectedPeriod.id }}">
+																		<input name="id" type="number" style="display: none;" value="{{ expenseFromSelectedPeriod.id }}" />
 
 																		<div class="input-group">
 																			<div class="input-group-prepend">				
 																				<span class="input-group-text  rounded-left icon"><i class="icon-calendar"></i></span>
 																			</div>
-																			<input type="date" class="form-control  rounded-right" name="date" value="{{ expenseFromSelectedPeriod.date_of_expense }}" disabled>
+																			<input type="date" class="form-control  rounded-right" name="date" value="{{ expenseFromSelectedPeriod.date_of_expense }}" disabled />
 																		</div>
 																	
 																		<div class="input-group">	
 																			<div class="input-group-prepend ">
 																				<span class="input-group-text  rounded-left icon"><i class="icon-pencil"></i></span>
 																			</div>
-																			<input type="text" class="form-control  rounded-right" name="comment" value="{{ expenseFromSelectedPeriod.expense_comment }}" disabled>	
+																			<input type="text" class="form-control  rounded-right" name="comment" value="{{ expenseFromSelectedPeriod.expense_comment }}" disabled />	
 																		</div>				
 
 																		<div class="input-group">
 																			<div class="input-group-prepend ">
 																				<span class="input-group-text  rounded-left icon"><i class="icon-gauge"></i></span>
 																			</div>
-																			<input type="number" class="form-control  rounded-right " step="0.01" min="0.01" name="amount" value="{{ expenseFromSelectedPeriod.amount }}"  disabled>	
+																			<input type="number" class="form-control  rounded-right " step="0.01" min="0.01" name="amount" value="{{ expenseFromSelectedPeriod.amount }}"  disabled />	
 																		</div>
 																		
 																		<div class="input-group">
 																			<div class="input-group-prepend ">
 																				<span class="input-group-text  rounded-left icon"><i class="icon-cc-visa"></i></span>
 																			</div>
-																			<input type="text" class="form-control  rounded-right" name="method" value="{{ expenseFromSelectedPeriod.name }}" disabled>	
+																			<input type="text" class="form-control  rounded-right" name="method" value="{{ expenseFromSelectedPeriod.name }}" disabled />	
 																		</div>	
 																							
-																		<input type="text" class="form-control rounded text-center" style="width: 100%; font-weight: bold; font-size: 20px;" name="category" value="{{ expenseCategoryFromSelectedPeriod.name }}" disabled>															
+																		<input type="text" class="form-control rounded text-center" style="width: 100%; font-weight: bold; font-size: 20px;" name="category" value="{{ expenseCategoryFromSelectedPeriod.name }}" disabled />															
 																
 																	<div class="modal-footer">
 																		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
