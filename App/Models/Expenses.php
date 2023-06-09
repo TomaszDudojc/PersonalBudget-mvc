@@ -239,7 +239,7 @@ class Expenses extends \Core\Model
         if($this->existMethod()){
             return false;
         } 
-        else{$sql = "INSERT INTO payment_methods_assigned_to_users VALUES (NULL, :user_id, :new_name, '')";           
+        else{$sql = "INSERT INTO payment_methods_assigned_to_users VALUES (NULL, :user_id, :new_name, 'yes')";           
     
             $db = static::getDB();
             $stmt = $db->prepare($sql);    

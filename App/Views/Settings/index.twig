@@ -123,9 +123,11 @@
 								<span aria-hidden="true">&times;</span>
 							</button>
 							</div>
-							<p class="my-0">Warning:</p>
-							<p class="my-0">All incomes in this category will be deleted!</p>
-							<p class="my-0">If you want to keep them, assign them to another category first.</p>
+							<div class="bg-warning">
+								<p class="my-0 text-dark text-center">Warning:</p>
+								<p class="my-0 text-dark text-center">All incomes in this category will be deleted!</p>
+								<p class="my-0 text-dark text-center">If you want to keep them, assign them to another category first.</p>
+							</div>
 							<div class="modal-body">
 								<form action="/settings/deleteIncomeCategory" method="post">
 										<select class="choice rounded text-center" name="category" style="width: 100%;" required>
@@ -188,8 +190,10 @@
 								<span aria-hidden="true">&times;</span>
 							</button>
 							</div>
-							<p class="my-0">Warning:</p>
-							<p class="my-0">All categories and incomes will be deleted!</p>							
+							<div class="bg-warning">
+								<p class="my-0 text-dark text-center">Warning:</p>
+								<p class="my-0 text-dark text-center">All categories and incomes will be deleted!</p>
+							</div>							
 							<div class="modal-body">
 								<form action="/settings/deleteAllIncomeCategories" method="post">	
 										<input name="deleteAllIncomeCategories" type="text" style="display: none;">	
@@ -253,9 +257,11 @@
 								<span aria-hidden="true">&times;</span>
 							</button>							
 							</div>
-							<p class="my-0">Warning:</p>
-							<p class="my-0">All expenses in this category will be deleted!</p>
-							<p class="my-0">If you want to keep them, assign them to another category first.</p>
+							<div class="bg-warning">
+								<p class="my-0 text-dark text-center">Warning:</p>
+								<p class="my-0 text-dark text-center">All expenses in this category will be deleted!</p>
+								<p class="my-0 text-dark text-center">If you want to keep them, assign them to another category first.</p>
+							</div>
 							<div class="modal-body">
 								<form action="/settings/deleteExpenseCategory" method="post">
 										<select class="choice rounded text-center" name="category" style="width: 100%;" required>
@@ -318,8 +324,10 @@
 								<span aria-hidden="true">&times;</span>
 							</button>
 							</div>
-							<p class="my-0">Warning:</p>
-							<p class="my-0">All categories and expenses will be deleted!</p>							
+							<div class="bg-warning">
+								<p class="my-0 text-dark text-center">Warning:</p>
+								<p class="my-0 text-dark text-center">All categories and expenses will be deleted!</p>
+							</div>							
 							<div class="modal-body">
 								<form action="/settings/deleteAllExpenseCategories" method="post">	
 										<input name="deleteAllExpenseCategories" type="text" style="display: none;">	
@@ -445,8 +453,10 @@
 								<span aria-hidden="true">&times;</span>
 							</button>
 							</div>
-							<p class="my-0">Warning:</p>
-							<p class="my-0">All payment methods and expenses will be deleted!</p>							
+							<div class="bg-warning">
+								<p class="my-0 text-dark text-center">Warning:</p>
+								<p class="my-0 text-dark text-center">All payment methods and expenses will be deleted!</p>
+							</div>								
 							<div class="modal-body">
 								<form action="/settings/deleteAllPaymentMethods" method="post">	
 										<input name="deleteAllPaymentMethods" type="text" style="display: none;">	
@@ -470,8 +480,10 @@
 								<span aria-hidden="true">&times;</span>
 							</button>
 							</div>
-							<p class="my-0">Warning:</p>
-							<p class="my-0">All incomes in this category will be deleted!</p>							
+							<div class="bg-warning">
+								<p class="my-0 text-dark text-center">Warning:</p>
+								<p class="my-0 text-dark text-center">All incomes in this category will be deleted!</p>
+							</div>							
 							<div class="modal-body">
 								<form action="/settings/deleteIncomesFromSelectedCategory" method="post">
 										<select class="choice rounded text-center" name="category" style="width: 100%;" required>
@@ -505,8 +517,10 @@
 								<span aria-hidden="true">&times;</span>
 							</button>
 							</div>
-							<p class="my-0">Warning:</p>
-							<p class="my-0">All incomes will be deleted!</p>							
+							<div class="bg-warning">
+								<p class="my-0 text-dark text-center">Warning:</p>
+								<p class="my-0 text-dark text-center">All incomes will be deleted!</p>
+							</div>							
 							<div class="modal-body">
 								<form action="/settings/deleteAllIncomes" method="post">	
 										<input name="deleteAllIncomes" type="text" style="display: none;">	
@@ -530,8 +544,10 @@
 								<span aria-hidden="true">&times;</span>
 							</button>
 							</div>
-							<p class="my-0">Warning:</p>
-							<p class="my-0">All expenses in this category will be deleted!</p>							
+							<div class="bg-warning">
+								<p class="my-0 text-dark text-center">Warning:</p>
+								<p class="my-0 text-dark text-center">All expenses in this category will be deleted!</p>
+							</div>							
 							<div class="modal-body">
 								<form action="/settings/deleteExpensesFromSelectedCategory" method="post">
 										<select class="choice rounded text-center" name="category" style="width: 100%;" required>
@@ -565,8 +581,10 @@
 								<span aria-hidden="true">&times;</span>
 							</button>
 							</div>
-							<p class="my-0">Warning:</p>
-							<p class="my-0">All expenses will be deleted!</p>							
+							<div class="bg-warning">
+								<p class="my-0 text-dark text-center">Warning:</p>
+								<p class="my-0 text-dark text-center">All expenses will be deleted!</p>
+							</div>							
 							<div class="modal-body">
 								<form action="/settings/deleteAllExpenses" method="post">	
 										<input name="deleteAllExpenses" type="text" style="display: none;">	
@@ -634,8 +652,10 @@
 								<span aria-hidden="true">&times;</span>
 							</button>
 							</div>
-							<p class="my-0">Warning:</p>
-							<p class="my-0">All datas and settings of this user will be deleted!</p>							
+							<div class="bg-warning">
+								<p class="my-0 text-dark text-center">Warning:</p>
+								<p class="my-0 text-dark text-center">All datas and settings of this user will be deleted!</p>
+							</div>							
 							<div class="modal-body">
 								<form action="/settings/deleteUserProfile" method="post">								
 									<input name="deleteProfile" type="text" style="display: none;">
