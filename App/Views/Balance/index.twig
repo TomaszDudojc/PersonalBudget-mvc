@@ -27,7 +27,7 @@
 					backgroundColor: 'transparent',		  
 					};
 
-					var chart = new google.visualization.PieChart(document.getElementById('chartContainer1'));
+					var chart = new google.visualization.PieChart(document.getElementById('chartContainer2'));
 					chart.draw(data, options);
 				}
 			{% endif %}
@@ -52,7 +52,7 @@
 					backgroundColor: 'transparent',		  
 					};
 
-					var chart = new google.visualization.PieChart(document.getElementById('chartContainer2'));
+					var chart = new google.visualization.PieChart(document.getElementById('chartContainer1'));
 					chart.draw(data, options);
 				}
 			{% endif %}
@@ -420,14 +420,14 @@
 						
 						{% endif %}	
 											
-					</div>				
-					
-					{% if expenseCategoriesFromSelectedPeriod %}						
-						<div id="chartContainer1" class="col-11" style="height: 500px; margin-left: auto; margin-right: auto; margin-bottom: 10px;"></div>					
-					{% endif %}
+					</div>
 
 					{% if incomeCategoriesFromSelectedPeriod %}									
-						<div id="chartContainer2" class="col-11" style="height: 500px; margin-left: auto; margin-right: auto; margin-bottom: 10px;"></div>										
+						<div id="chartContainer1"></div>										
+					{% endif %}
+
+					{% if expenseCategoriesFromSelectedPeriod %}						
+						<div id="chartContainer2"></div>					
 					{% endif %}						
 					
 				</div>

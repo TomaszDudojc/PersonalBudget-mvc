@@ -377,4 +377,23 @@ class Expenses extends \Core\Model
             return true;
         }        
     }
+    /*
+    public static function getNumberOfExpensesInCategory()
+    {
+        $category = filter_input(INPUT_POST, 'category');
+		
+        $sql = "SELECT * FROM expenses WHERE expense_category_assigned_to_user_id = :id";
+								
+		$db = static::getDB();
+        
+        $stmt = $db->prepare($sql);        
+        $stmt->bindValue(':id', $category, PDO::PARAM_INT);
+        
+        $stmt->execute();
+
+        $result = $stmt->rowCount();        		
+        
+        return $result;   
+    }
+    */
 }

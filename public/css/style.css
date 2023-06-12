@@ -299,6 +299,15 @@ option
 	background-color: none;		
 }
 
+#chartContainer1,
+#chartContainer2
+{
+	height: 500px;
+	margin-left: auto;
+	margin-right: auto; 
+	margin-bottom: 10px;
+}
+
 /* //////////////////  rejestracja.php /////////////////////// */
  
 .error
@@ -326,3 +335,4 @@ option
 	background-color: #D3DDE9;
 	border: 1px solid blue;	
 }
+
