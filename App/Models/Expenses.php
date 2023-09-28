@@ -378,22 +378,24 @@ class Expenses extends \Core\Model
         }        
     }
     /*
-    public static function getNumberOfExpensesInCategory()
+    public static function checkExpensesInCategory()
     {
         $category = filter_input(INPUT_POST, 'category');
 		
-        $sql = "SELECT * FROM expenses WHERE expense_category_assigned_to_user_id = :id";
+        $sql = "SELECT date_of_expense, expense_comment, expenses.amount, COUNT(id) AS numberOfExpenses 
+        FROM expenses
+        WHERE expense_category_assigned_to_user_id = :id";
 								
-		$db = static::getDB();
-        
-        $stmt = $db->prepare($sql);        
-        $stmt->bindValue(':id', $category, PDO::PARAM_INT);
-        
-        $stmt->execute();
+		$db = static::getDB();        
+        $expensesInCategory = $db->prepare($sql);
 
-        $result = $stmt->rowCount();        		
+        $expensesInCategory->bindValue(':id', $category, PDO::PARAM_INT);        
+       
+        $expensesInCategory->execute(); 
         
-        return $result;   
+
+        return  $expensesInCategory->fetchAll(PDO::FETCH_ASSOC); 
+       
     }
     */
 }
