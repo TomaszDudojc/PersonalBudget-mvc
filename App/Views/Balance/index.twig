@@ -27,7 +27,7 @@
 					backgroundColor: 'transparent',		  
 					};
 
-					var chart = new google.visualization.PieChart(document.getElementById('chartContainer1'));
+					var chart = new google.visualization.PieChart(document.getElementById('chartContainer2'));
 					chart.draw(data, options);
 				}
 			{% endif %}
@@ -52,7 +52,7 @@
 					backgroundColor: 'transparent',		  
 					};
 
-					var chart = new google.visualization.PieChart(document.getElementById('chartContainer2'));
+					var chart = new google.visualization.PieChart(document.getElementById('chartContainer1'));
 					chart.draw(data, options);
 				}
 			{% endif %}
@@ -87,18 +87,18 @@
 					
 					<form action="/balance/index" method="post">
 
-						<select class="choice rounded" id="selectPeriod" name="period" style="font-family: 'Fontello';" required>
+						<select class="choice rounded" id="selectPeriod" name="period" style="font-family: 'Fontello'; width: 100%" required>
 							<option value selected disabled hidden>&#xE80B; Choose period</option>					
-							<option value="current_month">&#xE80B; Current month</option>
-							<option value="last_month">&#xE80B; Previous month</option>
-							<option value="current_year">&#xE80B; Current year</option>
-							<option value="custom_period">&#xE80B; Custom</option>					
+							<option value="current_month">Current month</option>
+							<option value="last_month">Previous month</option>
+							<option value="current_year">Current year</option>
+							<option value="custom_period">Custom</option>					
 						</select>
 
 						<div id="dateRange" style="visibility: hidden;">															
-							<input class="form-control" type="date" name="start_date" value="{{ start_date }}">
+							<input class="form-control mx-auto" type="date" name="start_date" value="{{ start_date }}">
 								
-							<input class="form-control" type="date" name="end_date" value="{{ end_date }}">							
+							<input class="form-control mx-auto" type="date" name="end_date" value="{{ end_date }}">							
 						</div>
 
 						<button type="submit" class="btn login">Show balance</button>
@@ -229,7 +229,7 @@
 															
 																<div class="modal-footer">
 																	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-																	<button type="submit" class="btn btn-danger">Delete income</button>
+																	<button type="submit" class="btn btn-danger">Delete</button>
 																</div>
 															</form>	
 														</div>
@@ -380,7 +380,7 @@
 																
 																	<div class="modal-footer">
 																		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-																		<button type="submit" class="btn btn-danger">Delete expense</button>
+																		<button type="submit" class="btn btn-danger">Delete</button>
 																	</div>
 																</form>	
 															</div>
@@ -420,14 +420,14 @@
 						
 						{% endif %}	
 											
-					</div>				
-					
-					{% if expenseCategoriesFromSelectedPeriod %}						
-						<div id="chartContainer1" class="col-11" style="height: 500px; margin-left: auto; margin-right: auto; margin-bottom: 10px;"></div>					
-					{% endif %}
+					</div>
 
 					{% if incomeCategoriesFromSelectedPeriod %}									
-						<div id="chartContainer2" class="col-11" style="height: 500px; margin-left: auto; margin-right: auto; margin-bottom: 10px;"></div>										
+						<div id="chartContainer1"></div>										
+					{% endif %}
+
+					{% if expenseCategoriesFromSelectedPeriod %}						
+						<div id="chartContainer2"></div>					
 					{% endif %}						
 					
 				</div>

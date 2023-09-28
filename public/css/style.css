@@ -82,7 +82,7 @@ p
 
 button.register
 {	
-	width: 350px;
+	width: 100%;
 	background-color: #008000;
 	font-size: 20px;
 	color: white;
@@ -168,7 +168,7 @@ input[type=date],
 .choice
 {	
 	font-family: 'Lato', sans-serif;
-	width: 350px;	
+	width: 100%;	
 	height: 36px;	
 	color: #060B95;
 	border: 1px solid  #c2cce8;
@@ -195,7 +195,7 @@ input[type=date]:focus,
 
 button.login
 {	
-	width: 350px;
+	width: 100%;
 	background-color: #060B95;
 	font-size: 20px;
 	color: white;
@@ -299,6 +299,15 @@ option
 	background-color: none;		
 }
 
+#chartContainer1,
+#chartContainer2
+{
+	height: 500px;
+	margin-left: auto;
+	margin-right: auto; 
+	margin-bottom: 10px;
+}
+
 /* //////////////////  rejestracja.php /////////////////////// */
  
 .error
@@ -326,3 +335,4 @@ option
 	background-color: #D3DDE9;
 	border: 1px solid blue;	
 }
+

@@ -16,11 +16,11 @@
             
                 <form action="/income/create" method="post">	
                    
-                    <input type="number" class="form-control" step="0.01" min="0.01" name="amount" value="{{ income.amount }}" placeholder="&#xE80C; Amount" style="font-family: 'Fontello';" required />
+                    <input type="number" class="form-control" step="0.01" min="0.01" name="amount" value="{{ income.amount }}" placeholder="&#xE80C; Amount" style="font-family: 'Fontello'; width: 100%;" required />
 
-                    <input type="date" class="form-control" name="date" value="{{ currentDate }}" required>
+                    <input type="date" class="form-control mx-auto" style="font-family: 'Fontello';" name="date" value="{{ currentDate }}" required>
 
-                    <select class="choice rounded" name="category" style="font-family: 'Fontello';" required />
+                    <select class="choice rounded" name="category" style="font-family: 'Fontello'; width: 100%;" required />
                         {% if incomeCategories %}					
                              <option value selected disabled hidden>&#xE807; Select a category</option>                          					
                                 {% for incomeCategory in incomeCategories %}                             
@@ -31,7 +31,7 @@
                         {% endif %}
                     </select>
 
-                    <input type="text" class="form-control" name="comment" value="{{ income.comment }}" placeholder="&#xE808; Comment"  style="font-family: 'Fontello';" />
+                    <input type="text" class="form-control" name="comment" value="{{ income.comment }}" placeholder="&#xE808; Comment"  style="font-family: 'Fontello'; width: 100%;" />
 
                     <a href="/income/index"><button  type="button" class="btn btn-secondary btn-lg float-left mt-3" style="width: 94px;">Cancel</button></a>
                     <button  type="submit" class="btn btn-success btn-lg  float-right mt-3" style="width: 94px;" >Add</button>

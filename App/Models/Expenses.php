@@ -239,7 +239,7 @@ class Expenses extends \Core\Model
         if($this->existMethod()){
             return false;
         } 
-        else{$sql = "INSERT INTO payment_methods_assigned_to_users VALUES (NULL, :user_id, :new_name, '')";           
+        else{$sql = "INSERT INTO payment_methods_assigned_to_users VALUES (NULL, :user_id, :new_name, 'yes')";           
     
             $db = static::getDB();
             $stmt = $db->prepare($sql);    
@@ -377,4 +377,25 @@ class Expenses extends \Core\Model
             return true;
         }        
     }
+    /*
+    public static function checkExpensesInCategory()
+    {
+        $category = filter_input(INPUT_POST, 'category');
+		
+        $sql = "SELECT date_of_expense, expense_comment, expenses.amount, COUNT(id) AS numberOfExpenses 
+        FROM expenses
+        WHERE expense_category_assigned_to_user_id = :id";
+								
+		$db = static::getDB();        
+        $expensesInCategory = $db->prepare($sql);
+
+        $expensesInCategory->bindValue(':id', $category, PDO::PARAM_INT);        
+       
+        $expensesInCategory->execute(); 
+        
+
+        return  $expensesInCategory->fetchAll(PDO::FETCH_ASSOC); 
+       
+    }
+    */
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 02 Cze 2023, 11:07
+-- Czas generowania: 09 Cze 2023, 13:36
 -- Wersja serwera: 10.4.24-MariaDB
 -- Wersja PHP: 8.1.6
 
@@ -140,7 +140,7 @@ CREATE TABLE `payment_methods_assigned_to_users` (
   `id` int(11) UNSIGNED NOT NULL,
   `user_id` int(11) UNSIGNED NOT NULL,
   `name` varchar(50) COLLATE utf8_polish_ci NOT NULL,
-  `is_active` varchar(50) COLLATE utf8_polish_ci DEFAULT NULL
+  `is_active` varchar(50) COLLATE utf8_polish_ci DEFAULT 'yes'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 -- --------------------------------------------------------
@@ -268,13 +268,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT dla tabeli `expenses`
 --
 ALTER TABLE `expenses`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- AUTO_INCREMENT dla tabeli `expenses_category_assigned_to_users`
 --
 ALTER TABLE `expenses_category_assigned_to_users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=565;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=730;
 
 --
 -- AUTO_INCREMENT dla tabeli `expenses_category_default`
@@ -286,13 +286,13 @@ ALTER TABLE `expenses_category_default`
 -- AUTO_INCREMENT dla tabeli `incomes`
 --
 ALTER TABLE `incomes`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=156;
 
 --
 -- AUTO_INCREMENT dla tabeli `incomes_category_assigned_to_users`
 --
 ALTER TABLE `incomes_category_assigned_to_users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=198;
 
 --
 -- AUTO_INCREMENT dla tabeli `incomes_category_default`
@@ -304,7 +304,7 @@ ALTER TABLE `incomes_category_default`
 -- AUTO_INCREMENT dla tabeli `payment_methods_assigned_to_users`
 --
 ALTER TABLE `payment_methods_assigned_to_users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
 
 --
 -- AUTO_INCREMENT dla tabeli `payment_methods_default`
@@ -316,7 +316,7 @@ ALTER TABLE `payment_methods_default`
 -- AUTO_INCREMENT dla tabeli `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

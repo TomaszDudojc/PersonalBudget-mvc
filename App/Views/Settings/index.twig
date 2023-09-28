@@ -13,7 +13,7 @@
 				<div class="container mb-5">
 
 					<div class="mt-3 col-10 mx-auto">
-						<button type="button" class="btn btn-secondary btn-lg col-10 mx-auto px-0"  style="white-space: pre-wrap;" onClick="document.getElementById('incomeCategory_buttons').style.display='block';"><i class="icon-money mr-3"></i>Income categories</button>
+						<button type="button" class="btn btn-secondary btn-lg col-10 mx-auto px-0"  style="white-space: pre-wrap;" onClick="document.getElementById('incomeCategory_buttons').style.display='block';"><i class="icon-money mr-1"></i>Income categories</button>
 					</div>
 					<div class="mt-1 col-10 mx-auto" id="incomeCategory_buttons" style="display: none;">					
 						<button  type="button" class="btn btn-primary btn-lg col-10 col-md-5 col-lg-2 px-0" style="white-space: pre-wrap;" data-toggle="modal" data-target="#editIncomeCategory{{ incomeCategory.id }}"><i class="icon-pencil mr-1"></i>Edit</button>
@@ -24,7 +24,7 @@
 					</div>
 
 					<div class="mt-3 col-10 mx-auto">
-						<button type="button" class="btn btn-secondary btn-lg col-10 mx-auto px-0"  style="white-space: pre-wrap;" onClick="document.getElementById('expenseCategory_buttons').style.display='block';"><i class="icon-basket mr-3"></i>Expense categories</button>
+						<button type="button" class="btn btn-secondary btn-lg col-10 mx-auto px-0"  style="white-space: pre-wrap;" onClick="document.getElementById('expenseCategory_buttons').style.display='block';"><i class="icon-basket mr-1"></i>Expense categories</button>
 					</div>
 					<div class="mt-1 col-10 mx-auto" id="expenseCategory_buttons" style="display: none;">								
 						<button  type="button" class="btn btn-primary btn-lg col-10 col-md-5 col-lg-2 px-0" style="white-space: pre-wrap;" data-toggle="modal" data-target="#editExpenseCategory{{ expenseCategory.id }}"><i class="icon-pencil mr-1"></i>Edit</button>
@@ -35,7 +35,7 @@
 					</div>
 
 					<div class="mt-3 col-10 mx-auto">
-						<button type="button" class="btn btn-secondary btn-lg col-10 mx-auto px-0"  style="white-space: pre-wrap;" onClick="document.getElementById('paymentMethod_buttons').style.display='block';"><i class="icon-cc-visa mr-3"></i>Payment methods</button>
+						<button type="button" class="btn btn-secondary btn-lg col-10 mx-auto px-0"  style="white-space: pre-wrap;" onClick="document.getElementById('paymentMethod_buttons').style.display='block';"><i class="icon-cc-visa mr-2"></i>Payment methods</button>
 					</div>
 					<div class="mt-1 col-10 mx-auto" id="paymentMethod_buttons" style="display: none;">								
 						<button  type="button" class="btn btn-primary btn-lg col-10 col-md-5 col-lg-2 px-0" style="white-space: pre-wrap;" data-toggle="modal" data-target="#editPaymentMethod{{ paymentMethod.id }}"><i class="icon-pencil mr-1"></i>Edit</button>
@@ -46,7 +46,7 @@
 					</div>
 
 					<div class="mt-3 col-10 mx-auto">
-						<button type="button" class="btn btn-secondary btn-lg col-10 mx-auto px-0"  style="white-space: pre-wrap;" onClick="document.getElementById('incomes_buttons').style.display='block';"><i class="icon-money mr-3"></i>Incomes</button>
+						<button type="button" class="btn btn-secondary btn-lg col-10 mx-auto px-0"  style="white-space: pre-wrap;" onClick="document.getElementById('incomes_buttons').style.display='block';"><i class="icon-money mr-1"></i>Incomes</button>
 					</div>
 					<div class="mt-1 col-10 mx-auto" id="incomes_buttons" style="display: none;">
 						<button  type="button" class="btn btn-danger btn-lg col-10 col-md-5 col-lg-4 px-0" style="white-space: pre-wrap;" data-toggle="modal" data-target="#deleteIncomesFromSelectedCategory{{ incomeCategory.id }}"><span class="mr-1">&#10008;</span>Delete<span></button>
@@ -55,7 +55,7 @@
 					</div>
 
 					<div class="mt-3 col-10 mx-auto">
-						<button type="button" class="btn btn-secondary btn-lg col-10 mx-auto px-0"  style="white-space: pre-wrap;" onClick="document.getElementById('expenses_buttons').style.display='block';"><i class="icon-basket mr-3"></i>Expenses</button>
+						<button type="button" class="btn btn-secondary btn-lg col-10 mx-auto px-0"  style="white-space: pre-wrap;" onClick="document.getElementById('expenses_buttons').style.display='block';"><i class="icon-basket mr-1"></i>Expenses</button>
 					</div>
 					<div class="mt-1 col-10 mx-auto" id="expenses_buttons" style="display: none;">
 						<button  type="button" class="btn btn-danger btn-lg col-10 col-md-5 col-lg-4 px-0" style="white-space: pre-wrap;" data-toggle="modal" data-target="#deleteExpensesFromSelectedCategory{{ expenseCategory.id }}"><span class="mr-1">&#10008;</span>Delete<span></button>
@@ -64,7 +64,7 @@
 					</div>
 
 					<div class="mt-3 col-10 mx-auto">
-						<button type="button" class="btn btn-secondary btn-lg col-10 mx-auto px-0"  style="white-space: pre-wrap;" onClick="document.getElementById('userProfile_buttons').style.display='block';"><i class="icon-user-3 mr-3"></i>User profile</button>
+						<button type="button" class="btn btn-secondary btn-lg col-10 mx-auto px-0"  style="white-space: pre-wrap;" onClick="document.getElementById('userProfile_buttons').style.display='block';"><i class="icon-user-3 mr-1"></i>User profile</button>
 					</div>
 					<div class="mt-1 col-10 mx-auto" id="userProfile_buttons" style="display: none;">								
 						<button  type="button" class="btn btn-primary btn-lg col-10 col-md-5 col-lg-4 px-0" style="white-space: pre-wrap;" data-toggle="modal" data-target="#editUserProfile"><i class="icon-pencil mr-1"></i>Edit</button>
@@ -123,9 +123,11 @@
 								<span aria-hidden="true">&times;</span>
 							</button>
 							</div>
-							<p class="my-0">Warning:</p>
-							<p class="my-0">All incomes in this category will be deleted!</p>
-							<p class="my-0">If you want to keep them, assign them to another category first.</p>
+							<div class="bg-warning">
+								<p class="my-0 text-dark text-center">Warning:</p>
+								<p class="my-0 text-dark text-center">All incomes in this category will be deleted!</p>
+								<p class="my-0 text-dark text-center">If you want to keep them, assign them to another category first.</p>
+							</div>
 							<div class="modal-body">
 								<form action="/settings/deleteIncomeCategory" method="post">
 										<select class="choice rounded text-center" name="category" style="width: 100%;" required>
@@ -141,7 +143,7 @@
 										
 										<div class="modal-footer">
 											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-											<button type="submit" class="btn btn-danger">Delete category</button>
+											<button type="submit" class="btn btn-danger">Delete</button>
 										</div>
 								</form>							
 							</div>
@@ -170,7 +172,7 @@
 
 									<div class="modal-footer">
 										<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-										<button type="submit" class="btn btn-success">Add new category</button>
+										<button type="submit" class="btn btn-success">Add</button>
 									</div>
 								</form>							
 							</div>
@@ -188,14 +190,16 @@
 								<span aria-hidden="true">&times;</span>
 							</button>
 							</div>
-							<p class="my-0">Warning:</p>
-							<p class="my-0">All categories and incomes will be deleted!</p>							
+							<div class="bg-warning">
+								<p class="my-0 text-dark text-center">Warning:</p>
+								<p class="my-0 text-dark text-center">All categories and incomes will be deleted!</p>
+							</div>							
 							<div class="modal-body">
 								<form action="/settings/deleteAllIncomeCategories" method="post">	
 										<input name="deleteAllIncomeCategories" type="text" style="display: none;">	
 										<div class="modal-footer">
 											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-											<button type="submit" class="btn btn-danger">Delete all categories</button>
+											<button type="submit" class="btn btn-danger">Delete all</button>
 										</div>
 								</form>							
 							</div>
@@ -253,9 +257,11 @@
 								<span aria-hidden="true">&times;</span>
 							</button>							
 							</div>
-							<p class="my-0">Warning:</p>
-							<p class="my-0">All expenses in this category will be deleted!</p>
-							<p class="my-0">If you want to keep them, assign them to another category first.</p>
+							<div class="bg-warning">
+								<p class="my-0 text-dark text-center">Warning:</p>
+								<p class="my-0 text-dark text-center">All expenses in this category will be deleted!</p>
+								<p class="my-0 text-dark text-center">If you want to keep them, assign them to another category first.</p>
+							</div>
 							<div class="modal-body">
 								<form action="/settings/deleteExpenseCategory" method="post">
 										<select class="choice rounded text-center" name="category" style="width: 100%;" required>
@@ -271,7 +277,7 @@
 										
 										<div class="modal-footer">
 											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-											<button type="submit" class="btn btn-danger">Delete category</button>
+											<button type="submit" class="btn btn-danger">Delete</button>
 										</div>
 								</form>							
 							</div>
@@ -300,7 +306,7 @@
 
 									<div class="modal-footer">
 										<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-										<button type="submit" class="btn btn-success">Add new category</button>
+										<button type="submit" class="btn btn-success">Add</button>
 									</div>
 								</form>							
 							</div>
@@ -318,14 +324,16 @@
 								<span aria-hidden="true">&times;</span>
 							</button>
 							</div>
-							<p class="my-0">Warning:</p>
-							<p class="my-0">All categories and expenses will be deleted!</p>							
+							<div class="bg-warning">
+								<p class="my-0 text-dark text-center">Warning:</p>
+								<p class="my-0 text-dark text-center">All categories and expenses will be deleted!</p>
+							</div>							
 							<div class="modal-body">
 								<form action="/settings/deleteAllExpenseCategories" method="post">	
 										<input name="deleteAllExpenseCategories" type="text" style="display: none;">	
 										<div class="modal-footer">
 											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-											<button type="submit" class="btn btn-danger">Delete all categories</button>
+											<button type="submit" class="btn btn-danger">Delete all</button>
 										</div>
 								</form>							
 							</div>
@@ -398,7 +406,7 @@
 										
 										<div class="modal-footer">
 											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-											<button type="submit" class="btn btn-danger">Delete method</button>
+											<button type="submit" class="btn btn-danger">Delete</button>
 										</div>
 								</form>							
 							</div>
@@ -427,7 +435,7 @@
 
 									<div class="modal-footer">
 										<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-										<button type="submit" class="btn btn-success">Add new method</button>
+										<button type="submit" class="btn btn-success">Add</button>
 									</div>
 								</form>							
 							</div>
@@ -445,14 +453,16 @@
 								<span aria-hidden="true">&times;</span>
 							</button>
 							</div>
-							<p class="my-0">Warning:</p>
-							<p class="my-0">All payment methods and expenses will be deleted!</p>							
+							<div class="bg-warning">
+								<p class="my-0 text-dark text-center">Warning:</p>
+								<p class="my-0 text-dark text-center">All payment methods and expenses will be deleted!</p>
+							</div>								
 							<div class="modal-body">
 								<form action="/settings/deleteAllPaymentMethods" method="post">	
 										<input name="deleteAllPaymentMethods" type="text" style="display: none;">	
 										<div class="modal-footer">
 											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-											<button type="submit" class="btn btn-danger">Delete all payment methods</button>
+											<button type="submit" class="btn btn-danger">Delete all</button>
 										</div>
 								</form>							
 							</div>
@@ -470,8 +480,10 @@
 								<span aria-hidden="true">&times;</span>
 							</button>
 							</div>
-							<p class="my-0">Warning:</p>
-							<p class="my-0">All incomes in this category will be deleted!</p>							
+							<div class="bg-warning">
+								<p class="my-0 text-dark text-center">Warning:</p>
+								<p class="my-0 text-dark text-center">All incomes in this category will be deleted!</p>
+							</div>							
 							<div class="modal-body">
 								<form action="/settings/deleteIncomesFromSelectedCategory" method="post">
 										<select class="choice rounded text-center" name="category" style="width: 100%;" required>
@@ -487,7 +499,7 @@
 										
 										<div class="modal-footer">
 											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-											<button type="submit" class="btn btn-danger">Delete incomes from selected category</button>
+											<button type="submit" class="btn btn-danger">Delete</button>
 										</div>
 								</form>							
 							</div>
@@ -505,14 +517,16 @@
 								<span aria-hidden="true">&times;</span>
 							</button>
 							</div>
-							<p class="my-0">Warning:</p>
-							<p class="my-0">All incomes will be deleted!</p>							
+							<div class="bg-warning">
+								<p class="my-0 text-dark text-center">Warning:</p>
+								<p class="my-0 text-dark text-center">All incomes will be deleted!</p>
+							</div>							
 							<div class="modal-body">
 								<form action="/settings/deleteAllIncomes" method="post">	
 										<input name="deleteAllIncomes" type="text" style="display: none;">	
 										<div class="modal-footer">
 											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-											<button type="submit" class="btn btn-danger">Delete all incomes</button>
+											<button type="submit" class="btn btn-danger">Delete all</button>
 										</div>
 								</form>							
 							</div>
@@ -530,8 +544,10 @@
 								<span aria-hidden="true">&times;</span>
 							</button>
 							</div>
-							<p class="my-0">Warning:</p>
-							<p class="my-0">All expenses in this category will be deleted!</p>							
+							<div class="bg-warning">
+								<p class="my-0 text-dark text-center">Warning:</p>
+								<p class="my-0 text-dark text-center">All expenses in this category will be deleted!</p>
+							</div>							
 							<div class="modal-body">
 								<form action="/settings/deleteExpensesFromSelectedCategory" method="post">
 										<select class="choice rounded text-center" name="category" style="width: 100%;" required>
@@ -547,7 +563,7 @@
 										
 										<div class="modal-footer">
 											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-											<button type="submit" class="btn btn-danger">Delete expenses from selected category</button>
+											<button type="submit" class="btn btn-danger">Delete</button>
 										</div>
 								</form>							
 							</div>
@@ -565,14 +581,16 @@
 								<span aria-hidden="true">&times;</span>
 							</button>
 							</div>
-							<p class="my-0">Warning:</p>
-							<p class="my-0">All expenses will be deleted!</p>							
+							<div class="bg-warning">
+								<p class="my-0 text-dark text-center">Warning:</p>
+								<p class="my-0 text-dark text-center">All expenses will be deleted!</p>
+							</div>							
 							<div class="modal-body">
 								<form action="/settings/deleteAllExpenses" method="post">	
 										<input name="deleteAllExpenses" type="text" style="display: none;">	
 										<div class="modal-footer">
 											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-											<button type="submit" class="btn btn-danger">Delete all expenses</button>
+											<button type="submit" class="btn btn-danger">Delete all</button>
 										</div>
 								</form>							
 							</div>
@@ -634,8 +652,10 @@
 								<span aria-hidden="true">&times;</span>
 							</button>
 							</div>
-							<p class="my-0">Warning:</p>
-							<p class="my-0">All datas and settings of this user will be deleted!</p>							
+							<div class="bg-warning">
+								<p class="my-0 text-dark text-center">Warning:</p>
+								<p class="my-0 text-dark text-center">All datas and settings of this user will be deleted!</p>
+							</div>							
 							<div class="modal-body">
 								<form action="/settings/deleteUserProfile" method="post">								
 									<input name="deleteProfile" type="text" style="display: none;">
@@ -656,7 +676,7 @@
 										
 									<div class="modal-footer">
 										<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-										<button type="submit" class="btn btn-danger">Delete profile</button>
+										<button type="submit" class="btn btn-danger">Delete</button>
 									</div>
 								</form>							
 							</div>
