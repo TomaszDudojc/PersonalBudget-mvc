@@ -116,19 +116,21 @@ class Expenses extends \Core\Model
     {
         $this->category = filter_input(INPUT_POST, 'category');
         $this->new_category = filter_input(INPUT_POST, 'new_category');
+        $this->new_limit = filter_input(INPUT_POST, 'new_limit');
 
         $this->new_category = mb_convert_case($this->new_category,MB_CASE_TITLE,"UTF-8");
         
         if($this->existCategory()){
             return false;
         }
-        else{$sql = "UPDATE expenses_category_assigned_to_users SET name = :new_name WHERE id = :id";
+        else{$sql = "UPDATE expenses_category_assigned_to_users SET name = :new_name,  month_limit = :month_limit WHERE id = :id";
     
             $db = static::getDB();
             $stmt = $db->prepare($sql); 
     
             $stmt->bindValue(':id', $this->category, PDO::PARAM_INT);
             $stmt->bindValue(':new_name', $this->new_category, PDO::PARAM_STR);
+            $stmt->bindValue(':month_limit', $this->new_limit, PDO::PARAM_INT);
     
             return $stmt->execute();     
         }          
@@ -143,7 +145,7 @@ class Expenses extends \Core\Model
         if($this->existCategory()){
             return false;
         } 
-        else{$sql = "INSERT INTO expenses_category_assigned_to_users VALUES (NULL, :user_id, :new_name)";           
+        else{$sql = "INSERT INTO expenses_category_assigned_to_users VALUES (NULL, :user_id, :new_name, NULL)";           
     
             $db = static::getDB();
             $stmt = $db->prepare($sql);    
@@ -398,4 +400,40 @@ class Expenses extends \Core\Model
        
     }
     */
+/*
+    public function setLimitForCategory() 
+    {
+        $sql = "SELECT * FROM expenses_category_assigned_to_users WHERE user_id = :user_id AND month_limit = :month_limit";
+		
+		$db = static::getDB();
+
+		$stmt = $db->prepare($sql);
+
+		$stmt->bindValue(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);       
+        $stmt->bindValue(':month_limit', $this->new_category, PDO::PARAM_STR);
+
+		$stmt->execute();
+		
+        $result = $stmt->rowCount();
+        		
+        if($result>0){
+        return true;
+        }  
+    }*/
+
+    public static function getLimit($user_id, $category) 
+    {
+        $sql = "SELECT month_limit FROM expenses_category_assigned_to_users WHERE user_id = :user_id AND name = :name";
+		
+	    $db = static::getDB();
+
+		$stmt = $db->prepare($sql);
+
+		$stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);       
+        $stmt->bindValue(':name', $category, PDO::PARAM_STR);
+
+		$stmt->execute();       
+        
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);                  
+    }
 }

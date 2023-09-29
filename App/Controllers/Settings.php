@@ -136,7 +136,7 @@ class Settings extends Authenticated
 	{        
         if(isset($_POST['category'])) {
 			
-			$expense = new Expenses($_POST);           
+			$expense = new Expenses($_POST);                   
 
 			if($expense->editCategory()){
                 Flash::addMessage('Expense category has been edited.');               
@@ -317,4 +317,20 @@ class Settings extends Authenticated
             $this->redirect('/settings/index');			
 		} 
 	}
+/*
+    public function setLimitForCategoryOfExpenseAction() 
+	{        
+        if(isset($_POST['category'])) {
+			
+			$expense = new Expenses($_POST);           
+
+			if($expense->setLimitForCategory()){
+                Flash::addMessage('Expense limit for this category has been set.');               
+            }
+            else{
+                Flash::addMessage('Something was wrong! Try again.', Flash::WARNING);                
+            }
+            $this->redirect('/settings/index');			
+		} 
+	}*/
 }

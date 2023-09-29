@@ -31,7 +31,8 @@
 						<button  type="button" class="btn btn-danger btn-lg col-10 col-md-5 col-lg-2 px-0" style="white-space: pre-wrap;" data-toggle="modal" data-target="#deleteExpenseCategory{{ expenseCategory.id }}"><span class="mr-1">&#10008;</span>Delete</button>
 						<button  type="button" class="btn btn-success btn-lg col-10 col-md-5 col-lg-2 px-0" style="white-space: pre-wrap;" data-toggle="modal" data-target="#addExpenseCategory"><span class="mr-1">&#10004;</span>Add</button>
 						<button  type="button" class="btn btn-danger btn-lg col-10 col-md-5 col-lg-2 px-0" style="white-space: pre-wrap;" data-toggle="modal" data-target="#deleteAllExpenseCategories"><span class="mr-1">&#10008;</span>Delete all</button>
-						<button  type="button" class="btn btn-info btn-lg col-10 col-lg-2 px-0" style="white-space: pre-wrap;" onClick="document.getElementById('expenseCategory_buttons').style.display='none';">Hide<span class="ml-2">&#8682;</span></button>			
+						<button  type="button" class="btn btn-info btn-lg col-10 col-lg-2 px-0" style="white-space: pre-wrap;" onClick="document.getElementById('expenseCategory_buttons').style.display='none';">Hide<span class="ml-2">&#8682;</span></button>
+						<!--<button  type="button" class="btn btn-info btn-lg col-10 col-lg-2 px-0" style="white-space: pre-wrap;" data-toggle="modal" data-target="#setLimitForCategoryOfExpense{{ expenseCategory.id }}"><i class="icon-pencil mr-1"></i>Set limit</button>-->			
 					</div>
 
 					<div class="mt-3 col-10 mx-auto">
@@ -102,6 +103,7 @@
 											</div>
 											<input type="text" class="form-control  rounded-right" name="new_category"  placeholder="New name of category" required>	
 										</div>
+										
 
 										<div class="modal-footer">
 											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -223,8 +225,8 @@
 											{% if expenseCategories %}	
 												<option value selected disabled hidden>Select a category</option>
 													{% for  expenseCategory in  expenseCategories %}                             
-														<option value="{{ expenseCategory.id }}">{{  expenseCategory.name }}</option> 
-													{% endfor %}
+														<option value="{{ expenseCategory.id }}">{{  expenseCategory.name }}{{ expenseCategory.month_limit }}</option> 
+													{% endfor %}													
 											{% else %}
 												<option value selected disabled hidden>&#9785; No expense category</option>
 											{% endif %}      	                            
@@ -235,6 +237,15 @@
 												<span class="input-group-text  rounded-left icon"><i class="icon-pencil"></i></span>
 											</div>
 											<input type="text" class="form-control  rounded-right" name="new_category"  placeholder="New name of category" required>	
+										</div>
+
+										<div class="input-group">	
+											<div class="input-group-prepend ">
+												<span class="input-group-text  rounded-left icon"><i class="icon-pencil"></i>Limit</span>
+											</div>
+											<input type="text" class="form-control  rounded-right" name="new_limit"
+												value="{{ expenseCategory.month_limit }}">
+												
 										</div>
 
 										<div class="modal-footer">
