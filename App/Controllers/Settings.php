@@ -9,6 +9,7 @@ use \App\Dates;
 use \App\Models\Incomes;
 use \App\Models\Expenses;
 use \App\Models\User;
+use \App\Models\Balances;
 
 class Settings extends Authenticated
 {
@@ -20,12 +21,15 @@ class Settings extends Authenticated
 
     public function indexAction()
     {
-        View::renderTemplate('Settings/index.twig', [							
-			'incomeCategories' => Incomes::getIncomeCategoriesOfUser(),
+        $_SESSION['start_date'] = "2000-01-01";
+        $_SESSION['end_date'] = Dates::getCurrentDate(); 
+        View::renderTemplate('Settings/index.twig', [
             'incomeCategories' => Incomes::getIncomeCategoriesOfUser(),
             'expenseCategories' => Expenses::getExpenseCategoriesOfUser(),
-            'paymentMethods' => Expenses::getPaymentMethodsOfUser(),                       
-            'user' => $this->user			
+            'paymentMethods' => Expenses::getPaymentMethodsOfUser(),
+            'expensesFromSelectedPeriod' => Balances::getExpensesFromSelectedDateRange($_SESSION['start_date'], $_SESSION['end_date']),
+            'incomesFromSelectedPeriod' => Balances::getIncomesFromSelectedDateRange($_SESSION['start_date'], $_SESSION['end_date']),                       
+            'user' => $this->user            		
 		]);
     }
 
@@ -134,7 +138,7 @@ class Settings extends Authenticated
     
     public function editExpenseCategoryAction() 
 	{        
-        if(isset($_POST['category'])) {
+        if(isset($_POST['id'])) {
 			
 			$expense = new Expenses($_POST);                   
 
@@ -166,16 +170,30 @@ class Settings extends Authenticated
 
     public function deleteExpenseCategoryAction() 
 	{        
-        if(isset($_POST['category'])) {
+        if(isset($_POST['id'])) {
 			
 			$expense = new Expenses($_POST);           
 
-			$expense->deleteCategory();
+            $expense->deleteCategory();
             
             Flash::addMessage('Expense category has been deleted.');               
            
             $this->redirect('/settings/index');			
 		} 
+	}
+
+    public function changeExpenseCategoryAction() 
+	{        
+        if(isset($_POST['id'])) {
+			
+			$expense = new Expenses($_POST);                   
+
+			if($expense->changeCategory())
+
+            Flash::addMessage('Expense category has been changed.');
+            
+            $this->redirect('/settings/index');
+        }
 	}
 
     public function deleteAllExpenseCategoriesAction() 
@@ -317,20 +335,4 @@ class Settings extends Authenticated
             $this->redirect('/settings/index');			
 		} 
 	}
-/*
-    public function setLimitForCategoryOfExpenseAction() 
-	{        
-        if(isset($_POST['category'])) {
-			
-			$expense = new Expenses($_POST);           
-
-			if($expense->setLimitForCategory()){
-                Flash::addMessage('Expense limit for this category has been set.');               
-            }
-            else{
-                Flash::addMessage('Something was wrong! Try again.', Flash::WARNING);                
-            }
-            $this->redirect('/settings/index');			
-		} 
-	}*/
 }

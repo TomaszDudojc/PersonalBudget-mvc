@@ -22,17 +22,229 @@
 						<button  type="button" class="btn btn-danger btn-lg col-10 col-md-5 col-lg-2 px-0" style="white-space: pre-wrap;" data-toggle="modal" data-target="#deleteAllIncomeCategories"><span class="mr-1">&#10008;</span>Delete all</button>
 						<button  type="button" class="btn btn-info btn-lg col-10 col-lg-2 px-0" style="white-space: pre-wrap;" onClick="document.getElementById('incomeCategory_buttons').style.display='none';">Hide<span class="ml-2">&#8682;</span></button>			
 					</div>
-
+					
 					<div class="mt-3 col-10 mx-auto">
-						<button type="button" class="btn btn-secondary btn-lg col-10 mx-auto px-0"  style="white-space: pre-wrap;" onClick="document.getElementById('expenseCategory_buttons').style.display='block';"><i class="icon-basket mr-1"></i>Expense categories</button>
+						<button type="button" class="btn btn-secondary btn-lg col-10 mx-auto px-0"  style="white-space: pre-wrap;" onClick="document.getElementById('expenseCategories').style.display='block';"><i class="icon-basket mr-1"></i>Expense categories</button>
 					</div>
-					<div class="mt-1 col-10 mx-auto" id="expenseCategory_buttons" style="display: none;">								
-						<button  type="button" class="btn btn-primary btn-lg col-10 col-md-5 col-lg-2 px-0" style="white-space: pre-wrap;" data-toggle="modal" data-target="#editExpenseCategory{{ expenseCategory.id }}"><i class="icon-pencil mr-1"></i>Edit</button>
-						<button  type="button" class="btn btn-danger btn-lg col-10 col-md-5 col-lg-2 px-0" style="white-space: pre-wrap;" data-toggle="modal" data-target="#deleteExpenseCategory{{ expenseCategory.id }}"><span class="mr-1">&#10008;</span>Delete</button>
-						<button  type="button" class="btn btn-success btn-lg col-10 col-md-5 col-lg-2 px-0" style="white-space: pre-wrap;" data-toggle="modal" data-target="#addExpenseCategory"><span class="mr-1">&#10004;</span>Add</button>
-						<button  type="button" class="btn btn-danger btn-lg col-10 col-md-5 col-lg-2 px-0" style="white-space: pre-wrap;" data-toggle="modal" data-target="#deleteAllExpenseCategories"><span class="mr-1">&#10008;</span>Delete all</button>
-						<button  type="button" class="btn btn-info btn-lg col-10 col-lg-2 px-0" style="white-space: pre-wrap;" onClick="document.getElementById('expenseCategory_buttons').style.display='none';">Hide<span class="ml-2">&#8682;</span></button>
-						<!--<button  type="button" class="btn btn-info btn-lg col-10 col-lg-2 px-0" style="white-space: pre-wrap;" data-toggle="modal" data-target="#setLimitForCategoryOfExpense{{ expenseCategory.id }}"><i class="icon-pencil mr-1"></i>Set limit</button>-->			
+					<div class="mt-1 col-10 mx-auto" id="expenseCategories" style="display: none;">								
+						{% if expenseCategories %}                      					
+							{% for expenseCategory in expenseCategories %}                             
+								<h5 class="rounded my-0 mx-auto col-10" style="color: #060B95; background-color: #D3DDE9; border: 1px solid  #c2cce8;">
+									<input name="id" type="number" style="display: none;" value="{{ expenseCategory.id }}">
+									<table width="100%">
+										<tr>
+											<td width="60%" class="text-left">
+											{{ expenseCategory.name }}
+											</td>
+											<td>
+											<button  type="button" class="btn btn-primary btn-sm" style="white-space: pre-wrap; width: 100%" data-toggle="modal" data-target="#editExpenseCategory{{ expenseCategory.id }}"><i class="icon-pencil mr-1"></i>Edit</button>
+											</td>
+											<td>
+											<button  type="button" class="btn btn-danger btn-sm" style="white-space: pre-wrap; width: 100%" data-toggle="modal" data-target="#deleteExpenseCategory{{ expenseCategory.id }}"><span class="mr-1">&#10008;</span>Delete</button>
+											</td>
+										</tr>
+									</table>
+								</h5>
+
+								<div class="modal fade" id="editExpenseCategory{{ expenseCategory.id }}" tabindex="-1" aria-labelledby="editExpenseCategoryLabel{{ expenseCategory.id }}" aria-hidden="true">
+												
+									<div class="modal-dialog">
+										<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
+											<div class="modal-header bg-primary text-white">
+											<h5 class="modal-title" id="editExpenseCategoryLabel{{ expenseCategory.id }}"><i class="icon-pencil mr-1"></i>Edit category<i class="icon-basket mr-1"></i></h5>
+											<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+											</div>
+											<div class="modal-body">
+												<form action="/settings/editExpenseCategory" method="post">
+													<input name="id" type="number" style="display: none;" value="{{ expenseCategory.id }}">
+													<input name="current_name" type="text" style="display: none;" value="{{ expenseCategory.name }}">										
+													<div class="input-group">	
+														<div class="input-group-prepend">
+															<span class="input-group-text rounded-left icon" style="width: 100px;"><i class="icon-pencil" style="width: 100px;">Name</i></span>
+														</div>
+														<input type="text" class="form-control  rounded-right" name="new_name"  value="{{ expenseCategory.name }}" required>	
+													</div>
+
+													<div class="input-group">	
+														<div class="input-group-prepend">
+															<span class="input-group-text rounded-left icon" style="width: 100px;"><i class="icon-pencil" style="width: 100px;">Limit</i></span>
+														</div>
+														{% if (expenseCategory.month_limit) > (0) %}
+														<input type="text" class="form-control  rounded-right" name="new_limit"	value="{{ expenseCategory.month_limit }}">
+														{% else %}
+														<input type="text" class="form-control  rounded-right" name="new_limit"	placeholder = "No limit set">
+														{% endif %}
+																										
+													</div>
+
+													<div class="modal-footer">
+														<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+														<button type="submit" class="btn btn-primary">Save changes</button>
+													</div>
+												</form>							
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="modal fade" id="deleteExpenseCategory{{ expenseCategory.id }}" tabindex="-1" aria-labelledby="deleteExpenseCategoryLabel{{ expenseCategory.id }}" aria-hidden="true">
+												
+									<div class="modal-dialog">
+										<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
+											<div class="modal-header bg-danger text-white">
+											<h5 class="modal-title" id="deleteExpenseCategoryLabel{{ expenseCategory.id }}"><span class="mr-1">&#10008;</span>Delete a category<i class="icon-basket mr-1"></i></h5>							
+											<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>							
+											</div>
+											
+											<div class="bg-warning">
+												<input name="id" type="number"  style="display: none;" value="{{ expenseCategory.id }}">
+												<p class="my-0 text-dark text-center">Warning:</p>
+												<p class="my-0 text-dark text-center">All expenses in this category will be deleted!</p>
+												<p class="my-0 text-dark text-center">If you want to keep them, assign them to another category first.</p>
+												
+												{% for expenseFromSelectedPeriod in expensesFromSelectedPeriod %}
+													{% if expenseFromSelectedPeriod.expense_category_assigned_to_user_id == expenseCategory.id  %}
+														<h6 class="rounded my-0 py-0 bg-light text-info">
+															<input name="id" type="number" style="display: none;" value="{{ expenseFromSelectedPeriod.id }}">
+															<table width="100%">
+																<tr>
+																	<td width="70%" class="text-left">
+																		{{ expenseFromSelectedPeriod.date_of_expense }}<span class="mx-1">&#8680;</span>
+																		{{ expenseFromSelectedPeriod.amount }}<span class="mx-1">&#8680;</span>
+																		{{ expenseFromSelectedPeriod.expense_comment }}
+																		</td>
+																	<td>
+																	<button  type="button" class="btn btn-info btn-sm my-0 py-0" style="white-space: pre-wrap; width: 100%" data-toggle="modal" data-target="#changeExpenseCategory{{ expenseFromSelectedPeriod.id }}"><i class="icon-pencil mr-1"></i>Change category</button>
+																	</td>
+																</tr>
+															</table>
+														</h6>
+
+														<div class="modal fade" id="changeExpenseCategory{{ expenseFromSelectedPeriod.id }}" tabindex="-1" aria-labelledby="changeExpenseCategoryLabel{{ expenseFromSelectedPeriod.id }}" aria-hidden="true">
+												
+															<div class="modal-dialog">
+																<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
+																	<div class="modal-header bg-primary text-white">
+																	<h5 class="modal-title" id="changeExpenseCategoryLabel{{ expenseFromSelectedPeriod.id }}"><i class="icon-pencil mr-1"></i>Change category<i class="icon-basket mr-1"></i></h5>
+																	<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+																		<span aria-hidden="true">&times;</span>
+																	</button>
+																	</div>
+																	<div class="modal-body">
+																		<form action="/settings/changeExpenseCategory" method="post">
+																			<input name="id" type="number" style="display: none;" value="{{ expenseFromSelectedPeriod.id  }}">
+																			<select class="choice rounded text-center" name="category" style="width: 100%; font-weight: bold; font-size: 20px;">						
+																				<option value="{{ expenseCategory.id }}" selected hidden>{{ expenseCategory.name }}</option>                          					
+																				{% for expenseCategory in expenseCategories %}                             
+																				<option value="{{ expenseCategory.id }}">{{ expenseCategory.name }}</option> 
+																				{% endfor %}                            
+																			</select>	
+
+																			<div class="modal-footer">
+																				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+																				<button type="submit" class="btn btn-primary">Save changes</button>
+																			</div>
+																		</form>							
+																	</div>
+																</div>
+															</div>
+											</div>
+
+													{% endif %}					
+												{% endfor %}
+											</div>
+											
+											<div class="modal-body">
+												<form action="/settings/deleteExpenseCategory" method="post">
+													<input name="id" type="number" style="display: none;" value="{{ expenseCategory.id }}">
+													<input type="text" class="form-control rounded text-center" style="width: 100%; font-weight: bold; font-size: 20px;" name="category" value="{{ expenseCategory.name }}" disabled />				
+														
+													<div class="modal-footer">
+														<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+														<button type="submit" class="btn btn-danger">Delete</button>
+													</div>
+												</form>
+																	
+											</div>
+										</div>
+									</div>
+								</div>
+								
+							{% endfor %}
+
+							<button  type="button" class="btn btn-success btn-lg col-10 col-md-5 col-lg-4 px-0" style="white-space: pre-wrap;" data-toggle="modal" data-target="#addExpenseCategory"><span class="mr-1">&#10004;</span>Add new</button>
+							<button  type="button" class="btn btn-danger btn-lg col-10 col-md-5 col-lg-4 px-0" style="white-space: pre-wrap;" data-toggle="modal" data-target="#deleteAllExpenseCategories"><span class="mr-1">&#10008;</span>Delete all</button>
+							<button  type="button" class="btn btn-secondary btn-lg col-10 col-lg-2 px-0" style="white-space: pre-wrap;" onClick="document.getElementById('expenseCategories').style.display='none';">Close</button>
+							
+						{% else %}
+                            <h6 class="rounded my-0"style="background-color: #D3DDE9; border: 1px solid  #c2cce8;">No expense category</h6>
+                        {% endif %}
+						
+					</div>
+
+					<div class="modal fade" id="addExpenseCategory" tabindex="-1" aria-labelledby="addExpenseCategoryLabel" aria-hidden="true">
+
+						<div class="modal-dialog">
+							<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
+								<div class="modal-header bg-success text-white">
+								<h5 class="modal-title" id="addExpenseCategoryLabel"><span class="mr-1">&#10004;</span>Add category<i class="icon-basket mr-1"></i></h5>
+								<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+								</div>
+								<div class="modal-body">
+									<form action="/settings/addExpenseCategory" method="post">
+										<div class="input-group">	
+											<div class="input-group-prepend ">
+												<span class="input-group-text rounded-left icon" style="width: 100px;"><i class="icon-pencil" style="width: 100px;">Name</i></span>
+											</div>
+											<input type="text" class="form-control  rounded-right" name="new_category"  placeholder="New category name" required >
+										</div>
+										<div class="input-group">
+											<div class="input-group-prepend ">
+												<span class="input-group-text rounded-left icon" style="width: 100px;"><i class="icon-pencil" style="width: 100px;">Limit</i></span>
+											</div>
+											<input type="text" class="form-control  rounded-right" name="new_limit"  placeholder="Set month limit (optionaly)">		
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+											<button type="submit" class="btn btn-success">Add</button>
+										</div>
+									</form>							
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="modal fade" id="deleteAllExpenseCategories" tabindex="-1" aria-labelledby="deleteAllExpenseCategoriesLabel" aria-hidden="true">
+												
+						<div class="modal-dialog">
+							<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
+								<div class="modal-header bg-danger text-white">
+								<h5 class="modal-title" id="deleteAllExpenseCategoriesLabel"><span class="mr-1">&#10008;</span>Delete all expense categories<i class="icon-basket ml-1"></i></h5>
+								<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+								</div>
+								<div class="bg-warning">
+									<p class="my-0 text-dark text-center">Warning:</p>
+									<p class="my-0 text-dark text-center">All categories and expenses will be deleted!</p>
+								</div>							
+								<div class="modal-body">
+									<form action="/settings/deleteAllExpenseCategories" method="post">	
+											<input name="deleteAllExpenseCategories" type="text" style="display: none;">	
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+												<button type="submit" class="btn btn-danger">Delete all</button>
+											</div>
+									</form>							
+								</div>
+							</div>
+						</div>
 					</div>
 
 					<div class="mt-3 col-10 mx-auto">
@@ -199,149 +411,6 @@
 							<div class="modal-body">
 								<form action="/settings/deleteAllIncomeCategories" method="post">	
 										<input name="deleteAllIncomeCategories" type="text" style="display: none;">	
-										<div class="modal-footer">
-											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-											<button type="submit" class="btn btn-danger">Delete all</button>
-										</div>
-								</form>							
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="modal fade" id="editExpenseCategory{{ expenseCategory.id }}" tabindex="-1" aria-labelledby="editExpenseCategoryLabel{{ expenseCategory.id }}" aria-hidden="true">
-												
-					<div class="modal-dialog">
-						<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
-							<div class="modal-header bg-primary text-white">
-							<h5 class="modal-title" id="editExpenseCategoryLabel{{ expenseCategory.id }}"><i class="icon-pencil mr-1"></i>Edit category<i class="icon-basket mr-1"></i></h5>
-							<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-							</div>
-							<div class="modal-body">
-								<form action="/settings/editExpenseCategory" method="post">
-										<select class="choice rounded text-center" name="category" style="width: 100%;" required>
-											{% if expenseCategories %}	
-												<option value selected disabled hidden>Select a category</option>
-													{% for  expenseCategory in  expenseCategories %}                             
-														<option value="{{ expenseCategory.id }}">{{  expenseCategory.name }}{{ expenseCategory.month_limit }}</option> 
-													{% endfor %}													
-											{% else %}
-												<option value selected disabled hidden>&#9785; No expense category</option>
-											{% endif %}      	                            
-										</select>
-										
-										<div class="input-group">	
-											<div class="input-group-prepend ">
-												<span class="input-group-text  rounded-left icon"><i class="icon-pencil"></i></span>
-											</div>
-											<input type="text" class="form-control  rounded-right" name="new_category"  placeholder="New name of category" required>	
-										</div>
-
-										<div class="input-group">	
-											<div class="input-group-prepend ">
-												<span class="input-group-text  rounded-left icon"><i class="icon-pencil"></i>Limit</span>
-											</div>
-											<input type="text" class="form-control  rounded-right" name="new_limit"
-												value="{{ expenseCategory.month_limit }}">
-												
-										</div>
-
-										<div class="modal-footer">
-											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-											<button type="submit" class="btn btn-primary">Save changes</button>
-										</div>
-								</form>							
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="modal fade" id="deleteExpenseCategory{{ expenseCategory.id }}" tabindex="-1" aria-labelledby="deleteExpenseCategoryLabel{{ expenseCategory.id }}" aria-hidden="true">
-												
-					<div class="modal-dialog">
-						<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
-							<div class="modal-header bg-danger text-white">
-							<h5 class="modal-title" id="deleteExpenseCategoryLabel{{ expenseCategory.id }}"><span class="mr-1">&#10008;</span>Delete a category<i class="icon-basket mr-1"></i></h5>							
-							<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>							
-							</div>
-							<div class="bg-warning">
-								<p class="my-0 text-dark text-center">Warning:</p>
-								<p class="my-0 text-dark text-center">All expenses in this category will be deleted!</p>
-								<p class="my-0 text-dark text-center">If you want to keep them, assign them to another category first.</p>
-							</div>
-							<div class="modal-body">
-								<form action="/settings/deleteExpenseCategory" method="post">
-										<select class="choice rounded text-center" name="category" style="width: 100%;" required>
-											{% if expenseCategories %}	
-												<option value selected disabled hidden>Select a category</option>
-													{% for  expenseCategory in  expenseCategories %}                             
-														<option value="{{ expenseCategory.id }}">{{  expenseCategory.name }}</option> 
-													{% endfor %}
-											{% else %}
-												<option value selected disabled hidden>&#9785; No expense category</option>
-											{% endif %}      	                            
-										</select>						
-										
-										<div class="modal-footer">
-											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-											<button type="submit" class="btn btn-danger">Delete</button>
-										</div>
-								</form>							
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				<div class="modal fade" id="addExpenseCategory" tabindex="-1" aria-labelledby="addExpenseCategoryLabel" aria-hidden="true">
-												
-					<div class="modal-dialog">
-						<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
-							<div class="modal-header bg-success text-white">
-							<h5 class="modal-title" id="addExpenseCategoryLabel"><span class="mr-1">&#10004;</span>Add category<i class="icon-basket mr-1"></i></h5>
-							<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-							</div>
-							<div class="modal-body">
-								<form action="/settings/addExpenseCategory" method="post">
-									<div class="input-group">	
-										<div class="input-group-prepend ">
-											<span class="input-group-text  rounded-left icon"><i class="icon-pencil"></i></span>
-										</div>
-										<input type="text" class="form-control  rounded-right" name="new_category"  placeholder="New category" required>	
-									</div>
-
-									<div class="modal-footer">
-										<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-										<button type="submit" class="btn btn-success">Add</button>
-									</div>
-								</form>							
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="modal fade" id="deleteAllExpenseCategories" tabindex="-1" aria-labelledby="deleteAllExpenseCategoriesLabel" aria-hidden="true">
-												
-					<div class="modal-dialog">
-						<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
-							<div class="modal-header bg-danger text-white">
-							<h5 class="modal-title" id="deleteAllExpenseCategoriesLabel"><span class="mr-1">&#10008;</span>Delete all expense categories<i class="icon-basket ml-1"></i></h5>
-							<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-							</div>
-							<div class="bg-warning">
-								<p class="my-0 text-dark text-center">Warning:</p>
-								<p class="my-0 text-dark text-center">All categories and expenses will be deleted!</p>
-							</div>							
-							<div class="modal-body">
-								<form action="/settings/deleteAllExpenseCategories" method="post">	
-										<input name="deleteAllExpenseCategories" type="text" style="display: none;">	
 										<div class="modal-footer">
 											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 											<button type="submit" class="btn btn-danger">Delete all</button>
