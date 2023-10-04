@@ -77,7 +77,7 @@ class Settings extends Authenticated
     
     public function editIncomeCategoryAction() 
 	{        
-        if(isset($_POST['category'])) {
+        if(isset($_POST['id'])) {
 			
 			$income = new Incomes($_POST);           
 
@@ -109,7 +109,7 @@ class Settings extends Authenticated
 
     public function deleteIncomeCategoryAction() 
 	{        
-        if(isset($_POST['category'])) {
+        if(isset($_POST['id'])) {
 			
 			$income = new Incomes($_POST);           
 
@@ -119,6 +119,20 @@ class Settings extends Authenticated
            
             $this->redirect('/settings/index');			
 		} 
+	}
+
+    public function changeIncomeCategoryAction() 
+	{        
+        if(isset($_POST['id'])) {
+			
+			$income = new Incomes($_POST);                   
+
+			if($income->changeCategory())
+
+            Flash::addMessage('Income category has been changed.');
+            
+            $this->redirect('/settings/index');
+        }
 	}
 
     public function deleteAllIncomeCategoriesAction() 

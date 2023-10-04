@@ -390,7 +390,8 @@ class Expenses extends \Core\Model
         $this->category = filter_input(INPUT_POST, 'category');
        
         $sql = "UPDATE expenses
-        SET  expense_category_assigned_to_user_id = :idOfExpenseCategory WHERE id = :id";    		
+        SET  expense_category_assigned_to_user_id = :idOfExpenseCategory
+        WHERE id = :id";    		
 												
 		$db = static::getDB();
 
