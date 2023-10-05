@@ -16,7 +16,7 @@
 						<button type="button" class="btn btn-secondary btn-lg col-10 mx-auto px-0"  style="white-space: pre-wrap;" onClick="document.getElementById('incomeCategories').style.display='block';"><i class="icon-money mr-1"></i>Income categories</button>
 					</div>
 										
-					<div class="mt-1 col-10 mx-auto" id="incomeCategories" style="display: none;">								
+					<div class="mt-1 col-10 mx-auto" id="incomeCategories" style="display: none;">							
 						{% if incomeCategories %}                      					
 							{% for incomeCategory in incomeCategories %}                             
 								<h5 class="rounded my-0 mx-auto col-10" style="color: #060B95; background-color: #D3DDE9; border: 1px solid  #c2cce8;">
@@ -41,7 +41,7 @@
 									<div class="modal-dialog">
 										<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
 											<div class="modal-header bg-primary text-white">
-											<h5 class="modal-title" id="editIncomeCategoryLabel{{ incomeCategory.id }}"><i class="icon-pencil mr-1"></i>Edit category<i class="icon-money mr-1"></i></h5>
+											<h5 class="modal-title" id="editIncomeCategoryLabel{{ incomeCategory.id }}"><i class="icon-pencil mr-1"></i>Edit income category<i class="icon-money mr-1"></i></h5>
 											<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
 												<span aria-hidden="true">&times;</span>
 											</button>
@@ -49,7 +49,7 @@
 											<div class="modal-body">
 												<form action="/settings/editIncomeCategory" method="post">
 													<input name="id" type="number" style="display: none;" value="{{ incomeCategory.id }}">
-													<input name="current_name" type="text" style="display: none;" value="{{ incomeCategory.name }}">										
+													<!--<input name="current_name" type="text" style="display: none;" value="{{ incomeCategory.name }}">-->										
 													<div class="input-group">	
 														<div class="input-group-prepend">
 															<span class="input-group-text rounded-left icon" style="width: 100px;"><i class="icon-pencil" style="width: 100px;">Name</i></span>
@@ -73,7 +73,7 @@
 									<div class="modal-dialog">
 										<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
 											<div class="modal-header bg-danger text-white">
-											<h5 class="modal-title" id="deleteIncomeCategoryLabel{{ incomeCategory.id }}"><span class="mr-1">&#10008;</span>Delete a category<i class="icon-money mr-1"></i></h5>							
+											<h5 class="modal-title" id="deleteIncomeCategoryLabel{{ incomeCategory.id }}"><span class="mr-1">&#10008;</span>Delete income category<i class="icon-money mr-1"></i></h5>							
 											<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
 												<span aria-hidden="true">&times;</span>
 											</button>							
@@ -179,7 +179,7 @@
 						<div class="modal-dialog">
 							<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
 								<div class="modal-header bg-success text-white">
-								<h5 class="modal-title" id="addIncomeCategoryLabel"><span class="mr-1">&#10004;</span>Add category<i class="icon-money mr-1"></i></h5>
+								<h5 class="modal-title" id="addIncomeCategoryLabel"><span class="mr-1">&#10004;</span>Add income category<i class="icon-money mr-1"></i></h5>
 								<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>
@@ -257,7 +257,7 @@
 									<div class="modal-dialog">
 										<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
 											<div class="modal-header bg-primary text-white">
-											<h5 class="modal-title" id="editExpenseCategoryLabel{{ expenseCategory.id }}"><i class="icon-pencil mr-1"></i>Edit category<i class="icon-basket mr-1"></i></h5>
+											<h5 class="modal-title" id="editExpenseCategoryLabel{{ expenseCategory.id }}"><i class="icon-pencil mr-1"></i>Edit expense category<i class="icon-basket mr-1"></i></h5>
 											<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
 												<span aria-hidden="true">&times;</span>
 											</button>
@@ -300,7 +300,7 @@
 									<div class="modal-dialog">
 										<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
 											<div class="modal-header bg-danger text-white">
-											<h5 class="modal-title" id="deleteExpenseCategoryLabel{{ expenseCategory.id }}"><span class="mr-1">&#10008;</span>Delete a category<i class="icon-basket mr-1"></i></h5>							
+											<h5 class="modal-title" id="deleteExpenseCategoryLabel{{ expenseCategory.id }}"><span class="mr-1">&#10008;</span>Delete expense category<i class="icon-basket mr-1"></i></h5>							
 											<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
 												<span aria-hidden="true">&times;</span>
 											</button>							
@@ -408,7 +408,7 @@
 						<div class="modal-dialog">
 							<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
 								<div class="modal-header bg-success text-white">
-								<h5 class="modal-title" id="addExpenseCategoryLabel"><span class="mr-1">&#10004;</span>Add category<i class="icon-basket mr-1"></i></h5>
+								<h5 class="modal-title" id="addExpenseCategoryLabel"><span class="mr-1">&#10004;</span>Add expense category<i class="icon-basket mr-1"></i></h5>
 								<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>
@@ -465,8 +465,12 @@
 					</div>
 
 					<div class="mt-3 col-10 mx-auto">
-						<button type="button" class="btn btn-secondary btn-lg col-10 mx-auto px-0"  style="white-space: pre-wrap;" onClick="document.getElementById('paymentMethod_buttons').style.display='block';"><i class="icon-cc-visa mr-2"></i>Payment methods</button>
+						<button type="button" class="btn btn-secondary btn-lg col-10 mx-auto px-0"  style="white-space: pre-wrap;" onClick="document.getElementById('paymentMethods').style.display='block';"><i class="icon-cc-visa mr-2"></i>Payment methods</button>
 					</div>
+
+
+
+					<!-- wyłączone/ PAYMENT METHODS
 					<div class="mt-1 col-10 mx-auto" id="paymentMethod_buttons" style="display: none;">								
 						<button  type="button" class="btn btn-primary btn-lg col-10 col-md-5 col-lg-2 px-0" style="white-space: pre-wrap;" data-toggle="modal" data-target="#editPaymentMethod{{ paymentMethod.id }}"><i class="icon-pencil mr-1"></i>Edit</button>
 						<button  type="button" class="btn btn-danger btn-lg col-10 col-md-5 col-lg-2 px-0" style="white-space: pre-wrap;" data-toggle="modal" data-target="#deletePaymentMethod{{ paymentMethod.id }}"><span class="mr-1">&#10008;</span>Delete</button>
@@ -474,7 +478,224 @@
 						<button  type="button" class="btn btn-danger btn-lg col-10 col-md-5 col-lg-2 px-0" style="white-space: pre-wrap;" data-toggle="modal" data-target="#deleteAllPaymentMethods"><span class="mr-1">&#10008;</span>Delete all</button>
 						<button  type="button" class="btn btn-info btn-lg col-10 col-lg-2 px-0" style="white-space: pre-wrap;" onClick="document.getElementById('paymentMethod_buttons').style.display='none';">Hide<span class="ml-2">&#8682;</span></button>			
 					</div>
-					
+					-->
+					<!--testowo/PAYMENT METHODS/ początek-->
+					<div class="mt-1 col-10 mx-auto" id="paymentMethods" style="display: none;">							
+						{% if paymentMethods %}                      					
+							{% for paymentMethod in paymentMethods %}                             
+								<h5 class="rounded my-0 mx-auto col-10" style="color: #060B95; background-color: #D3DDE9; border: 1px solid  #c2cce8;">
+									<input name="id" type="number" style="display: none;" value="{{ paymentMethod.id }}">
+									<table width="100%">
+										<tr>
+											<td width="60%" class="text-left">
+											{{ paymentMethod.name }}
+											</td>
+											<td>
+											<button  type="button" class="btn btn-primary btn-sm" style="white-space: pre-wrap; width: 100%" data-toggle="modal" data-target="#editPaymentMethod{{ paymentMethod.id }}"><i class="icon-pencil mr-1"></i>Edit</button>
+											</td>
+											<td>
+											<button  type="button" class="btn btn-danger btn-sm" style="white-space: pre-wrap; width: 100%" data-toggle="modal" data-target="#deletePaymentMethod{{ paymentMethod.id }}"><span class="mr-1">&#10008;</span>Delete</button>
+											</td>
+										</tr>
+									</table>
+								</h5>
+
+								<div class="modal fade" id="editPaymentMethod{{ paymentMethod.id }}" tabindex="-1" aria-labelledby="editPaymentMethodLabel{{ paymentMethod.id }}" aria-hidden="true">
+												
+									<div class="modal-dialog">
+										<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
+											<div class="modal-header bg-primary text-white">
+											<h5 class="modal-title" id="editPaymentMethodLabel{{ paymentMethod.id }}"><i class="icon-pencil mr-1"></i>Edit payment method<i class="icon-cc-visa mr-1"></i></h5>
+											<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+											</div>
+											<div class="modal-body">
+												<form action="/settings/editPaymentMethod" method="post">
+													<input name="id" type="number" style="display: none;" value="{{ paymentMethod.id }}">
+													<!--<input name="current_name" type="text" style="display: none;" value="{{ paymentMethod.name }}">-->										
+													<div class="input-group">	
+														<div class="input-group-prepend">
+															<span class="input-group-text rounded-left icon" style="width: 100px;"><i class="icon-pencil" style="width: 100px;">Name</i></span>
+														</div>
+														<input type="text" class="form-control  rounded-right" name="new_name" value="{{ paymentMethod.name }}" required>	
+													</div>											
+													
+
+													<div class="modal-footer">
+														<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+														<button type="submit" class="btn btn-primary">Save changes</button>
+													</div>
+												</form>							
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="modal fade" id="deletePaymentMethod{{ paymentMethod.id }}" tabindex="-1" aria-labelledby="deletePaymentMethodLabel{{ paymentMethod.id }}" aria-hidden="true">
+												
+									<div class="modal-dialog">
+										<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
+											<div class="modal-header bg-danger text-white">
+											<h5 class="modal-title" id="deletePaymentMethodLabel{{ paymentMethod.id }}"><span class="mr-1">&#10008;</span>Delete payment method<i class="icon-cc-visa mr-1"></i></h5>							
+											<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>							
+											</div>
+											<!--
+											<div class="bg-warning">
+												<input name="id" type="number"  style="display: none;" value="{{ incomeCategory.id }}">
+												<p class="my-0 text-dark text-center">Warning:</p>
+												<p class="my-0 text-dark text-center">All incomes in this category will be deleted!</p>
+												<p class="my-0 text-dark text-center">If you want to keep them, assign them to another category first.</p>
+
+												<div class="modal-footer py-2">
+														<button type="button" class="btn btn-info btn-sm ml-0 mr-auto"  style="white-space: pre-wrap;" onClick="document.getElementById('showIncomes{{ incomeCategory.id }}').style.display='block';">Check incomes in category</button>
+                                                        <button type="button" class="btn btn-secondary btn-sm mr-0 ml-auto"  style="white-space: pre-wrap;" onClick="document.getElementById('showIncomes{{ incomeCategory.id }}').style.display='none';">Close</button>
+                                                </div>
+
+												<div id="showIncomes{{ incomeCategory.id }}" style="display: none;">
+												<input name="id" type="number"  style="display: none;" value="{{ incomeCategory.id }}">
+												{% set noIncome = true %}
+												{% for incomeFromSelectedPeriod in incomesFromSelectedPeriod %}
+													{% if incomeFromSelectedPeriod.income_category_assigned_to_user_id == incomeCategory.id  %}
+														<h6 class="rounded my-0 py-0 bg-warning text-info border border-info">
+															<input name="id" type="number" style="display: none;" value="{{ incomeFromSelectedPeriod.id }}">
+															<table width="100%">
+																<tr>
+																	<td width="70%" class="text-left">
+																		{{incomeFromSelectedPeriod.date_of_income }}<span class="mx-1">&#8680;</span>
+																		{{ incomeFromSelectedPeriod.amount }}<span class="mx-1">&#8680;</span>
+																		{{ incomeFromSelectedPeriod.income_comment }}
+																		</td>
+																	<td>
+																	<button  type="button" class="btn btn-info btn-sm my-0 py-0" style="white-space: pre-wrap; width: 100%" data-toggle="modal" data-target="#changeIncomeCategory{{ incomeFromSelectedPeriod.id }}"><i class="icon-pencil mr-1"></i>Change category</button>
+																	</td>
+																</tr>
+															</table>
+														</h6>
+														{% set noIncome = false %}
+														
+														<div class="modal fade" id="changeIncomeCategory{{ incomeFromSelectedPeriod.id }}" tabindex="-1" aria-labelledby="changeIncomeCategoryLabel{{ incomeFromSelectedPeriod.id }}" aria-hidden="true">
+												
+															<div class="modal-dialog">
+																<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
+																	<div class="modal-header bg-info text-white">
+																	<h5 class="modal-title" id="changeIncomeCategoryLabel{{ incomeFromSelectedPeriod.id }}"><i class="icon-pencil mr-1"></i>Change category<i class="icon-cc-visa mr-1"></i></h5>
+																	<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+																		<span aria-hidden="true">&times;</span>
+																	</button>
+																	</div>
+																	<div class="modal-body">
+																		<form action="/settings/changeIncomeCategory" method="post">
+																			<input name="id" type="number" style="display: none;" value="{{ incomeFromSelectedPeriod.id  }}">
+																			<select class="choice rounded text-center" name="category" style="width: 100%; font-weight: bold; font-size: 20px;">						
+																				<option value="{{ incomeCategory.id }}" selected hidden>{{ incomeCategory.name }}</option>                          					
+																				{% for incomeCategory in incomeCategories %}                             
+																				<option value="{{ incomeCategory.id }}">{{ incomeCategory.name }}</option> 
+																				{% endfor %}                            
+																			</select>	
+
+																			<div class="modal-footer">
+																				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+																				<button type="submit" class="btn btn-info">Save changes</button>
+																			</div>
+																		</form>							
+																	</div>
+																</div>
+															</div>
+											</div>														
+													{% endif %}				
+												{% endfor %}
+												{% if noIncome %} No income in that category {% endif %}
+											</div>
+											
+											</div>
+											do sprawdzenia czy dobre miejsce-->	
+											<div class="modal-body">
+												<form action="/settings/deletePaymentMethod" method="post">
+													<input name="id" type="number" style="display: none;" value="{{ paymentMethod.id }}">
+													<input type="text" class="form-control rounded text-center" style="width: 100%; font-weight: bold; font-size: 20px;" name="method" value="{{ paymentMethod.name }}" disabled />				
+														
+													<div class="modal-footer">
+														<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+														<button type="submit" class="btn btn-danger">Delete</button>
+													</div>
+												</form>
+																	
+											</div>
+										</div>
+									</div>
+								</div>
+								
+							{% endfor %}
+							
+						{% else %}
+							<h5 class="rounded my-0 mx-auto col-10" style="color: #060B95; background-color: #D3DDE9; border: 1px solid  #c2cce8;">No payment method</h5>
+                        {% endif %}
+
+						<button  type="button" class="btn btn-success btn-lg col-10 col-md-5 col-lg-4 px-0" style="white-space: pre-wrap;" data-toggle="modal" data-target="#addPaymentMethod"><span class="mr-1">&#10004;</span>Add new</button>
+						<button  type="button" class="btn btn-danger btn-lg col-10 col-md-5 col-lg-4 px-0" style="white-space: pre-wrap;" data-toggle="modal" data-target="#deleteAllPaymentMethod"><span class="mr-1">&#10008;</span>Delete all</button>
+						<button  type="button" class="btn btn-secondary btn-lg col-10 col-lg-2 px-0" style="white-space: pre-wrap;" onClick="document.getElementById('paymentMethods').style.display='none';">Close</button>
+						
+					</div>
+
+					<div class="modal fade" id="addPaymentMethod" tabindex="-1" aria-labelledby="addPaymentMethodLabel" aria-hidden="true">
+
+						<div class="modal-dialog">
+							<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
+								<div class="modal-header bg-success text-white">
+								<h5 class="modal-title" id="addPaymentMethodLabel"><span class="mr-1">&#10004;</span>Add payment method<i class="icon-cc-visa mr-1"></i></h5>
+								<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+								</div>
+								<div class="modal-body">
+									<form action="/settings/addPaymentMethod" method="post">
+										<div class="input-group">	
+											<div class="input-group-prepend ">
+												<span class="input-group-text rounded-left icon" style="width: 100px;"><i class="icon-pencil" style="width: 100px;">Name</i></span>
+											</div>
+											<input type="text" class="form-control  rounded-right" name="new_method"  placeholder="New method of payment name" required >
+										</div>										
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+											<button type="submit" class="btn btn-success">Add</button>
+										</div>
+									</form>							
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="modal fade" id="deleteAllPaymentMethod" tabindex="-1" aria-labelledby="deleteAllPaymentMethodLabel" aria-hidden="true">
+												
+						<div class="modal-dialog">
+							<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
+								<div class="modal-header bg-danger text-white">
+								<h5 class="modal-title" id="deleteAllPaymentMethodLabel"><span class="mr-1">&#10008;</span>Delete all payment methods<i class="icon-cc-visa ml-1"></i></h5>
+								<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+								</div>
+								<div class="bg-warning">
+									<p class="my-0 text-dark text-center">Warning:</p>
+									<p class="my-0 text-dark text-center">All payment methods will be deleted!</p>
+								</div>							
+								<div class="modal-body">
+									<form action="/settings/deleteAllPaymentMethod" method="post">	
+											<input name="deleteAllPaymentMethod" type="text" style="display: none;">	
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+												<button type="submit" class="btn btn-danger">Delete all</button>
+											</div>
+									</form>							
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--testowo/PAYMENT METHODS/ koniec-->
+
 					<div class="mt-3 col-10 mx-auto">
 						<button type="button" class="btn btn-secondary btn-lg col-10 mx-auto px-0"  style="white-space: pre-wrap;" onClick="document.getElementById('incomes_buttons').style.display='block';"><i class="icon-money mr-1"></i>Incomes</button>
 					</div>
@@ -502,7 +723,7 @@
 						<button  type="button" class="btn btn-info btn-lg col-10 col-lg-2 px-0" style="white-space: pre-wrap;" onClick="document.getElementById('userProfile_buttons').style.display='none';">Hide<span class="ml-2">&#8682;</span></button>			
 					</div>
 				</div>
-
+				<!-- wyłączone/ PAYMENT METHODS
 				<div class="modal fade" id="editPaymentMethod{{ paymentMethod.id }}" tabindex="-1" aria-labelledby="editPaymentMethodLabel{{ expenseCategory.id }}" aria-hidden="true">
 												
 					<div class="modal-dialog">
@@ -631,7 +852,7 @@
 						</div>
 					</div>
 				</div>
-
+				KONIEC wyłącznia/PAYMETN METHODS-->
 				<div class="modal fade" id="deleteIncomesFromSelectedCategory{{ incomeCategory.id }}" tabindex="-1" aria-labelledby="deleteIncomesFromSelectedCategoryLabel{{ incomeCategory.id }}" aria-hidden="true">
 												
 					<div class="modal-dialog">

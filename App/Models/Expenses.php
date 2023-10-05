@@ -216,8 +216,8 @@ class Expenses extends \Core\Model
 
     public function editMethod() 
     {
-        $this->method = filter_input(INPUT_POST, 'method');
-        $this->new_method = filter_input(INPUT_POST, 'new_method');
+        $this->method = filter_input(INPUT_POST, 'id');
+        $this->new_method = filter_input(INPUT_POST, 'new_name');
 
         $this->new_method = mb_convert_case($this->new_method,MB_CASE_TITLE,"UTF-8");
         
@@ -259,7 +259,7 @@ class Expenses extends \Core\Model
 
     public function deleteMethod() 
     {
-        $this->method = filter_input(INPUT_POST, 'method');
+        $this->method = filter_input(INPUT_POST, 'id');
 
         if($this->isUsedMethod()){$sql = "UPDATE payment_methods_assigned_to_users SET is_active = 'no' WHERE id = :id";
             $db = static::getDB();

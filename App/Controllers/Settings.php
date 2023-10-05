@@ -227,7 +227,7 @@ class Settings extends Authenticated
     
     public function editPaymentMethodAction() 
 	{        
-        if(isset($_POST['method'])) {
+        if(isset($_POST['id'])) {
 			
 			$expense = new Expenses($_POST);            
 
@@ -259,7 +259,7 @@ class Settings extends Authenticated
 
     public function deletePaymentMethodAction() 
 	{        
-        if(isset($_POST['method'])) {
+        if(isset($_POST['id'])) {
 			
 			$expense = new Expenses($_POST);           
 
