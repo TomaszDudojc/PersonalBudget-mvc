@@ -105,18 +105,16 @@
 
 					</form>			
 				</div>
-				
-					<div class="w-100"></div>
 					
+					<div class="table col-12 mx-auto my-0 rounded">
 					{% if start_date == end_date %}
-					<h2 class="col-11 font-weight-bold rounded mx-auto" style="color: #060B95; background-color: #D3DDE9; border: 1px solid #c2cce8;"><i class="icon-calendar mr-3"></i>{{start_date }}</h2>
+					<h3 class="font-weight-bold rounded mx-auto my-0" style="color: #060B95; background-color: #D3DDE9; border: 1px solid #c2cce8;"><i class="icon-calendar mr-3"></i>{{start_date }}</h3>
 					{% else %}
-					<h2 class="col-11 font-weight-bold rounded mx-auto" style="color: #060B95; background-color: #D3DDE9; border: 1px solid #c2cce8;"><i class="icon-calendar mr-3"></i>{{ start_date }} => {{ end_date }}</h2>
+					<h3 class="font-weight-bold rounded mx-auto my-0" style="color: #060B95; background-color: #D3DDE9; border: 1px solid #c2cce8;"><i class="icon-calendar mr-3"></i>{{ start_date }} => {{ end_date }}</h3>
 					{% endif %}
-					
-					<div class="w-100"></div>		
+					</div>
 												
-					<div class="table col-11 col-lg-5 mx-auto rounded mt-2 mb-0">		
+					<div class="table col-12 col-lg-6 mx-0 rounded mt-2 mb-0">		
 						<h3 style="background-color: #D3DDE9; border: 1px solid  #c2cce8;" class="rounded">Incomes<i class="icon-money ml-5"></i>{{ amountOfAllIncomesFromSelectedPeriod.amountOfAllIncomes }}</h3>	
 						
 						{% if incomeCategoriesFromSelectedPeriod %}
@@ -128,15 +126,16 @@
 									{% for incomeFromSelectedPeriod in incomesFromSelectedPeriod %}
 																		
 										{% if incomeFromSelectedPeriod.income_category_assigned_to_user_id == incomeCategoryFromSelectedPeriod.income_category_assigned_to_user_id  %}
-										
-											<h6 class="rounded my-0"style="background-color: #D3DDE9; border: 1px solid  #c2cce8;"><i class="icon-money"></i>
+											
+											<h6 class="rounded my-0 text-left" style="background-color: #D3DDE9; border: 1px solid  #c2cce8;"><i class="icon-money"></i>
 												<input name="id" type="number" style="display: none;" value="{{ incomeFromSelectedPeriod.id }}">
 												{{ incomeFromSelectedPeriod.date_of_income }}<span class="mx-2">&#8680;</span>
-												{{ incomeFromSelectedPeriod.income_comment }}<span class="mx-2">&#8680;</span>
-												{{ incomeFromSelectedPeriod.amount }}
-												<button type="button" class="text-primary ml-1 " style="border: none; background: none;"  data-toggle="modal" data-toggle="tooltip" data-placement="top" title="Edit" data-target="#editIncome{{ incomeFromSelectedPeriod.id }}"><i class="icon-pencil"></i></button>										
+												{{ incomeFromSelectedPeriod.amount }}<span class="mx-2">&#8680;</span>
+												{{ incomeFromSelectedPeriod.income_comment }}
+												
+												<button type="button" class="text-primary ml-1" style="border: none; background: none;"  data-toggle="modal" data-toggle="tooltip" data-placement="top" title="Edit" data-target="#editIncome{{ incomeFromSelectedPeriod.id }}"><i class="icon-pencil"></i></button>										
 												<button type="button" class="text-danger ml-1" style="border: none; background: none;" data-toggle="modal" data-toggle="tooltip" data-placement="top" title="Delete" data-target="#deleteIncome{{ incomeFromSelectedPeriod.id }}">&#10008;</a></button>
-
+											
 												<div class="modal fade" id="editIncome{{ incomeFromSelectedPeriod.id }}" tabindex="-1" aria-labelledby="editIncomeLabel{{ incomeFromSelectedPeriod.id }}" aria-hidden="true">
 												
 													<div class="modal-dialog">
@@ -156,14 +155,7 @@
 																				<span class="input-group-text  rounded-left icon"><i class="icon-calendar"></i></span>
 																			</div>
 																			<input type="date" class="form-control  rounded-right" name="date" value="{{ incomeFromSelectedPeriod.date_of_income }}" required />
-																		</div>
-																		
-																		<div class="input-group">	
-																			<div class="input-group-prepend ">
-																				<span class="input-group-text  rounded-left icon"><i class="icon-pencil"></i></span>
-																			</div>
-																			<input type="text" class="form-control  rounded-right" name="comment" value="{{ incomeFromSelectedPeriod.income_comment }}" />	
-																		</div>				
+																		</div>																		
 
 																		<div class="input-group">
 																			<div class="input-group-prepend ">
@@ -171,6 +163,13 @@
 																			</div>
 																			<input type="number" class="form-control  rounded-right " step="0.01" min="0.01" name="amount" value="{{ incomeFromSelectedPeriod.amount }}" required />	
 																		</div>
+
+																		<div class="input-group">	
+																			<div class="input-group-prepend ">
+																				<span class="input-group-text  rounded-left icon"><i class="icon-pencil"></i></span>
+																			</div>
+																			<input type="text" class="form-control  rounded-right" name="comment" value="{{ incomeFromSelectedPeriod.income_comment }}" />	
+																		</div>				
 																		
 																		<select class="choice rounded text-center" name="category" style="width: 100%; font-weight: bold; font-size: 20px;">						
 																			<option value="{{ incomeCategoryFromSelectedPeriod.id }}" selected hidden>{{ incomeCategoryFromSelectedPeriod.name }}</option>                          					
@@ -210,20 +209,20 @@
 																		</div>
 																		<input type="date" class="form-control  rounded-right" name="date" value="{{ incomeFromSelectedPeriod.date_of_income }}" disabled />
 																	</div>
-																
-																	<div class="input-group">	
-																		<div class="input-group-prepend ">
-																			<span class="input-group-text  rounded-left icon"><i class="icon-pencil"></i></span>
-																		</div>
-																		<input type="text" class="form-control  rounded-right" name="comment" value="{{ incomeFromSelectedPeriod.income_comment }}" disabled />	
-																	</div>				
 
 																	<div class="input-group">
 																		<div class="input-group-prepend ">
 																			<span class="input-group-text  rounded-left icon"><i class="icon-gauge"></i></span>
 																		</div>
 																		<input type="number" class="form-control  rounded-right " step="0.01" min="0.01" name="amount" value="{{ incomeFromSelectedPeriod.amount }}"  disabled />	
-																	</div>														
+																	</div>
+
+																	<div class="input-group">	
+																		<div class="input-group-prepend ">
+																			<span class="input-group-text  rounded-left icon"><i class="icon-pencil"></i></span>
+																		</div>
+																		<input type="text" class="form-control  rounded-right" name="comment" value="{{ incomeFromSelectedPeriod.income_comment }}" disabled />	
+																	</div>																
 																						
 																	<input type="text" class="form-control rounded text-center" style="width: 100%; font-weight: bold; font-size: 20px;" name="category" value="{{ incomeCategoryFromSelectedPeriod.name }}" disabled />															
 															
@@ -252,7 +251,7 @@
 					
 					</div>				
 					
-					<div class="table col-11 col-lg-5 mx-auto rounded mt-2 mb-0" id="expensesTable">		
+					<div class="table col-12 col-lg-6 mx-0 rounded mt-2 mb-0" id="expensesTable">		
 						<h3 style="background-color: #D3DDE9; border: 1px solid  #c2cce8;" class="rounded">Expenses<i class="icon-basket ml-5"></i>{{amountOfAllExpensesFromSelectedPeriod.amountOfAllExpenses }}</h3>	
 						
 						{% if expenseCategoriesFromSelectedPeriod %}
@@ -265,12 +264,12 @@
 																		
 										{% if expenseFromSelectedPeriod.expense_category_assigned_to_user_id == expenseCategoryFromSelectedPeriod.expense_category_assigned_to_user_id  %}
 											
-												<h6 class="rounded my-0"style="background-color: #D3DDE9; border: 1px solid  #c2cce8;"><i class="icon-basket"></i>
+												<h6 class="rounded my-0 text-left"style="background-color: #D3DDE9; border: 1px solid  #c2cce8;"><i class="icon-basket"></i>
 													<input name="id" type="number" style="display: none;" value="{{ expenseFromSelectedPeriod.id }}">
 													{{ expenseFromSelectedPeriod.date_of_expense }}<span class="mx-2">&#8680;</span>
-													{{ expenseFromSelectedPeriod.expense_comment }}<span class="mx-2">&#8680;</span>
 													{{ expenseFromSelectedPeriod.amount }}<span class="mx-2">&#8680;</span>
-													{{ expenseFromSelectedPeriod.name }}
+													{{ expenseFromSelectedPeriod.name }}<span class="mx-2">&#8680;</span>
+													{{ expenseFromSelectedPeriod.expense_comment }}
 													<button type="button" class="text-primary ml-1" style="border: none; background: none;"  data-toggle="modal" data-toggle="tooltip" data-placement="top" title="Edit" data-target="#editExpense{{ expenseFromSelectedPeriod.id }}"><i class="icon-pencil"></i></button>										
 													<button type="button" class="text-danger ml-1" style="border: none; background: none;" data-toggle="modal" data-toggle="tooltip" data-placement="top" title="Delete" data-target="#deleteExpense{{ expenseFromSelectedPeriod.id }}">&#10008;</a></button>
 
@@ -294,13 +293,6 @@
 																				</div>
 																				<input type="date" class="form-control  rounded-right" name="date" value="{{ expenseFromSelectedPeriod.date_of_expense }}" required />
 																			</div>
-																			
-																			<div class="input-group">	
-																				<div class="input-group-prepend ">
-																					<span class="input-group-text  rounded-left icon"><i class="icon-pencil"></i></span>
-																				</div>
-																				<input type="text" class="form-control  rounded-right" name="comment" value="{{ expenseFromSelectedPeriod.expense_comment }}" />	
-																			</div>				
 
 																			<div class="input-group">
 																				<div class="input-group-prepend ">
@@ -315,6 +307,13 @@
 																					<option value="{{ paymentMethod.id }}">{{ paymentMethod.name }}</option>
 																				{% endfor %}                                    
 																			</select>
+
+																			<div class="input-group">	
+																				<div class="input-group-prepend ">
+																					<span class="input-group-text  rounded-left icon"><i class="icon-pencil"></i></span>
+																				</div>
+																				<input type="text" class="form-control  rounded-right" name="comment" value="{{ expenseFromSelectedPeriod.expense_comment }}" />	
+																			</div>			
 																			
 																			<select class="choice rounded text-center" name="category" style="width: 100%; font-weight: bold; font-size: 20px;">						
 																				<option value="{{ expenseCategoryFromSelectedPeriod.id }}" selected hidden>{{ expenseCategoryFromSelectedPeriod.name }}</option>                          					
@@ -354,13 +353,6 @@
 																			</div>
 																			<input type="date" class="form-control  rounded-right" name="date" value="{{ expenseFromSelectedPeriod.date_of_expense }}" disabled />
 																		</div>
-																	
-																		<div class="input-group">	
-																			<div class="input-group-prepend ">
-																				<span class="input-group-text  rounded-left icon"><i class="icon-pencil"></i></span>
-																			</div>
-																			<input type="text" class="form-control  rounded-right" name="comment" value="{{ expenseFromSelectedPeriod.expense_comment }}" disabled />	
-																		</div>				
 
 																		<div class="input-group">
 																			<div class="input-group-prepend ">
@@ -374,7 +366,14 @@
 																				<span class="input-group-text  rounded-left icon"><i class="icon-cc-visa"></i></span>
 																			</div>
 																			<input type="text" class="form-control  rounded-right" name="method" value="{{ expenseFromSelectedPeriod.name }}" disabled />	
-																		</div>	
+																		</div>
+
+																		<div class="input-group">	
+																			<div class="input-group-prepend ">
+																				<span class="input-group-text  rounded-left icon"><i class="icon-pencil"></i></span>
+																			</div>
+																			<input type="text" class="form-control  rounded-right" name="comment" value="{{ expenseFromSelectedPeriod.expense_comment }}" disabled />	
+																		</div>			
 																							
 																		<input type="text" class="form-control rounded text-center" style="width: 100%; font-weight: bold; font-size: 20px;" name="category" value="{{ expenseCategoryFromSelectedPeriod.name }}" disabled />															
 																
@@ -405,7 +404,7 @@
 
 					<div class="w-100"></div>	
 				
-					<div class="table col-11 mx-auto rounded mt-2 mb-0">
+					<div class="table col-12 mx-auto rounded mt-2 mb-0">
 						<h3 style="background-color: #D3DDE9; border: 1px solid  #c2cce8;" class="rounded">Balance<i class="icon-chart-bar ml-5 mr-1"></i>{{ balance}}</h3>					
 						<h4 class="font-weight-bold bg-white rounded" style="color: #060B95;"></h4>
 							

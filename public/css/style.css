@@ -1,8 +1,10 @@
 body, html
 {	
-	background-image: url("../img/pexels-bri-schneiter-346529.jpg");
 	/*source: https://www.pexels.com/pl-pl/zdjecie/spokojne-cialo-jeziora-miedzy-gorami-346529/*/
-	background-size: cover;	
+	/*background-color: rgb(116, 158, 242);*/
+	/*background-color: rgb(141, 176, 247);*/
+	background-color: #26282E;;
+	/*background-size: cover;*/	
 	font-size: 16px;
 	width: 100%;	
 	font-family: 'Lato', sans-serif !important; 
@@ -19,13 +21,17 @@ body, html
 {	
 	font-size: 60px;	
 	letter-spacing: 5px;	
-	margin: 10px;
+	/*margin: 10px;*/
+	margin: 5px;
 	padding: 5px;
 	font-weight: bold;
-	color: #060B95;	
+	/*color: #060B95;*/
+	color: #209781;	
 	white-space: pre-wrap;	
 	
 }
+
+.navbar-brand:hover   { color: #E9B64A; }
 
 h2
 {	
@@ -67,9 +73,15 @@ h2
 }
 p
 {	
-	color: #060B95;
+	color: #060B95;	
 	text-align: justify;	
 }
+
+blockquote > p
+{
+	color: #209781;
+}
+
 
 .inputContainer
 {
@@ -83,7 +95,8 @@ p
 button.register
 {	
 	width: 100%;
-	background-color: #008000;
+	/*background-color: #008000;*/
+	background-color: #E9B64A;
 	font-size: 20px;
 	color: white;
 	padding: 10px;
@@ -93,15 +106,20 @@ button.register
 
 button.register:focus
 {
-	-webkit-box-shadow: 0px 0px 5px 5px rgba(165,205,165,0.9);
+	/*-webkit-box-shadow: 0px 0px 5px 5px rgba(165,205,165,0.9);
 	-moz-box-shadow: 0px 0px 5px 5px rgba(165,205,165,0.9);
-	box-shadow: 0px 0px 5px 5px rgba(165,205,165,0.9);
+	box-shadow: 0px 0px 5px 5px rgba(165,205,165,0.9);*/
+	/*border: 1px solid  white;*/
+	-webkit-box-shadow: 0px 0px 5px 5px rgba(32,151,129,0.9);
+	-moz-box-shadow: 0px 0px 5px 5px rgba(32,151,129,0.9);
+	box-shadow: 0px 0px 5px 5px rgba(32,151,129,0.9);
 }
 
 button.register:hover
 {
-	background-color: #229222;
-	color: rgb(8, 236, 8);
+	/*background-color: #229222;
+	color: rgb(8, 236, 8);*/
+	background-color: #209781;
 }
 
 /* Zmiana koloru czcionki placeholdera */
@@ -196,7 +214,8 @@ input[type=date]:focus,
 button.login
 {	
 	width: 100%;
-	background-color: #060B95;
+	/*background-color: #060B95;*/
+	background-color: #209781;
 	font-size: 20px;
 	color: white;
 	padding: 10px;
@@ -206,15 +225,20 @@ button.login
 
 button.login:focus
 {
-	-webkit-box-shadow: 0px 0px 5px 5px rgba(157,199,247,0.9);
+	/*-webkit-box-shadow: 0px 0px 5px 5px rgba(157,199,247,0.9);
 	-moz-box-shadow: 0px 0px 5px 5px rgba(157,199,247,0.9);
-	box-shadow: 0px 0px 5px 5px rgba(70, 76, 82, 0.9);
+	box-shadow: 0px 0px 5px 5px rgba(70, 76, 82, 0.9);*/
+	/*border: 1px solid  white;*/
+	-webkit-box-shadow: 0px 0px 5px 5px rgba(233,182,74,0.9);
+	-moz-box-shadow: 0px 0px 5px 5px rgba(233,182,74,0.9);
+	box-shadow: 0px 0px 5px 5px rgba(233,182,74, 0.9);
 }
 
 button.login:hover
 {
-	background-color: #050a84;
-	color: rgb(148, 189, 243);
+	/*background-color: #050a84;
+	color: rgb(148, 189, 243);*/
+	background-color: #E9B64A;
 }
 
 /* Zmiana koloru czcionki placeholdera */
