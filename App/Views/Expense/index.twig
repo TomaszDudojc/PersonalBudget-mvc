@@ -2,6 +2,12 @@
 
 {% block title %}Add expense{% endblock %}
 
+{% block footer %}
+
+<script src="../js/limit.js"></script>
+
+{% endblock %}
+
 {% block nav_item_3 %}active{% endblock %}
 
 {% block body %}   
@@ -14,9 +20,9 @@
 				<h2 class="font-weight-bold rounded bg-secondary">New expense<i class="icon-basket ml-3"></i></h2>
 			</header>
 		
-			<form action="/expense/create" method="post">	
+			<form action="/expense/create" method="post" id="expenseForm">			
 				
-				<input type="number" class="form-control" step="0.01" min="0.01" name="amount" value="{{ expense.amount }}" placeholder="&#xE80C; Amount" style="font-family: 'Fontello'; width: 100%;" required />
+				<input type="number" class="form-control" step="0.01" min="0.01" name="amount" value="{{ expense.amount }}" placeholder="&#xE80C; Amount" style="font-family: 'Fontello'; width: 100%;" required  id="amoutnInput"/>
 
 				<input type="date" class="form-control mx-auto" style="font-family: 'Fontello';" name="date" value="{{ currentDate }}" required />
 
@@ -31,26 +37,39 @@
 					{% endif %}      
 				</select>
 
-				<select class="choice rounded" name="category" style="font-family: 'Fontello'; width: 100%;" required>						
+				<select class="choice rounded" name="category" style="font-family: 'Fontello'; width: 100%;" required id="categorySelect">						
 					{% if expenseCategories %}	
 						<option value selected disabled hidden>&#xE807; Select a category</option>
 							{% for  expenseCategory in  expenseCategories %}                             
-								<option value="{{ expenseCategory.id }}">{{  expenseCategory.name }}</option> 
+								<option value="{{ expenseCategory.id }}">{{ expenseCategory.name }}</option> 
 							{% endfor %}
 					{% else %}
                         <option value selected disabled hidden>&#9785; No expense category</option>
                     {% endif %}      		
 				</select>
 
-				<input type="text" class="form-control" name="comment" value="{{ expense.comment }}" placeholder="&#xE808; Comment" style="font-family: 'Fontello'; width: 100%;" />
+				<input type="text" class="form-control" name="comment" value="{{ expense.comment }}" placeholder="&#xE808; Comment (optional)" style="font-family: 'Fontello'; width: 100%;" id="comment"/>
 
-				<a href="/expense/index"><button  type="button" class="btn btn-secondary btn-lg float-left mt-3" style="width: 94px;">Cancel</button></a>
+				<a href="/expense/index"><button  type="button" class="btn btn-secondary btn-lg float-left mt-3 mb-3" style="width: 94px;">Cancel</button></a>
 				<button  type="submit" class="btn btn-success btn-lg  float-right mt-3" style="width: 94px;">Add</button>
 									
-			</form>		
+			</form>			
 			
 		</div>
-		
-	</main>
+		<form style="background-color: #209781; width: 700px;" class="mx-auto py-2 rounded" id="limitForm">
+			<table class="mx-auto">
+			<tr class="text-center">
+			<td class="mx-auto"><label for "limitInfo">LIMIT INFO</label></td>
+			<td class="mx-auto"><label for "limitValue">LIMIT value</label></td>
+			<td class="mx-auto"><label for "cashLeft">cash leftt</label></td>
+			</tr>
+			<tr class="mx-auto">
+			<td class="px-auto"><input type="number" name="limitInfo" id="limitInfo" style="background-color: white;" placeholder="No limit" class="rounded" disabled/></td>
+			<td class="px-auto"><input type="number" name="limitValue" id="limitValue"style="background-color: white;" class="rounded" disabled /></td>
+			<td class="px-auto"><input type="number" name="cashLeft" id="cashLeft" style="background-color: white;" class="rounded" disabled/></td>
+			</tr>
+			<table>
+		</form>			
+	</main>	
 
 {% endblock %}    

@@ -414,8 +414,10 @@ class Expenses extends \Core\Model
 		$stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);       
         $stmt->bindValue(':name', $category, PDO::PARAM_STR);
 
-		$stmt->execute();       
+		$stmt->execute(); 
         
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);                  
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);  
+        
+        return $result['month_limit'];               
     }
 }

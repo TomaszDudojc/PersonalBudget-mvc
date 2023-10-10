@@ -10,6 +10,12 @@ use \App\Dates;
 
 class Expense extends Authenticated
 {	
+	protected function before()
+	{	
+		parent::before();
+		$this->user = Auth::getUser();
+	}
+	
 	public function indexAction()
     {
         View::renderTemplate('Expense/index.twig', [							
@@ -45,8 +51,7 @@ class Expense extends Authenticated
     }
 
 	public function limitAction()
-    {		
-		$this->user = Auth::getUser();
+    {	
 		$user_id = $this->user->id;
 		$category = $this->route_params['category'];
 
