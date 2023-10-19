@@ -6,6 +6,7 @@ use PDO;
 use \App\Auth;
 use \Core\View;
 use \App\Flash;
+//use \App\Dates;
 
 class Expenses extends \Core\Model
 {
@@ -405,7 +406,8 @@ class Expenses extends \Core\Model
     
     public static function getLimit($user_id, $category) 
     {
-        $sql = "SELECT month_limit FROM expenses_category_assigned_to_users WHERE user_id = :user_id AND name = :name";
+        $sql = "SELECT month_limit FROM expenses_category_assigned_to_users
+        WHERE user_id = :user_id AND name = :name";
 		
 	    $db = static::getDB();
 
@@ -419,5 +421,32 @@ class Expenses extends \Core\Model
         $result = $stmt->fetch(PDO::FETCH_ASSOC);  
         
         return $result['month_limit'];               
+    }   
+    
+    public static function getMonthlyExpenses($user_id, $category_id, $startDate, $endDate) 
+    {          
+        //$date = date('Y-m', strtotime($date));
+       	
+        $sql = "SELECT SUM(amount) as amount FROM expenses
+        WHERE user_id = :user_id 
+        AND expense_category_assigned_to_user_id = :id
+        AND date_of_expense BETWEEN :start_date AND :end_date";
+        //AND date_of_expense LIKE '$date-%'"; 
+        
+      		
+	    $db = static::getDB();
+
+		$stmt = $db->prepare($sql);
+
+		$stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);       
+        $stmt->bindValue(':id', $category_id, PDO::PARAM_INT);
+        $stmt->bindValue(':start_date', $startDate, PDO::PARAM_STR);
+        $stmt->bindValue(':end_date', $endDate, PDO::PARAM_STR);  
+       
+		$stmt->execute(); 
+        
+        $result = $stmt->fetch(PDO::FETCH_ASSOC); 
+        
+        return $result['amount'];                            
     }
 }

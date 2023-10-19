@@ -3,7 +3,7 @@ body, html
 	/*source: https://www.pexels.com/pl-pl/zdjecie/spokojne-cialo-jeziora-miedzy-gorami-346529/*/
 	/*background-color: rgb(116, 158, 242);*/
 	/*background-color: rgb(141, 176, 247);*/
-	background-color: #26282E;;
+	background-color: #26282E;
 	/*background-size: cover;*/	
 	font-size: 16px;
 	width: 100%;	
@@ -359,4 +359,3 @@ option
 	background-color: #D3DDE9;
 	border: 1px solid blue;	
 }
-

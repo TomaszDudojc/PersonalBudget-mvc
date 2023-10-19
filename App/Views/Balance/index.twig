@@ -61,9 +61,9 @@
 			const box = document.getElementById('dateRange');
 			el.addEventListener('change', function handleChange(event) {
 				if (event.target.value === 'custom_period') {
-					box.style.visibility = 'visible';
+					box.style.display = 'block';
 				} else {
-					box.style.visibility = 'hidden';
+					box.style.display = 'none';
 				}
 			});
 		</script>
@@ -95,7 +95,7 @@
 							<option value="custom_period">Custom</option>					
 						</select>
 
-						<div id="dateRange" style="visibility: hidden;">															
+						<div id="dateRange" style="display: none;">															
 							<input class="form-control mx-auto" type="date" name="start_date" value="{{ start_date }}">
 								
 							<input class="form-control mx-auto" type="date" name="end_date" value="{{ end_date }}">							
@@ -108,14 +108,14 @@
 					
 					<div class="table col-12 mx-auto my-0 rounded">
 					{% if start_date == end_date %}
-					<h3 class="font-weight-bold rounded mx-auto my-0" style="color: #060B95; background-color: #D3DDE9; border: 1px solid #c2cce8;"><i class="icon-calendar mr-3"></i>{{start_date }}</h3>
+					<h3 class="font-weight-bold rounded mx-auto my-0" style="color: #26282E; background-color: #209781;"><i class="icon-calendar mr-3"></i>{{start_date }}</h3>
 					{% else %}
-					<h3 class="font-weight-bold rounded mx-auto my-0" style="color: #060B95; background-color: #D3DDE9; border: 1px solid #c2cce8;"><i class="icon-calendar mr-3"></i>{{ start_date }} => {{ end_date }}</h3>
+					<h3 class="font-weight-bold rounded mx-auto my-0" style="color: #26282E; background-color: #209781;"><i class="icon-calendar mr-3"></i>{{ start_date }} => {{ end_date }}</h3>
 					{% endif %}
 					</div>
 												
 					<div class="table col-12 col-lg-6 mx-0 rounded mt-2 mb-0">		
-						<h3 style="background-color: #D3DDE9; border: 1px solid  #c2cce8;" class="rounded">Incomes<i class="icon-money ml-5"></i>{{ amountOfAllIncomesFromSelectedPeriod.amountOfAllIncomes }}</h3>	
+						<h3 style="color: #26282E; background-color: #209781;" class="rounded">Incomes<i class="icon-money ml-5"></i>{{ amountOfAllIncomesFromSelectedPeriod.amountOfAllIncomes }}</h3>	
 						
 						{% if incomeCategoriesFromSelectedPeriod %}
 								
@@ -252,7 +252,7 @@
 					</div>				
 					
 					<div class="table col-12 col-lg-6 mx-0 rounded mt-2 mb-0" id="expensesTable">		
-						<h3 style="background-color: #D3DDE9; border: 1px solid  #c2cce8;" class="rounded">Expenses<i class="icon-basket ml-5"></i>{{amountOfAllExpensesFromSelectedPeriod.amountOfAllExpenses }}</h3>	
+						<h3 style="color: #26282E; background-color: #209781;" class="rounded">Expenses<i class="icon-basket ml-5"></i>{{amountOfAllExpensesFromSelectedPeriod.amountOfAllExpenses }}</h3>	
 						
 						{% if expenseCategoriesFromSelectedPeriod %}
 								
@@ -404,17 +404,16 @@
 
 					<div class="w-100"></div>	
 				
-					<div class="table col-12 mx-auto rounded mt-2 mb-0">
-						<h3 style="background-color: #D3DDE9; border: 1px solid  #c2cce8;" class="rounded">Balance<i class="icon-chart-bar ml-5 mr-1"></i>{{ balance}}</h3>					
-						<h4 class="font-weight-bold bg-white rounded" style="color: #060B95;"></h4>
-							
+					<div class="table col-12 mx-auto rounde d mt-2 mb-0">
+						<h3 style="color: #26282E; background-color: #209781;" class="rounded">Balance<i class="icon-chart-bar ml-5 mr-1"></i>{{ balance}}</h3>					
+													
 						{% if (incomeCategoriesFromSelectedPeriod or expenseCategoriesFromSelectedPeriod) %}
 								
 							{% if (balance) < (0) %}				
-								<h4 class="rounded" style="color: #060B95; background-color: #D3DDE9; border: 1px solid #c2cce8;" >&#129300; Watch out, you are getting into debt!</h4>
+								<h4 class="rounded" style="color: #26282E; background-color: #209781;" >&#129300; Watch out, you are getting into debt!</h4>
 							{% endif %}	
 							{% if (balance) > (0) %}
-								<h4 class="rounded" style="color: #060B95; background-color: #D3DDE9; border: 1px solid #c2cce8;">&#128521; Congratulations. You manage your finances very well!</h4>
+								<h4 class="rounded" style="color: #26282E; background-color: #209781;">&#128521; Congratulations. You manage your finances very well!</h4>
 							{% endif %}	
 						
 						{% endif %}	
