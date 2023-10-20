@@ -2,6 +2,12 @@
 
 {% block title %}Home{% endblock %}
 
+{% block footer %}
+
+<script src="../js/memory.js"></script>
+
+{% endblock %}
+
 {% block nav_item_1 %}active{% endblock %}
 
 {% block body %}  
@@ -16,17 +22,59 @@
                             
             <div class="container mt-3 mb-5">
                             
-                <div class="row">                                    
- 
-                    <div class="col-8 text-center rounded mx-auto mb-3">				
-                            <h3 style="color: #209781">&#128400;<i> Hello, {{ current_user.name }}!</i></h3>	
-                    </div>
-                    <div class="col-8 text-center rounded mx-auto mb-3">				
-                        <h3 style="color: #209781"><i>Select an option from the menu above</i></h3>	
-                    </div>              		
-                    <div class="w-100"></div>
+                <div class="row">
+                    <!-- start game-->
+                    <div id="game" class="col-12 mx-auto" style="display: none;">
+                        <header>	
+                            <h1>Gwent Memory Test</h1>
+                            <p class="game">by Mirosław Zelent</p>                    
+                            <p class="game">Inspired by <a href="https://www.playgwent.com/pl" target="_blank">Gwent - The Witcher Card Game</a></p>                    
+	                    </header>
+	
+                        <main>
+                        
+                            <article>
+                            
+                                <div class="board col-12">
+                                
+                                    <div class="card col-3" id="c0"></div>
+                                    <div class="card col-3" id="c1"></div>
+                                    <div class="card col-3" id="c2"></div>
+                                    <div class="card col-3" id="c3"></div>
                                     
-                    <div class="col-9 mx-auto mt-3">
+                                    <div class="card col-3" id="c4"></div>
+                                    <div class="card col-3" id="c5"></div>
+                                    <div class="card col-3" id="c6"></div>
+                                    <div class="card col-3" id="c7"></div>
+                                    
+                                    <div class="card col-3" id="c8"></div>
+                                    <div class="card col-3" id="c9"></div>
+                                    <div class="card col-3" id="c10"></div>
+                                    <div class="card col-3" id="c11"></div>
+                                    
+                                    <div class="score">Turn counter: 0</div>                                    
+                                
+                                </div>
+                                 <div class="col-8 text-center rounded mx-auto mb-3">
+                                <button type="button" id="closeGameButtton" class="btn btn-info col-md-5 col-10 mx-auto" onClick="document.getElementById('game').style.display='none', document.getElementById('welcome').style.display='block';" style="letter-spacing: 4px;">Pause</button>
+                                <a href="/"><button type="button" id="closeGameButtton" class="btn btn-secondary col-md-5 col-10 mx-auto"  style="letter-spacing: 4px;">Close</button></a>
+                                </div>
+                            </article>
+                        
+                        </main>	
+	
+                    </div>                   
+                    <!-- end game-->                                                    
+ 
+                    <div class="col-8 text-center rounded mx-auto mb-3" id="welcome">				
+                        <h3 style="color: #209781">&#128400;<i> Hello, {{ current_user.name }}!</i></h3>
+                        <h3 style="color: #209781"><i>Select an option from the menu above</i></h3>
+                        <h3 style="color: #209781"><i>... or maybe short game below?</i></h3>
+                        <button type="button" class="btn login col-5 mt-5" onClick="document.getElementById('game').style.display='block', document.getElementById('welcome').style.display='none';">Play &#8883; / continue</button>                    
+                                   		
+                    <!--<div class="w-100"></div>-->
+                                    
+                    <!--<div class="col-9 mx-auto mt-3">
                         <div class="row">
                             <div class="col-lg-5 col-9 mt-3 mx-auto">				
                                 <img class="img-thumbnail" src="../img/plan.jpg" alt="plan">
@@ -35,10 +83,9 @@
                                 <img class="img-thumbnail" src="../img/plan2.jpg" alt="plan2">		
                             </div>
                         </div>
-                    </div>			
-                                    
+                    </div>-->                                    
                  </div>
-                            
+
             </div>
                             
         </main>
@@ -71,11 +118,11 @@
                         <div class="w-100"></div>
                         
                         <div class="col-lg-5 col-11 mt-3 mx-auto">					
-                            <a href="/signup/new" ><button  type="button" class="btn register" style="width: 100%">Sign up</button></a>
+                            <a href="/signup/new" ><button type="button" class="btn register" style="width: 100%">Sign up</button></a>
                         </div>
                         
                         <div class="col-lg-5 col-11 mt-3 mx-auto">		
-                            <a href="/login" ><button  type="button" class="btn login" style="width: 100%">Login</button></a>
+                            <a href="/login" ><button type="button" class="btn login" style="width: 100%">Login</button></a>
                         </div>
                         
                     </div>
