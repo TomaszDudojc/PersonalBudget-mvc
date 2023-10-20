@@ -9,6 +9,7 @@ use \App\Dates;
 use \App\Models\Incomes;
 use \App\Models\Expenses;
 use \App\Models\User;
+use \App\Models\Balances;
 
 class Settings extends Authenticated
 {
@@ -20,12 +21,15 @@ class Settings extends Authenticated
 
     public function indexAction()
     {
-        View::renderTemplate('Settings/index.twig', [							
-			'incomeCategories' => Incomes::getIncomeCategoriesOfUser(),
+        $_SESSION['start_date'] = "2000-01-01";
+        $_SESSION['end_date'] = Dates::getCurrentDate(); 
+        View::renderTemplate('Settings/index.twig', [
             'incomeCategories' => Incomes::getIncomeCategoriesOfUser(),
             'expenseCategories' => Expenses::getExpenseCategoriesOfUser(),
-            'paymentMethods' => Expenses::getPaymentMethodsOfUser(),                       
-            'user' => $this->user			
+            'paymentMethods' => Expenses::getPaymentMethodsOfUser(),
+            'expensesFromSelectedPeriod' => Balances::getExpensesFromSelectedDateRange($_SESSION['start_date'], $_SESSION['end_date']),
+            'incomesFromSelectedPeriod' => Balances::getIncomesFromSelectedDateRange($_SESSION['start_date'], $_SESSION['end_date']),                       
+            'user' => $this->user            		
 		]);
     }
 
@@ -73,7 +77,7 @@ class Settings extends Authenticated
     
     public function editIncomeCategoryAction() 
 	{        
-        if(isset($_POST['category'])) {
+        if(isset($_POST['id'])) {
 			
 			$income = new Incomes($_POST);           
 
@@ -105,7 +109,7 @@ class Settings extends Authenticated
 
     public function deleteIncomeCategoryAction() 
 	{        
-        if(isset($_POST['category'])) {
+        if(isset($_POST['id'])) {
 			
 			$income = new Incomes($_POST);           
 
@@ -115,6 +119,20 @@ class Settings extends Authenticated
            
             $this->redirect('/settings/index');			
 		} 
+	}
+
+    public function changeIncomeCategoryAction() 
+	{        
+        if(isset($_POST['id'])) {
+			
+			$income = new Incomes($_POST);                   
+
+			if($income->changeCategory())
+
+            Flash::addMessage('Income category has been changed.');
+            
+            $this->redirect('/settings/index');
+        }
 	}
 
     public function deleteAllIncomeCategoriesAction() 
@@ -134,9 +152,9 @@ class Settings extends Authenticated
     
     public function editExpenseCategoryAction() 
 	{        
-        if(isset($_POST['category'])) {
+        if(isset($_POST['id'])) {
 			
-			$expense = new Expenses($_POST);           
+			$expense = new Expenses($_POST);                   
 
 			if($expense->editCategory()){
                 Flash::addMessage('Expense category has been edited.');               
@@ -166,16 +184,30 @@ class Settings extends Authenticated
 
     public function deleteExpenseCategoryAction() 
 	{        
-        if(isset($_POST['category'])) {
+        if(isset($_POST['id'])) {
 			
 			$expense = new Expenses($_POST);           
 
-			$expense->deleteCategory();
+            $expense->deleteCategory();
             
             Flash::addMessage('Expense category has been deleted.');               
            
             $this->redirect('/settings/index');			
 		} 
+	}
+
+    public function changeExpenseCategoryAction() 
+	{        
+        if(isset($_POST['id'])) {
+			
+			$expense = new Expenses($_POST);                   
+
+			if($expense->changeCategory())
+
+            Flash::addMessage('Expense category has been changed.');
+            
+            $this->redirect('/settings/index');
+        }
 	}
 
     public function deleteAllExpenseCategoriesAction() 
@@ -195,7 +227,7 @@ class Settings extends Authenticated
     
     public function editPaymentMethodAction() 
 	{        
-        if(isset($_POST['method'])) {
+        if(isset($_POST['id'])) {
 			
 			$expense = new Expenses($_POST);            
 
@@ -227,7 +259,7 @@ class Settings extends Authenticated
 
     public function deletePaymentMethodAction() 
 	{        
-        if(isset($_POST['method'])) {
+        if(isset($_POST['id'])) {
 			
 			$expense = new Expenses($_POST);           
 

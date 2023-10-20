@@ -93,8 +93,8 @@ class Incomes extends \Core\Model
 
     public function editCategory() 
     {
-        $this->category = filter_input(INPUT_POST, 'category');
-        $this->new_category = filter_input(INPUT_POST, 'new_category');
+        $this->category = filter_input(INPUT_POST, 'id');
+        $this->new_category = filter_input(INPUT_POST, 'new_name');
 
         $this->new_category = mb_convert_case($this->new_category,MB_CASE_TITLE,"UTF-8");        
         
@@ -136,7 +136,7 @@ class Incomes extends \Core\Model
 
     public function deleteCategory() 
     {
-        $this->category = filter_input(INPUT_POST, 'category');
+        $this->category = filter_input(INPUT_POST, 'id');
                
         $this->deleteAllIncomesFromCategory();
             
@@ -232,5 +232,24 @@ class Incomes extends \Core\Model
         if($this->deleteAllIncomesFromCategory()){
             return true;
         }        
+    }
+
+    public function changeCategory()
+    {		
+        $this->id = filter_input(INPUT_POST, 'id');
+        $this->category = filter_input(INPUT_POST, 'category');
+       
+        $sql = "UPDATE incomes
+        SET  income_category_assigned_to_user_id = :idOfIncomeCategory
+        WHERE id = :id";    		
+												
+		$db = static::getDB();
+
+        $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
+        $stmt->bindValue(':idOfIncomeCategory',  $this->category, PDO::PARAM_INT);
+
+        return $stmt->execute();        
     }
 }

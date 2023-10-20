@@ -2,23 +2,29 @@
 
 {% block title %}Add expense{% endblock %}
 
+{% block footer %}
+
+<script src="../js/limit.js"></script>
+
+{% endblock %}
+
 {% block nav_item_3 %}active{% endblock %}
 
 {% block body %}   
 
     <main>
 	
-		<div class="inputContainer mt-3">			
+		<div class="inputContainer mt-3 mb-0">			
 			
 			<header>
 				<h2 class="font-weight-bold rounded bg-secondary">New expense<i class="icon-basket ml-3"></i></h2>
 			</header>
 		
-			<form action="/expense/create" method="post">	
+			<form action="/expense/create" method="post" id="expenseForm">			
 				
-				<input type="number" class="form-control" step="0.01" min="0.01" name="amount" value="{{ expense.amount }}" placeholder="&#xE80C; Amount" style="font-family: 'Fontello'; width: 100%;" required />
+				<input type="number" class="form-control" step="0.01" min="0.01" name="amount" value="{{ expense.amount }}" placeholder="&#xE80C; Amount" style="font-family: 'Fontello'; width: 100%;" required  id="amountInput"/>
 
-				<input type="date" class="form-control mx-auto" style="font-family: 'Fontello';" name="date" value="{{ currentDate }}" required />
+				<input type="date" class="form-control mx-auto" style="font-family: 'Fontello';" name="date" value="{{ currentDate }}" required  id="dateInput"/>
 
 				<select class="choice rounded" name="method" style="font-family: 'Fontello'; width: 100%;" required />
 					{% if paymentMethods %}
@@ -31,26 +37,41 @@
 					{% endif %}      
 				</select>
 
-				<select class="choice rounded" name="category" style="font-family: 'Fontello'; width: 100%;" required>						
+				<select class="choice rounded" name="category" style="font-family: 'Fontello'; width: 100%;" required id="categorySelect">						
 					{% if expenseCategories %}	
 						<option value selected disabled hidden>&#xE807; Select a category</option>
 							{% for  expenseCategory in  expenseCategories %}                             
-								<option value="{{ expenseCategory.id }}">{{  expenseCategory.name }}</option> 
+								<option value="{{ expenseCategory.id }}">{{ expenseCategory.name }}</option> 
 							{% endfor %}
 					{% else %}
                         <option value selected disabled hidden>&#9785; No expense category</option>
                     {% endif %}      		
 				</select>
 
-				<input type="text" class="form-control" name="comment" value="{{ expense.comment }}" placeholder="&#xE808; Comment" style="font-family: 'Fontello'; width: 100%;" />
+				<input type="text" class="form-control" name="comment" value="{{ expense.comment }}" placeholder="&#xE808; Comment (optional)" style="font-family: 'Fontello'; width: 100%;" id="comment"/>
 
-				<a href="/expense/index"><button  type="button" class="btn btn-secondary btn-lg float-left mt-3" style="width: 94px;">Cancel</button></a>
-				<button  type="submit" class="btn btn-success btn-lg  float-right mt-3" style="width: 94px;">Add</button>
+				<a href="/expense/index"><button  type="button" class="btn btn-secondary btn-lg float-left mt-3 mb-3" style="width: 49%;">Cancel</button></a>
+				<button  type="submit" class="btn btn-success btn-lg  float-right mt-3" style="width: 49%;">Add</button>
 									
-			</form>		
+			</form>			
 			
+		</div>		
+		
+		<div class="row">
+			<!--
+			<form style="background-color: #209781; visibility: hidden;" class="mx-auto py-2 rounded col-lg-8 col-10 mb-5 mt-0" id="limitForm">
+			-->
+			<form style="background-color: #209781; display: none;" class="mx-auto py-2 rounded col-md-10 col-lg-9 col-xl-6 col-11 mb-5 mt-0" id="limitForm">
+				<label style="color: #26282E;" for "limitInfo" id="limitInfoLabel" class="mb-0"><b>Month limit </b>(category required)</label>		
+				<input type="number" name="limitInfo" id="limitInfo" style="background-color: #26282E; color: #209781;" placeholder="No limit" class="rounded mt-0 mb-1" disabled />
+				<label style="color: #26282E;" for "limitValue" id="limitValueLabel" class="mb-0"><b>Limit value </b>(category & date required)</label>		
+				<input type="number" name="limitValue" id="limitValue" style="background-color: #26282E; color: #209781;" class="rounded mt-0 mb-1" placeholder="No expenses" disabled />
+				<label style="color: #26282E;" for "cashLeft" id="cashLeftLabel" class="mb-0"><b>Cash left </b>(category, date & amount required)</label>		
+				<input type="number" name="cashLeft" id="cashLeft" style="background-color: #26282E; color: #209781;" class="rounded mt-0 mb-1" disabled />
+			</form>
 		</div>
 		
-	</main>
+					
+	</main>	
 
 {% endblock %}    

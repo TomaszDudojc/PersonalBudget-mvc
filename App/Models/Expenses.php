@@ -6,6 +6,7 @@ use PDO;
 use \App\Auth;
 use \Core\View;
 use \App\Flash;
+//use \App\Dates;
 
 class Expenses extends \Core\Model
 {
@@ -114,21 +115,25 @@ class Expenses extends \Core\Model
 
     public function editCategory() 
     {
-        $this->category = filter_input(INPUT_POST, 'category');
-        $this->new_category = filter_input(INPUT_POST, 'new_category');
+        $current_name = filter_input(INPUT_POST, 'current_name');
+        $this->id = filter_input(INPUT_POST, 'id');        
+        $this->new_category = filter_input(INPUT_POST, 'new_name');
+        $this->new_limit = filter_input(INPUT_POST, 'new_limit');
 
         $this->new_category = mb_convert_case($this->new_category,MB_CASE_TITLE,"UTF-8");
         
-        if($this->existCategory()){
+       if($this->existCategory() &&  $this->new_category != $current_name){
             return false;
         }
-        else{$sql = "UPDATE expenses_category_assigned_to_users SET name = :new_name WHERE id = :id";
+        else{
+            $sql = "UPDATE expenses_category_assigned_to_users SET name = :new_name,  month_limit = :month_limit WHERE id = :id";
     
             $db = static::getDB();
             $stmt = $db->prepare($sql); 
     
-            $stmt->bindValue(':id', $this->category, PDO::PARAM_INT);
+            $stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
             $stmt->bindValue(':new_name', $this->new_category, PDO::PARAM_STR);
+            $stmt->bindValue(':month_limit', $this->new_limit, PDO::PARAM_INT);
     
             return $stmt->execute();     
         }          
@@ -136,6 +141,7 @@ class Expenses extends \Core\Model
 
     public function addCategory() 
     {
+        $this->new_limit = filter_input(INPUT_POST, 'new_limit');
         $this->new_category = filter_input(INPUT_POST, 'new_category'); 
         
         $this->new_category = mb_convert_case($this->new_category,MB_CASE_TITLE,"UTF-8");
@@ -143,13 +149,14 @@ class Expenses extends \Core\Model
         if($this->existCategory()){
             return false;
         } 
-        else{$sql = "INSERT INTO expenses_category_assigned_to_users VALUES (NULL, :user_id, :new_name)";           
+        else{$sql = "INSERT INTO expenses_category_assigned_to_users VALUES (NULL, :user_id, :new_name, :month_limit)";           
     
             $db = static::getDB();
             $stmt = $db->prepare($sql);    
            
             $stmt->bindValue(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
             $stmt->bindValue(':new_name', $this->new_category, PDO::PARAM_STR);
+            $stmt->bindValue(':month_limit', $this->new_limit, PDO::PARAM_INT);
     
             return $stmt->execute();     
         }          
@@ -157,7 +164,7 @@ class Expenses extends \Core\Model
 
     public function deleteCategory() 
     {
-        $this->category = filter_input(INPUT_POST, 'category');
+        $this->category = filter_input(INPUT_POST, 'id');
                
         $this->deleteAllExpensesFromCategory();
         $sql = "DELETE FROM expenses_category_assigned_to_users WHERE id = :id";
@@ -210,8 +217,8 @@ class Expenses extends \Core\Model
 
     public function editMethod() 
     {
-        $this->method = filter_input(INPUT_POST, 'method');
-        $this->new_method = filter_input(INPUT_POST, 'new_method');
+        $this->method = filter_input(INPUT_POST, 'id');
+        $this->new_method = filter_input(INPUT_POST, 'new_name');
 
         $this->new_method = mb_convert_case($this->new_method,MB_CASE_TITLE,"UTF-8");
         
@@ -253,7 +260,7 @@ class Expenses extends \Core\Model
 
     public function deleteMethod() 
     {
-        $this->method = filter_input(INPUT_POST, 'method');
+        $this->method = filter_input(INPUT_POST, 'id');
 
         if($this->isUsedMethod()){$sql = "UPDATE payment_methods_assigned_to_users SET is_active = 'no' WHERE id = :id";
             $db = static::getDB();
@@ -377,25 +384,69 @@ class Expenses extends \Core\Model
             return true;
         }        
     }
-    /*
-    public static function checkExpensesInCategory()
-    {
-        $category = filter_input(INPUT_POST, 'category');
-		
-        $sql = "SELECT date_of_expense, expense_comment, expenses.amount, COUNT(id) AS numberOfExpenses 
-        FROM expenses
-        WHERE expense_category_assigned_to_user_id = :id";
-								
-		$db = static::getDB();        
-        $expensesInCategory = $db->prepare($sql);
 
-        $expensesInCategory->bindValue(':id', $category, PDO::PARAM_INT);        
+    public function changeCategory()
+    {		
+        $this->id = filter_input(INPUT_POST, 'id');
+        $this->category = filter_input(INPUT_POST, 'category');
        
-        $expensesInCategory->execute(); 
-        
+        $sql = "UPDATE expenses
+        SET  expense_category_assigned_to_user_id = :idOfExpenseCategory
+        WHERE id = :id";    		
+												
+		$db = static::getDB();
 
-        return  $expensesInCategory->fetchAll(PDO::FETCH_ASSOC); 
-       
+        $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
+        $stmt->bindValue(':idOfExpenseCategory',  $this->category, PDO::PARAM_INT);
+
+        return $stmt->execute();        
     }
-    */
+    
+    public static function getLimit($user_id, $category) 
+    {
+        $sql = "SELECT month_limit FROM expenses_category_assigned_to_users
+        WHERE user_id = :user_id AND name = :name";
+		
+	    $db = static::getDB();
+
+		$stmt = $db->prepare($sql);
+
+		$stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);       
+        $stmt->bindValue(':name', $category, PDO::PARAM_STR);
+
+		$stmt->execute(); 
+        
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);  
+        
+        return $result['month_limit'];               
+    }   
+    
+    public static function getMonthlyExpenses($user_id, $category_id, $startDate, $endDate) 
+    {          
+        //$date = date('Y-m', strtotime($date));
+       	
+        $sql = "SELECT SUM(amount) as amount FROM expenses
+        WHERE user_id = :user_id 
+        AND expense_category_assigned_to_user_id = :id
+        AND date_of_expense BETWEEN :start_date AND :end_date";
+        //AND date_of_expense LIKE '$date-%'"; 
+        
+      		
+	    $db = static::getDB();
+
+		$stmt = $db->prepare($sql);
+
+		$stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);       
+        $stmt->bindValue(':id', $category_id, PDO::PARAM_INT);
+        $stmt->bindValue(':start_date', $startDate, PDO::PARAM_STR);
+        $stmt->bindValue(':end_date', $endDate, PDO::PARAM_STR);  
+       
+		$stmt->execute(); 
+        
+        $result = $stmt->fetch(PDO::FETCH_ASSOC); 
+        
+        return $result['amount'];                            
+    }
 }
