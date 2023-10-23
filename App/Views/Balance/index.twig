@@ -115,19 +115,19 @@
 					</div>
 												
 					<div class="table col-12 col-lg-6 mx-0 rounded mt-2 mb-0">		
-						<h3 style="color: #26282E; background-color: #209781;" class="rounded">Incomes<i class="icon-money ml-5"></i>{{ amountOfAllIncomesFromSelectedPeriod.amountOfAllIncomes }}</h3>	
+						<h3 style="color: #26282E; background-color: #209781; margin-bottom:0px;" class="rounded">Incomes<i class="icon-money ml-5"></i>{{ amountOfAllIncomesFromSelectedPeriod.amountOfAllIncomes }}</h3>	
 						
 						{% if incomeCategoriesFromSelectedPeriod %}
 								
 							{% for incomeCategoryFromSelectedPeriod in incomeCategoriesFromSelectedPeriod %}															
 										
-								<h5 class="rounded mt-2 mb-0" style="color: #060B95;background-color: #D3DDE9; border: 1px solid  #c2cce8;">{{ incomeCategoryFromSelectedPeriod.name }}<i class="icon-money ml-3"></i>{{ incomeCategoryFromSelectedPeriod.amountOfIncomes }}</h5>							
+								<h5 class="rounded mt-2 mb-0 categoryName">{{ incomeCategoryFromSelectedPeriod.name }}<i class="icon-money ml-3"></i>{{ incomeCategoryFromSelectedPeriod.amountOfIncomes }}</h5>							
 									
 									{% for incomeFromSelectedPeriod in incomesFromSelectedPeriod %}
 																		
 										{% if incomeFromSelectedPeriod.income_category_assigned_to_user_id == incomeCategoryFromSelectedPeriod.income_category_assigned_to_user_id  %}
 											
-											<h6 class="rounded my-0 text-left" style="background-color: #D3DDE9; border: 1px solid  #c2cce8;"><i class="icon-money"></i>
+											<h6 class="rounded my-0 text-left transactionName"><i class="icon-money"></i>
 												<input name="id" type="number" style="display: none;" value="{{ incomeFromSelectedPeriod.id }}">
 												{{ incomeFromSelectedPeriod.date_of_income }}<span class="mx-2">&#8680;</span>
 												{{ incomeFromSelectedPeriod.amount }}<span class="mx-2">&#8680;</span>
@@ -252,19 +252,19 @@
 					</div>				
 					
 					<div class="table col-12 col-lg-6 mx-0 rounded mt-2 mb-0" id="expensesTable">		
-						<h3 style="color: #26282E; background-color: #209781;" class="rounded">Expenses<i class="icon-basket ml-5"></i>{{amountOfAllExpensesFromSelectedPeriod.amountOfAllExpenses }}</h3>	
+						<h3 style="color: #26282E; background-color: #209781; margin-bottom:0px;" class="rounded">Expenses<i class="icon-basket ml-5"></i>{{amountOfAllExpensesFromSelectedPeriod.amountOfAllExpenses }}</h3>	
 						
 						{% if expenseCategoriesFromSelectedPeriod %}
 								
 							{% for expenseCategoryFromSelectedPeriod in expenseCategoriesFromSelectedPeriod %}															
 										
-								<h5 class="rounded mt-2 mb-0" style="color: #060B95; background-color: #D3DDE9; border: 1px solid #c2cce8;">{{ expenseCategoryFromSelectedPeriod.name }}<i class="icon-basket ml-3"></i>{{ expenseCategoryFromSelectedPeriod.amountOfExpenses }}</h5>							
+								<h5 class="rounded mt-2 mb-0 categoryName">{{ expenseCategoryFromSelectedPeriod.name }}<i class="icon-basket ml-3"></i>{{ expenseCategoryFromSelectedPeriod.amountOfExpenses }}</h5>							
 									
 									{% for expenseFromSelectedPeriod in expensesFromSelectedPeriod %}
 																		
 										{% if expenseFromSelectedPeriod.expense_category_assigned_to_user_id == expenseCategoryFromSelectedPeriod.expense_category_assigned_to_user_id  %}
 											
-												<h6 class="rounded my-0 text-left"style="background-color: #D3DDE9; border: 1px solid  #c2cce8;"><i class="icon-basket"></i>
+												<h6 class="rounded my-0 text-left transactionName"><i class="icon-basket"></i>
 													<input name="id" type="number" style="display: none;" value="{{ expenseFromSelectedPeriod.id }}">
 													{{ expenseFromSelectedPeriod.date_of_expense }}<span class="mx-2">&#8680;</span>
 													{{ expenseFromSelectedPeriod.amount }}<span class="mx-2">&#8680;</span>

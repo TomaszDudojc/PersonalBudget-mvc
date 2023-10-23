@@ -457,3 +457,32 @@ p.game
 		font-size: 17px;			
 	}
 }
+
+.categoryName
+{	
+	display: inline-block;
+	background-color: #D3DDE9;
+	color: #060B95;  
+	border: 1px solid  #c2cce8;
+	width: 100%;	
+}
+
+.categoryName:hover
+{
+	background-color: #51c8b2;
+	border: 1px solid  #51c8b2;	
+}
+
+.transactionName
+{	
+	display: inline-block;
+	background-color: #D3DDE9; 
+	border: 1px solid  #c2cce8;
+	width: 100%;
+}
+
+.transactionName:hover
+{
+	background-color: #51c8b2;
+	border: 1px solid  #51c8b2;	
+}
