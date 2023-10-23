@@ -26,7 +26,7 @@
                     <!-- start game-->
                     <div id="game" class="col-12 mx-auto" style="display: none;">
                         <header>	
-                            <h1>Gwent Memory Test</h1>
+                            <h1 class="game">Gwent Memory Test</h1>
                             <p class="game">by Mirosław Zelent</p>                    
                             <p class="game">Inspired by <a href="https://www.playgwent.com/pl" target="_blank">Gwent - The Witcher Card Game</a></p>                    
 	                    </header>
@@ -56,8 +56,8 @@
                                 
                                 </div>
                                  <div class="col-8 text-center rounded mx-auto mb-3">
-                                <button type="button" id="closeGameButtton" class="btn btn-info col-md-5 col-10 mx-auto" onClick="document.getElementById('game').style.display='none', document.getElementById('welcome').style.display='block';" style="letter-spacing: 4px;">Pause</button>
-                                <a href="/"><button type="button" id="closeGameButtton" class="btn btn-secondary col-md-5 col-10 mx-auto"  style="letter-spacing: 4px;">Close</button></a>
+                                <button type="button" id="closeGameButtton" class="btn btn-info col-md-5 col-10 mx-auto" onClick="document.getElementById('game').style.display='none', document.getElementById('welcome').style.display='block';" style="letter-spacing: 4px; white-space: pre-wrap;">Pause</button>
+                                <a href="/"><button type="button" id="closeGameButtton" class="btn btn-secondary col-md-5 col-10 mx-auto"  style="letter-spacing: 4px; white-space: pre-wrap;">Close</button></a>
                                 </div>
                             </article>
                         
@@ -70,7 +70,7 @@
                         <h3 style="color: #209781">&#128400;<i> Hello, {{ current_user.name }}!</i></h3>
                         <h3 style="color: #209781"><i>Select an option from the menu above</i></h3>
                         <h3 style="color: #209781"><i>... or maybe short game below?</i></h3>
-                        <button type="button" class="btn login col-5 mt-5" onClick="document.getElementById('game').style.display='block', document.getElementById('welcome').style.display='none';">Play &#8883; / continue</button>                    
+                        <button type="button" class="btn login col-md-5 col-10 mt-5" onClick="document.getElementById('game').style.display='block', document.getElementById('welcome').style.display='none';" style="white-space: pre-wrap;">Play &#8883;</button>                    
                                    		
                     <!--<div class="w-100"></div>-->
                                     
