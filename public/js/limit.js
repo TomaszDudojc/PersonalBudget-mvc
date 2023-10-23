@@ -25,33 +25,33 @@ const getLimit = async(category) => {
    } 
 }
 
-const getLimitValue = async(category_id, date) => { 
+const getCashSpent = async(category_id, date) => { 
    try{
       const res = await fetch(`../api/limit/${category_id}/${date}`);
-      const amountOfAllExpenses = await res.json();
-      return amountOfAllExpenses;           
+      const amountOfAllExpenses = await res.json();      
+      return (amountOfAllExpenses);           
    }catch (e) {
    console.log(`ERRROR`, e)
    }
 }
 
 const getCashLeft = (amount, limit, amountOfAllExpenses) => {
-   if ((limit > 0) && (amount > 0)) {
+   if (limit > 0) {      
       const cashLeft = parseFloat(limit - amountOfAllExpenses - amount).toFixed(2);
       return cashLeft;                
    }
 }
 
-const setLimitValueWarning = () => {
-   document.querySelector(`#limitValue`).style.color = "#E9B64A";
-   document.querySelector(`#limitValueLabel`).style.color = "#E9B64A";
-   document.querySelector(`#limitValueLabel`).innerHTML = "<b>Limit value </b>&#129300; Month limit exceeded";
+const setCashSpentWarning = () => {
+   document.querySelector(`#cashSpent`).style.color = "#E9B64A";
+   document.querySelector(`#cashSpentLabel`).style.color = "#E9B64A";
+   document.querySelector(`#cashSpentLabel`).innerHTML = "<b>Cash spent </b>&#129300; Month limit exceeded";
 }
 
-const setLimitValueInfo = () => {
-   document.querySelector(`#limitValue`).style.color = "#209781";
-   document.querySelector(`#limitValueLabel`).style.color = "#26282E";
-   document.querySelector(`#limitValueLabel`).innerHTML = "<b>Limit value </b>(category & date required)";
+const setCashSpentInfo = () => {
+   document.querySelector(`#cashSpent`).style.color = "#209781";
+   document.querySelector(`#cashSpentLabel`).style.color = "black";
+   document.querySelector(`#cashSpentLabel`).innerHTML = "<b>Cash spent </b>(category & date required)";
 }
 
 const setCashLeftWarning = () => {
@@ -62,7 +62,7 @@ const setCashLeftWarning = () => {
 
 const setCashLeftInfo = () => {
    document.querySelector(`#cashLeft`).style.color = "#209781";
-   document.querySelector(`#cashLeftLabel`).style.color = "#26282E";
+   document.querySelector(`#cashLeftLabel`).style.color = "black";
    document.querySelector(`#cashLeftLabel`).innerHTML = "<b>Cash left </b>(category, date & amount required)";
 }
 
@@ -75,14 +75,15 @@ const renderLimit = (limit) => {
    } 
 }
 
-const renderLimitValue = (amountOfAllExpenses, limit) => {    
-   document.querySelector(`#limitValue`).value = amountOfAllExpenses;  
+const renderCashSpent = (amountOfAllExpenses, limit) => {    
+   document.querySelector(`#cashSpent`).value = amountOfAllExpenses;  
 
-   if((limit > 0) && (amountOfAllExpenses > limit)) { 
-      setLimitValueWarning();
-   }else {     
-      setLimitValueInfo();
-   }                     
+   if((limit > 0) && (amountOfAllExpenses > limit)) {
+      setCashSpentWarning();
+   }      
+   else {     
+      setCashSpentInfo();
+   }                        
 }
 
 const renderCashLeft = (cashLeft) => {    
@@ -93,36 +94,46 @@ const renderCashLeft = (cashLeft) => {
       setCashLeftInfo();
    }
 }
-
+/*
 const clearInputs = () => {
    document.querySelector(`#cashLeft`).value = "";
    document.querySelector(`#amountInput`).value = "";
-   document.querySelector(`#limitValue`).value = "";
+   document.querySelector(`#cashSpent`).value = "";
 
-   setLimitValueInfo();
+   setCashSpentInfo();
    setCashLeftInfo();
 }
-
+*/
 categorySelect.addEventListener("change", async () => {
-   clearInputs();
+   //clearInputs();
 
    const category = document.querySelector(`#categorySelect option:checked`).text; 
    const limit = await getLimit(category);
-
    renderLimit(limit);
+
+   const date = document.querySelector(`#dateInput`).value;
+   const category_id = document.querySelector(`#categorySelect option:checked`).value;
+   const amountOfAllExpenses = await getCashSpent(category_id, date);
+   renderCashSpent(amountOfAllExpenses, limit);
+
+   const amount = document.querySelector(`#amountInput`).value;
+   const cashLeft = getCashLeft(amount, limit, amountOfAllExpenses);
+   renderCashLeft(cashLeft);   
 });
 
 dateInput.addEventListener("change", async () => {
-   clearInputs();
+   //clearInputs();
 
    const category = document.querySelector(`#categorySelect option:checked`).text;
    const category_id = document.querySelector(`#categorySelect option:checked`).value;
    const date = document.querySelector(`#dateInput`).value;
-
    const limit = await getLimit(category);   
-   const amountOfAllExpenses = await getLimitValue(category_id, date);
-
-   renderLimitValue(amountOfAllExpenses, limit);  
+   const amountOfAllExpenses = await getCashSpent(category_id, date);
+   renderCashSpent(amountOfAllExpenses, limit); 
+   
+   const amount = document.querySelector(`#amountInput`).value;
+   const cashLeft = getCashLeft(amount, limit, amountOfAllExpenses);
+   renderCashLeft(cashLeft);   
 });
 
 amountInput.addEventListener("input", async () => {
@@ -132,9 +143,9 @@ amountInput.addEventListener("input", async () => {
    const date = document.querySelector(`#dateInput`).value;
 
    const limit = await getLimit(category);
-   const amountOfAllExpenses = await getLimitValue(category_id, date);   
+   const amountOfAllExpenses = await getCashSpent(category_id, date);   
    const cashLeft = getCashLeft(amount, limit, amountOfAllExpenses);
 
-   renderLimitValue(amountOfAllExpenses, limit);
+   renderCashSpent(amountOfAllExpenses, limit);
    renderCashLeft(cashLeft);   
 });
