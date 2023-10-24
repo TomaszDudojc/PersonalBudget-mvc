@@ -376,7 +376,7 @@ a:visited { color: #209781; }
 a:active  { color: #209781; }
 a:hover   { color: #E9B64A; }
 
-h1
+h1.game
 {
 	font-size: 64px;
 	font-weight: 400;
@@ -441,4 +441,50 @@ p.game
 {
 	margin-top: 5px;
 	letter-spacing: 2px;
+}
+
+@media(max-width: 767px)
+{
+	h1.game
+	{
+		padding: 0px;
+		margin: 0px;
+		font-size: 30px;
+		letter-spacing: 1px;
+	}
+	p.game
+	{
+		font-size: 17px;			
+	}
+}
+
+.categoryName
+{	
+	display: inline-block;
+	background-color: #D3DDE9;
+	color: #060B95;  
+	border: 1px solid  #c2cce8;
+	width: 100%;	
+}
+
+.categoryName:hover
+{
+	background-color: #51c8b2;
+	border: 1px solid  #51c8b2;
+	color: #26282E;	
+}
+
+.transactionName
+{	
+	display: inline-block;
+	background-color: #D3DDE9; 
+	border: 1px solid  #c2cce8;
+	width: 100%;
+}
+
+.transactionName:hover
+{
+	background-color: #51c8b2;
+	border: 1px solid  #51c8b2;
+	color: #26282E;	
 }
