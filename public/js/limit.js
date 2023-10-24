@@ -18,8 +18,8 @@ const amountInput = document.querySelector(`#amountInput`);
 const getLimit = async(category) => {   
    try{
       const res = await fetch(`../api/limit/${category}`);
-      const limit = await res.json(); 
-      return limit;   
+      const limit = await res.json();      
+      return limit;         
    }catch (e) {
       console.log(`ERRROR`, e)
    } 
@@ -29,7 +29,7 @@ const getCashSpent = async(category_id, date) => {
    try{
       const res = await fetch(`../api/limit/${category_id}/${date}`);
       const amountOfAllExpenses = await res.json();      
-      return (amountOfAllExpenses);           
+      return amountOfAllExpenses;          
    }catch (e) {
    console.log(`ERRROR`, e)
    }
@@ -43,27 +43,27 @@ const getCashLeft = (amount, limit, amountOfAllExpenses) => {
 }
 
 const setCashSpentWarning = () => {
-   document.querySelector(`#cashSpent`).style.color = "#E9B64A";
-   document.querySelector(`#cashSpentLabel`).style.color = "#E9B64A";
-   document.querySelector(`#cashSpentLabel`).innerHTML = "<b>Cash spent </b>&#129300; Month limit exceeded";
+   document.querySelector(`#cashSpent`).style.color = "yellow";
+   document.querySelector(`#cashSpentDescription`).style.color = "yellow";
+   document.querySelector(`#cashSpentDescription`).innerHTML = "&#129300; Month limit exceeded";  
 }
 
 const setCashSpentInfo = () => {
-   document.querySelector(`#cashSpent`).style.color = "#209781";
-   document.querySelector(`#cashSpentLabel`).style.color = "black";
-   document.querySelector(`#cashSpentLabel`).innerHTML = "<b>Cash spent </b>(category & date required)";
+   document.querySelector(`#cashSpent`).style.color = "white";
+   document.querySelector(`#cashSpentDescription`).style.color = "white";
+   document.querySelector(`#cashSpentDescription`).innerHTML = "(category & date required)";
 }
 
 const setCashLeftWarning = () => {
-   document.querySelector(`#cashLeft`).style.color = "#E9B64A";
-   document.querySelector(`#cashLeftLabel`).style.color = "#E9B64A";
-   document.querySelector(`#cashLeftLabel`).innerHTML = "<b>Cash left </b>&#129300; Month limit exceeded after this transaction";
+   document.querySelector(`#cashLeft`).style.color = "yellow";
+   document.querySelector(`#cashLeftDescription`).style.color = "yellow";
+   document.querySelector(`#cashLeftDescription`).innerHTML = "&#129300; Month limit exceeded after this transaction";
 }
 
 const setCashLeftInfo = () => {
-   document.querySelector(`#cashLeft`).style.color = "#209781";
-   document.querySelector(`#cashLeftLabel`).style.color = "black";
-   document.querySelector(`#cashLeftLabel`).innerHTML = "<b>Cash left </b>(category, date & amount required)";
+   document.querySelector(`#cashLeft`).style.color = "white";
+   document.querySelector(`#cashLeftDescription`).style.color = "white";
+   document.querySelector(`#cashLeftDescription`).innerHTML = "(category, date & amount required)";
 }
 
 const renderLimit = (limit) => {

@@ -61,13 +61,13 @@
 			<!--
 			<form style="background-color: #209781; visibility: hidden;" class="mx-auto py-2 rounded col-lg-8 col-10 mb-5 mt-0" id="limitForm">
 			-->
-			<form style="background-color: #209781; display: none;" class="mx-auto py-2 rounded col-md-10 col-lg-9 col-xl-6 col-11 mb-5 mt-0" id="limitForm">
-				<label style="color: black;" for "limitInfo" id="limitInfoLabel" class="mb-0"><b>Month limit </b>(category required)</label>		
-				<input type="number" name="limitInfo" id="limitInfo" style="background-color: black; color: #209781;" placeholder="No limit" class="rounded mt-0 mb-1" disabled />
-				<label style="color: black;" for "cashSpent" id="cashSpentLabel" class="mb-0"><b>Cash spent </b>(category & date required)</label>		
-				<input type="number" name="cashSpent" id="cashSpent" style="background-color: black; color: #209781;" class="rounded mt-0 mb-1" placeholder="No expenses" disabled />
-				<label style="color: black" for "cashLeft" id="cashLeftLabel" class="mb-0"><b>Cash left </b>(category, date & amount required)</label>		
-				<input type="number" name="cashLeft" id="cashLeft" style="background-color: black; color: #209781;" class="rounded mt-0 mb-1" disabled />
+			<form style="background-color: #209781; display: none; font-size: 20px;" class="mx-auto py-2 rounded col-md-10 col-lg-9 col-xl-6 col-11 mb-5 mt-0" id="limitForm">
+				<label style="color: white;" for "limitInfo" id="limitInfoLabel" class="mb-0">Month limit (category required)</label>		
+				<input type="number" name="limitInfo" id="limitInfo" style="background-color: black; color: white;" placeholder="No limit" class="rounded mt-0 mb-1" readonly/>
+				<label style="color: white;" for "cashSpent" id="cashSpentLabel" class="mb-0">Cash spent in the selected month <span id="cashSpentDescription">(category & date required)<span></label>		
+				<input type="number" name="cashSpent" id="cashSpent" style="background-color: black; color: white;" class="rounded mt-0 mb-1" placeholder="No expenses" readonly />
+				<label style="color: white" for "cashLeft" id="cashLeftLabel" class="mb-0">Cash left after current expense <span id="cashLeftDescription">(category, date & amount required)</span></label>		
+				<input type="number" name="cashLeft" id="cashLeft" style="background-color: black; color: white;" class="rounded mt-0 mb-1" readonly />
 			</form>
 		</div>
 		

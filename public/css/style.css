@@ -470,7 +470,8 @@ p.game
 .categoryName:hover
 {
 	background-color: #51c8b2;
-	border: 1px solid  #51c8b2;	
+	border: 1px solid  #51c8b2;
+	color: #26282E;	
 }
 
 .transactionName
@@ -484,5 +485,6 @@ p.game
 .transactionName:hover
 {
 	background-color: #51c8b2;
-	border: 1px solid  #51c8b2;	
+	border: 1px solid  #51c8b2;
+	color: #26282E;	
 }
