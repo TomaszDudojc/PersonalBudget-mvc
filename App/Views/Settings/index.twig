@@ -339,9 +339,9 @@
 															<span class="input-group-text rounded-left icon" style="width: 100px;"><i class="icon-pencil" style="width: 100px;">Limit</i></span>
 														</div>
 														{% if (expenseCategory.month_limit) > (0) %}
-														<input type="text" class="form-control  rounded-right" name="new_limit"	value="{{ expenseCategory.month_limit }}">
+														<input type="number" step="0.01" class="form-control  rounded-right" name="new_limit"	value="{{ expenseCategory.month_limit }}">
 														{% else %}
-														<input type="text" class="form-control  rounded-right" name="new_limit"	placeholder = "No limit set">
+														<input type="number" step="0.01" class="form-control  rounded-right" name="new_limit"	placeholder = "No limit set">
 														{% endif %}
 																										
 													</div>
@@ -486,7 +486,7 @@
 											<div class="input-group-prepend ">
 												<span class="input-group-text rounded-left icon" style="width: 100px;"><i class="icon-pencil" style="width: 100px;">Limit</i></span>
 											</div>
-											<input type="text" class="form-control  rounded-right" name="new_limit"  placeholder="Set month limit (optional)">		
+											<input type="number" step="0.01" class="form-control  rounded-right" name="new_limit"  placeholder="Set month limit (optional)">		
 										</div>
 										<div class="modal-footer">
 											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

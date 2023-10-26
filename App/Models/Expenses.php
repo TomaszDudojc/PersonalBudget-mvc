@@ -133,7 +133,7 @@ class Expenses extends \Core\Model
     
             $stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
             $stmt->bindValue(':new_name', $this->new_category, PDO::PARAM_STR);
-            $stmt->bindValue(':month_limit', $this->new_limit, PDO::PARAM_INT);
+            $stmt->bindValue(':month_limit', $this->new_limit, PDO::PARAM_STR);
     
             return $stmt->execute();     
         }          
@@ -156,7 +156,7 @@ class Expenses extends \Core\Model
            
             $stmt->bindValue(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
             $stmt->bindValue(':new_name', $this->new_category, PDO::PARAM_STR);
-            $stmt->bindValue(':month_limit', $this->new_limit, PDO::PARAM_INT);
+            $stmt->bindValue(':month_limit', $this->new_limit, PDO::PARAM_STR);
     
             return $stmt->execute();     
         }          
@@ -431,8 +431,7 @@ class Expenses extends \Core\Model
         WHERE user_id = :user_id 
         AND expense_category_assigned_to_user_id = :id
         AND date_of_expense BETWEEN :start_date AND :end_date";
-        //AND date_of_expense LIKE '$date-%'"; 
-        
+        //AND date_of_expense LIKE '$date-%'";        
       		
 	    $db = static::getDB();
 

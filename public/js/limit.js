@@ -78,7 +78,7 @@ const renderLimit = (limit) => {
 const renderCashSpent = (amountOfAllExpenses, limit) => {    
    document.querySelector(`#cashSpent`).value = amountOfAllExpenses;  
 
-   if((limit > 0) && (amountOfAllExpenses > limit)) {
+   if((limit > 0) && ((limit - amountOfAllExpenses) < 0)) {
       setCashSpentWarning();
    }      
    else {     
