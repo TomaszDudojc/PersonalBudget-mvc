@@ -118,7 +118,9 @@ class Expenses extends \Core\Model
         $current_name = filter_input(INPUT_POST, 'current_name');
         $this->id = filter_input(INPUT_POST, 'id');        
         $this->new_category = filter_input(INPUT_POST, 'new_name');
-        $this->new_limit = filter_input(INPUT_POST, 'new_limit');
+        if ($_POST['new_limit'] != '') {
+            $this->new_limit = filter_input(INPUT_POST, 'new_limit');
+        } 
 
         $this->new_category = mb_convert_case($this->new_category,MB_CASE_TITLE,"UTF-8");
         
@@ -126,14 +128,20 @@ class Expenses extends \Core\Model
             return false;
         }
         else{
-            $sql = "UPDATE expenses_category_assigned_to_users SET name = :new_name,  month_limit = :month_limit WHERE id = :id";
-    
+            $sql = "UPDATE expenses_category_assigned_to_users SET name = :new_name";
+            if (isset($this->new_limit)) {
+                $sql .= ", month_limit = :month_limit";                
+            }
+            $sql .= "\nWHERE id = :id";
+
             $db = static::getDB();
             $stmt = $db->prepare($sql); 
     
             $stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
-            $stmt->bindValue(':new_name', $this->new_category, PDO::PARAM_STR);
-            $stmt->bindValue(':month_limit', $this->new_limit, PDO::PARAM_STR);
+            $stmt->bindValue(':new_name', $this->new_category, PDO::PARAM_STR);           
+            if (isset($this->new_limit)){
+                $stmt->bindValue(':month_limit', $this->new_limit, PDO::PARAM_STR);
+            }
     
             return $stmt->execute();     
         }          
@@ -141,7 +149,9 @@ class Expenses extends \Core\Model
 
     public function addCategory() 
     {
-        $this->new_limit = filter_input(INPUT_POST, 'new_limit');
+        if ($_POST['new_limit'] != '') {
+            $this->new_limit = filter_input(INPUT_POST, 'new_limit');
+        } 
         $this->new_category = filter_input(INPUT_POST, 'new_category'); 
         
         $this->new_category = mb_convert_case($this->new_category,MB_CASE_TITLE,"UTF-8");
@@ -149,14 +159,19 @@ class Expenses extends \Core\Model
         if($this->existCategory()){
             return false;
         } 
-        else{$sql = "INSERT INTO expenses_category_assigned_to_users VALUES (NULL, :user_id, :new_name, :month_limit)";           
+        else{$sql = "INSERT INTO expenses_category_assigned_to_users VALUES (NULL, :user_id, :new_name";
+            if (isset($this->new_limit)) {
+                $sql .= ", :month_limit)";                
+            }               
     
             $db = static::getDB();
             $stmt = $db->prepare($sql);    
            
             $stmt->bindValue(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
             $stmt->bindValue(':new_name', $this->new_category, PDO::PARAM_STR);
-            $stmt->bindValue(':month_limit', $this->new_limit, PDO::PARAM_STR);
+            if (isset($this->new_limit)){
+                $stmt->bindValue(':month_limit', $this->new_limit, PDO::PARAM_STR);
+            }
     
             return $stmt->execute();     
         }          

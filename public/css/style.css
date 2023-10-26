@@ -488,3 +488,22 @@ p.game
 	border: 1px solid  #51c8b2;
 	color: #26282E;	
 }
+
+.tdCategoryName
+{
+	width: 60%;
+}
+
+@media(max-width: 575px)
+{
+	.categoryName
+	{	
+		font-size: 16px;;	
+	}
+
+	.tdCategoryName
+	{
+		width: 45%;
+		word-break: break-word;
+	}
+}
