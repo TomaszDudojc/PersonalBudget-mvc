@@ -37,33 +37,45 @@ const getCashSpent = async(category_id, date) => {
 
 const getCashLeft = (amount, limit, amountOfAllExpenses) => {
    if (limit > 0) {      
-      const cashLeft = parseFloat(limit - amountOfAllExpenses - amount).toFixed(2);
+      const cashLeft = (limit - amountOfAllExpenses - amount).toFixed(2);
       return cashLeft;                
    }
 }
 
-const setCashSpentWarning = () => {
-   document.querySelector(`#cashSpent`).style.color = "yellow";
-   document.querySelector(`#cashSpentDescription`).style.color = "yellow";
-   document.querySelector(`#cashSpentDescription`).innerHTML = "&#129300; Month limit exceeded";  
+const setCashSpentWarning = () => {   
+   document.querySelector(`#cashSpent`).className = "text-warning bg-dark border-warning rounded"; 
+   document.querySelector(`#cashSpentDescription`).className = "text-warning"; 
+   document.querySelector(`#cashSpentDescription`).innerHTML = '<i class="icon-gauge ml-1"></i>'+"Month limit exceeded";
+       
+   document.querySelector(`#cashSpentProgress`).className = "progress-bar bg-warning text-dark"; 
+   document.querySelector(`#cashSpentProgressBig`).className = "progress bg-warning text-dark border-warning";  
 }
 
 const setCashSpentInfo = () => {
-   document.querySelector(`#cashSpent`).style.color = "white";
-   document.querySelector(`#cashSpentDescription`).style.color = "white";
-   document.querySelector(`#cashSpentDescription`).innerHTML = "(category & date required)";
+   document.querySelector(`#cashSpent`).className = "text-white bg-dark rounded"; 
+   document.querySelector(`#cashSpentDescription`).className = "text-white"; 
+   document.querySelector(`#cashSpentDescription`).innerHTML = "(category & date required)";   
+   
+   document.querySelector(`#cashSpentProgress`).className = "progress-bar";
+   document.querySelector(`#cashSpentProgressBig`).className = "progress bg-dark";
 }
 
 const setCashLeftWarning = () => {
-   document.querySelector(`#cashLeft`).style.color = "yellow";
-   document.querySelector(`#cashLeftDescription`).style.color = "yellow";
-   document.querySelector(`#cashLeftDescription`).innerHTML = "&#129300; Month limit exceeded after this transaction";
+   document.querySelector(`#cashLeft`).className = "text-warning bg-dark border-warning rounded"; 
+   document.querySelector(`#cashLeftDescription`).className = "text-warning"; 
+   document.querySelector(`#cashLeftDescription`).innerHTML = '<i class="icon-gauge ml-1"></i>'+"Month limit exceeded after this transaction";
+        
+   document.querySelector(`#cashLeftProgress`).className = "progress-bar text-dark";
+   document.querySelector(`#cashLeftProgressBig`).className = "progress bg-warning text-dark border-warning";
 }
 
 const setCashLeftInfo = () => {
-   document.querySelector(`#cashLeft`).style.color = "white";
-   document.querySelector(`#cashLeftDescription`).style.color = "white";
-   document.querySelector(`#cashLeftDescription`).innerHTML = "(category, date & amount required)";
+   document.querySelector(`#cashLeft`).className = "text-white bg-dark rounded"; 
+   document.querySelector(`#cashLeftDescription`).className = "text-white"; 
+   document.querySelector(`#cashLeftDescription`).innerHTML = "(category & date required)";
+   
+   document.querySelector(`#cashLeftProgress`).className = "progress-bar";
+   document.querySelector(`#cashLeftProgressBig`).className = "progress bg-dark";  
 }
 
 const renderLimit = (limit) => {
@@ -76,36 +88,60 @@ const renderLimit = (limit) => {
 }
 
 const renderCashSpent = (amountOfAllExpenses, limit) => {    
-   document.querySelector(`#cashSpent`).value = amountOfAllExpenses;  
+   document.querySelector(`#cashSpent`).value = amountOfAllExpenses;
+   
+   if(limit > 0){
+      document.querySelector(`#cashSpentProgress`).style.width = (amountOfAllExpenses/limit)*100+"%";   
+      document.querySelector(`#cashSpentProgress`).innerHTML = ((amountOfAllExpenses/limit)*100).toFixed(2)+"%"; 
+      document.querySelector(`#cashSpentProgressBig`).style.display = 'block';
+      document.querySelector(`#cashSpentProgressBig`).style.height = "25px";      
+   }else{
+      document.querySelector(`#cashSpentProgressBig`).style.display = 'none';
+   }
 
    if((limit > 0) && ((limit - amountOfAllExpenses) < 0)) {
-      setCashSpentWarning();
-   }      
-   else {     
+      setCashSpentWarning();          
+   }else {     
       setCashSpentInfo();
-   }                        
+   }
 }
 
-const renderCashLeft = (cashLeft) => {    
+const renderCashLeft = (cashLeft, limit) => {    
    document.querySelector(`#cashLeft`).value = cashLeft;
+
+   if(limit > 0){      
+      document.querySelector(`#cashLeftProgress`).style.width = (cashLeft/limit)*100+"%";      
+      document.querySelector(`#cashLeftProgress`).innerHTML = ((cashLeft/limit)*100).toFixed(2)+"%";
+      document.querySelector(`#cashLeftProgressBig`).style.display = 'block';
+      document.querySelector(`#cashLeftProgressBig`).style.height = "25px"; 
+   }else{
+      document.querySelector(`#cashLeftProgressBig`).style.display = 'none';
+   }
+
    if(cashLeft < 0) { 
-      setCashLeftWarning();
+      setCashLeftWarning();      
    }else { 
       setCashLeftInfo();
    }
 }
-/*
+
 const clearInputs = () => {
-   document.querySelector(`#cashLeft`).value = "";
-   document.querySelector(`#amountInput`).value = "";
-   document.querySelector(`#cashSpent`).value = "";
+   //document.querySelector(`#cashLeft`).value = "";
+   //document.querySelector(`#amountInput`).value = "";
+   //document.querySelector(`#cashSpent`).value = "";
+
+   document.querySelector(`#cashLeftProgress`).innerHTML = "";
+   document.querySelector(`#cashSpentProgress`).innerHTML = "";
+
+   document.querySelector(`#cashLeftProgress`).style.width = 0+"%";
+   document.querySelector(`#cashSpentProgress`).style.width = 0+"%";   
 
    setCashSpentInfo();
    setCashLeftInfo();
 }
-*/
+
 categorySelect.addEventListener("change", async () => {
-   //clearInputs();
+   clearInputs();
 
    const category = document.querySelector(`#categorySelect option:checked`).text; 
    const limit = await getLimit(category);
@@ -118,11 +154,11 @@ categorySelect.addEventListener("change", async () => {
 
    const amount = document.querySelector(`#amountInput`).value;
    const cashLeft = getCashLeft(amount, limit, amountOfAllExpenses);
-   renderCashLeft(cashLeft);   
+   renderCashLeft(cashLeft, limit);   
 });
 
 dateInput.addEventListener("change", async () => {
-   //clearInputs();
+   clearInputs();
 
    const category = document.querySelector(`#categorySelect option:checked`).text;
    const category_id = document.querySelector(`#categorySelect option:checked`).value;
@@ -133,10 +169,12 @@ dateInput.addEventListener("change", async () => {
    
    const amount = document.querySelector(`#amountInput`).value;
    const cashLeft = getCashLeft(amount, limit, amountOfAllExpenses);
-   renderCashLeft(cashLeft);   
+   renderCashLeft(cashLeft, limit);   
 });
 
 amountInput.addEventListener("input", async () => {
+   clearInputs();
+
    const category = document.querySelector(`#categorySelect option:checked`).text;
    const category_id = document.querySelector(`#categorySelect option:checked`).value;
    const amount = document.querySelector(`#amountInput`).value;
@@ -147,5 +185,5 @@ amountInput.addEventListener("input", async () => {
    const cashLeft = getCashLeft(amount, limit, amountOfAllExpenses);
 
    renderCashSpent(amountOfAllExpenses, limit);
-   renderCashLeft(cashLeft);   
+   renderCashLeft(cashLeft, limit);   
 });

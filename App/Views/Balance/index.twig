@@ -22,7 +22,7 @@
 					var options = {
 					legend: {position: 'bottom', textStyle: {color: 'white', fontSize: 16}},
 					title: 'Expense structure',
-					titleTextStyle: {color:'white', fontSize: 24},  	  
+					titleTextStyle: {color:'#FFC107', fontSize: 24},  	  
 					is3D: true,
 					backgroundColor: 'transparent',		  
 					};
@@ -47,7 +47,7 @@
 					var options = {
 					legend: {position: 'bottom', textStyle: {color: 'white', fontSize: 16}},
 					title: 'Income structure',
-					titleTextStyle: {color:'white', fontSize: 24},		  	  
+					titleTextStyle: {color:'#0D6EFD', fontSize: 24},		  	  
 					is3D: true,
 					backgroundColor: 'transparent',		  
 					};
@@ -66,6 +66,20 @@
 					box.style.display = 'none';
 				}
 			});
+
+			const setColorOfBalanceProgress = () => {
+				const balance = document.querySelector(`#balance`).innerHTML;
+				if((balance < 0)){					
+					document.querySelector(`#balanceProgressFieldset`).className = "border-warning rounded";
+					document.querySelector(`#balanceProgressBig`).className = "progress bg-warning border-warning rounded";
+					document.querySelector(`#balanceVs`).className = "text-warning";   
+				}else{
+					document.querySelector(`#balanceProgressFieldset`).className = "border-primary rounded";
+					document.querySelector(`#balanceProgressBig`).className = "progress bg-warning border-primary rounded";
+					document.querySelector(`#balanceVs`).className = "text-primary";  
+				}
+			}
+			setColorOfBalanceProgress();
 		</script>
 	
 {% endblock %}
@@ -405,7 +419,7 @@
 					<div class="w-100"></div>	
 				
 					<div class="table col-12 mx-auto rounde d mt-2 mb-0">
-						<h3 style="color: #26282E; background-color: #209781;" class="rounded">Balance<i class="icon-chart-bar ml-5 mr-1"></i>{{ balance}}</h3>					
+						<h3 style="color: #26282E; background-color: #209781;" class="rounded">Balance<i class="icon-chart-bar ml-5 mr-1"></i><span id="balance">{{ balance}}</span></h3>					
 													
 						{% if (incomeCategoriesFromSelectedPeriod or expenseCategoriesFromSelectedPeriod) %}
 								
@@ -414,7 +428,42 @@
 							{% endif %}	
 							{% if (balance) > (0) %}
 								<h4 class="rounded" style="color: #26282E; background-color: #209781;">&#128521; Congratulations. You manage your finances very well!</h4>
+							{% endif %}
+							<!--
+							<div class="progress bg-warning" id="balanceProgressBig" style="font-size: 18px; height: 25px;">
+  							<div id="balancetProgress" class="progress-bar" role="progressbar" style="width: {{ ((amountOfAllIncomesFromSelectedPeriod.amountOfAllIncomes)/((amountOfAllExpensesFromSelectedPeriod.amountOfAllExpenses)+(amountOfAllIncomesFromSelectedPeriod.amountOfAllIncomes)))*100 }}%;" aria-valuenow="{{ ((amountOfAllIncomesFromSelectedPeriod.amountOfAllIncomes)/((amountOfAllExpensesFromSelectedPeriod.amountOfAllExpenses)+(amountOfAllIncomesFromSelectedPeriod.amountOfAllIncomes)))*100 }}%" aria-valuemin="0" aria-valuemax="100">					
+							{% if (amountOfAllIncomesFromSelectedPeriod.amountOfAllIncomes) > (0) %}
+							<span>							
+							<i class="icon-money"></i>													
+							{{ (((amountOfAllIncomesFromSelectedPeriod.amountOfAllIncomes)/((amountOfAllExpensesFromSelectedPeriod.amountOfAllExpenses)+(amountOfAllIncomesFromSelectedPeriod.amountOfAllIncomes)))*100) |number_format(2)}} %
+							</sapn>
 							{% endif %}	
+							</div>							
+							{% if (amountOfAllExpensesFromSelectedPeriod.amountOfAllExpenses) > (0) %}
+							<span class="mx-auto">
+							<i class="icon-basket"></i>													
+							{{((100)-((amountOfAllIncomesFromSelectedPeriod.amountOfAllIncomes)/((amountOfAllExpensesFromSelectedPeriod.amountOfAllExpenses)+(amountOfAllIncomesFromSelectedPeriod.amountOfAllIncomes)))*100) |number_format(2)}} %
+							</span>
+							{% endif %}	
+							</div>
+							-->
+							<fieldset id="balanceProgressFieldset" style="border: 1px solid  white;">
+								<legend class="text-white col-9 col-sm-8 col-md-6 col-lg-5 col-xl-4">
+								<span class="mr-2 text-primary">							
+									<i class="icon-money"></i>													
+									{{ (((amountOfAllIncomesFromSelectedPeriod.amountOfAllIncomes)/((amountOfAllExpensesFromSelectedPeriod.amountOfAllExpenses)+(amountOfAllIncomesFromSelectedPeriod.amountOfAllIncomes)))*100) |number_format(2)}} %
+								</span>
+								<span id="balanceVs">vs</span> 
+								<span class="ml-2 text-warning">
+									<i class="icon-basket"></i>													
+									{{((100)-((amountOfAllIncomesFromSelectedPeriod.amountOfAllIncomes)/((amountOfAllExpensesFromSelectedPeriod.amountOfAllExpenses)+(amountOfAllIncomesFromSelectedPeriod.amountOfAllIncomes)))*100) |number_format(2)}} %
+								</span>
+								</legend>
+								<div class="progress bg-warning" id="balanceProgressBig" style="font-size: 18px; height: 25px; border-left: none; border-right: none; border-bottom: none;">
+									<div id="balancetProgress" class="progress-bar" role="progressbar" style="width: {{ ((amountOfAllIncomesFromSelectedPeriod.amountOfAllIncomes)/((amountOfAllExpensesFromSelectedPeriod.amountOfAllExpenses)+(amountOfAllIncomesFromSelectedPeriod.amountOfAllIncomes)))*100 }}%;" aria-valuenow="{{ ((amountOfAllIncomesFromSelectedPeriod.amountOfAllIncomes)/((amountOfAllExpensesFromSelectedPeriod.amountOfAllExpenses)+(amountOfAllIncomesFromSelectedPeriod.amountOfAllIncomes)))*100 }}%" aria-valuemin="0" aria-valuemax="100">								
+									</div>								
+								</div>								
+							</fieldset>												
 						
 						{% endif %}	
 											
