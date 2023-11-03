@@ -124,8 +124,8 @@ const renderCashLeft = (cashLeft, limit) => {
       setCashLeftInfo();
    }
 }
-
-const clearInputs = () => {
+/*
+const clearCashInputs = () => {
    //document.querySelector(`#cashLeft`).value = "";
    //document.querySelector(`#amountInput`).value = "";
    //document.querySelector(`#cashSpent`).value = "";
@@ -139,9 +139,27 @@ const clearInputs = () => {
    setCashSpentInfo();
    setCashLeftInfo();
 }
+*/
+const clearCashSpentInputs = () => {  
+   document.querySelector(`#cashSpentProgress`).innerHTML = "";
+  
+   document.querySelector(`#cashSpentProgress`).style.width = 0+"%";   
+
+   setCashSpentInfo();  
+}
+
+const clearCashLeftInputs = () => { 
+   document.querySelector(`#cashLeftProgress`).innerHTML = "";
+   
+   document.querySelector(`#cashLeftProgress`).style.width = 0+"%";
+   
+   setCashLeftInfo();
+}
 
 categorySelect.addEventListener("change", async () => {
-   clearInputs();
+   //clearInputs();
+   clearCashSpentInputs();
+   clearCashLeftInputs();
 
    const category = document.querySelector(`#categorySelect option:checked`).text; 
    const limit = await getLimit(category);
@@ -158,7 +176,9 @@ categorySelect.addEventListener("change", async () => {
 });
 
 dateInput.addEventListener("change", async () => {
-   clearInputs();
+   //clearInputs();
+   clearCashSpentInputs();
+   clearCashLeftInputs();
 
    const category = document.querySelector(`#categorySelect option:checked`).text;
    const category_id = document.querySelector(`#categorySelect option:checked`).value;
@@ -174,6 +194,7 @@ dateInput.addEventListener("change", async () => {
 
 amountInput.addEventListener("input", async () => {
    //clearInputs();
+   clearCashLeftInputs();
 
    const category = document.querySelector(`#categorySelect option:checked`).text;
    const category_id = document.querySelector(`#categorySelect option:checked`).value;
