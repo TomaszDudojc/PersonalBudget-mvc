@@ -173,7 +173,7 @@ dateInput.addEventListener("change", async () => {
 });
 
 amountInput.addEventListener("input", async () => {
-   clearInputs();
+   //clearInputs();
 
    const category = document.querySelector(`#categorySelect option:checked`).text;
    const category_id = document.querySelector(`#categorySelect option:checked`).value;
@@ -184,6 +184,6 @@ amountInput.addEventListener("input", async () => {
    const amountOfAllExpenses = await getCashSpent(category_id, date);   
    const cashLeft = getCashLeft(amount, limit, amountOfAllExpenses);
 
-   renderCashSpent(amountOfAllExpenses, limit);
+   //renderCashSpent(amountOfAllExpenses, limit);
    renderCashLeft(cashLeft, limit);   
 });
