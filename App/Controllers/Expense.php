@@ -73,10 +73,6 @@ class Expense extends Authenticated
 
 			echo json_encode(Expenses::getMonthlyExpenses($user_id, $category_id, $startDate, $endDate), JSON_UNESCAPED_UNICODE);	
 		}
-		else echo "Date must contain year and month in format yyyy-mm";	
-		       
-
-		//echo json_encode(Expenses::getMonthlyExpenses($user_id, $category_id, $date), JSON_UNESCAPED_UNICODE);
-		//echo json_encode(Expenses::getMonthlyExpenses($user_id, $category_id, $startDate, $endDate), JSON_UNESCAPED_UNICODE);		
+		else echo "Date must contain year and month in format yyyy-mm";		
     }
 }

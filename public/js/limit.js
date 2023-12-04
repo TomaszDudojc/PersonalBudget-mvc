@@ -43,7 +43,7 @@ const getCashLeft = (amount, limit, amountOfAllExpenses) => {
 }
 
 const setCashSpentWarning = () => {   
-   document.querySelector(`#cashSpent`).className = "text-warning bg-dark border-warning rounded"; 
+   document.querySelector(`#cashSpent`).className = "text-warning bg-none border-warning rounded"; 
    document.querySelector(`#cashSpentDescription`).className = "text-warning"; 
    document.querySelector(`#cashSpentDescription`).innerHTML = '<i class="icon-gauge ml-1"></i>'+"Month limit exceeded";
        
@@ -52,16 +52,17 @@ const setCashSpentWarning = () => {
 }
 
 const setCashSpentInfo = () => {
-   document.querySelector(`#cashSpent`).className = "text-white bg-dark rounded"; 
+   document.querySelector(`#cashSpent`).className = "text-white bg-none rounded"; 
    document.querySelector(`#cashSpentDescription`).className = "text-white"; 
    document.querySelector(`#cashSpentDescription`).innerHTML = "(category & date required)";   
    
    document.querySelector(`#cashSpentProgress`).className = "progress-bar";
-   document.querySelector(`#cashSpentProgressBig`).className = "progress bg-dark";
+   document.querySelector(`#cashSpentProgressBig`).className = "progress";
+   document.querySelector(`#cashSpentProgressBig`).style.background = "#26282E";
 }
 
 const setCashLeftWarning = () => {
-   document.querySelector(`#cashLeft`).className = "text-warning bg-dark border-warning rounded"; 
+   document.querySelector(`#cashLeft`).className = "text-warning bg-none border-warning rounded"; 
    document.querySelector(`#cashLeftDescription`).className = "text-warning"; 
    document.querySelector(`#cashLeftDescription`).innerHTML = '<i class="icon-gauge ml-1"></i>'+"Month limit exceeded after this transaction";
         
@@ -70,12 +71,13 @@ const setCashLeftWarning = () => {
 }
 
 const setCashLeftInfo = () => {
-   document.querySelector(`#cashLeft`).className = "text-white bg-dark rounded"; 
+   document.querySelector(`#cashLeft`).className = "text-white bg-none rounded"; 
    document.querySelector(`#cashLeftDescription`).className = "text-white"; 
-   document.querySelector(`#cashLeftDescription`).innerHTML = "(category & date required)";
+   document.querySelector(`#cashLeftDescription`).innerHTML = "(limit, category & date required)";
    
    document.querySelector(`#cashLeftProgress`).className = "progress-bar";
-   document.querySelector(`#cashLeftProgressBig`).className = "progress bg-dark";  
+   document.querySelector(`#cashLeftProgressBig`).className = "progress";
+   document.querySelector(`#cashLeftProgressBig`).style.background = "#26282E";  
 }
 
 const renderLimit = (limit) => {
@@ -125,7 +127,7 @@ const renderCashLeft = (cashLeft, limit) => {
    }
 }
 /*
-const clearCashInputs = () => {
+const clearInputs = () => {
    //document.querySelector(`#cashLeft`).value = "";
    //document.querySelector(`#amountInput`).value = "";
    //document.querySelector(`#cashSpent`).value = "";

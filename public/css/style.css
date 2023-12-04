@@ -188,6 +188,20 @@ input[type=date],
 	font-family: 'Lato', sans-serif;
 	width: 100%;	
 	height: 36px;	
+	color: #209781;
+	border: 1px solid  #209781;
+	font-size: 20px;	
+	padding: 3px;
+	box-sizing: border-box;
+	outline: none;
+	margin-top: 10px;
+	background-color: transparent;	
+}
+/*
+{	
+	font-family: 'Lato', sans-serif;
+	width: 100%;	
+	height: 36px;	
 	color: #060B95;
 	border: 1px solid  #c2cce8;
 	font-size: 20px;	
@@ -196,7 +210,7 @@ input[type=date],
 	outline: none;
 	margin-top: 10px;	
 }
-
+*/
 .progress
 {	
 	border: 1px solid  #c2cce8;	
@@ -207,7 +221,14 @@ input[type=email]:focus,
 input[type=password]:focus,
 input[type=number]:focus,
 input[type=date]:focus,
+input[type=checkbox]:focus,
 .choice:focus
+{	
+	background-color: #37c7ad;
+	color: #26282E;
+	-webkit-box-shadow: 0px 0px 5px 1px rgba(157,199,247,0.9);	
+}
+/*
 {
 	-webkit-box-shadow: 0px 0px 5px 1px rgba(157,199,247,0.9);
 	-moz-box-shadow: 0px 0px 5px 1px rgba(157,199,247,0.9);
@@ -215,7 +236,7 @@ input[type=date]:focus,
 	background-color: #F1F4F9;
 	color: #060B95;
 }
-
+*/
 button.login
 {	
 	width: 100%;
@@ -249,40 +270,59 @@ button.login:hover
 /* Zmiana koloru czcionki placeholdera */
 input::-webkit-input-placeholder
 {
-    color: #999;		
+    /*color: #999;*/	
+	color: #209781;
+
 }
 input:focus::-webkit-input-placeholder
 {
-    color: #060B95;
+   /* color: #060B95;*/   	
+	color: #26282E;
 }
 /* Firefox < 19 */
 input:-moz-placeholder
 {
-    color: #999;	
+    /*color: #999;*/	
+	color: #209781;	
 }
 input:focus:-moz-placeholder
-{
-    color: #060B95;
+{    
+	color: #26282E;
 }
 /* Firefox > 19 */
 input::-moz-placeholder
 {
-    color: #999;	
+    /*color: #999;*/	
+	color: #209781;	
 }
 input:focus::-moz-placeholder
-{
-    color: #060B95;
+{	
+	color: #26282E;
 }
 /* Internet Explorer 10 */
 input:-ms-input-placeholder
 {
-    color: #999;	
+    /*color: #999;*/	
+	color: #209781;	
 }
 input:focus:-ms-input-placeholder
-{
-    color: #060B95;
+{   
+	color: #26282E;
 }
 
+.icon
+{	
+	margin-top: 10px;	
+	font-size: 20px;	
+	padding: 5px 3px;	
+	border: 1px solid  #209781;
+	background-color: #26282E;
+	color: #209781;
+	width: 36px;	
+	box-sizing: border-box;
+	height: 36px;	
+}
+/*
 .icon
 {	
 	margin-top: 10px;	
@@ -295,7 +335,7 @@ input:focus:-ms-input-placeholder
 	box-sizing: border-box;
 	height: 36px;	
 }
-
+*/
 /* //////////////////  MENU  /////////////////////// */
 
 .navcontainer
@@ -314,10 +354,17 @@ input:focus:-ms-input-placeholder
 }
 
 /* //////////////////  EXPENSE /////////////////////// */
-
+/*
 option
 {	
 	background-color: white;
+	height: 36px;		 
+}
+*/
+option
+{	
+	background-color: #26282E;
+	color: #209781;
 	height: 36px;		 
 }
 
@@ -462,13 +509,22 @@ p.game
 		font-size: 17px;			
 	}
 }
-
+/*
 .categoryName
 {	
 	display: inline-block;
 	background-color: #D3DDE9;
 	color: #060B95;  
 	border: 1px solid  #c2cce8;
+	width: 100%;	
+}
+*/
+.categoryName
+{	
+	display: inline-block;
+	background-color: #26282E;
+	color: #209781;  
+	border: 1px solid  #209781;
 	width: 100%;	
 }
 
@@ -479,6 +535,38 @@ p.game
 	color: #26282E;	
 }
 
+.expenseName
+{	
+	display: inline-block;
+	background-color: transparent; 
+	border: 1px solid  #FFC107;
+	color: #FFC107;
+	width: 100%;
+}
+
+.expenseName:hover
+{
+	background-color: #FFC107;
+	border: 1px solid  #FFC107;
+	color: #26282E;	
+}
+
+.incomeName
+{	
+	display: inline-block;
+	background-color: transparent; 
+	border: 1px solid  #0D6EFD;
+	color: #0D6EFD;
+	width: 100%;
+}
+
+.incomeName:hover
+{
+	background-color: #0D6EFD;
+	border: 1px solid  #0D6EFD;
+	color: #26282E;	
+}
+/*
 .transactionName
 {	
 	display: inline-block;
@@ -493,7 +581,7 @@ p.game
 	border: 1px solid  #51c8b2;
 	color: #26282E;	
 }
-
+*/
 .tdCategoryName
 {
 	width: 60%;

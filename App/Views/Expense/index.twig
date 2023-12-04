@@ -57,25 +57,22 @@
 			
 		</div>		
 		
-		<div class="row mx-0">
-			<!--
-			<form style="background-color: #209781; visibility: hidden;" class="mx-auto py-2 rounded col-lg-8 col-10 mb-5 mt-0" id="limitForm">
-			-->			
-			<form style="display: none; font-size: 20px;" class="bg-secondary mx-auto py-2 rounded col-md-10 col-lg-9 col-xl-6 col-11 mb-5 mt-0" id="limitForm">
+		<div class="row mx-0">				
+			<form style="display: none; font-size: 20px; border: 1px solid #209781; background-color: #26282E;" class="bg-none mx-auto py-2 rounded col-md-10 col-lg-9 col-xl-6 col-11 mb-5 mt-0" id="limitForm">
 				<label for "limitInfo" id="limitInfoLabel" class="mb-0 text-white">Month limit (category required)</label>		
-				<input type="number" name="limitInfo" id="limitInfo" placeholder="No limit" class="rounded mt-0 mb-1 text-white bg-dark" readonly/>
+				<input type="number" name="limitInfo" id="limitInfo" placeholder="No limit" class="rounded mt-0 mb-1 text-white bg-none" readonly/>
 				
 				<label for "cashSpent" id="cashSpentLabel" class="mb-0 text-white">Cash spent in the selected month <span id="cashSpentDescription">(category & date required)<span></label>						
-				<input type="number" name="cashSpent" id="cashSpent" class="rounded mt-0 mb-1 text-white bg-dark" placeholder="No expenses" readonly />
+				<input type="number" name="cashSpent" id="cashSpent" class="rounded mt-0 mb-1 text-white bg-none" placeholder="No expenses" readonly />
 				
-				<div class="progress" id="cashSpentProgressBig" style="font-size: 18px; height: 25px;">
+				<div class="progress" id="cashSpentProgressBig" style="font-size: 18px; height: 25px; border: 1px solid  #209781;">
   				<div id="cashSpentProgress" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
 				</div>
 				
-				<label for "cashLeft" id="cashLeftLabel" class="mb-0 text-white">Cash left after current expense <span id="cashLeftDescription">(category, date & amount required)</span></label>		
-				<input type="number" name="cashLeft" id="cashLeft" class="rounded mt-0 mb-1 text-white bg-dark border-0" readonly />
+				<label for "cashLeft" id="cashLeftLabel" class="mb-0 text-white">Cash left after current expense <span id="cashLeftDescription">(limit, category & date required)</span></label>		
+				<input type="number" name="cashLeft" id="cashLeft" class="rounded mt-0 mb-1 text-white bg-none border-0" readonly />
 				
-				<div class="progress" id="cashLeftProgressBig" style="font-size: 18px; height: 25px;">
+				<div class="progress" id="cashLeftProgressBig" style="font-size: 18px; height: 25px; border: 1px solid  #209781;">
   				<div id="cashLeftProgress" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
 				</div>
 			</form>

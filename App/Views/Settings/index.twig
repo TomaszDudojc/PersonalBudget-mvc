@@ -100,8 +100,8 @@
 								<div class="modal fade" id="editIncomeCategory{{ incomeCategory.id }}" tabindex="-1" aria-labelledby="editIncomeCategoryLabel{{ incomeCategory.id }}" aria-hidden="true">
 												
 									<div class="modal-dialog">
-										<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
-											<div class="modal-header bg-primary text-white">
+										<div class="modal-content" style="background-color:#26282E; border: 1px solid #51c8b2;">
+											<div class="modal-header bg-primary text-white" style="border-bottom: 1px solid #51c8b2;">
 											<h5 class="modal-title" id="editIncomeCategoryLabel{{ incomeCategory.id }}"><i class="icon-pencil mr-1"></i>Edit income category<i class="icon-money mr-1"></i></h5>
 											<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
 												<span aria-hidden="true">&times;</span>
@@ -119,7 +119,7 @@
 													</div>											
 													
 
-													<div class="modal-footer">
+													<div class="modal-footer" style="border-top: none;">
 														<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 														<button type="submit" class="btn btn-primary">Save changes</button>
 													</div>
@@ -132,31 +132,31 @@
 								<div class="modal fade" id="deleteIncomeCategory{{ incomeCategory.id }}" tabindex="-1" aria-labelledby="deleteIncomeCategoryLabel{{ incomeCategory.id }}" aria-hidden="true">
 												
 									<div class="modal-dialog">
-										<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
-											<div class="modal-header bg-danger text-white">
+										<div class="modal-content"  style="background-color:#26282E; border: 1px solid #51c8b2;">
+											<div class="modal-header bg-danger text-white" style="border-bottom: 1px solid #51c8b2;">
 											<h5 class="modal-title" id="deleteIncomeCategoryLabel{{ incomeCategory.id }}"><span class="mr-1">&#10008;</span>Delete income category<i class="icon-money mr-1"></i></h5>							
 											<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
 												<span aria-hidden="true">&times;</span>
 											</button>							
 											</div>
 											
-											<div class="bg-warning">
+											<div class="bg-warning" >
 												<input name="id" type="number"  style="display: none;" value="{{ incomeCategory.id }}">
 												<p class="my-0 text-dark text-center">Warning:</p>
 												<p class="my-0 text-dark text-center">All incomes in this category will be deleted!</p>
 												<p class="my-0 text-dark text-center">If you want to keep them, assign them to another category first.</p>
 
-												<div class="modal-footer py-2">
+												<div class="modal-footer py-2" style="background-color:#26282E; border-top: 1px solid #51c8b2;">
 														<button type="button" class="btn btn-info btn-sm ml-0 mr-auto"  style="white-space: pre-wrap;" onClick="document.getElementById('showIncomes{{ incomeCategory.id }}').style.display='block';">Check incomes in category</button>
                                                         <button type="button" class="btn btn-secondary btn-sm mr-0 ml-auto"  style="white-space: pre-wrap;" onClick="document.getElementById('showIncomes{{ incomeCategory.id }}').style.display='none';">Close</button>
                                                 </div>
 
-												<div id="showIncomes{{ incomeCategory.id }}" style="display: none;">
+												<div id="showIncomes{{ incomeCategory.id }}" style="display: none; background-color:#26282E;">
 												<input name="id" type="number"  style="display: none;" value="{{ incomeCategory.id }}">
 												{% set noIncome = true %}
 												{% for incomeFromSelectedPeriod in incomesFromSelectedPeriod %}
 													{% if incomeFromSelectedPeriod.income_category_assigned_to_user_id == incomeCategory.id  %}
-														<h6 class="rounded my-0 py-0 transactionName">
+														<h6 class="rounded my-0 py-0 incomeName">
 															<input name="id" type="number" style="display: none;" value="{{ incomeFromSelectedPeriod.id }}">
 															<table width="100%">
 																<tr>
@@ -176,8 +176,8 @@
 														<div class="modal fade" id="changeIncomeCategory{{ incomeFromSelectedPeriod.id }}" tabindex="-1" aria-labelledby="changeIncomeCategoryLabel{{ incomeFromSelectedPeriod.id }}" aria-hidden="true">
 												
 															<div class="modal-dialog">
-																<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
-																	<div class="modal-header bg-info text-white">
+																<div class="modal-content"  style="background-color:#26282E; border: 1px solid #51c8b2;">
+																	<div class="modal-header bg-info text-white"  style="background-color:#26282E; border-bottom: 1px solid #51c8b2;">
 																	<h5 class="modal-title" id="changeIncomeCategoryLabel{{ incomeFromSelectedPeriod.id }}"><i class="icon-pencil mr-1"></i>Change category<i class="icon-money mr-1"></i></h5>
 																	<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
 																		<span aria-hidden="true">&times;</span>
@@ -186,14 +186,14 @@
 																	<div class="modal-body">
 																		<form action="/settings/changeIncomeCategory" method="post">
 																			<input name="id" type="number" style="display: none;" value="{{ incomeFromSelectedPeriod.id  }}">
-																			<select class="choice rounded text-center" name="category" style="width: 100%; font-weight: bold; font-size: 20px;">						
+																			<select class="choice rounded text-center" name="category" style="width: 100%; font-size: 20px;">						
 																				<option value="{{ incomeCategory.id }}" selected hidden>{{ incomeCategory.name }}</option>                          					
 																				{% for incomeCategory in incomeCategories %}                             
 																				<option value="{{ incomeCategory.id }}">{{ incomeCategory.name }}</option> 
 																				{% endfor %}                            
 																			</select>	
 
-																			<div class="modal-footer">
+																			<div class="modal-footer" style="border-top: none;">
 																				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 																				<button type="submit" class="btn btn-info">Save changes</button>
 																			</div>
@@ -204,15 +204,15 @@
 											</div>														
 													{% endif %}				
 												{% endfor %}
-												{% if noIncome %} No income in that category {% endif %}
+												{% if noIncome %}<div class="incomeName mb-1"> No income in that category </div>{% endif %}
 											</div>	
 											</div>
-											<div class="modal-body">
+											<div class="modal-body" style="border-top: 1px solid #51c8b2;">
 												<form action="/settings/deleteIncomeCategory" method="post">
 													<input name="id" type="number" style="display: none;" value="{{ incomeCategory.id }}">
-													<input type="text" class="form-control rounded text-center" style="width: 100%; font-weight: bold; font-size: 20px;" name="category" value="{{ incomeCategory.name }}" disabled />				
+													<input type="text" class="form-control rounded text-center" style="width: 100%; font-size: 20px; background-color: #26282E;" name="category" value="{{ incomeCategory.name }}" disabled />				
 														
-													<div class="modal-footer">
+													<div class="modal-footer" style="border-top: none;">
 														<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 														<button type="submit" class="btn btn-danger">Delete</button>
 													</div>
@@ -238,8 +238,8 @@
 					<div class="modal fade" id="addIncomeCategory" tabindex="-1" aria-labelledby="addIncomeCategoryLabel" aria-hidden="true">
 
 						<div class="modal-dialog">
-							<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
-								<div class="modal-header bg-success text-white">
+							<div class="modal-content" style="background-color:#26282E; border: 1px solid #51c8b2;">
+								<div class="modal-header bg-success text-white" style="border-bottom: 1px solid #51c8b2;">
 								<h5 class="modal-title" id="addIncomeCategoryLabel"><span class="mr-1">&#10004;</span>Add income category<i class="icon-money mr-1"></i></h5>
 								<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
@@ -253,7 +253,7 @@
 											</div>
 											<input type="text" class="form-control  rounded-right" name="new_category"  placeholder="New category of income name" required >
 										</div>										
-										<div class="modal-footer">
+										<div class="modal-footer" style="border-top: none;">
 											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 											<button type="submit" class="btn btn-success">Add</button>
 										</div>
@@ -266,21 +266,21 @@
 					<div class="modal fade" id="deleteAllIncomeCategories" tabindex="-1" aria-labelledby="deleteAllIncomeCategoriesLabel" aria-hidden="true">
 												
 						<div class="modal-dialog">
-							<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
-								<div class="modal-header bg-danger text-white">
+							<div class="modal-content" style="background-color:#26282E; border: 1px solid #51c8b2;">
+								<div class="modal-header bg-danger text-white" style="border-bottom: 1px solid #51c8b2;">
 								<h5 class="modal-title" id="deleteAllIncomeCategoriesLabel"><span class="mr-1">&#10008;</span>Delete all income categories<i class="icon-money ml-1"></i></h5>
 								<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>
 								</div>
-								<div class="bg-warning">
+								<div class="bg-warning" style="border-bottom: 1px solid #51c8b2;">
 									<p class="my-0 text-dark text-center">Warning:</p>
 									<p class="my-0 text-dark text-center">All categories and incomes will be deleted!</p>
 								</div>							
 								<div class="modal-body">
 									<form action="/settings/deleteAllIncomeCategories" method="post">	
 											<input name="deleteAllIncomeCategories" type="text" style="display: none;">	
-											<div class="modal-footer">
+											<div class="modal-footer" style="border-top: none;">
 												<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 												<button type="submit" class="btn btn-danger">Delete all</button>
 											</div>
@@ -316,8 +316,8 @@
 								<div class="modal fade" id="editExpenseCategory{{ expenseCategory.id }}" tabindex="-1" aria-labelledby="editExpenseCategoryLabel{{ expenseCategory.id }}" aria-hidden="true">
 												
 									<div class="modal-dialog">
-										<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
-											<div class="modal-header bg-primary text-white">
+										<div class="modal-content" style="background-color:#26282E; border: 1px solid #51c8b2;">
+											<div class="modal-header bg-primary text-white" style="border-bottom: 1px solid #51c8b2;">
 											<h5 class="modal-title" id="editExpenseCategoryLabel{{ expenseCategory.id }}"><i class="icon-pencil mr-1"></i>Edit expense category<i class="icon-basket mr-1"></i></h5>
 											<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
 												<span aria-hidden="true">&times;</span>
@@ -346,7 +346,7 @@
 																										
 													</div>
 
-													<div class="modal-footer">
+													<div class="modal-footer" style="border-top: none;">
 														<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 														<button type="submit" class="btn btn-primary">Save changes</button>
 													</div>
@@ -359,31 +359,31 @@
 								<div class="modal fade" id="deleteExpenseCategory{{ expenseCategory.id }}" tabindex="-1" aria-labelledby="deleteExpenseCategoryLabel{{ expenseCategory.id }}" aria-hidden="true">
 												
 									<div class="modal-dialog">
-										<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
-											<div class="modal-header bg-danger text-white">
+										<div class="modal-content" style="background-color:#26282E; border: 1px solid #51c8b2;">
+											<div class="modal-header bg-danger text-white"  style="border-bottom: 1px solid #51c8b2;">
 											<h5 class="modal-title" id="deleteExpenseCategoryLabel{{ expenseCategory.id }}"><span class="mr-1">&#10008;</span>Delete expense category<i class="icon-basket mr-1"></i></h5>							
 											<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
 												<span aria-hidden="true">&times;</span>
 											</button>							
 											</div>
 											
-											<div class="bg-warning">
+											<div class="bg-warning" style="border-bottom: 1px solid #51c8b2;">
 												<input name="id" type="number"  style="display: none;" value="{{ expenseCategory.id }}">
 												<p class="my-0 text-dark text-center">Warning:</p>
 												<p class="my-0 text-dark text-center">All expenses in this category will be deleted!</p>
 												<p class="my-0 text-dark text-center">If you want to keep them, assign them to another category first.</p>
 
-												<div class="modal-footer py-2">
+												<div class="modal-footer py-2" style="background-color:#26282E; border-top: 1px solid #51c8b2;">
 														<button type="button" class="btn btn-info btn-sm ml-0 mr-auto"  style="white-space: pre-wrap;" onClick="document.getElementById('showExpenses{{ expenseCategory.id }}').style.display='block';">Check esxpenses in category</button>
                                                         <button type="button" class="btn btn-secondary btn-sm mr-0 ml-auto"  style="white-space: pre-wrap;" onClick="document.getElementById('showExpenses{{ expenseCategory.id }}').style.display='none';">Close</button>
                                                 </div>
 
-												<div id="showExpenses{{ expenseCategory.id }}" style="display: none;">
+												<div id="showExpenses{{ expenseCategory.id }}" style="display: none; background-color:#26282E;">
 												<input name="id" type="number"  style="display: none;" value="{{ expenseCategory.id }}">
 												{% set noExpense = true %}
 												{% for expenseFromSelectedPeriod in expensesFromSelectedPeriod %}
 													{% if expenseFromSelectedPeriod.expense_category_assigned_to_user_id == expenseCategory.id  %}
-														<h6 class="rounded my-0 py-0 transactionName">
+														<h6 class="rounded my-0 py-0 expenseName">
 															<input name="id" type="number" style="display: none;" value="{{ expenseFromSelectedPeriod.id }}">
 															<table width="100%">
 																<tr>
@@ -403,8 +403,8 @@
 														<div class="modal fade" id="changeExpenseCategory{{ expenseFromSelectedPeriod.id }}" tabindex="-1" aria-labelledby="changeExpenseCategoryLabel{{ expenseFromSelectedPeriod.id }}" aria-hidden="true">
 												
 															<div class="modal-dialog">
-																<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
-																	<div class="modal-header bg-info text-white">
+																<div class="modal-content"  style="background-color:#26282E; border: 1px solid #51c8b2;">
+																	<div class="modal-header bg-info text-white" style="border-bottom: 1px solid #51c8b2;" >
 																	<h5 class="modal-title" id="changeExpenseCategoryLabel{{ expenseFromSelectedPeriod.id }}"><i class="icon-pencil mr-1"></i>Change category<i class="icon-basket mr-1"></i></h5>
 																	<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
 																		<span aria-hidden="true">&times;</span>
@@ -413,14 +413,14 @@
 																	<div class="modal-body">
 																		<form action="/settings/changeExpenseCategory" method="post">
 																			<input name="id" type="number" style="display: none;" value="{{ expenseFromSelectedPeriod.id  }}">
-																			<select class="choice rounded text-center" name="category" style="width: 100%; font-weight: bold; font-size: 20px;">						
+																			<select class="choice rounded text-center" name="category" style="width: 100%; font-size: 20px;">						
 																				<option value="{{ expenseCategory.id }}" selected hidden>{{ expenseCategory.name }}</option>                          					
 																				{% for expenseCategory in expenseCategories %}                             
 																				<option value="{{ expenseCategory.id }}">{{ expenseCategory.name }}</option> 
 																				{% endfor %}                            
 																			</select>	
 
-																			<div class="modal-footer">
+																			<div class="modal-footer" style="border-top: none;" >
 																				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 																				<button type="submit" class="btn btn-info">Save changes</button>
 																			</div>
@@ -431,15 +431,15 @@
 											</div>														
 													{% endif %}				
 												{% endfor %}
-												{% if noExpense %} No expenese in that category {% endif %}
+												{% if noExpense %}<div class="expenseName mb-1"> No expenese in that category </div>{% endif %}
 											</div>	
 											</div>
 											<div class="modal-body">
 												<form action="/settings/deleteExpenseCategory" method="post">
 													<input name="id" type="number" style="display: none;" value="{{ expenseCategory.id }}">
-													<input type="text" class="form-control rounded text-center" style="width: 100%; font-weight: bold; font-size: 20px;" name="category" value="{{ expenseCategory.name }}" disabled />				
+													<input type="text" class="form-control rounded text-center" style="width: 100%; font-size: 20px; background-color: #26282E;" name="category" value="{{ expenseCategory.name }}" disabled />				
 														
-													<div class="modal-footer">
+													<div class="modal-footer" style="border-top: none;">
 														<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 														<button type="submit" class="btn btn-danger">Delete</button>
 													</div>
@@ -467,8 +467,8 @@
 					<div class="modal fade" id="addExpenseCategory" tabindex="-1" aria-labelledby="addExpenseCategoryLabel" aria-hidden="true">
 
 						<div class="modal-dialog">
-							<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
-								<div class="modal-header bg-success text-white">
+							<div class="modal-content" style="background-color:#26282E; border: 1px solid #51c8b2;">
+								<div class="modal-header bg-success text-white" style="border-bottom: 1px solid #51c8b2;">
 								<h5 class="modal-title" id="addExpenseCategoryLabel"><span class="mr-1">&#10004;</span>Add expense category<i class="icon-basket mr-1"></i></h5>
 								<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
@@ -488,7 +488,7 @@
 											</div>
 											<input type="number" step="0.01" class="form-control  rounded-right" name="new_limit"  placeholder="Set month limit (optional)">		
 										</div>
-										<div class="modal-footer">
+										<div class="modal-footer" style="border-top: none;">
 											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 											<button type="submit" class="btn btn-success">Add</button>
 										</div>
@@ -501,21 +501,21 @@
 					<div class="modal fade" id="deleteAllExpenseCategories" tabindex="-1" aria-labelledby="deleteAllExpenseCategoriesLabel" aria-hidden="true">
 												
 						<div class="modal-dialog">
-							<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
-								<div class="modal-header bg-danger text-white">
+							<div class="modal-content" style="background-color:#26282E; border: 1px solid #51c8b2;">
+								<div class="modal-header bg-danger text-white" style="border-bottom: 1px solid #51c8b2;">
 								<h5 class="modal-title" id="deleteAllExpenseCategoriesLabel"><span class="mr-1">&#10008;</span>Delete all expense categories<i class="icon-basket ml-1"></i></h5>
 								<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>
 								</div>
-								<div class="bg-warning">
+								<div class="bg-warning" style="border-bottom: 1px solid #51c8b2;">
 									<p class="my-0 text-dark text-center">Warning:</p>
 									<p class="my-0 text-dark text-center">All categories and expenses will be deleted!</p>
 								</div>							
 								<div class="modal-body">
 									<form action="/settings/deleteAllExpenseCategories" method="post">	
 											<input name="deleteAllExpenseCategories" type="text" style="display: none;">	
-											<div class="modal-footer">
+											<div class="modal-footer" style="border-top: none;">
 												<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 												<button type="submit" class="btn btn-danger">Delete all</button>
 											</div>
@@ -552,8 +552,8 @@
 								<div class="modal fade" id="editPaymentMethod{{ paymentMethod.id }}" tabindex="-1" aria-labelledby="editPaymentMethodLabel{{ paymentMethod.id }}" aria-hidden="true">
 												
 									<div class="modal-dialog">
-										<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
-											<div class="modal-header bg-primary text-white">
+										<div class="modal-content" style="background-color:#26282E; border: 1px solid #51c8b2;">
+											<div class="modal-header bg-primary text-white" style="border-bottom: 1px solid #51c8b2;">
 											<h5 class="modal-title" id="editPaymentMethodLabel{{ paymentMethod.id }}"><i class="icon-pencil mr-1"></i>Edit payment method<i class="icon-cc-visa mr-1"></i></h5>
 											<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
 												<span aria-hidden="true">&times;</span>
@@ -571,7 +571,7 @@
 													</div>											
 													
 
-													<div class="modal-footer">
+													<div class="modal-footer" style="border-top: none;">
 														<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 														<button type="submit" class="btn btn-primary">Save changes</button>
 													</div>
@@ -584,8 +584,8 @@
 								<div class="modal fade" id="deletePaymentMethod{{ paymentMethod.id }}" tabindex="-1" aria-labelledby="deletePaymentMethodLabel{{ paymentMethod.id }}" aria-hidden="true">
 												
 									<div class="modal-dialog">
-										<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
-											<div class="modal-header bg-danger text-white">
+										<div class="modal-content" style="background-color:#26282E; border: 1px solid #51c8b2;">
+											<div class="modal-header bg-danger text-white" style="border-bottom: 1px solid #51c8b2;">
 											<h5 class="modal-title" id="deletePaymentMethodLabel{{ paymentMethod.id }}"><span class="mr-1">&#10008;</span>Delete payment method<i class="icon-cc-visa mr-1"></i></h5>							
 											<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
 												<span aria-hidden="true">&times;</span>
@@ -595,9 +595,9 @@
 											<div class="modal-body">
 												<form action="/settings/deletePaymentMethod" method="post">
 													<input name="id" type="number" style="display: none;" value="{{ paymentMethod.id }}">
-													<input type="text" class="form-control rounded text-center" style="width: 100%; font-weight: bold; font-size: 20px;" name="method" value="{{ paymentMethod.name }}" disabled />				
+													<input type="text" class="form-control rounded text-center" style="width: 100%; font-size: 20px; background-color:#26282E;" name="method" value="{{ paymentMethod.name }}" disabled />				
 														
-													<div class="modal-footer">
+													<div class="modal-footer" style="border-top: none;">
 														<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 														<button type="submit" class="btn btn-danger">Delete</button>
 													</div>
@@ -623,8 +623,8 @@
 					<div class="modal fade" id="addPaymentMethod" tabindex="-1" aria-labelledby="addPaymentMethodLabel" aria-hidden="true">
 
 						<div class="modal-dialog">
-							<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
-								<div class="modal-header bg-success text-white">
+							<div class="modal-content" style="background-color:#26282E; border: 1px solid #51c8b2;">
+								<div class="modal-header bg-success text-white" style="border-bottom: 1px solid #51c8b2;">
 								<h5 class="modal-title" id="addPaymentMethodLabel"><span class="mr-1">&#10004;</span>Add payment method<i class="icon-cc-visa mr-1"></i></h5>
 								<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
@@ -638,7 +638,7 @@
 											</div>
 											<input type="text" class="form-control  rounded-right" name="new_method"  placeholder="New method of payment name" required >
 										</div>										
-										<div class="modal-footer">
+										<div class="modal-footer" style="border-top: none;">
 											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 											<button type="submit" class="btn btn-success">Add</button>
 										</div>
@@ -651,21 +651,21 @@
 					<div class="modal fade" id="deleteAllPaymentMethods" tabindex="-1" aria-labelledby="deleteAllPaymentMethodsLabel" aria-hidden="true">
 												
 						<div class="modal-dialog">
-							<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
-								<div class="modal-header bg-danger text-white">
+							<div class="modal-content" style="background-color:#26282E; border: 1px solid #51c8b2;">
+								<div class="modal-header bg-danger text-white" style="border-bottom: 1px solid #51c8b2;">
 								<h5 class="modal-title" id="deleteAllPaymentMethodsLabel"><span class="mr-1">&#10008;</span>Delete all payment methods<i class="icon-cc-visa ml-1"></i></h5>
 								<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>
 								</div>
-								<div class="bg-warning">
+								<div class="bg-warning" style="border-bottom: 1px solid #51c8b2;">
 									<p class="my-0 text-dark text-center">Warning:</p>
 									<p class="my-0 text-dark text-center">All payment methods will be deleted!</p>
 								</div>							
 								<div class="modal-body">
 									<form action="/settings/deleteAllPaymentMethods" method="post">	
 											<input name="deleteAllPaymentMethods" type="text" style="display: none;">	
-											<div class="modal-footer">
+											<div class="modal-footer" style="border-top: none;">
 												<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 												<button type="submit" class="btn btn-danger">Delete all</button>
 											</div>
@@ -706,14 +706,14 @@
 				<div class="modal fade" id="deleteIncomesFromSelectedCategory{{ incomeCategory.id }}" tabindex="-1" aria-labelledby="deleteIncomesFromSelectedCategoryLabel{{ incomeCategory.id }}" aria-hidden="true">
 												
 					<div class="modal-dialog">
-						<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
-							<div class="modal-header bg-danger text-white">
+						<div class="modal-content" style="background-color:#26282E; border: 1px solid #51c8b2;">
+							<div class="modal-header bg-danger text-white" style="border-bottom: 1px solid #51c8b2;">
 							<h5 class="modal-title" id="deleteIncomesFromSelectedCategoryLabel{{ incomeCategory.id }}"><span class="mr-1">&#10008;</span>Delete incomes form selected category<i class="icon-money ml-1"></i></h5>
 							<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
 							</div>
-							<div class="bg-warning">
+							<div class="bg-warning" style="border-bottom: 1px solid #51c8b2;">
 								<p class="my-0 text-dark text-center">Warning:</p>
 								<p class="my-0 text-dark text-center">All incomes in this category will be deleted!</p>
 							</div>							
@@ -730,7 +730,7 @@
                            					{% endif %}                                  
 										</select>									
 										
-										<div class="modal-footer">
+										<div class="modal-footer" style="border-top: none;">
 											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 											<button type="submit" class="btn btn-danger">Delete</button>
 										</div>
@@ -743,21 +743,21 @@
 				<div class="modal fade" id="deleteAllIncomes" tabindex="-1" aria-labelledby="deleteAllIncomesLabel" aria-hidden="true">
 												
 					<div class="modal-dialog">
-						<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
-							<div class="modal-header bg-danger text-white">
+						<div class="modal-content" style="background-color:#26282E; border: 1px solid #51c8b2;">
+							<div class="modal-header bg-danger text-white" style="border-bottom: 1px solid #51c8b2;">
 							<h5 class="modal-title" id="deleteAllIncomesLabel"><span class="mr-1">&#10008;</span>Delete all incomes<i class="icon-money ml-1"></i></h5>
 							<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
 							</div>
-							<div class="bg-warning">
+							<div class="bg-warning" style="border-bottom: 1px solid #51c8b2;">
 								<p class="my-0 text-dark text-center">Warning:</p>
 								<p class="my-0 text-dark text-center">All incomes will be deleted!</p>
 							</div>							
 							<div class="modal-body">
 								<form action="/settings/deleteAllIncomes" method="post">	
 										<input name="deleteAllIncomes" type="text" style="display: none;">	
-										<div class="modal-footer">
+										<div class="modal-footer" style="border-top: none;">
 											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 											<button type="submit" class="btn btn-danger">Delete all</button>
 										</div>
@@ -770,14 +770,14 @@
 				<div class="modal fade" id="deleteExpensesFromSelectedCategory{{ expenseCategory.id }}" tabindex="-1" aria-labelledby="deleteExpensesFromSelectedCategoryLabel{{ expenseCategory.id }}" aria-hidden="true">
 												
 					<div class="modal-dialog">
-						<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
-							<div class="modal-header bg-danger text-white">
+						<div class="modal-content" style="background-color:#26282E; border: 1px solid #51c8b2;">
+							<div class="modal-header bg-danger text-white" style="border-bottom: 1px solid #51c8b2;">
 							<h5 class="modal-title" id="deleteExpensesFromSelectedCategoryLabel{{ ixpenseCategory.id }}"><span class="mr-1">&#10008;</span>Delete expenses form selected category<i class="icon-basket ml-1"></i></h5>
 							<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
 							</div>
-							<div class="bg-warning">
+							<div class="bg-warning" style="border-bottom: 1px solid #51c8b2;">
 								<p class="my-0 text-dark text-center">Warning:</p>
 								<p class="my-0 text-dark text-center">All expenses in this category will be deleted!</p>
 							</div>							
@@ -794,7 +794,7 @@
                            					{% endif %}                                  
 										</select>									
 										
-										<div class="modal-footer">
+										<div class="modal-footer" style="border-top: none;">
 											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 											<button type="submit" class="btn btn-danger">Delete</button>
 										</div>
@@ -807,21 +807,21 @@
 				<div class="modal fade" id="deleteAllExpenses" tabindex="-1" aria-labelledby="deleteAllExpensesLabel" aria-hidden="true">
 												
 					<div class="modal-dialog">
-						<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
-							<div class="modal-header bg-danger text-white">
+						<div class="modal-content" style="background-color:#26282E; border: 1px solid #51c8b2;">
+							<div class="modal-header bg-danger text-white" style="border-bottom: 1px solid #51c8b2;">
 							<h5 class="modal-title" id="deleteAllExpensesLabel"><span class="mr-1">&#10008;</span>Delete all expenses<i class="icon-basket ml-1"></i></h5>
 							<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
 							</div>
-							<div class="bg-warning">
+							<div class="bg-warning" style="border-bottom: 1px solid #51c8b2;">
 								<p class="my-0 text-dark text-center">Warning:</p>
 								<p class="my-0 text-dark text-center">All expenses will be deleted!</p>
 							</div>							
 							<div class="modal-body">
 								<form action="/settings/deleteAllExpenses" method="post">	
 										<input name="deleteAllExpenses" type="text" style="display: none;">	
-										<div class="modal-footer">
+										<div class="modal-footer" style="border-top: none;">
 											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 											<button type="submit" class="btn btn-danger">Delete all</button>
 										</div>
@@ -834,8 +834,8 @@
 				<div class="modal fade" id="editUserProfile" tabindex="-1" aria-labelledby="editUserProfileLabe" aria-hidden="true">
 												
 					<div class="modal-dialog">
-						<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
-							<div class="modal-header bg-primary text-white">
+						<div class="modal-content" style="background-color:#26282E; border: 1px solid #51c8b2;">
+							<div class="modal-header bg-primary text-white" style="border-bottom: 1px solid #51c8b2;">
 							<h5 class="modal-title" id="editUserProfile"><i class="icon-pencil mr-1"></i>Edit profile<i class="icon-user-3 mr-1"></i></h5>
 							<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
@@ -860,7 +860,7 @@
 										<input type="password" id="inputPassword" name="password" placeholder="&#xE806; Password" class="form-control" style="font-family: 'Fontello'; width: 466px" />
 										<span id="helpBlock" class="help-block">Leave blank to keep current password</span>	
 
-										<div class="modal-footer">
+										<div class="modal-footer"  style="border-top: none;">
 											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 											<button type="submit" class="btn btn-primary">Save changes</button>
 										</div>
@@ -873,14 +873,14 @@
 				<div class="modal fade" id="deleteUserProfile" tabindex="-1" aria-labelledby="deleteUserProfileMethodLabel" aria-hidden="true">
 												
 					<div class="modal-dialog">
-						<div class="modal-content" style="background-color:#D3DDE9; border: 1px solid #c2cce8;">
-							<div class="modal-header bg-danger text-white">
+						<div class="modal-content" style="background-color:#26282E; border: 1px solid #51c8b2;">
+							<div class="modal-header bg-danger text-white" style="border-bottom: 1px solid #51c8b2;">
 							<h5 class="modal-title" id="deleteUserProfileLabel"><span class="mr-1">&#10008;</span>Delete a profile<i class="icon-user-3 mr-1"></i></h5>
 							<button type="button" class="close text-white " data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
 							</div>
-							<div class="bg-warning">
+							<div class="bg-warning" style="border-bottom: 1px solid #51c8b2;">
 								<p class="my-0 text-dark text-center">Warning:</p>
 								<p class="my-0 text-dark text-center">All datas and settings of this user will be deleted!</p>
 							</div>							
@@ -892,17 +892,17 @@
 										<div class="input-group-prepend ">
 											<span class="input-group-text  rounded-left icon"><i class="icon-user-3"></i></span>
 										</div>
-										<input type="text" class="form-control  rounded-right" id="inputName" name="name" placeholder="Name" value="{{ user.name }}" disabled >	
+										<input type="text" class="form-control  rounded-right" id="inputName" name="name" placeholder="Name" value="{{ user.name }}" style="background-color:#26282E;" disabled >	
 									</div>
 
 									<div class="input-group">	
 										<div class="input-group-prepend ">
 											<span class="input-group-text  rounded-left icon"><i class="icon-mail-3"></i></span>
 										</div>
-										<input type="email" class="form-control  rounded-right" id="inputEmail" name="email" placeholder="email address" value="{{ user.email }}" disabled >	
+										<input type="email" class="form-control  rounded-right" id="inputEmail" name="email" placeholder="email address" value="{{ user.email }}" style="background-color:#26282E;" disabled >	
 									</div>																		
 										
-									<div class="modal-footer">
+									<div class="modal-footer" style="border-top: none;">
 										<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 										<button type="submit" class="btn btn-danger">Delete</button>
 									</div>
