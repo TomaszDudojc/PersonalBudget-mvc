@@ -169,10 +169,11 @@ input.register:focus:-ms-input-placeholder
 	position: fixed;
 	bottom: 0;
 	left: 0;
-	background-color: #D3DDE9;
 	padding: 3px;
+	/*background-color: #D3DDE9;
 	border: 1px solid  #c2cce8;
-	color: #060B95;
+	color: #060B95;*/
+	color: black;
 	z-index: 200;	
 }
 
