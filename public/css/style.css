@@ -426,8 +426,7 @@ p.game
 
 .categoryName:hover
 {
-	background-color: #51c8b2;
-	border: 1px solid  #51c8b2;
+	background-color: #209781;	
 	color: #26282E;	
 }
 
@@ -490,4 +489,8 @@ p.game
 	{
 		max-width: 450px;
 	}
+}
+.btn
+{
+	color: #26282E;
 }
