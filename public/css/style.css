@@ -24,6 +24,10 @@ body, html
 	white-space: pre-wrap;	
 	
 }
+.nav-item:hover
+{
+	background-color: #209781;
+}
 
 .navbar-brand:hover   { color: #E9B64A; }
 
