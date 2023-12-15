@@ -24,12 +24,16 @@ body, html
 	white-space: pre-wrap;	
 	
 }
+
+.navbar-brand:hover
+{
+	color: #ffc107;
+}
+
 .nav-item:hover
 {
 	background-color: #209781;
 }
-
-.navbar-brand:hover   { color: #E9B64A; }
 
 h2
 {	
@@ -38,7 +42,7 @@ h2
 	font-size: 30px;
 	letter-spacing: 2px;	
 	color: #26282E;	
-	background-color: secondary;	
+	background-color: #6c757d;	
 }
 
 @media(max-width: 767px)
@@ -79,7 +83,6 @@ blockquote > p
 {
 	color: #209781;
 }
-
 
 .inputContainer
 {
