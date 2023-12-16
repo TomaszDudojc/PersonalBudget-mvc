@@ -27,7 +27,7 @@ body, html
 
 .navbar-brand:hover
 {
-	color: #ffc107;
+	color: #5fe3cb;
 }
 
 .nav-item:hover
@@ -103,7 +103,7 @@ button.login
 	padding: 6px;
 	margin-top: 10px;	
 	letter-spacing: 2px;
-	
+	transition: all .3s ease-in-out;
 }
 
 button.login:focus
@@ -190,6 +190,7 @@ button.register
 	padding: 6px;
 	margin-top: 10px;
 	letter-spacing: 2px;
+	transition: all .3s ease-in-out;
 }
 
 button.register:focus
