@@ -457,7 +457,7 @@ p.game
 {	
 	display: inline-block;
 	background-color: transparent; 
-	border: 1px solid  #209781;
+	/*border: 1px solid  #209781;*/
 	color: #209781;
 	width: 100%;
 }
@@ -465,7 +465,7 @@ p.game
 .expenseName:hover
 {
 	background-color: #209781;
-	border: 1px solid  #209781;
+	/*border: 1px solid  #209781;*/
 	color: #26282E;		
 }
 
@@ -473,7 +473,7 @@ p.game
 {	
 	display: inline-block;
 	background-color: transparent; 
-	border: 1px solid  #209781;
+	/*border: 1px solid  #209781;*/
 	color: #209781;
 	width: 100%;
 }
@@ -481,7 +481,7 @@ p.game
 .incomeName:hover
 {
 	background-color: #209781;
-	border: 1px solid  #209781;
+	/*border: 1px solid  #209781;*/
 	color: #26282E;	
 }
 
