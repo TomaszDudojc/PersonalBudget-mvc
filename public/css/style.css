@@ -423,6 +423,68 @@ p.game
 	}
 }
 
+.incomeCategoryName
+{	
+	display: inline-block;
+	background-color: #26282E;
+	color: #0d6efd;  
+	border: 1px solid  #0d6efd;
+	width: 100%;	
+}
+
+.incomeCategoryName:hover
+{
+	background-color: #0d6efd;	
+	color: #26282E;	
+}
+
+.expenseCategoryName
+{	
+	display: inline-block;
+	background-color: #26282E;
+	color: #ffc107;  
+	border: 1px solid  #ffc107;
+	width: 100%;	
+}
+
+.expenseCategoryName:hover
+{
+	background-color: #ffc107;	
+	color: #26282E;	
+}
+
+.expenseName
+{	
+	display: inline-block;
+	background-color: transparent; 
+	border: 1px solid  #209781;
+	color: #209781;
+	width: 100%;
+}
+
+.expenseName:hover
+{
+	background-color: #209781;
+	border: 1px solid  #209781;
+	color: #26282E;		
+}
+
+.incomeName
+{	
+	display: inline-block;
+	background-color: transparent; 
+	border: 1px solid  #209781;
+	color: #209781;
+	width: 100%;
+}
+
+.incomeName:hover
+{
+	background-color: #209781;
+	border: 1px solid  #209781;
+	color: #26282E;	
+}
+
 .categoryName
 {	
 	display: inline-block;
@@ -435,38 +497,6 @@ p.game
 .categoryName:hover
 {
 	background-color: #209781;	
-	color: #26282E;	
-}
-
-.expenseName
-{	
-	display: inline-block;
-	background-color: transparent; 
-	border: 1px solid  #FFC107;
-	color: #FFC107;
-	width: 100%;
-}
-
-.expenseName:hover
-{
-	background-color: #FFC107;
-	border: 1px solid  #FFC107;
-	color: #26282E;	
-}
-
-.incomeName
-{	
-	display: inline-block;
-	background-color: transparent; 
-	border: 1px solid  #0D6EFD;
-	color: #0D6EFD;
-	width: 100%;
-}
-
-.incomeName:hover
-{
-	background-color: #0D6EFD;
-	border: 1px solid  #0D6EFD;
 	color: #26282E;	
 }
 
