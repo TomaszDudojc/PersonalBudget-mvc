@@ -9,8 +9,7 @@ body, html
 
 .mainNav
 {	
-	background-color: transparent;
-	
+	background-color: transparent;	
 }
 
 .navbar-brand
@@ -22,7 +21,6 @@ body, html
 	font-weight: bold;	
 	color: #209781;	
 	white-space: pre-wrap;	
-	
 }
 
 .navbar-brand:hover
@@ -269,7 +267,10 @@ input:focus:-ms-input-placeholder
 
 .navcontainer
 {
-	margin: auto;	
+	margin: auto;
+	position: sticky;
+	top: 0px;
+	z-index: 200;	
 }
 
 .navbar-nav .active
