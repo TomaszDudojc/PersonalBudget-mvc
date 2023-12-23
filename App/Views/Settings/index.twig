@@ -153,9 +153,19 @@
 
 												<div id="showIncomes{{ incomeCategory.id }}" style="display: none; background-color:#26282E;">
 												<input name="id" type="number"  style="display: none;" value="{{ incomeCategory.id }}">
+
 												{% set noIncome = true %}
+
+												{% for incomeCategoryFromSelectedPeriod in incomeCategoriesFromSelectedPeriod %}
+													{% if incomeCategoryFromSelectedPeriod.income_category_assigned_to_user_id ==  incomeCategory.id %}
+														<div class="rounded incomeCategoryName"> Number of incomes: {{ incomeCategoryFromSelectedPeriod.numberOfIncomes }} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Amount: {{ incomeCategoryFromSelectedPeriod.amountOfIncomes }} </div>
+													{% endif %}
+												{% endfor %}
+
 												{% for incomeFromSelectedPeriod in incomesFromSelectedPeriod %}
+													
 													{% if incomeFromSelectedPeriod.income_category_assigned_to_user_id == incomeCategory.id  %}
+													
 														<h6 class="rounded my-0 py-0 incomeName">
 															<input name="id" type="number" style="display: none;" value="{{ incomeFromSelectedPeriod.id }}">
 															<table width="100%">
@@ -380,7 +390,15 @@
 
 												<div id="showExpenses{{ expenseCategory.id }}" style="display: none; background-color:#26282E;">
 												<input name="id" type="number"  style="display: none;" value="{{ expenseCategory.id }}">
+
 												{% set noExpense = true %}
+
+												{% for expenseCategoryFromSelectedPeriod in expenseCategoriesFromSelectedPeriod %}
+													{% if expenseCategoryFromSelectedPeriod.expense_category_assigned_to_user_id ==  expenseCategory.id %}
+														<div class="rounded expenseCategoryName"> Number of expenses: {{ expenseCategoryFromSelectedPeriod.numberOfExpenses }} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Amount: {{ expenseCategoryFromSelectedPeriod.amountOfExpenses }} </div>
+													{% endif %}
+												{% endfor %}
+
 												{% for expenseFromSelectedPeriod in expensesFromSelectedPeriod %}
 													{% if expenseFromSelectedPeriod.expense_category_assigned_to_user_id == expenseCategory.id  %}
 														<h6 class="rounded my-0 py-0 expenseName">

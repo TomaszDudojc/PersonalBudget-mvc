@@ -12,7 +12,8 @@ class Balances extends \Core\Model
 	public static function getIncomeCategoriesFromSelectedDateRange($startDate, $endDate)
 	{		
 		$sql = "SELECT incomes_category_assigned_to_users.name, incomes.income_category_assigned_to_user_id,
-		SUM(incomes.amount) AS amountOfIncomes FROM incomes, incomes_category_assigned_to_users, users
+		SUM(incomes.amount) AS amountOfIncomes, COUNT(incomes.amount) AS numberOfIncomes FROM incomes,
+		incomes_category_assigned_to_users, users
 		WHERE users.id=:user_id AND incomes.date_of_income BETWEEN :start_date AND :end_date
 		AND users.id=incomes_category_assigned_to_users.user_id AND users.id=incomes.user_id 
 		AND incomes.income_category_assigned_to_user_id=incomes_category_assigned_to_users.id 
@@ -54,7 +55,8 @@ class Balances extends \Core\Model
 	public static function getIncomesFromSelectedDateRange($startDate, $endDate)
 	{		
 		
-        $sql = "SELECT incomes_category_assigned_to_users.name, incomes.income_category_assigned_to_user_id, incomes.date_of_income, incomes.income_comment, incomes.amount, incomes.id
+        $sql = "SELECT incomes_category_assigned_to_users.name, incomes.income_category_assigned_to_user_id,
+		incomes.date_of_income, incomes.income_comment, incomes.amount, incomes.id
         FROM incomes, incomes_category_assigned_to_users, users
 		WHERE users.id=:user_id AND incomes.date_of_income BETWEEN :start_date AND :end_date
         AND users.id=incomes_category_assigned_to_users.user_id AND users.id=incomes.user_id 
@@ -74,7 +76,8 @@ class Balances extends \Core\Model
 	public static function getExpenseCategoriesFromSelectedDateRange($startDate, $endDate)
 	{		
 		$sql = "SELECT expenses_category_assigned_to_users.name, expenses.expense_category_assigned_to_user_id,
-		SUM(expenses.amount) AS amountOfExpenses FROM expenses, expenses_category_assigned_to_users, users
+		SUM(expenses.amount) AS amountOfExpenses, COUNT(expenses.amount) AS numberOfExpenses FROM expenses,
+		expenses_category_assigned_to_users, users
 		WHERE users.id=:user_id AND expenses.date_of_expense BETWEEN :start_date AND :end_date
 		AND users.id=expenses_category_assigned_to_users.user_id AND users.id=expenses.user_id
 		AND expenses.expense_category_assigned_to_user_id=expenses_category_assigned_to_users.id
@@ -115,7 +118,9 @@ class Balances extends \Core\Model
 
 	public static function getExpensesFromSelectedDateRange($startDate, $endDate)
 	{		
-		$sql = "SELECT expenses_category_assigned_to_users.name, expenses.expense_category_assigned_to_user_id, expenses.date_of_expense, expenses.expense_comment, expenses.amount, expenses.id, expenses.payment_method_assigned_to_user_id, payment_methods_assigned_to_users.name, payment_methods_assigned_to_users.is_active
+		$sql = "SELECT expenses_category_assigned_to_users.name, expenses.expense_category_assigned_to_user_id, expenses.date_of_expense,
+		expenses.expense_comment, expenses.amount, expenses.id, expenses.payment_method_assigned_to_user_id,
+		payment_methods_assigned_to_users.name, payment_methods_assigned_to_users.is_active
 		FROM expenses, expenses_category_assigned_to_users, payment_methods_assigned_to_users, users WHERE users.id=:user_id 
 		AND expenses.date_of_expense BETWEEN :start_date AND :end_date AND users.id=expenses_category_assigned_to_users.user_id 
 		AND users.id=expenses.user_id AND expenses.expense_category_assigned_to_user_id=expenses_category_assigned_to_users.id

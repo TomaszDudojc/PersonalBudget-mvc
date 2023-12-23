@@ -24,11 +24,13 @@ class Settings extends Authenticated
         $_SESSION['start_date'] = "2000-01-01";
         $_SESSION['end_date'] = Dates::getCurrentDate(); 
         View::renderTemplate('Settings/index.twig', [
-            'incomeCategories' => Incomes::getIncomeCategoriesOfUser(),
+            'incomeCategories' => Incomes::getIncomeCategoriesOfUser(),           
             'expenseCategories' => Expenses::getExpenseCategoriesOfUser(),
             'paymentMethods' => Expenses::getPaymentMethodsOfUser(),
             'expensesFromSelectedPeriod' => Balances::getExpensesFromSelectedDateRange($_SESSION['start_date'], $_SESSION['end_date']),
-            'incomesFromSelectedPeriod' => Balances::getIncomesFromSelectedDateRange($_SESSION['start_date'], $_SESSION['end_date']),                       
+            'incomesFromSelectedPeriod' => Balances::getIncomesFromSelectedDateRange($_SESSION['start_date'], $_SESSION['end_date']),
+            'incomeCategoriesFromSelectedPeriod'  => Balances::getIncomeCategoriesFromSelectedDateRange($_SESSION['start_date'], $_SESSION['end_date']),
+            'expenseCategoriesFromSelectedPeriod'  => Balances::getExpenseCategoriesFromSelectedDateRange($_SESSION['start_date'], $_SESSION['end_date']),                                            
             'user' => $this->user            		
 		]);
     }
