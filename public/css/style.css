@@ -456,7 +456,7 @@ p.game
 
 .expenseName
 {	
-	display: inline-block;
+	/*display: inline-block;*/
 	background-color: transparent; 
 	border: 1px solid  #209781;
 	border-top: none;
@@ -473,7 +473,7 @@ p.game
 
 .incomeName
 {	
-	display: inline-block;
+	/*display: inline-block;*/
 	background-color: transparent; 
 	border: 1px solid  #209781;
 	border-top: none;
@@ -494,7 +494,8 @@ p.game
 	background-color: #26282E;
 	color: #209781;  
 	border: 1px solid  #209781;
-	width: 100%;	
+	width: 100%;
+	margin-top: 0px;	
 }
 
 .categoryName:hover

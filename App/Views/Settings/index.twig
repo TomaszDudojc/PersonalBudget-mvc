@@ -217,7 +217,7 @@
 												{% if noIncome %}<div class="rounded incomeCategoryName mb-1"> No income in that category </div>{% endif %}
 											</div>	
 											</div>
-											<div class="modal-body" style="border-top: 1px solid #51c8b2;">
+											<div class="modal-body" style="border-top: none;">
 												<form action="/settings/deleteIncomeCategory" method="post">
 													<input name="id" type="number" style="display: none;" value="{{ incomeCategory.id }}">
 													<input type="text" class="form-control rounded text-center" style="width: 100%; font-size: 20px; background-color: #26282E;" name="category" value="{{ incomeCategory.name }}" disabled />				
@@ -377,7 +377,7 @@
 											</button>							
 											</div>
 											
-											<div class="bg-warning" style="border-bottom: 1px solid #51c8b2;">
+											<div class="bg-warning">
 												<input name="id" type="number"  style="display: none;" value="{{ expenseCategory.id }}">
 												<p class="my-0 text-dark text-center">Warning:</p>
 												<p class="my-0 text-dark text-center">All expenses in this category will be deleted!</p>
@@ -452,7 +452,7 @@
 												{% if noExpense %}<div class="rounded expenseCategoryName mb-1"> No expenese in that category </div>{% endif %}
 											</div>	
 											</div>
-											<div class="modal-body">
+											<div class="modal-body" style="border-top: none;">
 												<form action="/settings/deleteExpenseCategory" method="post">
 													<input name="id" type="number" style="display: none;" value="{{ expenseCategory.id }}">
 													<input type="text" class="form-control rounded text-center" style="width: 100%; font-size: 20px; background-color: #26282E;" name="category" value="{{ expenseCategory.name }}" disabled />				
