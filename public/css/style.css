@@ -424,6 +424,8 @@ p.game
 	}
 }
 
+/*////////////////// SETTINGS //////////////////// */
+
 .incomeCategoryName
 {	
 	display: inline-block;
@@ -535,4 +537,9 @@ p.game
 .btn
 {
 	color: #26282E;
+}
+
+#helpBlock
+{
+	color: #6C757D;	
 }
