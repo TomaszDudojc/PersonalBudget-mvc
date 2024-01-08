@@ -28,9 +28,32 @@ body, html
 	color: #5fe3cb;
 }
 
-.nav-item:hover
+.nav-link:hover
 {
-	background-color: #209781;
+	/*background-color: #209781;*/
+	color: #5fe3cb !important; 
+	text-decoration: underline;
+}
+
+.active
+{	
+	background-color: transparent !important;	
+	border: 1px solid  #209781 !important; 	
+}
+
+.nav-link
+{
+	color: #209781 !important; 
+}
+
+.navbar-toggler
+{
+	border: 1px solid  #209781 !important;
+}
+
+.navbar-toggler-icon
+{
+	color: #209781 !important;
 }
 
 h2
@@ -71,6 +94,7 @@ h2
 		font-size: 21px;		
 	}
 }
+
 p
 {	
 	color: #060B95;	
@@ -106,9 +130,10 @@ button.login
 
 button.login:focus
 {	
-	-webkit-box-shadow: 0px 0px 5px 5px rgba(32,151,129,0.9);
+	/*-webkit-box-shadow: 0px 0px 5px 5px rgba(32,151,129,0.9);
 	-moz-box-shadow: 0px 0px 5px 5px rgba(32,151,129,0.9);
-	box-shadow: 0px 0px 5px 5px rgba(32,151,129,0.9);	
+	box-shadow: 0px 0px 5px 5px rgba(32,151,129,0.9);*/
+	border: 5px solid #5fe3cb;	
 }
 
 button.login:hover
@@ -131,7 +156,10 @@ button.login:hover
 	bottom: 0;
 	left: 0;
 	padding: 3px;	
-	color: black;
+	/*color: black;*/
+	background-color: #26282E;
+	color: #209781;
+	border-top: 1px solid #209781;
 	z-index: 200;	
 }
 
@@ -193,9 +221,10 @@ button.register
 
 button.register:focus
 {
-	-webkit-box-shadow: 0px 0px 5px 5px rgba(32,151,129,0.9);
+	/*-webkit-box-shadow: 0px 0px 5px 5px rgba(32,151,129,0.9);
 	-moz-box-shadow: 0px 0px 5px 5px rgba(32,151,129,0.9);
-	box-shadow: 0px 0px 5px 5px rgba(32,151,129,0.9);
+	box-shadow: 0px 0px 5px 5px rgba(32,151,129,0.9);*/
+	border: 5px solid #5fe3cb;
 }
 
 button.register:hover
@@ -270,7 +299,8 @@ input:focus:-ms-input-placeholder
 	margin: auto;
 	position: sticky;
 	top: 0px;
-	z-index: 200;	
+	z-index: 200;
+	background-color: #26282E;	
 }
 
 .navbar-nav .active
@@ -281,6 +311,11 @@ input:focus:-ms-input-placeholder
  h3
 {	
 	color: #060B95;		
+}
+
+h2
+{	
+	background-color: #209781;		
 }
 
 /* //////////////////  EXPENSE /////////////////////// */
@@ -315,6 +350,14 @@ option
 	color: red;
 	margin-top: 10px;
 	margin-bottom: 10px;	
+}
+
+.response
+{
+	background-color: #26282E;
+	color: #209781;
+	border: 1px solid  #209781;
+	padding: 1px;
 }
 	
 /* //////////////////  LOGIN.HP /////////////////////// */
