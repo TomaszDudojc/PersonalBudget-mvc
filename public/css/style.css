@@ -133,7 +133,12 @@ button.login:focus
 	/*-webkit-box-shadow: 0px 0px 5px 5px rgba(32,151,129,0.9);
 	-moz-box-shadow: 0px 0px 5px 5px rgba(32,151,129,0.9);
 	box-shadow: 0px 0px 5px 5px rgba(32,151,129,0.9);*/
-	border: 5px solid #5fe3cb;	
+	border: 5px solid #5fe3cb;
+	background-color: #209781;
+	color: #26282E;	
+	font-size: 24px;
+	letter-spacing: 4px;
+	padding: 3px;	
 }
 
 button.login:hover
@@ -225,6 +230,11 @@ button.register:focus
 	-moz-box-shadow: 0px 0px 5px 5px rgba(32,151,129,0.9);
 	box-shadow: 0px 0px 5px 5px rgba(32,151,129,0.9);*/
 	border: 5px solid #5fe3cb;
+	background-color: #26282E;
+	color: #209781;
+	font-size: 24px;
+	letter-spacing: 4px;
+	padding: 3px;
 }
 
 button.register:hover
