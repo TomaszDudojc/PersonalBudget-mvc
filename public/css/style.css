@@ -150,6 +150,30 @@ button.login:hover
 	padding: 3px;
 }
 
+input[type='checkbox']
+{
+	width: 22px !important;
+	height: 22px !important;
+	margin-right: 2px;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	-o-appearance: none;
+	appearance: none;
+	outline: 1px solid #209781;
+	box-shadow: none;
+	/*font-size: 0.8em;*/	
+	line-height: 1.4em;
+	text-align: center;
+	background: #26282E;
+  }
+  
+  input[type='checkbox']:checked:after 
+  {
+	content: '✔';
+	color: #26282E;
+	background: #209781;
+  }
+
 /* //////////////////  FOOTER  /////////////////////// */
 
 .info
