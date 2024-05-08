@@ -214,6 +214,21 @@ input[type=date],
 	background-color: transparent;	
 }
 
+input:-webkit-autofill
+{
+    -webkit-text-fill-color: #209781 !important;
+	transition: background-color 5000s ease-in-out 0s;
+    -webkit-box-shadow: 0 0 0px 1000px #26282E inset;
+}
+
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-box-shadow: 0 0 0px 1000px #209781 inset;
+	-webkit-text-fill-color: #26282E !important;
+}
+
 .progress
 {	
 	border: 1px solid  #c2cce8;	
